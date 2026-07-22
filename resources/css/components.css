@@ -1,0 +1,132 @@
+/* ===========================
+   Buttons
+=========================== */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+
+    height: 48px;
+
+    padding-inline: 1.4rem;
+
+    border-radius: var(--radius-full);
+
+    font-weight: 600;
+
+    transition: all var(--transition);
+
+    cursor: pointer;
+}
+
+.btn-primary{
+    background: var(--primary);
+    color:#fff;
+}
+
+.btn-primary:hover{
+    background: var(--primary-dark);
+}
+
+.btn-outline{
+
+    border:1px solid var(--border);
+
+    background:#fff;
+
+    color:var(--text);
+}
+
+.btn-outline:hover{
+
+    background:var(--surface-2);
+
+}
+
+/* ===========================
+   Card
+=========================== */
+
+.card{
+
+    background:#fff;
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius-xl);
+
+    box-shadow:var(--shadow-sm);
+
+    transition:all var(--transition);
+
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:var(--shadow-lg);
+
+}
+
+/* ===========================
+   Input
+=========================== */
+
+.input{
+
+    width:100%;
+
+    height:52px;
+
+    padding-inline:1rem;
+
+    border:1px solid var(--border);
+
+    border-radius:var(--radius-lg);
+
+    outline:none;
+
+    transition:all var(--transition);
+
+    background:#fff;
+
+}
+
+.input:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:0 0 0 4px rgba(11,95,255,.12);
+
+}
+
+/* ===========================
+   Badge
+=========================== */
+
+.badge{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    height:34px;
+
+    padding-inline:1rem;
+
+    border-radius:999px;
+
+    background:#EFF6FF;
+
+    color:var(--primary);
+
+    font-size:.9rem;
+
+    font-weight:600;
+
+}

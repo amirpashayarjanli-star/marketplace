@@ -1,0 +1,42 @@
+:root {
+    /* Brand */
+    --primary: #0B5FFF;
+    --primary-dark: #0847C2;
+    --accent: #FFC107;
+
+    /* Surface */
+    --background: #F8FAFC;
+    --surface: #FFFFFF;
+    --surface-2: #F1F5F9;
+
+    /* Text */
+    --text: #0F172A;
+    --text-muted: #64748B;
+
+    /* Border */
+    --border: #E2E8F0;
+
+    /* Radius */
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+    --radius-full: 9999px;
+
+    /* Shadow */
+    --shadow-sm: 0 2px 8px rgba(15, 23, 42, .05);
+    --shadow-md: 0 8px 32px rgba(15, 23, 42, .08);
+    --shadow-lg: 0 20px 60px rgba(15, 23, 42, .12);
+
+    /* Blur */
+    --blur: blur(18px);
+    --blur-premium: blur(30px);
+
+    /* Container */
+    --container: 1440px;
+
+    /* Transition */
+    --transition-fast: .15s;
+    --transition: .25s;
+    --transition-slow: .4s;
+}
