@@ -1,0 +1,340 @@
+.latest-articles{
+    padding:90px 0;
+}
+
+.articles-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+}
+
+.article-card{
+    background:#fff;
+    border-radius:22px;
+    overflow:hidden;
+    border:1px solid #edf2f7;
+    transition:.3s;
+}
+
+.article-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 45px rgba(15,23,42,.08);
+}
+
+.article-image{
+    position:relative;
+    height:220px;
+    overflow:hidden;
+}
+
+.article-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.4s;
+}
+
+.article-card:hover img{
+    transform:scale(1.06);
+}
+
+.article-category{
+    position:absolute;
+    top:16px;
+    right:16px;
+    background:#2563eb;
+    color:#fff;
+    padding:6px 14px;
+    border-radius:999px;
+    font-size:.8rem;
+    font-weight:700;
+}
+
+.article-body{
+    padding:24px;
+}
+
+.article-body h3{
+    margin:0;
+    font-size:1.2rem;
+    font-weight:800;
+    line-height:1.7;
+    color:#111827;
+}
+
+.article-body p{
+    margin:16px 0 22px;
+    color:#64748b;
+    line-height:1.9;
+}
+
+.article-footer{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.article-footer span{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#94a3b8;
+    font-size:.9rem;
+}
+
+.article-footer a{
+    color:#2563eb;
+    text-decoration:none;
+    font-weight:700;
+}
+
+@media(max-width:1200px){
+
+    .articles-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:768px){
+
+    .articles-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+
+/* =====================================================
+   Articles Premium Liquid Glass
+===================================================== */
+
+
+/* Card */
+
+.article-card{
+
+    background:
+
+    linear-gradient(
+        135deg,
+        rgba(255,255,255,.85),
+        rgba(255,255,255,.45)
+    );
+
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+
+    border:
+
+    1px solid rgba(255,255,255,.65);
+
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    position:relative;
+
+
+    transition:
+
+    transform .45s cubic-bezier(.34,1.56,.64,1),
+
+    box-shadow .45s ease;
+
+}
+
+
+
+/* Hover */
+
+.article-card:hover{
+
+    transform:
+
+    translateY(-12px)
+    scale(1.03);
+
+
+    box-shadow:
+
+    0 35px 70px rgba(15,23,42,.15);
+
+}
+
+
+
+/* Image */
+
+.article-image{
+
+    overflow:hidden;
+
+    position:relative;
+
+}
+
+
+
+.article-image img{
+
+    width:100%;
+
+    transition:
+
+    transform .8s cubic-bezier(.22,1,.36,1);
+
+}
+
+
+
+.article-card:hover .article-image img{
+
+    transform:
+
+    scale(1.08);
+
+}
+
+
+
+/* Category Glass */
+
+.article-category{
+
+    backdrop-filter:blur(12px);
+
+    -webkit-backdrop-filter:blur(12px);
+
+
+    background:
+
+    rgba(255,255,255,.75);
+
+
+    border:
+
+    1px solid rgba(255,255,255,.6);
+
+
+    box-shadow:
+
+    0 10px 25px rgba(15,23,42,.12);
+
+
+    transition:.3s ease;
+
+}
+
+
+
+.article-card:hover .article-category{
+
+    transform:
+
+    translateY(-4px);
+
+}
+
+
+
+/* Title */
+
+.article-body h3{
+
+    transition:.3s ease;
+
+}
+
+
+
+.article-card:hover h3{
+
+    color:#2563eb;
+
+}
+
+
+
+/* Footer */
+
+.article-footer a{
+
+    color:#2563eb;
+
+    font-weight:700;
+
+    transition:.3s ease;
+
+}
+
+
+
+.article-footer a:hover{
+
+    transform:
+
+    translateX(-5px);
+
+}
+
+
+
+/* Date icon */
+
+.article-footer i{
+
+    color:#f59e0b;
+
+}
+
+
+
+/* Entrance */
+
+.article-card{
+
+    animation:
+
+    articleReveal .7s ease both;
+
+}
+
+
+
+.article-card:nth-child(1){
+    animation-delay:.1s;
+}
+
+.article-card:nth-child(2){
+    animation-delay:.2s;
+}
+
+.article-card:nth-child(3){
+    animation-delay:.3s;
+}
+
+
+@keyframes articleReveal{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(35px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}

@@ -20,3 +20,7 @@
     --radius-lg: 20px;
     --radius-xl: 28px;
 }
+
+@import "./components/entity-slider.css";
+@import "./components/projects.css";
+@import "./components/articles.css";

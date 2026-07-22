@@ -6,24 +6,32 @@
 
 @include('sections.header')
 
-@include('sections.hero')
+<main class="pt-24">
 
-@include('sections.trust-bar')
+    @include('sections.hero')
 
-@include('sections.quick-access')
+    @include('sections.trust-bar')
 
-@include('sections.collaboration')
+    @include('sections.quick-access')
 
-@include('sections.sliders')
+    @include('sections.collaboration')
 
-@include('sections.latest-projects')
+    @include('sections.top-companies')
 
-@include('sections.latest-inquiries')
+    @include('sections.top-manufacturers')
 
-@include('sections.articles')
+    @include('sections.top-stores')
 
-@include('sections.cta')
+    @include('sections.latest-projects')
+
+    @include('sections.latest-inquiries')
+
+    @include('sections.articles')
+
+</main>
+
 
 @include('sections.footer')
+
 
 @endsection

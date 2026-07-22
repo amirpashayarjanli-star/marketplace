@@ -1,9 +1,8 @@
-<header class="sticky top-0 z-50 pt-5">
+<header class="fixed inset-x-0 top-0 z-50 pt-5">
 
     <div class="container-app">
 
-        <div
-            class="glass-premium radius-xl flex h-20 items-center justify-between px-6">
+        <div class="glass-premium radius-xl flex h-20 items-center justify-between px-6">
 
             {{-- Logo --}}
             <x-header.logo />
@@ -11,22 +10,15 @@
             {{-- Navigation --}}
             <x-header.navigation />
 
-            {{-- Right Side --}}
-            <div class="flex items-center gap-3">
+            {{-- Right --}}
+            <div class="flex items-center gap-4">
 
-                <button
-                    class="btn btn-outline">
+                <x-header.search />
 
-                    جستجو
-
-                </button>
-
-                <button
-                    class="btn btn-primary">
-
-                    ورود | ثبت نام
-
-                </button>
+                <a href="#"
+                   class="btn btn-primary">
+                    ورود | ثبت‌نام
+                </a>
 
             </div>
 

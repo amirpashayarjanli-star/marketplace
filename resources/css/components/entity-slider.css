@@ -1,0 +1,838 @@
+.entity-slider-section{
+    position:relative;
+    padding:90px 0;
+}
+
+.entity-slider-section .container{
+    position:relative;
+}
+
+.section-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    gap:32px;
+    margin-bottom:42px;
+}
+
+.section-header-right{
+    max-width:650px;
+}
+
+.section-subtitle{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 16px;
+    background:#eef5ff;
+    color:#2563eb;
+    border-radius:999px;
+    font-size:.82rem;
+    font-weight:700;
+    margin-bottom:18px;
+}
+
+.section-header h2{
+    margin:0;
+    font-size:2.2rem;
+    font-weight:900;
+    color:#111827;
+    line-height:1.3;
+}
+
+.section-header p{
+    margin-top:14px;
+    color:#6b7280;
+    font-size:1rem;
+    line-height:1.9;
+}
+
+.section-header-left{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.view-all{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:#2563eb;
+    text-decoration:none;
+    font-weight:700;
+    transition:.25s;
+}
+
+.view-all:hover{
+    gap:16px;
+}
+
+.slider-navigation{
+    display:flex;
+    gap:10px;
+}
+
+.slider-arrow{
+    width:48px;
+    height:48px;
+    border:none;
+    border-radius:50%;
+    background:#fff;
+    color:#111827;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 10px 25px rgba(15,23,42,.08);
+    transition:.25s;
+}
+
+.slider-arrow:hover{
+    background:#2563eb;
+    color:#fff;
+    transform:translateY(-3px);
+}
+
+.entity-slider{
+    overflow:hidden;
+}
+
+.entity-track{
+    display:flex;
+    gap:24px;
+    transition:transform .45s ease;
+    will-change:transform;
+}
+
+.entity-card{
+    flex:0 0 calc((100% - 120px)/6);
+    background:#fff;
+    border-radius:24px;
+    overflow:hidden;
+    border:1px solid #eef2f7;
+    transition:.3s;
+}
+
+.entity-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 25px 55px rgba(15,23,42,.10);
+}
+
+.entity-card__cover{
+    position:relative;
+    height:180px;
+    background:#f8fafc;
+}
+
+.entity-card__cover img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.entity-badge{
+    position:absolute;
+    top:16px;
+    right:16px;
+    padding:6px 12px;
+    border-radius:999px;
+    background:#2563eb;
+    color:#fff;
+    font-size:.75rem;
+    font-weight:700;
+}
+
+.entity-card__body{
+    padding:22px;
+}
+
+.entity-title{
+    margin:0 0 14px;
+    font-size:1.1rem;
+    font-weight:800;
+    color:#111827;
+}
+
+.entity-city{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:#6b7280;
+    margin-bottom:18px;
+}
+
+.entity-stats{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:22px;
+}
+
+.entity-stats div{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    font-size:.9rem;
+    color:#374151;
+}
+
+.entity-button{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:46px;
+    border-radius:14px;
+    background:#2563eb;
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    transition:.25s;
+}
+
+.entity-button:hover{
+    background:#1d4ed8;
+}
+
+.slider-pagination{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    margin-top:34px;
+}
+
+.slider-pagination button{
+    width:10px;
+    height:10px;
+    border:none;
+    border-radius:50%;
+    background:#d1d5db;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.slider-pagination button.active{
+    width:30px;
+    border-radius:999px;
+    background:#2563eb;
+}
+
+.slider-empty{
+    width:100%;
+    padding:90px 20px;
+    text-align:center;
+    color:#94a3b8;
+}
+
+.slider-empty i{
+    font-size:52px;
+    margin-bottom:20px;
+}
+
+@media (max-width:1200px){
+
+    .entity-card{
+        flex:0 0 calc((100% - 72px)/4);
+    }
+
+}
+
+@media (max-width:992px){
+
+    .section-header{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+}
+
+@media (max-width:768px){
+
+    .entity-card{
+        flex:0 0 calc((100% - 24px)/2);
+    }
+
+}
+
+@media (max-width:576px){
+
+    .entity-card{
+        flex:0 0 100%;
+    }
+
+    .section-header h2{
+        font-size:1.8rem;
+    }
+
+}
+
+.entity-logo{
+    width:72px;
+    height:72px;
+    margin:-58px auto 18px;
+    border-radius:50%;
+    overflow:hidden;
+    border:4px solid #fff;
+    background:#fff;
+    box-shadow:0 12px 30px rgba(15,23,42,.12);
+    position:relative;
+    z-index:10;
+}
+
+.entity-logo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+.entity-slider-section .container{
+    width:100%;
+    max-width:1400px;
+    margin:0 auto;
+    padding-inline:20px;
+}
+
+/* =====================================================
+   Entity Slider Premium Liquid Glass
+===================================================== */
+
+
+/* کارت‌ها */
+
+.entity-card{
+
+    background:
+
+    linear-gradient(
+        135deg,
+        rgba(255,255,255,.85),
+        rgba(255,255,255,.45)
+    );
+
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+
+
+    border:1px solid rgba(255,255,255,.65);
+
+
+    transition:
+
+    transform .45s cubic-bezier(.34,1.56,.64,1),
+
+    box-shadow .45s ease,
+
+    border-color .45s ease;
+
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+
+/* نور شیشه */
+
+.entity-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-100%;
+
+
+    background:
+
+    linear-gradient(
+        120deg,
+        transparent 40%,
+        rgba(255,255,255,.6),
+        transparent 60%
+    );
+
+
+    transform:translateX(-100%);
+
+    transition:.8s;
+
+}
+
+
+
+/* Hover کارت */
+
+.entity-card:hover{
+
+    transform:
+
+    translateY(-12px)
+    scale(1.03);
+
+
+    box-shadow:
+
+    0 35px 70px rgba(15,23,42,.16);
+
+
+    border-color:
+
+    rgba(37,99,235,.25);
+
+}
+
+
+
+.entity-card:hover::before{
+
+    transform:translateX(100%);
+
+}
+
+
+
+/* لوگو */
+
+.entity-logo{
+
+    transition:
+
+    transform .5s cubic-bezier(.34,1.56,.64,1),
+
+    box-shadow .5s ease;
+
+}
+
+
+
+.entity-card:hover .entity-logo{
+
+    transform:
+
+    scale(1.15)
+    translateY(-6px);
+
+
+    box-shadow:
+
+    0 18px 40px rgba(37,99,235,.22);
+
+}
+
+
+
+/* دکمه */
+
+.entity-button{
+
+    transition:
+
+    transform .3s ease,
+
+    box-shadow .3s ease;
+
+}
+
+
+.entity-button:hover{
+
+    transform:
+
+    translateY(-3px);
+
+
+    box-shadow:
+
+    0 12px 25px rgba(37,99,235,.25);
+
+}
+
+
+
+/* ورود کارت‌ها */
+
+.entity-card{
+
+    animation:
+
+    entityReveal .7s ease both;
+
+}
+
+
+.entity-card:nth-child(1){animation-delay:.1s;}
+.entity-card:nth-child(2){animation-delay:.2s;}
+.entity-card:nth-child(3){animation-delay:.3s;}
+.entity-card:nth-child(4){animation-delay:.4s;}
+.entity-card:nth-child(5){animation-delay:.5s;}
+.entity-card:nth-child(6){animation-delay:.6s;}
+
+
+
+@keyframes entityReveal{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(35px);
+
+    }
+
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* =====================================================
+   Entity Slider Header Premium
+===================================================== */
+
+.section-subtitle{
+
+    background:
+
+    linear-gradient(
+        135deg,
+        rgba(255,255,255,.8),
+        rgba(238,245,255,.8)
+    );
+
+
+    backdrop-filter:blur(12px);
+
+    -webkit-backdrop-filter:blur(12px);
+
+
+    border:
+
+    1px solid rgba(37,99,235,.12);
+
+
+    box-shadow:
+
+    0 10px 25px rgba(37,99,235,.08);
+
+}
+
+
+
+/* مشاهده همه */
+
+.view-all{
+
+    transition:
+
+    transform .3s ease,
+
+    gap .3s ease,
+
+    color .3s ease;
+
+}
+
+
+.view-all:hover{
+
+    transform:
+
+    translateX(-5px);
+
+}
+
+
+
+/* فلش‌ها */
+
+.slider-arrow{
+
+    background:
+
+    linear-gradient(
+        135deg,
+        rgba(255,255,255,.85),
+        rgba(255,255,255,.55)
+    );
+
+
+    backdrop-filter:blur(14px);
+
+    -webkit-backdrop-filter:blur(14px);
+
+
+    border:
+
+    1px solid rgba(255,255,255,.7);
+
+
+    transition:
+
+    transform .35s cubic-bezier(.34,1.56,.64,1),
+
+    background .3s ease,
+
+    color .3s ease;
+
+}
+
+
+
+.slider-arrow:hover{
+
+    transform:
+
+    translateY(-4px)
+    scale(1.1);
+
+
+    background:#2563eb;
+
+    color:#fff;
+
+}
+
+/* =====================================================
+   Company Card Premium Polish
+===================================================== */
+
+
+/* کاور کارت */
+
+.entity-card__cover{
+
+    overflow:hidden;
+
+}
+
+
+.entity-card__cover img{
+
+    transition:
+    transform .8s cubic-bezier(.22,1,.36,1);
+
+}
+
+
+
+.entity-card:hover .entity-card__cover img{
+
+    transform:
+    scale(1.08);
+
+}
+
+
+
+/* Badge Glass */
+
+.entity-badge{
+
+    background:
+
+    linear-gradient(
+        135deg,
+        rgba(37,99,235,.9),
+        rgba(59,130,246,.7)
+    );
+
+
+    backdrop-filter:blur(12px);
+
+    -webkit-backdrop-filter:blur(12px);
+
+
+    border:
+
+    1px solid rgba(255,255,255,.4);
+
+
+    box-shadow:
+
+    0 10px 25px rgba(37,99,235,.25);
+
+
+    transition:.35s ease;
+
+}
+
+
+
+.entity-card:hover .entity-badge{
+
+    transform:
+
+    translateY(-3px);
+
+}
+
+
+
+/* لوگو Floating */
+
+.entity-logo{
+
+    transition:
+
+    transform .5s cubic-bezier(.34,1.56,.64,1),
+
+    box-shadow .5s ease;
+
+}
+
+
+
+.entity-card:hover .entity-logo{
+
+    transform:
+
+    translateY(-8px)
+    scale(1.12);
+
+
+    box-shadow:
+
+    0 20px 45px rgba(37,99,235,.25);
+
+}
+
+
+
+/* عنوان */
+
+.entity-title{
+
+    transition:.3s ease;
+
+}
+
+
+
+.entity-card:hover .entity-title{
+
+    color:#2563eb;
+
+}
+
+
+
+/* آیکون‌های اطلاعات */
+
+.entity-stats i{
+
+    color:#2563eb;
+
+    transition:.3s ease;
+
+}
+
+
+
+.entity-card:hover .entity-stats i{
+
+    transform:
+
+    scale(1.15);
+
+}
+
+
+
+/* شهر */
+
+.entity-city i{
+
+    color:#f59e0b;
+
+}
+
+
+
+/* دکمه */
+
+.entity-button{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+
+.entity-button::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+
+    background:
+
+    linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.35),
+        transparent
+    );
+
+
+    transform:translateX(-120%);
+
+    transition:.6s;
+
+}
+
+
+
+.entity-button:hover::before{
+
+    transform:translateX(120%);
+
+}
+
+/* =====================================================
+   Manufacturer Card Accent
+===================================================== */
+
+.entity-card .fa-industry{
+
+    color:#f97316;
+
+}
+
+
+.entity-card:hover .fa-industry{
+
+    transform:
+
+    scale(1.15);
+
+}
+
+/* =====================================================
+   Store Card Accent
+===================================================== */
+
+.entity-card .fa-box{
+
+    color:#16a34a;
+
+}
+
+
+.entity-card:hover .fa-box{
+
+    transform:
+
+    scale(1.15);
+
+}
