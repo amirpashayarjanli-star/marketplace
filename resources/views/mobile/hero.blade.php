@@ -1,48 +1,87 @@
-<section class="mobile-hero">
+<section class="mobile-hero-card">
+
+
+    {{-- Header روی هیرو --}}
+
+    <div class="mobile-header-overlay">
+
+        @include('mobile.header')
+
+    </div>
+
+
+
+
+    {{-- تصویر هیرو --}}
 
     <div class="mobile-hero-image">
 
-        <img 
+        <img
         src="{{ asset('images/hero/mobile-hero.webp') }}"
         alt="آسانسور پرو">
 
     </div>
 
 
+
+
+
+    {{-- متن هیرو --}}
+
     <div class="mobile-hero-content">
 
+
         <span class="mobile-hero-badge">
+
             آسانسور پرو
+
         </span>
 
 
+
+
         <h1>
-            مرجع صنعت
-            <span>آسانسور</span>
-            ایران
+
+            شروع هر پروژه از
+
+
+            <br>
+
+
+            <span class="text-blue-700">
+
+                آسانسور
+
+            </span>
+
+
+            <span class="text-yellow-500">
+
+                پرو
+
+            </span>
+
+
         </h1>
 
 
-        <p>
-            ارتباط سریع بین شرکت‌ها،
-            تولیدکنندگان، فروشگاه‌ها و متخصصان آسانسور
-        </p>
-
-
-        <div class="mobile-hero-buttons">
-
-            <a href="#" class="mobile-btn-primary">
-                شروع همکاری
-            </a>
-
-
-            <a href="#" class="mobile-btn-secondary">
-                مشاهده پروژه‌ها
-            </a>
-
-        </div>
-
-
     </div>
+
+
+
+
+
+    {{-- دلار --}}
+
+    <x-hero-dollar :dollar="$dollar" />
+
+
+
+
+    {{-- تراست بار --}}
+
+    @include('mobile.trust-bar')
+
+
 
 </section>

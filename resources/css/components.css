@@ -1900,66 +1900,1499 @@ grid-template-columns:1fr;
 
 
 /* =====================================================
-   Mobile Header
+   MOBILE HEADER
 ===================================================== */
 
-.mobile-menu-btn{
 
-    width:44px;
-    height:44px;
+.mobile-header{
+    display:none;
+}
+
+
+@media(max-width:768px){
+
+
+    .mobile-home{
+
+        display:block!important;
+
+    }
+
+
+    .desktop-home{
+
+        display:none!important;
+
+    }
+
+
+
+    .mobile-header{
+
+        display:block;
+
+        position:absolute;
+
+        top:20px;
+
+        left:20px;
+
+        right:20px;
+
+        z-index:100;
+
+    }
+
+
+
+    .mobile-header-box{
+
+        height:60px;
+
+        display:flex;
+
+        align-items:center;
+
+        justify-content:space-between;
+
+
+        padding:0 15px;
+
+
+        background:rgba(255,255,255,.55);
+
+
+        backdrop-filter:blur(25px);
+
+        -webkit-backdrop-filter:blur(25px);
+
+
+        border-radius:22px;
+
+
+        border:1px solid rgba(255,255,255,.45);
+
+
+        box-shadow:0 15px 40px rgba(0,0,0,.08);
+
+    }
+
+
+
+    .mobile-header-actions{
+
+        display:flex;
+
+        gap:10px;
+
+        align-items:center;
+
+    }
+
+
+
+    .mobile-menu-btn,
+    .mobile-search-btn{
+
+        width:42px;
+
+        height:42px;
+
+        display:flex;
+
+        align-items:center;
+
+        justify-content:center;
+
+
+        border-radius:14px;
+
+
+        background:white;
+
+        border:1px solid rgba(0,0,0,.08);
+
+    }
+
+
+
+}
+
+
+
+/* =====================================================
+   MOBILE HERO
+===================================================== */
+
+
+.mobile-hero-card{
+
+
+    position:relative;
+
+
+    width:100%;
+
+
+    height:720px;
+
+
+    overflow:hidden;
+
+
+    border-radius:32px;
+
+
+}
+
+
+
+.mobile-hero-image{
+
+    width:100%;
+
+    height:100%;
+
+}
+
+
+
+.mobile-hero-image img{
+
+
+    width:100%;
+
+
+    height:100%;
+
+
+    object-fit:cover;
+
+
+    object-position:center;
+
+
+}
+
+
+
+.mobile-hero-card .hero-glow,
+.mobile-hero-card .hero-glow-one,
+.mobile-hero-card .hero-glow-two{
+
+    display:none!important;
+
+}
+
+
+
+
+
+.mobile-hero-content{
+
+
+    position:absolute;
+
+
+    top:180px;
+
+
+    left:20px;
+
+
+    right:20px;
+
+
+    text-align:center;
+
+
+    z-index:10;
+
+
+}
+
+
+
+.mobile-hero-content h1{
+
+
+    margin-top:20px;
+
+
+    font-size:32px;
+
+
+    line-height:1.7;
+
+
+    font-weight:900;
+
+
+}
+
+
+
+
+
+/* =====================================================
+   MOBILE DOLLAR LIQUID GLASS
+===================================================== */
+
+
+@media(max-width:768px){
+
+
+.hero-dollar-widget{
+
+
+    position:absolute;
+
+
+    left:20px;
+
+
+    right:20px;
+
+
+    bottom:120px;
+
+
+    width:auto;
+
+
+    height:52px;
+
+
+    padding:0 15px;
+
 
     display:flex;
+
+
     align-items:center;
-    justify-content:center;
 
-    border-radius:14px;
 
-    background:#fff;
+    justify-content:space-between;
 
-    border:1px solid rgba(15,23,42,.08);
 
-    color:#111827;
+
+    border-radius:22px;
+
+
+    background:rgba(255,255,255,.28);
+
+
+    backdrop-filter:blur(30px);
+
+
+    -webkit-backdrop-filter:blur(30px);
+
+
+
+    border:1px solid rgba(255,255,255,.4);
+
+
+    box-shadow:0 15px 45px rgba(0,0,0,.15);
+
+
+    z-index:40;
+
+
+}
+
+
+
+.hero-dollar-widget .dollar-price{
 
     font-size:20px;
 
-    cursor:pointer;
+}
+
+
+
+.hero-dollar-widget .dollar-update{
+
+    display:none;
 
 }
 
 
-/* Desktop */
+}
 
-.header-actions{
+
+
+/* =====================================================
+   MOBILE TRUST BAR
+===================================================== */
+
+
+@media(max-width:768px){
+
+
+.mobile-trust-bar{
+
+
+    position:absolute;
+
+
+    left:20px;
+
+
+    right:20px;
+
+
+    bottom:25px;
+
+
+    height:58px;
+
+
 
     display:flex;
+
+
     align-items:center;
+
+
+    justify-content:space-around;
+
+
+
+    padding:0 10px;
+
+
+    border-radius:25px;
+
+
+    background:rgba(255,255,255,.25);
+
+
+    backdrop-filter:blur(30px);
+
+
+    -webkit-backdrop-filter:blur(30px);
+
+
+
+    border:1px solid rgba(255,255,255,.35);
+
+
+
+    box-shadow:0 15px 40px rgba(0,0,0,.15);
+
+
+    z-index:50;
+
+
 }
+
+
+
+.mobile-trust-item{
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    align-items:center;
+
+
+    gap:4px;
+
+
+    color:white;
+
+
+    font-size:10px;
+
+
+    font-weight:800;
+
+
+}
+
+
+
+.mobile-trust-item i{
+
+
+    font-size:17px;
+
+
+    color:white;
+
+
+}
+
+
+}
+
+
+
+/* =====================================================
+   DESKTOP / MOBILE SWITCH
+===================================================== */
+
+
+@media(min-width:769px){
+
+
+.mobile-home{
+
+    display:none!important;
+
+}
+
+
+.mobile-header{
+
+    display:none!important;
+
+}
+
+
+.mobile-trust-bar{
+
+    display:none!important;
+
+}
+
+
+}
+
+
+
+@media(max-width:480px){
+
+
+.mobile-hero-card{
+
+    height:650px;
+
+}
+
+
+.mobile-hero-content h1{
+
+    font-size:30px;
+
+}
+
+
+
+.hero-dollar-widget{
+
+    bottom:115px;
+
+}
+
+
+}
+
+/* فقط دسکتاپ Trust Bar */
+
+@media(max-width:768px){
+
+    .desktop-only,
+    .desktop-only .trust-bar,
+    .desktop-only .trust-wrapper{
+
+        display:none!important;
+
+    }
+
+}
+
+/* =========================
+   Mobile Header Buttons
+========================= */
+
+
+.mobile-header-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+
+
+.mobile-header-btn{
+
+    width:42px;
+
+    height:42px;
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    border-radius:14px;
+
+
+    background:rgba(255,255,255,.75);
+
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+
+    border:1px solid rgba(255,255,255,.5);
+
+
+    color:#1e293b;
+
+
+    font-size:18px;
+
+
+    text-decoration:none;
+
+
+}
+
+
+
+.mobile-header-btn i{
+
+    display:block;
+
+}
+
+
+
+.mobile-header-btn:hover{
+
+    color:#2563eb;
+
+}
+
+/* =====================================================
+   Directory Pages
+   Companies / Manufacturers / Stores / Technicians
+===================================================== */
+
+
+/* Page */
+
+.directory-page{
+
+    padding:40px 0 100px;
+
+}
+
+
+
+.directory-top{
+
+    text-align:center;
+
+    margin-bottom:40px;
+
+}
+
+
+
+.directory-top h1{
+
+    font-size:42px;
+
+    font-weight:950;
+
+    color:#0f172a;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.directory-top p{
+
+    color:#64748b;
+
+    font-size:18px;
+
+}
+
+
+
+/* =====================================================
+   Liquid Glass Filter
+===================================================== */
+
+
+.directory-filter{
+
+
+    width:min(1200px,92%);
+
+    margin:0 auto 50px;
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+
+    gap:20px;
+
+
+    padding:25px;
+
+
+    border-radius:32px;
+
+
+    background:
+
+    rgba(255,255,255,.35);
+
+
+    backdrop-filter:blur(30px);
+
+    -webkit-backdrop-filter:blur(30px);
+
+
+
+    border:
+
+    1px solid rgba(255,255,255,.45);
+
+
+
+    box-shadow:
+
+    0 20px 50px rgba(15,23,42,.08);
+
+}
+
+
+
+.directory-search{
+
+
+    flex:1;
+
+
+    height:55px;
+
+
+    display:flex;
+
+    align-items:center;
+
+
+    gap:12px;
+
+
+    padding:0 20px;
+
+
+    border-radius:18px;
+
+
+    background:
+
+    rgba(255,255,255,.55);
+
+
+
+}
+
+
+
+.directory-search i{
+
+    color:#2563eb;
+
+}
+
+
+
+.directory-search input{
+
+
+    width:100%;
+
+
+    border:none;
+
+    outline:none;
+
+
+    background:transparent;
+
+
+    font-size:15px;
+
+
+}
+
+
+
+
+
+.directory-options{
+
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+
+
+.directory-options select{
+
+
+    height:55px;
+
+
+    min-width:170px;
+
+
+    padding:0 20px;
+
+
+    border-radius:18px;
+
+
+    border:1px solid rgba(255,255,255,.5);
+
+
+    background:
+
+    rgba(255,255,255,.55);
+
+
+    outline:none;
+
+
+    font-weight:700;
+
+
+}
+
+
+
 
 
 /* Mobile */
 
-@media(max-width:1023px){
+@media(max-width:768px){
 
 
-    header{
+    .directory-top h1{
 
-        padding-top:15px;
-
-    }
-
-
-    header .glass-premium{
-
-        height:70px;
-
-        padding-inline:18px;
+        font-size:30px;
 
     }
 
 
-    .header-actions .btn-primary{
 
-        display:none;
+    .directory-filter{
+
+
+        flex-direction:column;
+
+        padding:18px;
+
+    }
+
+
+
+    .directory-options{
+
+
+        width:100%;
+
+    }
+
+
+
+    .directory-options select{
+
+
+        width:100%;
+
+        min-width:0;
+
+    }
+
+
+}
+
+/* =====================================================
+   Inner Pages Header
+===================================================== */
+
+
+.inner-header{
+
+    width:100%;
+
+    padding:20px 0;
+
+}
+
+
+
+.inner-header-box{
+
+
+    width:min(1400px,92%);
+
+    margin:auto;
+
+
+    height:75px;
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+
+
+    padding:0 25px;
+
+
+    background:rgba(255,255,255,.35);
+
+
+    backdrop-filter:blur(30px);
+
+    -webkit-backdrop-filter:blur(30px);
+
+
+
+    border-radius:30px;
+
+
+    border:1px solid rgba(255,255,255,.45);
+
+
+
+    box-shadow:
+
+    0 15px 40px rgba(15,23,42,.08);
+
+
+}
+
+
+
+.inner-logo img{
+
+    height:45px;
+
+}
+
+
+
+.inner-header-actions{
+
+    display:flex;
+
+    gap:12px;
+
+}
+
+
+
+.inner-header-btn{
+
+
+    width:45px;
+
+    height:45px;
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+
+    border-radius:15px;
+
+
+    background:rgba(255,255,255,.65);
+
+
+    color:#1e293b;
+
+
+    border:1px solid rgba(255,255,255,.5);
+
+
+    text-decoration:none;
+
+
+}
+
+
+
+@media(max-width:768px){
+
+
+.inner-header-box{
+
+    backdrop-filter:blur(30px);
+
+    -webkit-backdrop-filter:blur(30px);
+
+}
+
+
+.inner-logo img{
+
+    height:38px;
+
+}
+
+
+}
+
+/* Header pages */
+
+.inner-page-header{
+
+    position:sticky;
+
+    top:15px;
+
+    z-index:9999;
+
+    width:100%;
+
+}
+
+
+
+.inner-page-header header{
+
+    position:relative!important;
+
+    top:auto!important;
+
+    left:auto!important;
+
+    right:auto!important;
+
+}
+
+
+
+@media(max-width:768px){
+
+
+.inner-page-header .mobile-header{
+
+    position:relative!important;
+
+    top:auto!important;
+
+    left:auto!important;
+
+    right:auto!important;
+
+}
+
+
+}
+
+/* =====================================================
+   Directory Company Cards
+===================================================== */
+
+
+.company-grid{
+
+    width:min(1200px,92%);
+
+    margin:50px auto;
+
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+
+    gap:25px;
+
+}
+
+
+
+.company-card{
+
+
+    padding:30px;
+
+
+    border-radius:32px;
+
+
+    background:rgba(255,255,255,.35);
+
+
+    backdrop-filter:blur(30px);
+
+    -webkit-backdrop-filter:blur(30px);
+
+
+    border:1px solid rgba(255,255,255,.45);
+
+
+    box-shadow:0 20px 50px rgba(15,23,42,.08);
+
+
+    text-align:center;
+
+
+}
+
+
+
+.company-logo{
+
+
+    width:90px;
+
+    height:90px;
+
+
+    margin:0 auto 20px;
+
+
+    border-radius:25px;
+
+
+    background:white;
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    overflow:hidden;
+
+
+}
+
+
+
+.company-logo img{
+
+
+    width:80%;
+
+    height:80%;
+
+
+    object-fit:contain;
+
+
+}
+
+
+
+.company-card h3{
+
+
+    font-size:20px;
+
+    font-weight:900;
+
+
+    margin-bottom:20px;
+
+
+}
+
+
+
+.company-info{
+
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:25px;
+
+
+    color:#64748b;
+
+
+}
+
+
+
+.company-comments{
+
+
+    margin:20px 0;
+
+    color:#64748b;
+
+}
+
+
+
+.company-profile-btn{
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    height:45px;
+
+
+    border-radius:999px;
+
+
+    background:#2563eb;
+
+
+    color:white;
+
+
+    font-weight:800;
+
+
+    text-decoration:none;
+
+
+}
+
+
+
+@media(max-width:1024px){
+
+    .company-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+
+
+@media(max-width:768px){
+
+    .company-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+/* =====================================================
+   Directory Filter
+===================================================== */
+
+
+.directory-filter{
+
+
+    width:min(1200px,92%);
+
+    margin:0 auto 50px;
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+
+    flex-wrap:wrap;
+
+
+    gap:20px;
+
+
+    padding:25px;
+
+
+    border-radius:32px;
+
+
+    background:
+
+    rgba(255,255,255,.35);
+
+
+
+    backdrop-filter:blur(30px);
+
+    -webkit-backdrop-filter:blur(30px);
+
+
+
+    border:
+
+    1px solid rgba(255,255,255,.45);
+
+
+
+    box-shadow:
+
+    0 20px 50px rgba(15,23,42,.08);
+
+}
+
+
+
+
+.directory-search{
+
+
+    flex:1;
+
+
+    min-width:250px;
+
+
+    height:55px;
+
+
+    display:flex;
+
+    align-items:center;
+
+
+    gap:12px;
+
+
+    padding:0 20px;
+
+
+    border-radius:18px;
+
+
+    background:
+
+    rgba(255,255,255,.55);
+
+
+}
+
+
+
+.directory-search i{
+
+    color:#2563eb;
+
+}
+
+
+
+.directory-search input{
+
+
+    width:100%;
+
+
+    border:none;
+
+
+    outline:none;
+
+
+    background:transparent;
+
+
+    font-size:15px;
+
+
+}
+
+
+
+
+
+.directory-options{
+
+
+    display:flex;
+
+
+    gap:15px;
+
+
+}
+
+
+
+.directory-options select{
+
+
+    height:55px;
+
+
+    min-width:170px;
+
+
+    padding:0 20px;
+
+
+    border-radius:18px;
+
+
+    border:1px solid rgba(255,255,255,.5);
+
+
+    background:
+
+    rgba(255,255,255,.55);
+
+
+    outline:none;
+
+
+    font-weight:700;
+
+
+}
+
+
+
+
+
+/* Register Button */
+
+
+.register-company-btn{
+
+
+    height:55px;
+
+
+    padding:0 28px;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+    gap:8px;
+
+
+    white-space:nowrap;
+
+
+
+    border-radius:18px;
+
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #facc15
+    );
+
+
+    color:white;
+
+
+    font-weight:900;
+
+
+    text-decoration:none;
+
+
+
+    box-shadow:
+
+    0 10px 30px rgba(37,99,235,.25);
+
+
+
+    transition:.3s ease;
+
+
+}
+
+
+
+.register-company-btn:hover{
+
+
+    transform:translateY(-3px);
+
+
+}
+
+
+
+
+@media(max-width:768px){
+
+
+    .directory-options{
+
+
+        width:100%;
+
+        flex-direction:column;
+
+
+    }
+
+
+
+    .directory-options select{
+
+
+        width:100%;
+
+
+    }
+
+
+
+    .register-company-btn{
+
+
+        width:100%;
+
 
     }
 
@@ -1967,12 +3400,1863 @@ grid-template-columns:1fr;
 }
 
 
-@media(max-width:640px){
+/* =====================================================
+   Manufacturer Card
+===================================================== */
 
 
-    header .glass-premium{
+.manufacturer-card{
 
-        border-radius:22px;
+
+    position:relative;
+
+}
+
+
+
+
+.manufacturer-type{
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    gap:8px;
+
+
+    margin-bottom:18px;
+
+
+    color:#2563eb;
+
+
+    font-size:13px;
+
+    font-weight:800;
+
+
+}
+
+
+
+.manufacturer-type i{
+
+    font-size:15px;
+
+}
+
+
+
+
+
+.manufacturer-products{
+
+
+    display:flex;
+
+
+    flex-wrap:wrap;
+
+
+    justify-content:center;
+
+
+    gap:8px;
+
+
+    margin:20px 0;
+
+
+}
+
+
+
+.manufacturer-products span{
+
+
+    padding:7px 14px;
+
+
+    border-radius:999px;
+
+
+    background:rgba(37,99,235,.10);
+
+
+    color:#2563eb;
+
+
+    font-size:11px;
+
+
+    font-weight:800;
+
+
+    border:1px solid rgba(37,99,235,.15);
+
+
+}
+
+
+
+
+
+.manufacturer-card:hover{
+
+
+    transform:translateY(-8px);
+
+
+}
+
+
+
+
+
+
+@media(max-width:768px){
+
+
+    .manufacturer-products span{
+
+
+        font-size:10px;
+
+
+        padding:6px 10px;
+
+
+    }
+
+
+}
+
+/* =====================================================
+   Store Card
+===================================================== */
+
+
+.store-type{
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    gap:8px;
+
+
+    margin-bottom:18px;
+
+
+    color:#2563eb;
+
+
+    font-size:13px;
+
+
+    font-weight:800;
+
+
+}
+
+
+
+.store-type i{
+
+    font-size:15px;
+
+}
+
+
+
+
+.store-products{
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    flex-wrap:wrap;
+
+
+    gap:8px;
+
+
+    margin:20px 0;
+
+
+}
+
+
+
+
+.store-products span{
+
+
+    padding:7px 14px;
+
+
+    border-radius:999px;
+
+
+    background:rgba(250,204,21,.15);
+
+
+    color:#b45309;
+
+
+    font-size:11px;
+
+
+    font-weight:800;
+
+
+    border:1px solid rgba(250,204,21,.25);
+
+
+}
+
+
+
+
+
+.store-card:hover{
+
+
+    transform:translateY(-8px);
+
+
+}
+
+
+
+
+@media(max-width:768px){
+
+
+    .store-products span{
+
+
+        font-size:10px;
+
+        padding:6px 10px;
+
+
+    }
+
+
+}
+
+/* =====================================================
+   Technician Card
+===================================================== */
+
+
+.technician-status{
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    gap:8px;
+
+
+    margin-bottom:18px;
+
+
+    color:#16a34a;
+
+
+    font-size:13px;
+
+
+    font-weight:900;
+
+
+}
+
+
+
+.technician-status span{
+
+
+    width:9px;
+
+    height:9px;
+
+
+    border-radius:50%;
+
+
+    background:#22c55e;
+
+
+}
+
+
+
+
+
+.technician-skills{
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    flex-wrap:wrap;
+
+
+    gap:8px;
+
+
+    margin:20px 0;
+
+
+}
+
+
+
+
+
+.technician-skills span{
+
+
+    padding:7px 14px;
+
+
+    border-radius:999px;
+
+
+    background:rgba(37,99,235,.10);
+
+
+    color:#2563eb;
+
+
+    font-size:11px;
+
+
+    font-weight:800;
+
+
+    border:1px solid rgba(37,99,235,.15);
+
+
+}
+
+
+
+
+
+.technician-jobs{
+
+
+    margin:15px 0;
+
+
+    padding:10px;
+
+
+    border-radius:16px;
+
+
+    background:rgba(34,197,94,.10);
+
+
+    color:#15803d;
+
+
+    font-size:13px;
+
+
+    font-weight:800;
+
+
+}
+
+
+
+.technician-card:hover{
+
+
+    transform:translateY(-8px);
+
+
+}
+
+
+
+
+
+@media(max-width:768px){
+
+
+    .technician-skills span{
+
+
+        font-size:10px;
+
+        padding:6px 10px;
+
+
+    }
+
+
+}
+
+/* =====================================================
+   Project Card
+===================================================== */
+
+
+.project-card{
+
+    overflow:hidden;
+
+}
+
+
+
+.project-image{
+
+
+    width:100%;
+
+    height:200px;
+
+
+    overflow:hidden;
+
+
+    border-radius:24px;
+
+
+    margin-bottom:20px;
+
+
+}
+
+
+
+.project-image img{
+
+
+    width:100%;
+
+    height:100%;
+
+
+    object-fit:cover;
+
+
+    transition:.4s ease;
+
+
+}
+
+
+
+.project-card:hover .project-image img{
+
+
+    transform:scale(1.08);
+
+
+}
+
+
+
+
+
+.project-company{
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+    gap:8px;
+
+
+    margin:18px 0;
+
+
+    padding:10px;
+
+
+    border-radius:16px;
+
+
+    background:rgba(37,99,235,.08);
+
+
+    color:#2563eb;
+
+
+    font-size:13px;
+
+
+    font-weight:800;
+
+
+}
+
+
+
+
+
+.project-status{
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+    gap:8px;
+
+
+    color:#16a34a;
+
+
+    font-size:13px;
+
+
+    font-weight:900;
+
+
+    margin-bottom:20px;
+
+
+}
+
+
+
+
+
+.project-status span{
+
+
+    width:9px;
+
+    height:9px;
+
+
+    border-radius:50%;
+
+
+    background:#22c55e;
+
+
+}
+
+
+
+.project-card:hover{
+
+
+    transform:translateY(-8px);
+
+
+}
+
+
+
+
+
+@media(max-width:768px){
+
+
+    .project-image{
+
+        height:170px;
+
+    }
+
+
+}
+
+/* =====================================================
+   Company Profile Hero
+===================================================== */
+
+
+.profile-hero{
+
+    padding:30px 20px;
+
+}
+
+
+
+.profile-hero-card{
+
+
+    display:flex;
+
+    align-items:center;
+
+    gap:30px;
+
+
+    padding:35px;
+
+
+    border-radius:35px;
+
+
+    background:rgba(255,255,255,.35);
+
+
+    backdrop-filter:blur(30px);
+
+    -webkit-backdrop-filter:blur(30px);
+
+
+    border:1px solid rgba(255,255,255,.5);
+
+
+    box-shadow:0 20px 50px rgba(15,23,42,.08);
+
+
+}
+
+
+
+.profile-logo{
+
+
+    width:130px;
+
+    height:130px;
+
+
+    border-radius:35px;
+
+
+    background:white;
+
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+
+    padding:20px;
+
+
+}
+
+
+
+.profile-logo img{
+
+
+    max-width:100%;
+
+    max-height:100%;
+
+
+}
+
+
+
+
+
+.profile-info h1{
+
+
+    font-size:32px;
+
+    font-weight:900;
+
+
+    margin:15px 0;
+
+
+}
+
+
+
+
+
+.profile-verified{
+
+
+    display:inline-flex;
+
+
+    align-items:center;
+
+
+    gap:8px;
+
+
+    color:#16a34a;
+
+
+    font-size:13px;
+
+
+    font-weight:800;
+
+
+}
+
+
+
+
+
+.profile-meta{
+
+
+    display:flex;
+
+    gap:20px;
+
+
+    flex-wrap:wrap;
+
+
+    color:#475569;
+
+
+    font-weight:700;
+
+
+}
+
+
+
+.profile-actions{
+
+
+    display:flex;
+
+    gap:15px;
+
+
+    margin-top:25px;
+
+
+}
+
+
+
+.btn-secondary{
+
+
+    padding:12px 25px;
+
+    border-radius:16px;
+
+
+    background:#fff;
+
+
+    color:#2563eb;
+
+
+    border:1px solid #e2e8f0;
+
+
+}
+
+
+
+
+
+@media(max-width:768px){
+
+
+    .profile-hero-card{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+
+    .profile-actions{
+
+        flex-direction:column;
+
+    }
+
+
+}
+
+/* =====================================================
+   Profile Stats
+===================================================== */
+
+
+.profile-stats{
+
+    padding:20px;
+
+}
+
+
+
+.stats-grid{
+
+
+    display:grid;
+
+
+    grid-template-columns:repeat(4,1fr);
+
+
+    gap:20px;
+
+
+}
+
+
+
+
+.stat-card{
+
+
+    padding:25px 15px;
+
+
+    border-radius:28px;
+
+
+    text-align:center;
+
+
+    background:rgba(255,255,255,.35);
+
+
+    backdrop-filter:blur(25px);
+
+    -webkit-backdrop-filter:blur(25px);
+
+
+    border:1px solid rgba(255,255,255,.5);
+
+
+}
+
+
+
+
+
+.stat-card strong{
+
+
+    display:block;
+
+
+    font-size:32px;
+
+
+    font-weight:900;
+
+
+    color:#0f172a;
+
+
+}
+
+
+
+
+
+.stat-card span{
+
+
+    display:block;
+
+
+    margin-top:8px;
+
+
+    font-size:13px;
+
+
+    color:#64748b;
+
+
+    font-weight:700;
+
+
+}
+
+
+
+
+
+@media(max-width:768px){
+
+
+    .stats-grid{
+
+
+        grid-template-columns:repeat(2,1fr);
+
+
+    }
+
+
+
+}
+
+/* =====================================================
+   Profile About
+===================================================== */
+
+
+.profile-about{
+
+    padding:20px;
+
+}
+
+
+
+.profile-section-card{
+
+
+    padding:30px;
+
+
+    border-radius:32px;
+
+
+    background:rgba(255,255,255,.35);
+
+
+    backdrop-filter:blur(25px);
+
+    -webkit-backdrop-filter:blur(25px);
+
+
+    border:1px solid rgba(255,255,255,.5);
+
+
+}
+
+
+
+
+
+.section-title{
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:10px;
+
+
+    font-size:22px;
+
+
+    font-weight:900;
+
+
+    margin-bottom:20px;
+
+
+    color:#0f172a;
+
+
+}
+
+
+
+.section-title i{
+
+
+    color:#2563eb;
+
+
+}
+
+
+
+
+
+.profile-section-card p{
+
+
+    line-height:2;
+
+
+    color:#475569;
+
+
+    font-size:15px;
+
+
+    font-weight:600;
+
+
+}
+
+
+
+
+
+.about-tags{
+
+
+    display:flex;
+
+
+    flex-wrap:wrap;
+
+
+    gap:10px;
+
+
+    margin-top:25px;
+
+
+}
+
+
+
+
+.about-tags span{
+
+
+    padding:10px 18px;
+
+
+    border-radius:999px;
+
+
+    background:rgba(37,99,235,.1);
+
+
+    color:#2563eb;
+
+
+    font-size:13px;
+
+
+    font-weight:800;
+
+
+}
+
+/* =====================================================
+   Profile Services
+===================================================== */
+
+
+.profile-services{
+
+    padding:20px;
+
+}
+
+
+
+.services-grid{
+
+
+    display:grid;
+
+
+    grid-template-columns:repeat(4,1fr);
+
+
+    gap:20px;
+
+
+}
+
+
+
+
+.service-card{
+
+
+    padding:25px 15px;
+
+
+    text-align:center;
+
+
+    border-radius:28px;
+
+
+    background:rgba(255,255,255,.3);
+
+
+    border:1px solid rgba(255,255,255,.5);
+
+
+    backdrop-filter:blur(25px);
+
+
+    transition:.3s;
+
+
+}
+
+
+
+
+.service-card:hover{
+
+
+    transform:translateY(-8px);
+
+
+}
+
+
+
+
+.service-card i{
+
+
+    font-size:32px;
+
+
+    color:#2563eb;
+
+
+    margin-bottom:15px;
+
+
+}
+
+
+
+
+.service-card h3{
+
+
+    font-size:16px;
+
+
+    font-weight:900;
+
+
+    color:#0f172a;
+
+
+}
+
+
+
+.service-card p{
+
+
+    font-size:12px;
+
+
+    color:#64748b;
+
+
+    line-height:1.8;
+
+
+}
+
+
+
+
+
+@media(max-width:768px){
+
+
+    .services-grid{
+
+
+        grid-template-columns:repeat(2,1fr);
+
+
+    }
+
+
+}
+
+/* =====================================================
+   Profile Projects
+===================================================== */
+
+
+.profile-projects{
+
+    padding:20px;
+
+}
+
+
+
+.profile-project-grid{
+
+
+    display:grid;
+
+
+    grid-template-columns:repeat(3,1fr);
+
+
+    gap:20px;
+
+
+}
+
+
+
+
+.profile-project-card{
+
+
+    overflow:hidden;
+
+
+    border-radius:28px;
+
+
+    background:rgba(255,255,255,.3);
+
+
+    border:1px solid rgba(255,255,255,.5);
+
+
+    backdrop-filter:blur(25px);
+
+
+    transition:.3s;
+
+
+}
+
+
+
+
+
+.profile-project-card:hover{
+
+
+    transform:translateY(-8px);
+
+
+}
+
+
+
+
+.project-thumb{
+
+
+    height:180px;
+
+
+    overflow:hidden;
+
+
+}
+
+
+
+.project-thumb img{
+
+
+    width:100%;
+
+
+    height:100%;
+
+
+    object-fit:cover;
+
+
+}
+
+
+
+
+
+.profile-project-card h3{
+
+
+    font-size:17px;
+
+
+    font-weight:900;
+
+
+    padding:15px 15px 5px;
+
+
+}
+
+
+
+
+.profile-project-card span{
+
+
+    display:block;
+
+
+    padding:0 15px 18px;
+
+
+    color:#64748b;
+
+
+    font-size:13px;
+
+
+    font-weight:700;
+
+
+}
+
+
+
+
+
+@media(max-width:768px){
+
+
+    .profile-project-grid{
+
+
+        grid-template-columns:1fr;
+
+
+    }
+
+
+}
+
+
+/* =====================================================
+   Profile Reviews
+===================================================== */
+
+
+.profile-reviews{
+
+    padding:20px;
+
+}
+
+
+
+.reviews-summary{
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:25px;
+
+
+    padding:20px;
+
+
+    margin-bottom:25px;
+
+
+    border-radius:25px;
+
+
+    background:rgba(255,255,255,.25);
+
+
+}
+
+
+
+
+.reviews-summary strong{
+
+
+    font-size:45px;
+
+
+    font-weight:900;
+
+
+    color:#0f172a;
+
+
+}
+
+
+
+.stars{
+
+
+    color:#facc15;
+
+
+    font-size:22px;
+
+
+}
+
+
+
+.reviews-summary span{
+
+
+    font-size:13px;
+
+
+    color:#64748b;
+
+
+}
+
+
+
+
+
+.reviews-list{
+
+
+    display:grid;
+
+
+    gap:15px;
+
+
+}
+
+
+
+
+.review-card{
+
+
+    padding:20px;
+
+
+    border-radius:22px;
+
+
+    background:rgba(255,255,255,.35);
+
+
+    border:1px solid rgba(255,255,255,.5);
+
+
+}
+
+
+
+
+
+.review-header{
+
+
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    margin-bottom:10px;
+
+
+}
+
+
+
+.review-header span{
+
+
+    color:#facc15;
+
+
+}
+
+
+
+.review-card p{
+
+
+    color:#475569;
+
+
+    line-height:1.9;
+
+
+    font-size:14px;
+
+
+}
+
+/* =====================================================
+   Profile Contact
+===================================================== */
+
+
+.profile-contact{
+
+    padding:20px 20px 40px;
+
+}
+
+
+
+
+.contact-card{
+
+
+    padding:40px;
+
+
+    border-radius:35px;
+
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        rgba(37,99,235,.12),
+
+        rgba(250,204,21,.12)
+
+    );
+
+
+    backdrop-filter:blur(30px);
+
+
+    border:1px solid rgba(255,255,255,.5);
+
+
+    text-align:center;
+
+
+}
+
+
+
+
+
+.contact-content h2{
+
+
+    font-size:28px;
+
+
+    font-weight:900;
+
+
+    color:#0f172a;
+
+
+}
+
+
+
+
+
+.contact-content p{
+
+
+    color:#64748b;
+
+
+    font-size:15px;
+
+
+    line-height:2;
+
+
+    margin:15px 0 25px;
+
+
+}
+
+
+
+
+
+.contact-actions{
+
+
+    display:flex;
+
+
+    justify-content:center;
+
+
+    gap:15px;
+
+
+}
+
+
+
+
+
+@media(max-width:768px){
+
+
+    .contact-actions{
+
+
+        flex-direction:column;
+
+
+    }
+
+
+
+    .contact-card{
+
+
+        padding:25px;
+
+
+    }
+
+
+}
+
+/* =====================================================
+   Manufacturer Profile Hero
+===================================================== */
+
+
+.manufacturer-tags{
+
+
+    display:flex;
+
+
+    flex-wrap:wrap;
+
+
+    gap:10px;
+
+
+    margin-top:20px;
+
+
+}
+
+
+
+.manufacturer-tags span{
+
+
+    padding:8px 16px;
+
+
+    border-radius:999px;
+
+
+    background:rgba(250,204,21,.15);
+
+
+    color:#b45309;
+
+
+    font-size:12px;
+
+
+    font-weight:800;
+
+
+    border:1px solid rgba(250,204,21,.25);
+
+
+}
+
+
+
+
+
+@media(max-width:768px){
+
+
+    .manufacturer-tags{
+
+
+        justify-content:center;
+
+
+    }
+
+
+}
+
+/* =====================================================
+   Manufacturer Products
+===================================================== */
+
+
+.profile-products{
+
+    padding:20px;
+
+}
+
+
+
+.products-grid{
+
+
+    display:grid;
+
+
+    grid-template-columns:repeat(4,1fr);
+
+
+    gap:20px;
+
+
+}
+
+
+
+
+.product-card{
+
+
+    padding:25px 15px;
+
+
+    text-align:center;
+
+
+    border-radius:28px;
+
+
+    background:rgba(255,255,255,.35);
+
+
+    border:1px solid rgba(255,255,255,.5);
+
+
+    backdrop-filter:blur(25px);
+
+
+    transition:.3s;
+
+
+}
+
+
+
+
+.product-card:hover{
+
+
+    transform:translateY(-8px);
+
+
+}
+
+
+
+
+.product-card i{
+
+
+    font-size:32px;
+
+
+    color:#f59e0b;
+
+
+    margin-bottom:15px;
+
+
+}
+
+
+
+
+.product-card h3{
+
+
+    font-size:16px;
+
+
+    font-weight:900;
+
+
+}
+
+
+
+
+
+.product-card p{
+
+
+    font-size:12px;
+
+
+    color:#64748b;
+
+
+    line-height:1.8;
+
+
+}
+
+
+
+
+
+@media(max-width:768px){
+
+
+    .products-grid{
+
+
+        grid-template-columns:repeat(2,1fr);
+
 
     }
 

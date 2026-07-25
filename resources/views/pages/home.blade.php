@@ -4,25 +4,33 @@
 
 @section('content')
 
-@include('sections.header')
 
-@include('mobile.header')
+<main>
 
-<main class="pt-24">
 
     <div class="desktop-home">
+
         @include('sections.hero')
+
     </div>
+
+
 
     <div class="mobile-home">
+
         @include('mobile.hero')
+
     </div>
 
-<main class="pt-24">
 
-    @include('sections.hero')
 
-    @include('sections.trust-bar')
+    <div class="desktop-only">
+
+        @include('sections.trust-bar')
+
+    </div>
+
+
 
     @include('sections.quick-access')
 
@@ -39,6 +47,7 @@
     @include('sections.latest-inquiries')
 
     @include('sections.articles')
+
 
 </main>
 

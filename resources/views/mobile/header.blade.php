@@ -2,20 +2,51 @@
 
     <div class="mobile-header-box">
 
-        <x-header.logo />
 
-        <div class="mobile-header-actions">
+        {{-- Logo --}}
 
-            <button class="mobile-search-btn">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
+        <div class="mobile-logo">
 
-            <button class="mobile-menu-btn">
-                <i class="fa-solid fa-bars"></i>
-            </button>
+            <img
+                src="{{ asset('images/logo/logo.png') }}"
+                alt="آسانسور پرو">
 
         </div>
 
+
+
+        {{-- Actions --}}
+
+        <div class="mobile-header-actions">
+
+
+            {{-- Search --}}
+
+            <a href="/search"
+               class="mobile-header-btn"
+               aria-label="جستجو">
+
+                <i class="🔎"></i>
+
+            </a>
+
+
+
+            {{-- User Dashboard --}}
+
+            <a href="/dashboard"
+               class="mobile-header-btn"
+               aria-label="حساب کاربری">
+
+                <i class="👤"></i>
+
+            </a>
+
+
+        </div>
+
+
     </div>
+
 
 </header>
