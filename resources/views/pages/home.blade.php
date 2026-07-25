@@ -6,6 +6,18 @@
 
 @include('sections.header')
 
+@include('mobile.header')
+
+<main class="pt-24">
+
+    <div class="desktop-home">
+        @include('sections.hero')
+    </div>
+
+    <div class="mobile-home">
+        @include('mobile.hero')
+    </div>
+
 <main class="pt-24">
 
     @include('sections.hero')

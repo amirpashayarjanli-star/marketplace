@@ -1897,3 +1897,84 @@ grid-template-columns:1fr;
     direction:rtl;
 
 }
+
+
+/* =====================================================
+   Mobile Header
+===================================================== */
+
+.mobile-menu-btn{
+
+    width:44px;
+    height:44px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:14px;
+
+    background:#fff;
+
+    border:1px solid rgba(15,23,42,.08);
+
+    color:#111827;
+
+    font-size:20px;
+
+    cursor:pointer;
+
+}
+
+
+/* Desktop */
+
+.header-actions{
+
+    display:flex;
+    align-items:center;
+}
+
+
+/* Mobile */
+
+@media(max-width:1023px){
+
+
+    header{
+
+        padding-top:15px;
+
+    }
+
+
+    header .glass-premium{
+
+        height:70px;
+
+        padding-inline:18px;
+
+    }
+
+
+    .header-actions .btn-primary{
+
+        display:none;
+
+    }
+
+
+}
+
+
+@media(max-width:640px){
+
+
+    header .glass-premium{
+
+        border-radius:22px;
+
+    }
+
+
+}

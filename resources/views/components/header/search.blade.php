@@ -15,7 +15,7 @@
 
     <input
         type="search"
-        placeholder="جستجو در آسانسور پرو..."
+        placeholder="       جستجو در آسانسور پرو..."
         class="input w-full rounded-full pr-12" />
 
 </div>

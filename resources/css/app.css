@@ -24,3 +24,43 @@
 @import "./components/entity-slider.css";
 @import "./components/projects.css";
 @import "./components/articles.css";
+
+.desktop-home{
+
+    display:block;
+
+}
+
+
+
+.mobile-home{
+
+    display:none;
+
+}
+
+
+
+
+
+@media(max-width:768px){
+
+
+
+    .desktop-home{
+
+        display:none;
+
+    }
+
+
+
+    .mobile-home{
+
+        display:block;
+
+    }
+
+
+
+}

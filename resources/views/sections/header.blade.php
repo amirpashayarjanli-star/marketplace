@@ -7,13 +7,22 @@
             {{-- Logo --}}
             <x-header.logo />
 
-            {{-- Navigation --}}
-            <x-header.navigation />
+
+            {{-- Desktop Navigation --}}
+            <div class="hidden lg:block">
+                <x-header.navigation />
+            </div>
+
+
+            {{-- Mobile Menu --}}
+            <x-header.mobile-menu />
+
 
             {{-- Right --}}
-            <div class="flex items-center gap-4">
+            <div class="header-actions flex items-center gap-4">
 
                 <x-header.search />
+
 
                 <a href="#"
                    class="btn btn-primary">
@@ -21,6 +30,7 @@
                 </a>
 
             </div>
+
 
         </div>
 
