@@ -5,6 +5,14 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 
 use App\Models\User;
+use App\Models\Company;
+use App\Models\Manufacturer;
+use App\Models\Store;
+use App\Models\Technician;
+use App\Models\Employer;
+use App\Models\Project;
+use App\Models\Product;
+use App\Models\Review;
 
 
 class DatabaseSeeder extends Seeder
@@ -14,27 +22,30 @@ class DatabaseSeeder extends Seeder
     {
 
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'Admin',
+            'email' => 'admin@example.com',
         ]);
 
 
 
-        $this->call([
+        Company::factory(10)->create();
 
-            CompanySeeder::class,
+        Manufacturer::factory(10)->create();
 
-            ManufacturerSeeder::class,
+        Store::factory(10)->create();
 
-            StoreSeeder::class,
+        Technician::factory(10)->create();
 
-            TechnicianSeeder::class,
+        Employer::factory(10)->create();
 
-            ProjectSeeder::class,
 
-            ReviewSeeder::class,
 
-        ]);
+        Project::factory(30)->create();
+
+        Product::factory(50)->create();
+
+        Review::factory(50)->create();
+
 
     }
 
