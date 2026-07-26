@@ -1,26 +1,24 @@
 <section class="profile-stats">
 
 
-    <div class="stats-grid">
+    <div class="stats-card">
 
 
+        <div class="stat-item">
 
-        <div class="stat-card">
-
+            <i class="fa-solid fa-calendar-days"></i>
 
             <strong>
 
-                {{ $store->experience }}
+                {{ $store->experience ?? 0 }}
 
             </strong>
 
-
             <span>
 
-                سال سابقه فعالیت
+                سال سابقه
 
             </span>
-
 
         </div>
 
@@ -28,24 +26,21 @@
 
 
 
+        <div class="stat-item">
 
-
-        <div class="stat-card">
-
+            <i class="fa-solid fa-boxes-stacked"></i>
 
             <strong>
 
-                {{ $store->products_count }}
+                {{ $store->products_count ?? 0 }}
 
             </strong>
 
-
             <span>
 
-                محصول موجود
+                محصول
 
             </span>
-
 
         </div>
 
@@ -53,24 +48,21 @@
 
 
 
+        <div class="stat-item">
 
-
-        <div class="stat-card">
-
+            <i class="fa-solid fa-tags"></i>
 
             <strong>
 
-                {{ $store->brands_count }}
+                {{ $store->brands_count ?? 0 }}
 
             </strong>
 
-
             <span>
 
-                برند فعال
+                برند
 
             </span>
-
 
         </div>
 
@@ -78,28 +70,23 @@
 
 
 
+        <div class="stat-item">
 
-
-        <div class="stat-card">
-
+            <i class="fa-solid fa-star"></i>
 
             <strong>
 
-                {{ $store->rating }}
+                {{ $store->rating ?? 0 }}
 
             </strong>
 
-
             <span>
 
-                امتیاز مشتریان
+                امتیاز
 
             </span>
 
-
         </div>
-
-
 
 
 
