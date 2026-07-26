@@ -1,86 +1,32 @@
 <section class="profile-about">
 
 
-    <div class="profile-section-card">
+    <div class="section-title">
 
-
-
-        <div class="section-title">
-
-
-            <i class="fa-solid fa-industry"></i>
-
+        <h2>
 
             درباره تولیدکننده
 
+        </h2>
+
+    </div>
 
 
-        </div>
 
 
 
-
-
+    <div class="about-content">
 
 
         <p>
 
-
-            {{ $manufacturer->description }}
-
+            {{ $manufacturer->description ?? 'توضیحی برای این تولیدکننده ثبت نشده است.' }}
 
         </p>
 
 
 
-
-
-
-
-        <div class="about-tags">
-
-
-
-            <span>
-
-                تولید تجهیزات آسانسور
-
-            </span>
-
-
-
-            <span>
-
-                قطعات آسانسور
-
-            </span>
-
-
-
-            <span>
-
-                {{ $manufacturer->city }}
-
-            </span>
-
-
-
-            <span>
-
-                {{ $manufacturer->experience }} سال سابقه
-
-            </span>
-
-
-
-        </div>
-
-
-
-
-
     </div>
-
 
 
 </section>
