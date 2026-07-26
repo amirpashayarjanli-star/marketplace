@@ -21,12 +21,7 @@
 
 
 
-
-
-
         <div class="profile-info">
-
-
 
 
 
@@ -50,14 +45,11 @@
 
 
 
-
             <h1>
 
                 {{ $company->name }}
 
-
             </h1>
-
 
 
 
@@ -75,11 +67,7 @@
 
                     {{ $company->city }}
 
-
                 </span>
-
-
-
 
 
 
@@ -89,13 +77,9 @@
 
                     <i class="fa-solid fa-star"></i>
 
-                    {{ $company->rating }}
-
+                    {{ $company->rating ?? 0 }}
 
                 </span>
-
-
-
 
 
 
@@ -105,8 +89,7 @@
 
                     <i class="fa-solid fa-comments"></i>
 
-                    {{ $company->reviews_count }} نظر
-
+                    {{ $company->reviews_count ?? 0 }} نظر
 
                 </span>
 
@@ -121,10 +104,43 @@
 
 
 
+            @if($company->services)
+
+
+            <div class="manufacturer-tags">
+
+
+                @foreach($company->services as $service)
+
+
+                <span>
+
+                    {{ $service->name }}
+
+                </span>
+
+
+                @endforeach
+
+
+            </div>
+
+
+            @endif
+
+
+
+
+
+
+
             <div class="profile-actions">
 
 
-                <a href="#"
+
+                @if($company->phone || $company->mobile)
+
+                <a href="tel:{{ $company->phone ?? $company->mobile }}"
 
                    class="btn-primary">
 
@@ -134,11 +150,13 @@
 
                 </a>
 
+                @endif
 
 
 
 
-                <a href="#"
+
+                <a href="#contact"
 
                    class="btn-secondary">
 
@@ -147,6 +165,7 @@
 
 
                 </a>
+
 
 
             </div>
