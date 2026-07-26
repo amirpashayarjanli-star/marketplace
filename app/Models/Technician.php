@@ -49,4 +49,5 @@ class Technician extends Model
         return $this->morphMany(Review::class, 'reviewable');
     }
 
+
 }
