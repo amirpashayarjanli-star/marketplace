@@ -9,15 +9,22 @@ class TechnicianController extends Controller
 
     public function index()
     {
+
         $technicians = Technician::where('is_active', true)
+            ->with([
+                'projects',
+                'reviews'
+            ])
             ->latest()
             ->get();
+
 
 
         return view(
             'pages.directory.technicians.index',
             compact('technicians')
         );
+
     }
 
 
