@@ -1,145 +1,59 @@
 <section class="profile-services">
 
 
-    <div class="profile-section-card">
+    <div class="section-title">
 
-
-
-        <div class="section-title">
-
-
-            <i class="fa-solid fa-screwdriver-wrench"></i>
-
+        <h2>
 
             خدمات شرکت
 
+        </h2>
 
-
-        </div>
-
-
-
-
-
-
-        <div class="services-grid">
+    </div>
 
 
 
 
 
-            <div class="service-card">
+    <div class="services-list">
 
 
-                <i class="fa-solid fa-elevator"></i>
+        @if(isset($company->services) && $company->services->count())
 
 
-                <h3>
-
-                    نصب آسانسور
-
-                </h3>
+            @foreach($company->services as $service)
 
 
-                <p>
-
-                    طراحی و اجرای انواع آسانسور
-
-                </p>
+                <div class="service-item">
 
 
-            </div>
+                    <i class="fa-solid fa-check"></i>
 
 
+                    <span>
+
+                        {{ $service->name }}
+
+                    </span>
 
 
+                </div>
 
 
-
-            <div class="service-card">
-
-
-                <i class="fa-solid fa-gears"></i>
+            @endforeach
 
 
-                <h3>
-
-                    تعمیرات آسانسور
-
-                </h3>
+        @else
 
 
-                <p>
+            <div class="empty-data">
 
-                    عیب‌یابی و رفع خرابی
-
-                </p>
-
+                خدماتی ثبت نشده است.
 
             </div>
 
 
-
-
-
-
-
-            <div class="service-card">
-
-
-                <i class="fa-solid fa-box"></i>
-
-
-                <h3>
-
-                    تامین قطعات
-
-                </h3>
-
-
-                <p>
-
-                    تامین تجهیزات و قطعات آسانسور
-
-                </p>
-
-
-            </div>
-
-
-
-
-
-
-
-            <div class="service-card">
-
-
-                <i class="fa-solid fa-calendar-check"></i>
-
-
-                <h3>
-
-                    سرویس دوره‌ای
-
-                </h3>
-
-
-                <p>
-
-                    نگهداری و بازدید منظم
-
-                </p>
-
-
-            </div>
-
-
-
-
-
-        </div>
-
+        @endif
 
 
 
