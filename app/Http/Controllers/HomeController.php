@@ -10,10 +10,8 @@ use App\Models\Technician;
 
 class HomeController extends Controller
 {
-
     public function index()
     {
-
         $topCompanies = Company::where('is_active', 1)
             ->latest()
             ->limit(6)
@@ -44,26 +42,24 @@ class HomeController extends Controller
             ->get();
 
 
+        $latestInquiries = collect([]);
+
+
+        $latestArticles = collect([]);
+
+
         $dollar = 0;
 
 
-
-        return view('pages.home', [
-
-            'topCompanies' => $topCompanies,
-
-            'topManufacturers' => $topManufacturers,
-
-            'topStores' => $topStores,
-
-            'latestProjects' => $latestProjects,
-
-            'topTechnicians' => $topTechnicians,
-
-            'dollar' => $dollar,
-
-        ]);
-
+        return view('pages.home', compact(
+            'topCompanies',
+            'topManufacturers',
+            'topStores',
+            'latestProjects',
+            'topTechnicians',
+            'latestInquiries',
+            'latestArticles',
+            'dollar'
+        ));
     }
-
 }
