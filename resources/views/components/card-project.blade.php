@@ -1,71 +1,81 @@
-<div class="project-card">
+<div class="company-card project-card">
 
-    <div class="project-card-top">
 
-        <span class="project-status status-open">
+    <div class="project-image">
 
-            {{ $project->status ?? 'فعال' }}
 
-        </span>
+        <img
+            src="{{ asset($project['image']) }}"
+            alt="{{ $project['name'] }}">
 
-        <span class="project-date">
-
-            {{ $project->created_at?->diffForHumans() ?? 'همین الان' }}
-
-        </span>
 
     </div>
 
-    <h3 class="project-title">
 
-        {{ $project->title }}
+
+
+    <h3>
+
+        {{ $project['name'] }}
 
     </h3>
 
-    <div class="project-location">
 
-        <i class="fa-solid fa-location-dot"></i>
 
-        {{ $project->city }}
 
-    </div>
+    <div class="company-info">
 
-    <div class="project-meta">
 
-        <div>
+        <span>
 
-            <i class="fa-solid fa-building"></i>
+            <i class="fa-solid fa-location-dot"></i>
 
-            {{ $project->building_type }}
-
-        </div>
-
-        <div>
-
-            <i class="fa-solid fa-elevator"></i>
-
-            {{ $project->elevator_count }} دستگاه
-
-        </div>
-
-    </div>
-
-    <div class="project-footer">
-
-        <span class="project-budget">
-
-            {{ number_format($project->budget) }}
-
-            تومان
+            {{ $project['city'] }}
 
         </span>
 
-        <a href="#">
 
-            مشاهده
 
-        </a>
+        <span>
+
+            <i class="fa-solid fa-building"></i>
+
+            {{ $project['type'] }}
+
+        </span>
+
 
     </div>
+
+
+
+
+    <div class="project-status">
+
+
+        <span></span>
+
+
+        {{ $project['status'] ?? 'فعال' }}
+
+
+    </div>
+
+
+
+
+    <a href="#"
+       class="company-profile-btn">
+
+
+        مشاهده پروژه
+
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+
+    </a>
+
+
 
 </div>
