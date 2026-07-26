@@ -1,76 +1,118 @@
-<div class="entity-card">
+<div class="company-card manufacturer-card">
 
-    <div class="entity-card__cover">
+
+    <div class="company-logo">
+
 
         <img
-            src="{{ $item->cover ?? asset('images/manufacturer-cover.jpg') }}"
-            alt="{{ $item->name }}"
-            loading="lazy">
+            src="{{ asset($manufacturer['logo']) }}"
+            alt="{{ $manufacturer['name'] }}">
 
-        @if($item->verified ?? false)
-            <span class="entity-badge">
-                <i class="fa-solid fa-badge-check"></i>
-                تایید شده
-            </span>
-        @endif
 
     </div>
 
-    <div class="entity-card__body">
 
-        <div class="entity-logo">
 
-            <img
-                src="{{ $item->logo ?? asset('images/manufacturer-logo.png') }}"
-                alt="{{ $item->name }}"
-                loading="lazy">
 
-        </div>
+    <h3>
 
-        <h3 class="entity-title">
-            {{ $item->name }}
-        </h3>
+        {{ $manufacturer['name'] }}
 
-        <div class="entity-city">
+    </h3>
 
-            <i class="fa-solid fa-industry"></i>
 
-            تولید کننده
 
-        </div>
 
-        <div class="entity-stats">
+    <div class="manufacturer-type">
 
-            <div>
 
-                <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-industry"></i>
 
-                <span>
-                    {{ number_format($item->rating ?? 0,1) }}
-                </span>
 
-            </div>
+        تولیدکننده تجهیزات آسانسور
 
-            <div>
-
-                <i class="fa-solid fa-box-open"></i>
-
-                <span>
-                    {{ $item->products_count ?? 0 }}
-                </span>
-
-            </div>
-
-        </div>
-
-        <a
-            href="#"
-            class="entity-button">
-
-            مشاهده پروفایل
-
-        </a>
 
     </div>
+
+
+
+
+    <div class="company-info">
+
+
+        <span>
+
+            <i class="fa-solid fa-location-dot"></i>
+
+            {{ $manufacturer['city'] }}
+
+        </span>
+
+
+
+        <span>
+
+            <i class="fa-solid fa-star"></i>
+
+            {{ $manufacturer['rating'] }}
+
+        </span>
+
+
+    </div>
+
+
+
+
+    <div class="manufacturer-products">
+
+
+        <span>
+            موتور آسانسور
+        </span>
+
+
+        <span>
+            تابلو فرمان
+        </span>
+
+
+        <span>
+            قطعات
+        </span>
+
+
+    </div>
+
+
+
+
+    <div class="company-comments">
+
+
+        <i class="fa-solid fa-comments"></i>
+
+
+        {{ $manufacturer['comments'] ?? $manufacturer['reviews_count'] ?? 0 }} نظر
+
+
+    </div>
+
+
+
+
+    <a href="{{ route('manufacturer.profile', $manufacturer['slug']) }}"
+       class="company-profile-btn">
+
+
+        مشاهده پروفایل
+
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+
+    </a>
+
+
 
 </div>
