@@ -1,86 +1,32 @@
 <section class="profile-about">
 
 
-    <div class="profile-section-card">
+    <div class="section-title">
 
-
-
-        <div class="section-title">
-
-
-            <i class="fa-solid fa-building"></i>
-
+        <h2>
 
             درباره شرکت
 
+        </h2>
+
+    </div>
 
 
-        </div>
 
 
 
-
-
+    <div class="about-content">
 
 
         <p>
 
-
-            {{ $company->description }}
-
+            {{ $company->description ?? 'توضیحی برای این شرکت ثبت نشده است.' }}
 
         </p>
 
 
 
-
-
-
-
-        <div class="about-tags">
-
-
-
-            <span>
-
-                نصب و راه اندازی آسانسور
-
-            </span>
-
-
-
-            <span>
-
-                سرویس و نگهداری
-
-            </span>
-
-
-
-            <span>
-
-                تعمیرات تخصصی
-
-            </span>
-
-
-
-            <span>
-
-                {{ $company->city }}
-
-            </span>
-
-
-
-        </div>
-
-
-
-
-
     </div>
-
 
 
 </section>
