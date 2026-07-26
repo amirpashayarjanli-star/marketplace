@@ -8,29 +8,14 @@ use App\Http\Controllers\ManufacturerController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\TechnicianController;
 use App\Http\Controllers\ProjectController;
-
 use App\Services\NavasanService;
 
 
-
-/*
-|--------------------------------------------------------------------------
-| Home
-|--------------------------------------------------------------------------
-*/
 
 Route::get('/', [HomeController::class, 'index'])
     ->name('home');
 
 
-
-
-
-/*
-|--------------------------------------------------------------------------
-| Test Services
-|--------------------------------------------------------------------------
-*/
 
 Route::get('/test-dollar', function (NavasanService $navasan) {
 
@@ -40,13 +25,6 @@ Route::get('/test-dollar', function (NavasanService $navasan) {
 
 
 
-
-
-/*
-|--------------------------------------------------------------------------
-| Directory Pages
-|--------------------------------------------------------------------------
-*/
 
 
 Route::get('/companies', [CompanyController::class, 'index'])
@@ -74,14 +52,6 @@ Route::get('/projects', [ProjectController::class, 'index'])
 
 
 
-
-
-
-/*
-|--------------------------------------------------------------------------
-| Profile Pages
-|--------------------------------------------------------------------------
-*/
 
 
 Route::get('/company/{slug}', [CompanyController::class, 'show'])
