@@ -5,8 +5,8 @@
 
 
         <img
-        src="{{ asset($manufacturer['logo']) }}"
-        alt="{{ $manufacturer['name'] }}">
+            src="{{ asset($manufacturer->logo ?? 'images/logo/logo.svg') }}"
+            alt="{{ $manufacturer->name }}">
 
 
     </div>
@@ -17,7 +17,7 @@
 
     <h3>
 
-        {{ $manufacturer['name'] }}
+        {{ $manufacturer->name }}
 
     </h3>
 
@@ -42,6 +42,7 @@
 
 
 
+
     <div class="company-info">
 
 
@@ -52,7 +53,7 @@
             <i class="fa-solid fa-location-dot"></i>
 
 
-            {{ $manufacturer['city'] }}
+            {{ $manufacturer->city }}
 
 
         </span>
@@ -67,7 +68,7 @@
             <i class="fa-solid fa-star"></i>
 
 
-            {{ $manufacturer['rating'] }}
+            {{ $manufacturer->rating }}
 
 
         </span>
@@ -75,6 +76,8 @@
 
 
     </div>
+
+
 
 
 
@@ -108,17 +111,21 @@
 
 
 
+
+
     <div class="company-comments">
 
 
         <i class="fa-solid fa-comments"></i>
 
 
-        {{ $manufacturer['comments'] }} نظر
+        {{ $manufacturer->reviews_count }} نظر
 
 
 
     </div>
+
+
 
 
 

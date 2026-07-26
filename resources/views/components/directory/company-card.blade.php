@@ -5,8 +5,8 @@
 
 
         <img
-        src="{{ asset($company['logo']) }}"
-        alt="{{ $company['name'] }}">
+            src="{{ asset($company->logo ?? 'images/logo/logo.svg') }}"
+            alt="{{ $company->name }}">
 
 
     </div>
@@ -15,9 +15,11 @@
 
     <h3>
 
-        {{ $company['name'] }}
+        {{ $company->name }}
 
     </h3>
+
+
 
 
 
@@ -28,9 +30,10 @@
 
             <i class="fa-solid fa-location-dot"></i>
 
-            {{ $company['city'] }}
+            {{ $company->city }}
 
         </span>
+
 
 
 
@@ -38,12 +41,15 @@
 
             <i class="fa-solid fa-star"></i>
 
-            {{ $company['rating'] }}
+            {{ $company->rating }}
 
         </span>
 
 
+
     </div>
+
+
 
 
 
@@ -53,17 +59,24 @@
 
         <i class="fa-solid fa-comments"></i>
 
-        {{ $company['comments'] }} نظر
+
+        {{ $company->reviews_count }} نظر
+
 
 
     </div>
 
 
 
+
+
+
     <a href="#"
        class="company-profile-btn">
 
+
         مشاهده پروفایل
+
 
     </a>
 

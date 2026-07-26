@@ -1,7 +1,6 @@
 <section class="profile-hero">
 
 
-
     <div class="profile-hero-card">
 
 
@@ -11,9 +10,9 @@
 
             <img
 
-            src="{{ asset('images/logo/logo.svg') }}"
+            src="{{ asset($company->logo ?? 'images/logo/logo.svg') }}"
 
-            alt="شرکت آسانسوری">
+            alt="{{ $company->name }}">
 
 
         </div>
@@ -23,9 +22,15 @@
 
 
 
+
+
         <div class="profile-info">
 
 
+
+
+
+            @if($company->is_verified)
 
             <div class="profile-verified">
 
@@ -38,6 +43,8 @@
 
             </div>
 
+            @endif
+
 
 
 
@@ -46,10 +53,11 @@
 
             <h1>
 
-                شرکت آسانسور آریا
+                {{ $company->name }}
 
 
             </h1>
+
 
 
 
@@ -65,9 +73,13 @@
 
                     <i class="fa-solid fa-location-dot"></i>
 
-                    تهران
+                    {{ $company->city }}
+
 
                 </span>
+
+
+
 
 
 
@@ -77,9 +89,13 @@
 
                     <i class="fa-solid fa-star"></i>
 
-                    4.9
+                    {{ $company->rating }}
+
 
                 </span>
+
+
+
 
 
 
@@ -89,7 +105,8 @@
 
                     <i class="fa-solid fa-comments"></i>
 
-                    120 نظر
+                    {{ $company->reviews_count }} نظر
+
 
                 </span>
 
@@ -103,20 +120,31 @@
 
 
 
+
             <div class="profile-actions">
 
 
-                <a href="#" class="btn-primary">
+                <a href="#"
+
+                   class="btn-primary">
+
 
                     تماس با شرکت
+
 
                 </a>
 
 
 
-                <a href="#" class="btn-secondary">
+
+
+                <a href="#"
+
+                   class="btn-secondary">
+
 
                     درخواست همکاری
+
 
                 </a>
 

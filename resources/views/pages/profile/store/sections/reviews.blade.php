@@ -21,12 +21,14 @@
 
 
 
+
+
         <div class="reviews-summary">
 
 
             <strong>
 
-                4.8
+                {{ $store->rating }}
 
             </strong>
 
@@ -44,7 +46,7 @@
 
                 <span>
 
-                    بر اساس 95 نظر
+                    {{ $store->reviews_count }} نظر
 
                 </span>
 
@@ -65,91 +67,63 @@
 
 
 
-
-
-            <div class="review-card">
+            @forelse($store->reviews as $review)
 
 
 
-                <div class="review-header">
+                <div class="review-card">
 
 
-                    <strong>
 
-                        شرکت آسانسور سپهر
-
-                    </strong>
+                    <div class="review-header">
 
 
-                    <span>
+                        <strong>
 
-                        ★★★★★
+                            {{ $review->name }}
 
-                    </span>
+                        </strong>
+
+
+
+                        <span>
+
+                            {{ str_repeat('★', $review->rating) }}
+
+                        </span>
+
+
+                    </div>
+
+
+
+
+
+                    <p>
+
+                        {{ $review->comment }}
+
+                    </p>
+
 
 
                 </div>
 
 
 
-
-
-                <p>
-
-                    قطعات همیشه موجود بوده و ارسال
-                    سفارش‌ها سریع انجام شده است.
-
-                </p>
-
-
-
-            </div>
-
-
-
-
-
-
-
-
-            <div class="review-card">
-
-
-
-                <div class="review-header">
-
-
-                    <strong>
-
-                        تکنسین آسانسور
-
-                    </strong>
-
-
-                    <span>
-
-                        ★★★★☆
-
-                    </span>
-
-
-                </div>
-
-
+            @empty
 
 
 
                 <p>
 
-                    تنوع قطعات خوب است و برای تامین
-                    قطعات تعمیرات همکاری مناسبی دارند.
+                    هنوز نظری ثبت نشده است.
 
                 </p>
 
 
 
-            </div>
-
+            @endforelse
 
 
 
@@ -163,4 +137,4 @@
     </div>
 
 
-</section>  
+</section>

@@ -9,12 +9,16 @@
 
 
             <strong>
-                12
+
+                {{ $manufacturer->experience }}
+
             </strong>
 
 
             <span>
+
                 سال سابقه تولید
+
             </span>
 
 
@@ -25,16 +29,21 @@
 
 
 
+
         <div class="stat-card">
 
 
             <strong>
-                85
+
+                {{ $manufacturer->products_count }}
+
             </strong>
 
 
             <span>
+
                 محصول تولیدی
+
             </span>
 
 
@@ -45,16 +54,21 @@
 
 
 
+
         <div class="stat-card">
 
 
             <strong>
-                450
+
+                {{ $manufacturer->customers_count }}
+
             </strong>
 
 
             <span>
+
                 مشتری فعال
+
             </span>
 
 
@@ -65,16 +79,21 @@
 
 
 
+
         <div class="stat-card">
 
 
             <strong>
-                4.9
+
+                {{ $manufacturer->rating }}
+
             </strong>
 
 
             <span>
-                امتیاز کاربران
+
+                امتیاز مشتریان
+
             </span>
 
 

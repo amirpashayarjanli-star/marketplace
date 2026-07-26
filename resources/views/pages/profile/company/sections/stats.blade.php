@@ -9,12 +9,16 @@
 
 
             <strong>
-                15
+
+                {{ $company->experience }}
+
             </strong>
 
 
             <span>
-                سال سابقه
+
+                سال سابقه فعالیت
+
             </span>
 
 
@@ -25,16 +29,21 @@
 
 
 
+
         <div class="stat-card">
 
 
             <strong>
-                320
+
+                {{ $company->projects_count }}
+
             </strong>
 
 
             <span>
+
                 پروژه انجام شده
+
             </span>
 
 
@@ -45,16 +54,21 @@
 
 
 
+
         <div class="stat-card">
 
 
             <strong>
-                12
+
+                {{ $company->rating }}
+
             </strong>
 
 
             <span>
-                تکنسین فعال
+
+                امتیاز مشتریان
+
             </span>
 
 
@@ -65,16 +79,21 @@
 
 
 
+
         <div class="stat-card">
 
 
             <strong>
-                98٪
+
+                {{ $company->reviews_count }}
+
             </strong>
 
 
             <span>
-                رضایت مشتری
+
+                نظر ثبت شده
+
             </span>
 
 

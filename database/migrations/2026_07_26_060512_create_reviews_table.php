@@ -9,36 +9,29 @@ return new class extends Migration
 
     public function up(): void
     {
-        Schema::create('brands', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
 
 
             $table->id();
 
 
-
             $table->string('name');
 
 
-            $table->string('slug')->unique();
+            $table->text('comment');
+
+
+            $table->unsignedTinyInteger('rating')
+                ->default(5);
 
 
 
-            $table->string('logo')->nullable();
-
-
-
-            $table->text('description')->nullable();
-
+            $table->morphs('reviewable');
 
 
 
             $table->boolean('is_verified')
                 ->default(false);
-
-
-
-            $table->boolean('is_active')
-                ->default(true);
 
 
 
@@ -52,7 +45,7 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('brands');
+        Schema::dropIfExists('reviews');
     }
 
 };

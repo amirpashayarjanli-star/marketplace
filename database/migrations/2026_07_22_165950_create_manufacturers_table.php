@@ -6,22 +6,122 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
         Schema::create('manufacturers', function (Blueprint $table) {
+
+
             $table->id();
+
+
+
+            $table->string('name');
+
+
+            $table->string('slug')->unique();
+
+
+
+
+            $table->string('manager_name')->nullable();
+
+
+
+            $table->string('mobile', 20)->nullable();
+
+
+            $table->string('phone', 30)->nullable();
+
+
+
+            $table->string('email')->nullable();
+
+
+            $table->string('website')->nullable();
+
+
+
+
+            $table->string('province')->nullable();
+
+
+            $table->string('city')->nullable();
+
+
+
+            $table->text('address')->nullable();
+
+
+
+
+            $table->string('logo')->nullable();
+
+
+            $table->string('cover')->nullable();
+
+
+
+            $table->text('description')->nullable();
+
+
+
+
+            // آمار تولیدکننده
+
+            $table->integer('experience')
+                ->default(0);
+
+
+
+            $table->integer('products_count')
+                ->default(0);
+
+
+
+            $table->integer('customers_count')
+                ->default(0);
+
+
+
+
+            // امتیاز
+
+            $table->decimal('rating', 2, 1)
+                ->default(0);
+
+
+
+            $table->integer('reviews_count')
+                ->default(0);
+
+
+
+
+
+            // وضعیت
+
+            $table->boolean('is_verified')
+                ->default(false);
+
+
+
+            $table->boolean('is_active')
+                ->default(true);
+
+
+
             $table->timestamps();
+
+
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
+
     public function down(): void
     {
         Schema::dropIfExists('manufacturers');
     }
+
 };

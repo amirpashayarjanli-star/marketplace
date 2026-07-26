@@ -9,12 +9,16 @@
 
 
             <strong>
-                8
+
+                {{ $technician->experience }}
+
             </strong>
 
 
             <span>
-                سال تجربه
+
+                سال سابقه فعالیت
+
             </span>
 
 
@@ -25,36 +29,21 @@
 
 
 
-        <div class="stat-card">
-
-
-            <strong>
-                420
-            </strong>
-
-
-            <span>
-                تعمیر انجام شده
-            </span>
-
-
-        </div>
-
-
-
-
-
 
         <div class="stat-card">
 
 
             <strong>
-                180
+
+                {{ $technician->projects_count }}
+
             </strong>
 
 
             <span>
+
                 پروژه انجام شده
+
             </span>
 
 
@@ -65,16 +54,46 @@
 
 
 
+
         <div class="stat-card">
 
 
             <strong>
-                4.9
+
+                {{ $technician->repairs_count }}
+
             </strong>
 
 
             <span>
+
+                تعمیر انجام شده
+
+            </span>
+
+
+        </div>
+
+
+
+
+
+
+
+        <div class="stat-card">
+
+
+            <strong>
+
+                {{ $technician->rating }}
+
+            </strong>
+
+
+            <span>
+
                 امتیاز مشتریان
+
             </span>
 
 

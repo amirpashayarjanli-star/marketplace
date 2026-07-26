@@ -3,49 +3,44 @@
 namespace App\Http\Controllers;
 
 
-class ManufacturerController extends Controller
+use App\Models\Technician;
+
+
+class TechnicianController extends Controller
 {
 
     public function index()
     {
 
-        $manufacturers = collect([
-
-
-            [
-                'name' => 'گروه صنعتی آسانسور آریا',
-                'logo' => 'images/logo/logo.svg',
-                'city' => 'تهران',
-                'rating' => '4.9',
-                'comments' => 150,
-            ],
-
-
-            [
-                'name' => 'تولید آسانسور پارس',
-                'logo' => 'images/logo/logo.svg',
-                'city' => 'قم',
-                'rating' => '4.7',
-                'comments' => 90,
-            ],
-
-
-            [
-                'name' => 'صنایع آسانبر ایران',
-                'logo' => 'images/logo/logo.svg',
-                'city' => 'اصفهان',
-                'rating' => '4.8',
-                'comments' => 110,
-            ],
-
-
-        ]);
+        $technicians = Technician::where('is_active', true)
+            ->latest()
+            ->get();
 
 
 
         return view(
-            'pages.directory.manufacturers.index',
-            compact('manufacturers')
+            'pages.directory.technicians.index',
+            compact('technicians')
+        );
+
+    }
+
+
+
+
+
+    public function show($slug)
+    {
+
+        $technician = Technician::where('slug', $slug)
+            ->where('is_active', true)
+            ->firstOrFail();
+
+
+
+        return view(
+            'pages.profile.technician.index',
+            compact('technician')
         );
 
     }

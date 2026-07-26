@@ -8,7 +8,7 @@
         <div class="section-title">
 
 
-            <i class="fa-solid fa-list-check"></i>
+            <i class="fa-solid fa-building"></i>
 
 
             پروژه‌های انجام شده
@@ -27,20 +27,64 @@
 
 
 
-
-
-            <div class="profile-project-card">
+            @forelse($technician->projects as $project)
 
 
 
-                <div class="project-thumb">
+                <div class="profile-project-card">
 
 
-                    <img
 
-                    src="{{ asset('images/projects/project-1.webp') }}"
+                    <div class="project-thumb">
 
-                    alt="برج نگین">
+
+                        <img
+
+                        src="{{ asset($project->image ?? 'images/logo/company-logo.png') }}"
+
+                        alt="{{ $project->title }}">
+
+
+                    </div>
+
+
+
+
+
+
+
+                    <h3>
+
+                        {{ $project->title }}
+
+                    </h3>
+
+
+
+
+
+
+
+                    <span>
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        {{ $project->city }}
+
+                    </span>
+
+
+
+
+
+
+
+                    <span>
+
+                        {{ $project->type }}
+
+                    </span>
+
 
 
                 </div>
@@ -49,157 +93,19 @@
 
 
 
-                <h3>
+            @empty
 
-                    برج نگین
 
-                </h3>
 
+                <p>
 
+                    هنوز پروژه‌ای ثبت نشده است.
 
+                </p>
 
 
-                <span>
 
-                    <i class="fa-solid fa-location-dot"></i>
-
-                    قم
-
-                </span>
-
-
-
-
-
-                <span>
-
-                    تعمیر موتور آسانسور
-
-                </span>
-
-
-
-            </div>
-
-
-
-
-
-
-
-
-            <div class="profile-project-card">
-
-
-
-                <div class="project-thumb">
-
-
-                    <img
-
-                    src="{{ asset('images/projects/project-2.webp') }}"
-
-                    alt="مجتمع آریا">
-
-
-                </div>
-
-
-
-
-
-                <h3>
-
-                    مجتمع آریا
-
-                </h3>
-
-
-
-
-
-                <span>
-
-                    <i class="fa-solid fa-location-dot"></i>
-
-                    تهران
-
-                </span>
-
-
-
-
-
-                <span>
-
-                    تنظیم تابلو فرمان
-
-                </span>
-
-
-
-            </div>
-
-
-
-
-
-
-
-
-            <div class="profile-project-card">
-
-
-
-                <div class="project-thumb">
-
-
-                    <img
-
-                    src="{{ asset('images/projects/project-3.webp') }}"
-
-                    alt="برج سپهر">
-
-
-                </div>
-
-
-
-
-
-                <h3>
-
-                    برج سپهر
-
-                </h3>
-
-
-
-
-
-                <span>
-
-                    <i class="fa-solid fa-location-dot"></i>
-
-                    اصفهان
-
-                </span>
-
-
-
-
-
-                <span>
-
-                    سرویس دوره‌ای
-
-                </span>
-
-
-
-            </div>
-
-
+            @endforelse
 
 
 

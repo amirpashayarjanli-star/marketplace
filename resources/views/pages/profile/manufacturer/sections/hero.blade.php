@@ -1,7 +1,6 @@
 <section class="profile-hero">
 
 
-
     <div class="profile-hero-card">
 
 
@@ -11,12 +10,13 @@
 
             <img
 
-            src="{{ asset('images/logo/logo.svg') }}"
+            src="{{ asset($manufacturer->logo ?? 'images/logo/logo.svg') }}"
 
-            alt="تولیدکننده تجهیزات آسانسور">
+            alt="{{ $manufacturer->name }}">
 
 
         </div>
+
 
 
 
@@ -28,7 +28,7 @@
 
 
 
-
+            @if($manufacturer->is_verified)
 
             <div class="profile-verified">
 
@@ -41,6 +41,8 @@
 
             </div>
 
+            @endif
+
 
 
 
@@ -49,10 +51,11 @@
 
             <h1>
 
-                گروه صنعتی آریا
+                {{ $manufacturer->name }}
 
 
             </h1>
+
 
 
 
@@ -69,9 +72,14 @@
 
                     <i class="fa-solid fa-location-dot"></i>
 
-                    تهران
+
+                    {{ $manufacturer->city }}
+
 
                 </span>
+
+
+
 
 
 
@@ -81,9 +89,14 @@
 
                     <i class="fa-solid fa-star"></i>
 
-                    4.9
+
+                    {{ $manufacturer->rating }}
+
 
                 </span>
+
+
+
 
 
 
@@ -93,13 +106,16 @@
 
                     <i class="fa-solid fa-industry"></i>
 
+
                     تولیدکننده تجهیزات آسانسور
+
 
                 </span>
 
 
 
             </div>
+
 
 
 
@@ -137,6 +153,7 @@
 
 
             </div>
+
 
 
 

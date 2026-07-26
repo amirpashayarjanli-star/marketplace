@@ -3,70 +3,101 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
-
-Route::get('/', [HomeController::class, 'index'])->name('home');
-
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ManufacturerController;
+use App\Http\Controllers\StoreController;
+use App\Http\Controllers\TechnicianController;
+use App\Http\Controllers\ProjectController;
 
 use App\Services\NavasanService;
 
+
+
+/*
+|--------------------------------------------------------------------------
+| Home
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/', [HomeController::class, 'index'])
+    ->name('home');
+
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Test Services
+|--------------------------------------------------------------------------
+*/
+
 Route::get('/test-dollar', function (NavasanService $navasan) {
+
     return $navasan->getUsdPrice();
+
 });
 
 
-use App\Http\Controllers\CompanyController;
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Directory Pages
+|--------------------------------------------------------------------------
+*/
+
 
 Route::get('/companies', [CompanyController::class, 'index'])
     ->name('companies.index');
 
 
-use App\Http\Controllers\ManufacturerController;
 
 Route::get('/manufacturers', [ManufacturerController::class, 'index'])
     ->name('manufacturers.index');
 
 
-use App\Http\Controllers\StoreController;
 
 Route::get('/stores', [StoreController::class, 'index'])
     ->name('stores.index');
 
 
-use App\Http\Controllers\TechnicianController;
 
 Route::get('/technicians', [TechnicianController::class, 'index'])
     ->name('technicians.index');
 
 
-use App\Http\Controllers\ProjectController;
 
 Route::get('/projects', [ProjectController::class, 'index'])
     ->name('projects.index');
 
 
 
-Route::get('/company-profile', function () {
-
-    return view('pages.profile.company.index');
-
-});
 
 
-Route::get('/manufacturer-profile', function () {
 
-    return view('pages.profile.manufacturer.index');
+/*
+|--------------------------------------------------------------------------
+| Profile Pages
+|--------------------------------------------------------------------------
+*/
 
-});
+
+Route::get('/company/{slug}', [CompanyController::class, 'show'])
+    ->name('company.profile');
 
 
-Route::get('/store-profile', function () {
 
-    return view('pages.profile.store.index');
+Route::get('/manufacturer/{slug}', [ManufacturerController::class, 'show'])
+    ->name('manufacturer.profile');
 
-});
 
-Route::get('/technician-profile', function () {
 
-    return view('pages.profile.technician.index');
+Route::get('/store/{slug}', [StoreController::class, 'show'])
+    ->name('store.profile');
 
-});
+
+
+Route::get('/technician/{slug}', [TechnicianController::class, 'show'])
+    ->name('technician.profile');

@@ -10,12 +10,13 @@
 
             <img
 
-            src="{{ asset('images/logo/company-logo.png') }}"
+            src="{{ asset($technician->avatar ?? 'images/logo/company-logo.png') }}"
 
-            alt="تکنسین آسانسور">
+            alt="{{ $technician->name }}">
 
 
         </div>
+
 
 
 
@@ -27,7 +28,7 @@
 
 
 
-
+            @if($technician->is_verified)
 
             <div class="profile-verified">
 
@@ -40,6 +41,8 @@
 
             </div>
 
+            @endif
+
 
 
 
@@ -48,10 +51,11 @@
 
             <h1>
 
-                محمد رضایی
+                {{ $technician->name }}
 
 
             </h1>
+
 
 
 
@@ -68,9 +72,13 @@
 
                     <i class="fa-solid fa-location-dot"></i>
 
-                    تهران
+                    {{ $technician->city }}
+
 
                 </span>
+
+
+
 
 
 
@@ -80,9 +88,13 @@
 
                     <i class="fa-solid fa-star"></i>
 
-                    4.9
+                    {{ $technician->rating }}
+
 
                 </span>
+
+
+
 
 
 
@@ -94,11 +106,13 @@
 
                     تکنسین نصب و تعمیر آسانسور
 
+
                 </span>
 
 
 
             </div>
+
 
 
 
@@ -152,6 +166,7 @@
 
 
 
+
             <div class="profile-actions">
 
 
@@ -183,4 +198,4 @@
 
 
 
-</section>
+</section>  

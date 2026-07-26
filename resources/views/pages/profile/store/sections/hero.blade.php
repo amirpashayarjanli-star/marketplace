@@ -10,12 +10,13 @@
 
             <img
 
-            src="{{ asset('images/logo/logo.svg') }}"
+            src="{{ asset($store->logo ?? 'images/logo/logo.svg') }}"
 
-            alt="فروشگاه قطعات آسانسور">
+            alt="{{ $store->name }}">
 
 
         </div>
+
 
 
 
@@ -27,7 +28,7 @@
 
 
 
-
+            @if($store->is_verified)
 
             <div class="profile-verified">
 
@@ -40,6 +41,8 @@
 
             </div>
 
+            @endif
+
 
 
 
@@ -48,10 +51,11 @@
 
             <h1>
 
-                فروشگاه قطعات آسانبر پارس
+                {{ $store->name }}
 
 
             </h1>
+
 
 
 
@@ -68,9 +72,12 @@
 
                     <i class="fa-solid fa-location-dot"></i>
 
-                    تهران
+                    {{ $store->city }}
 
                 </span>
+
+
+
 
 
 
@@ -80,9 +87,12 @@
 
                     <i class="fa-solid fa-star"></i>
 
-                    4.8
+                    {{ $store->rating }}
 
                 </span>
+
+
+
 
 
 
@@ -99,6 +109,7 @@
 
 
             </div>
+
 
 
 
@@ -136,6 +147,7 @@
 
 
             </div>
+
 
 
 

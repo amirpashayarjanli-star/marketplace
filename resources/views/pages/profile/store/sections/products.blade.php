@@ -8,10 +8,10 @@
         <div class="section-title">
 
 
-            <i class="fa-solid fa-boxes-stacked"></i>
+            <i class="fa-solid fa-box"></i>
 
 
-            قطعات قابل تامین
+            محصولات فروشگاه
 
 
 
@@ -23,120 +23,94 @@
 
 
 
-        <div class="products-grid">
+        <div class="profile-product-grid">
+
+
+
+            @forelse($store->products as $product)
+
+
+
+                <div class="profile-product-card">
+
+
+
+                    <div class="product-image">
+
+
+                        <img
+
+                        src="{{ asset($product->image ?? 'images/logo/company-logo.png') }}"
+
+                        alt="{{ $product->name }}">
+
+
+                    </div>
 
 
 
 
 
-            <div class="product-card">
 
 
-                <i class="fa-solid fa-gears"></i>
+                    <h3>
+
+                        {{ $product->name }}
+
+                    </h3>
 
 
-                <h3>
 
-                    موتور آسانسور
 
-                </h3>
+
+
+
+                    @if($product->brand)
+
+                    <span>
+
+                        <i class="fa-solid fa-tag"></i>
+
+                        {{ $product->brand->name }}
+
+                    </span>
+
+                    @endif
+
+
+
+
+
+                    @if($product->description)
+
+                    <p>
+
+                        {{ Str::limit($product->description, 80) }}
+
+                    </p>
+
+                    @endif
+
+
+
+                </div>
+
+
+
+
+            @empty
+
 
 
                 <p>
 
-                    تامین موتورهای گیربکس و گیرلس
+                    هنوز محصولی برای این فروشگاه ثبت نشده است.
 
                 </p>
 
 
-            </div>
 
-
-
-
-
-
-
-
-            <div class="product-card">
-
-
-                <i class="fa-solid fa-microchip"></i>
-
-
-                <h3>
-
-                    تابلو فرمان
-
-                </h3>
-
-
-                <p>
-
-                    تامین انواع تابلو کنترل آسانسور
-
-                </p>
-
-
-            </div>
-
-
-
-
-
-
-
-
-            <div class="product-card">
-
-
-                <i class="fa-solid fa-door-open"></i>
-
-
-                <h3>
-
-                    درب آسانسور
-
-                </h3>
-
-
-                <p>
-
-                    درب اتوماتیک و قطعات مرتبط
-
-                </p>
-
-
-            </div>
-
-
-
-
-
-
-
-
-            <div class="product-card">
-
-
-                <i class="fa-solid fa-screwdriver-wrench"></i>
-
-
-                <h3>
-
-                    قطعات یدکی
-
-                </h3>
-
-
-                <p>
-
-                    تامین قطعات مصرفی و تعمیراتی
-
-                </p>
-
-
-            </div>
+            @endforelse
 
 
 

@@ -7,9 +7,9 @@
 
         <img
 
-        src="{{ asset($project['image']) }}"
+        src="{{ asset($project->image ?? 'images/logo/company-logo.png') }}"
 
-        alt="{{ $project['name'] }}">
+        alt="{{ $project->title }}">
 
 
     </div>
@@ -20,11 +20,13 @@
 
 
 
+
     <h3>
 
-        {{ $project['name'] }}
+        {{ $project->title }}
 
     </h3>
+
 
 
 
@@ -43,10 +45,13 @@
             <i class="fa-solid fa-location-dot"></i>
 
 
-            {{ $project['city'] }}
+            {{ $project->city }}
 
 
         </span>
+
+
+
 
 
 
@@ -58,7 +63,7 @@
             <i class="fa-solid fa-building"></i>
 
 
-            {{ $project['type'] }}
+            {{ $project->type }}
 
 
         </span>
@@ -66,6 +71,8 @@
 
 
     </div>
+
+
 
 
 
@@ -79,10 +86,36 @@
         <span></span>
 
 
-        {{ $project['status'] }}
+        تایید شده
+
 
 
     </div>
+
+
+
+
+
+
+
+
+
+    @if($project->company)
+
+
+        <div class="project-company">
+
+
+            <i class="fa-solid fa-building-circle-check"></i>
+
+
+            {{ $project->company->name }}
+
+
+        </div>
+
+
+    @endif
 
 
 
@@ -104,6 +137,7 @@
 
 
     </a>
+
 
 
 

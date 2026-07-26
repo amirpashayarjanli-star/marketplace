@@ -6,8 +6,8 @@
 
 
         <img
-        src="{{ asset($technician['avatar']) }}"
-        alt="{{ $technician['name'] }}">
+            src="{{ asset($technician->avatar ?? 'images/logo/company-logo.png') }}"
+            alt="{{ $technician->name }}">
 
 
     </div>
@@ -17,11 +17,14 @@
 
 
 
+
+
     <h3>
 
-        {{ $technician['name'] }}
+        {{ $technician->name }}
 
     </h3>
+
 
 
 
@@ -46,6 +49,7 @@
 
 
 
+
     <div class="company-info">
 
 
@@ -56,10 +60,12 @@
             <i class="fa-solid fa-location-dot"></i>
 
 
-            {{ $technician['city'] }}
+            {{ $technician->city }}
 
 
         </span>
+
+
 
 
 
@@ -71,7 +77,7 @@
             <i class="fa-solid fa-star"></i>
 
 
-            {{ $technician['rating'] }}
+            {{ $technician->rating }}
 
 
         </span>
@@ -79,6 +85,8 @@
 
 
     </div>
+
+
 
 
 
@@ -112,17 +120,21 @@
 
 
 
+
+
     <div class="company-comments">
 
 
         <i class="fa-solid fa-comments"></i>
 
 
-        {{ $technician['comments'] }} نظر
+        {{ $technician->reviews_count }} نظر
 
 
 
     </div>
+
+
 
 
 
@@ -133,10 +145,12 @@
     <div class="technician-jobs">
 
 
-        {{ $technician['jobs'] }} پروژه انجام شده
+        {{ $technician->projects_count }} پروژه انجام شده
 
 
     </div>
+
+
 
 
 

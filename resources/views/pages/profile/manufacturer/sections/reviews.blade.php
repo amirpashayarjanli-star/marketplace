@@ -11,11 +11,13 @@
             <i class="fa-solid fa-star"></i>
 
 
-            نظرات خریداران
+            نظرات مشتریان
 
 
 
         </div>
+
+
 
 
 
@@ -26,7 +28,7 @@
 
             <strong>
 
-                4.8
+                {{ $manufacturer->rating }}
 
             </strong>
 
@@ -44,7 +46,7 @@
 
                 <span>
 
-                    بر اساس 85 نظر
+                    {{ $manufacturer->reviews_count }} نظر
 
                 </span>
 
@@ -65,91 +67,63 @@
 
 
 
-
-
-            <div class="review-card">
+            @forelse($manufacturer->reviews as $review)
 
 
 
-                <div class="review-header">
+                <div class="review-card">
 
 
-                    <strong>
 
-                        شرکت آسانسور نوین
-
-                    </strong>
+                    <div class="review-header">
 
 
-                    <span>
+                        <strong>
 
-                        ★★★★★
+                            {{ $review->name }}
 
-                    </span>
+                        </strong>
+
+
+
+                        <span>
+
+                            {{ str_repeat('★', $review->rating) }}
+
+                        </span>
+
+
+                    </div>
+
+
+
+
+
+                    <p>
+
+                        {{ $review->comment }}
+
+                    </p>
+
 
 
                 </div>
 
 
 
-
-
-                <p>
-
-                    کیفیت موتور بسیار خوب بود و
-                    پشتیبانی فنی مجموعه سریع پاسخگو بود.
-
-                </p>
-
-
-
-            </div>
-
-
-
-
-
-
-
-
-            <div class="review-card">
-
-
-
-                <div class="review-header">
-
-
-                    <strong>
-
-                        فروشگاه قطعات آسانبر
-
-                    </strong>
-
-
-                    <span>
-
-                        ★★★★☆
-
-                    </span>
-
-
-                </div>
-
-
+            @empty
 
 
 
                 <p>
 
-                    ارسال محصول منظم بود و بسته‌بندی
-                    قطعات کیفیت خوبی داشت.
+                    هنوز نظری ثبت نشده است.
 
                 </p>
 
 
 
-            </div>
-
+            @endforelse
 
 
 

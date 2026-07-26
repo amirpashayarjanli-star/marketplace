@@ -9,12 +9,16 @@
 
 
             <strong>
-                10
+
+                {{ $store->experience }}
+
             </strong>
 
 
             <span>
+
                 سال سابقه فعالیت
+
             </span>
 
 
@@ -25,16 +29,21 @@
 
 
 
+
         <div class="stat-card">
 
 
             <strong>
-                1200
+
+                {{ $store->products_count }}
+
             </strong>
 
 
             <span>
-                قطعه قابل تامین
+
+                محصول موجود
+
             </span>
 
 
@@ -45,16 +54,21 @@
 
 
 
+
         <div class="stat-card">
 
 
             <strong>
-                35
+
+                {{ $store->brands_count }}
+
             </strong>
 
 
             <span>
+
                 برند فعال
+
             </span>
 
 
@@ -65,16 +79,21 @@
 
 
 
+
         <div class="stat-card">
 
 
             <strong>
-                4.8
+
+                {{ $store->rating }}
+
             </strong>
 
 
             <span>
+
                 امتیاز مشتریان
+
             </span>
 
 

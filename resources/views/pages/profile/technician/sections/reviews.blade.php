@@ -11,11 +11,13 @@
             <i class="fa-solid fa-star"></i>
 
 
-            نظرات کارفرماها
+            نظرات مشتریان
 
 
 
         </div>
+
+
 
 
 
@@ -26,7 +28,7 @@
 
             <strong>
 
-                4.9
+                {{ $technician->rating }}
 
             </strong>
 
@@ -44,7 +46,7 @@
 
                 <span>
 
-                    بر اساس 75 نظر
+                    {{ $technician->reviews_count }} نظر
 
                 </span>
 
@@ -65,90 +67,63 @@
 
 
 
-
-
-            <div class="review-card">
+            @forelse($technician->reviews as $review)
 
 
 
-                <div class="review-header">
+                <div class="review-card">
 
 
-                    <strong>
 
-                        مدیر ساختمان نگین
-
-                    </strong>
+                    <div class="review-header">
 
 
-                    <span>
+                        <strong>
 
-                        ★★★★★
+                            {{ $review->name }}
 
-                    </span>
+                        </strong>
+
+
+
+                        <span>
+
+                            {{ str_repeat('★', $review->rating) }}
+
+                        </span>
+
+
+                    </div>
+
+
+
+
+
+                    <p>
+
+                        {{ $review->comment }}
+
+                    </p>
+
 
 
                 </div>
 
 
 
-
-
-                <p>
-
-                    در زمان مقرر در محل حاضر شدند و
-                    مشکل آسانسور را سریع برطرف کردند.
-
-                </p>
-
-
-
-            </div>
-
-
-
-
-
-
-
-
-            <div class="review-card">
-
-
-
-                <div class="review-header">
-
-
-                    <strong>
-
-                        شرکت آسانسور آریا
-
-                    </strong>
-
-
-                    <span>
-
-                        ★★★★★
-
-                    </span>
-
-
-                </div>
-
-
+            @empty
 
 
 
                 <p>
 
-                    تخصص فنی بالا و همکاری بسیار خوبی داشتند.
+                    هنوز نظری ثبت نشده است.
 
                 </p>
 
 
 
-            </div>
-
+            @endforelse
 
 
 

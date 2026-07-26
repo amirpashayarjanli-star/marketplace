@@ -6,8 +6,8 @@
 
 
         <img
-        src="{{ asset($store['logo']) }}"
-        alt="{{ $store['name'] }}">
+            src="{{ asset($store->logo ?? 'images/logo/logo.svg') }}"
+            alt="{{ $store->name }}">
 
 
     </div>
@@ -16,11 +16,14 @@
 
 
 
+
     <h3>
 
-        {{ $store['name'] }}
+        {{ $store->name }}
 
     </h3>
+
+
 
 
 
@@ -44,6 +47,7 @@
 
 
 
+
     <div class="company-info">
 
 
@@ -52,9 +56,10 @@
 
             <i class="fa-solid fa-location-dot"></i>
 
-            {{ $store['city'] }}
+            {{ $store->city }}
 
         </span>
+
 
 
 
@@ -63,13 +68,15 @@
 
             <i class="fa-solid fa-star"></i>
 
-            {{ $store['rating'] }}
+            {{ $store->rating }}
 
         </span>
 
 
 
     </div>
+
+
 
 
 
@@ -103,17 +110,21 @@
 
 
 
+
+
     <div class="company-comments">
 
 
         <i class="fa-solid fa-comments"></i>
 
 
-        {{ $store['comments'] }} نظر
+        {{ $store->reviews_count }} نظر
 
 
 
     </div>
+
+
 
 
 
@@ -132,6 +143,7 @@
 
 
     </a>
+
 
 
 
