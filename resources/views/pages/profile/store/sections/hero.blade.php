@@ -21,9 +21,6 @@
 
 
 
-
-
-
         <div class="profile-info">
 
 
@@ -47,16 +44,11 @@
 
 
 
-
-
             <h1>
 
                 {{ $store->name }}
 
-
             </h1>
-
-
 
 
 
@@ -80,19 +72,13 @@
 
 
 
-
-
-
                 <span>
 
                     <i class="fa-solid fa-star"></i>
 
-                    {{ $store->rating }}
+                    {{ $store->rating ?? 0 }}
 
                 </span>
-
-
-
 
 
 
@@ -116,39 +102,29 @@
 
 
 
+            @if($store->products)
 
 
             <div class="manufacturer-tags">
 
 
-
-                <span>
-
-                    موتور آسانسور
-
-                </span>
-
+                @foreach($store->products->take(4) as $product)
 
 
                 <span>
 
-                    تابلو فرمان
+                    {{ $product->name }}
 
                 </span>
 
 
-
-                <span>
-
-                    قطعات یدکی
-
-                </span>
-
+                @endforeach
 
 
             </div>
 
 
+            @endif
 
 
 
@@ -160,26 +136,30 @@
 
 
 
-                <a href="#"
+                @if($store->phone || $store->mobile)
+
+                <a href="tel:{{ $store->phone ?? $store->mobile }}"
 
                    class="btn-primary">
 
 
-                    استعلام قیمت
+                    تماس با فروشگاه
 
 
                 </a>
 
+                @endif
 
 
 
 
-                <a href="#"
+
+                <a href="#contact"
 
                    class="btn-secondary">
 
 
-                    تماس با فروشگاه
+                    استعلام قیمت
 
 
                 </a>
@@ -191,14 +171,11 @@
 
 
 
-
         </div>
 
 
 
-
     </div>
-
 
 
 </section>
