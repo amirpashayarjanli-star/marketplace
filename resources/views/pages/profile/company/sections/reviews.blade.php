@@ -1,135 +1,59 @@
-<section class="profile-reviews">
+<section class="profile-services">
 
 
-    <div class="profile-section-card">
+    <div class="section-title">
 
+        <h2>
 
+            خدمات شرکت
 
-        <div class="section-title">
+        </h2>
 
-
-            <i class="fa-solid fa-star"></i>
-
-
-            نظرات مشتریان
-
-
-
-        </div>
+    </div>
 
 
 
 
 
+    <div class="services-list">
 
 
-        <div class="reviews-summary">
+        @if(isset($company->services) && $company->services->count())
 
 
-            <strong>
-
-                {{ $company->rating }}
-
-            </strong>
+            @foreach($company->services as $service)
 
 
+                <div class="service-item">
 
-            <div>
+
+                    <i class="fa-solid fa-check"></i>
 
 
-                <div class="stars">
+                    <span>
 
-                    ★ ★ ★ ★ ★
+                        {{ $service->name }}
+
+                    </span>
+
 
                 </div>
 
 
-                <span>
+            @endforeach
 
-                    {{ $company->reviews_count }} نظر
 
-                </span>
+        @else
 
+
+            <div class="empty-data">
+
+                خدماتی ثبت نشده است.
 
             </div>
 
 
-
-        </div>
-
-
-
-
-
-
-
-        <div class="reviews-list">
-
-
-
-            @forelse($company->reviews as $review)
-
-
-
-                <div class="review-card">
-
-
-
-                    <div class="review-header">
-
-
-                        <strong>
-
-                            {{ $review->name }}
-
-                        </strong>
-
-
-                        <span>
-
-                            {{ str_repeat('★', $review->rating) }}
-
-                        </span>
-
-
-                    </div>
-
-
-
-
-
-                    <p>
-
-                        {{ $review->comment }}
-
-                    </p>
-
-
-
-                </div>
-
-
-
-            @empty
-
-
-
-                <p>
-
-                    هنوز نظری ثبت نشده است.
-
-                </p>
-
-
-
-            @endforelse
-
-
-
-
-
-        </div>
-
+        @endif
 
 
 
