@@ -2,13 +2,21 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Facades\DB;
+
+use App\Models\User;
+use App\Models\Company;
+use App\Models\Manufacturer;
+use App\Models\Store;
+use App\Models\Technician;
+use App\Models\Project;
+use App\Models\Product;
+use App\Models\Review;
+
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
 
     public function run(): void
     {
@@ -23,18 +31,14 @@ class DatabaseSeeder extends Seeder
         $this->call([
 
             CompanySeeder::class,
-
             ManufacturerSeeder::class,
-
             StoreSeeder::class,
-
             TechnicianSeeder::class,
-
             ProjectSeeder::class,
-
             ReviewSeeder::class,
 
         ]);
 
     }
+
 }

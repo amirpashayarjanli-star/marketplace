@@ -9,15 +9,23 @@ class ManufacturerController extends Controller
 
     public function index()
     {
+
         $manufacturers = Manufacturer::where('is_active', true)
+            ->with([
+                'products',
+                'projects',
+                'reviews'
+            ])
             ->latest()
             ->get();
+
 
 
         return view(
             'pages.directory.manufacturers.index',
             compact('manufacturers')
         );
+
     }
 
 

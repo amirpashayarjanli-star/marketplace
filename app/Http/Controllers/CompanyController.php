@@ -9,15 +9,22 @@ class CompanyController extends Controller
 
     public function index()
     {
+
         $companies = Company::where('is_active', true)
+            ->with([
+                'projects',
+                'reviews'
+            ])
             ->latest()
             ->get();
+
 
 
         return view(
             'pages.directory.companies.index',
             compact('companies')
         );
+
     }
 
 
