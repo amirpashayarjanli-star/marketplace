@@ -9,15 +9,22 @@ class StoreController extends Controller
 
     public function index()
     {
+
         $stores = Store::where('is_active', true)
+            ->with([
+                'products',
+                'reviews'
+            ])
             ->latest()
             ->get();
+
 
 
         return view(
             'pages.directory.stores.index',
             compact('stores')
         );
+
     }
 
 
