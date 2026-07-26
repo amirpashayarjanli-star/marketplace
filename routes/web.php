@@ -57,3 +57,16 @@ Route::get('/manufacturer-profile', function () {
     return view('pages.profile.manufacturer.index');
 
 });
+
+
+Route::get('/store-profile', function () {
+
+    return view('pages.profile.store.index');
+
+});
+
+Route::get('/technician-profile', function () {
+
+    return view('pages.profile.technician.index');
+
+});
