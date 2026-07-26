@@ -1,77 +1,102 @@
 <section class="profile-contact">
 
 
-    <div class="contact-card">
+    <div class="section-title">
 
+        <h2>
 
+            ارتباط با تولیدکننده
 
-        <div class="contact-content">
+        </h2>
 
-
-
-            <h2>
-
-                نیاز به تامین تجهیزات آسانسور دارید؟
-
-            </h2>
+    </div>
 
 
 
 
 
-            <p>
-
-                برای دریافت کاتالوگ محصولات،
-                استعلام قیمت و همکاری با این تولیدکننده
-                درخواست خود را ارسال کنید.
-
-            </p>
+    <div class="contact-info">
 
 
+        @if($manufacturer->phone)
 
+        <div class="contact-item">
 
+            <i class="fa-solid fa-phone"></i>
 
-            <div class="contact-actions">
+            <a href="tel:{{ $manufacturer->phone }}">
 
+                {{ $manufacturer->phone }}
 
-
-                <a href="#"
-
-                   class="btn-primary">
-
-
-                    دریافت کاتالوگ
-
-
-                </a>
-
-
-
-
-
-                <a href="#"
-
-                   class="btn-secondary">
-
-
-                    تماس با تولیدکننده
-
-
-                </a>
-
-
-
-            </div>
-
-
+            </a>
 
         </div>
 
+        @endif
+
+
+
+
+
+        @if($manufacturer->mobile)
+
+        <div class="contact-item">
+
+            <i class="fa-solid fa-mobile-screen"></i>
+
+            <a href="tel:{{ $manufacturer->mobile }}">
+
+                {{ $manufacturer->mobile }}
+
+            </a>
+
+        </div>
+
+        @endif
+
+
+
+
+
+        @if($manufacturer->website)
+
+        <div class="contact-item">
+
+            <i class="fa-solid fa-globe"></i>
+
+            <a href="{{ $manufacturer->website }}" target="_blank">
+
+                وب‌سایت تولیدکننده
+
+            </a>
+
+        </div>
+
+        @endif
+
+
+
+
+
+        @if($manufacturer->address)
+
+        <div class="contact-item">
+
+            <i class="fa-solid fa-location-dot"></i>
+
+            <span>
+
+                {{ $manufacturer->address }}
+
+            </span>
+
+        </div>
+
+        @endif
 
 
 
     </div>
-
 
 
 </section>
