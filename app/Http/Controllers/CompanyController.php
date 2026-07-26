@@ -2,27 +2,22 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Company;
-
 
 class CompanyController extends Controller
 {
 
     public function index()
     {
-
         $companies = Company::where('is_active', true)
             ->latest()
             ->get();
 
 
-
         return view(
-            'pages.companies.index',
+            'pages.directory.companies.index',
             compact('companies')
         );
-
     }
 
 
@@ -34,6 +29,10 @@ class CompanyController extends Controller
 
         $company = Company::where('slug', $slug)
             ->where('is_active', true)
+            ->with([
+                'projects',
+                'reviews'
+            ])
             ->firstOrFail();
 
 
