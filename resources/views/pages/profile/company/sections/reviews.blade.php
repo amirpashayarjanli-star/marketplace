@@ -1,11 +1,11 @@
-<section class="profile-services">
+<section class="profile-reviews">
 
 
     <div class="section-title">
 
         <h2>
 
-            خدمات شرکت
+            نظرات کاربران
 
         </h2>
 
@@ -15,26 +15,49 @@
 
 
 
-    <div class="services-list">
+    <div class="reviews-list">
 
 
-        @if(isset($company->services) && $company->services->count())
+        @if($company->reviews && $company->reviews->count())
 
 
-            @foreach($company->services as $service)
+            @foreach($company->reviews as $review)
 
 
-                <div class="service-item">
+                <div class="review-item">
 
 
-                    <i class="fa-solid fa-check"></i>
+                    <div class="review-header">
 
 
-                    <span>
+                        <strong>
 
-                        {{ $service->name }}
+                            {{ $review->name }}
 
-                    </span>
+                        </strong>
+
+
+
+                        <span>
+
+                            <i class="fa-solid fa-star"></i>
+
+                            {{ $review->rating }}
+
+                        </span>
+
+
+                    </div>
+
+
+
+
+
+                    <p>
+
+                        {{ $review->comment }}
+
+                    </p>
 
 
                 </div>
@@ -48,7 +71,7 @@
 
             <div class="empty-data">
 
-                خدماتی ثبت نشده است.
+                نظری ثبت نشده است.
 
             </div>
 
