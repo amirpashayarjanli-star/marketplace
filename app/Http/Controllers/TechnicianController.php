@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Technician;
-
 
 class TechnicianController extends Controller
 {
 
     public function index()
     {
-
         $technicians = Technician::where('is_active', true)
             ->latest()
             ->get();
@@ -21,7 +18,6 @@ class TechnicianController extends Controller
             'pages.directory.technicians.index',
             compact('technicians')
         );
-
     }
 
 
@@ -33,7 +29,12 @@ class TechnicianController extends Controller
 
         $technician = Technician::where('slug', $slug)
             ->where('is_active', true)
+            ->with([
+                'projects',
+                'reviews'
+            ])
             ->firstOrFail();
+
 
 
         return view(

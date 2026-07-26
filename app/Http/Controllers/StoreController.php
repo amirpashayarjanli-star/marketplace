@@ -2,27 +2,22 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Store;
-
 
 class StoreController extends Controller
 {
 
     public function index()
     {
-
         $stores = Store::where('is_active', true)
             ->latest()
             ->get();
-
 
 
         return view(
             'pages.directory.stores.index',
             compact('stores')
         );
-
     }
 
 
@@ -34,6 +29,10 @@ class StoreController extends Controller
 
         $store = Store::where('slug', $slug)
             ->where('is_active', true)
+            ->with([
+                'products',
+                'reviews'
+            ])
             ->firstOrFail();
 
 
