@@ -1,102 +1,78 @@
-<div class="entity-card">
+<div class="company-card">
 
-    <div class="entity-card__cover">
+
+    <div class="company-logo">
+
 
         <img
-            src="{{ $item->cover ?? asset('images/company-cover.jpg') }}"
-            alt="{{ $item->name }}"
-            loading="lazy">
-
-
-        @if($item->verified ?? false)
-
-            <span class="entity-badge">
-
-                <i class="fa-solid fa-badge-check"></i>
-
-                تایید شده
-
-            </span>
-
-        @endif
+            src="{{ asset($company['logo']) }}"
+            alt="{{ $company['name'] }}">
 
 
     </div>
 
 
 
-    <div class="entity-card__body">
+    <h3>
 
+        {{ $company['name'] }}
 
-        <div class="entity-logo">
-
-            <img
-                src="{{ $item->logo ?? asset('images/company-logo.png') }}"
-                alt="{{ $item->name }}"
-                loading="lazy">
-
-        </div>
+    </h3>
 
 
 
-        <h3 class="entity-title">
-
-            {{ $item->name }}
-
-        </h3>
+    <div class="company-info">
 
 
-
-        <div class="entity-city">
+        <span>
 
             <i class="fa-solid fa-location-dot"></i>
 
-            {{ $item->city ?? '---' }}
+            {{ $company['city'] }}
 
-        </div>
-
-
-
-        <div class="entity-stats">
-
-
-            <div>
-
-                <i class="fa-solid fa-star"></i>
-
-                <span>
-                    {{ number_format($item->rating ?? 0,1) }}
-                </span>
-
-            </div>
+        </span>
 
 
 
-            <div>
+        <span>
 
-                <i class="fa-solid fa-diagram-project"></i>
+            <i class="fa-solid fa-star"></i>
 
-                <span>
-                    {{ $item->projects_count ?? 0 }}
-                </span>
+            {{ $company['rating'] }}
 
-            </div>
-
-
-        </div>
-
-
-
-        <a
-            href="#"
-            class="entity-button">
-
-            مشاهده پروفایل
-
-        </a>
+        </span>
 
 
     </div>
+
+
+
+
+    <div class="company-comments">
+
+
+        <i class="fa-solid fa-comments"></i>
+
+        {{ $company['comments'] ?? $company['reviews_count'] ?? 0 }} نظر
+
+
+    </div>
+
+
+
+
+    <a href="{{ route('company.profile', $company['slug']) }}"
+       class="company-profile-btn">
+
+
+        مشاهده پروفایل
+
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+
+    </a>
+
 
 
 </div>
