@@ -1,53 +1,47 @@
 <section class="profile-projects">
 
 
-    <div class="profile-section-card">
+    <div class="section-title">
 
+        <h2>
 
+            پروژه‌ها
 
-        <div class="section-title">
+        </h2>
 
-
-            <i class="fa-solid fa-building"></i>
-
-
-            پروژه‌های مرتبط
-
-
-
-        </div>
+    </div>
 
 
 
 
 
+    <div class="projects-grid">
 
 
-        <div class="profile-project-grid">
+        @if($manufacturer->projects && $manufacturer->projects->count())
 
 
-
-            @forelse($manufacturer->projects as $project)
-
+            @foreach($manufacturer->projects as $project)
 
 
-                <div class="profile-project-card">
+                <div class="project-card">
 
 
+                    @if($project->image)
 
-                    <div class="project-thumb">
+                    <div class="project-image">
 
 
                         <img
 
-                        src="{{ asset($project->image ?? 'images/logo/company-logo.png') }}"
+                        src="{{ asset($project->image) }}"
 
                         alt="{{ $project->title }}">
 
 
                     </div>
 
-
+                    @endif
 
 
 
@@ -63,57 +57,49 @@
 
 
 
+                    <div class="project-meta">
 
 
-                    <span>
+                        <span>
 
-                        <i class="fa-solid fa-location-dot"></i>
+                            <i class="fa-solid fa-location-dot"></i>
 
-                        {{ $project->city }}
+                            {{ $project->city }}
 
-                    </span>
-
-
-
-
+                        </span>
 
 
 
-                    <span>
+                        <span>
 
-                        {{ $project->type }}
+                            <i class="fa-solid fa-building"></i>
 
-                    </span>
+                            {{ $project->type }}
+
+                        </span>
 
 
+                    </div>
 
 
 
                 </div>
 
 
+            @endforeach
 
 
-            @empty
+        @else
 
 
+            <div class="empty-data">
 
-                <p>
+                پروژه‌ای ثبت نشده است.
 
-                    هنوز پروژه‌ای ثبت نشده است.
-
-                </p>
-
+            </div>
 
 
-            @endforelse
-
-
-
-
-
-        </div>
-
+        @endif
 
 
 
