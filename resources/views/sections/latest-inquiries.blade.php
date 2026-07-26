@@ -1,74 +1,32 @@
-<?php
+<section class="latest-inquiries">
 
-namespace App\Http\Controllers;
+    <div class="container">
 
-use App\Models\Company;
-use App\Models\Manufacturer;
-use App\Models\Store;
-use App\Models\Project;
-use App\Models\Technician;
+        <x-section-title
+            title="آخرین استعلام‌ها"
+            description="جدیدترین درخواست‌های ثبت شده در آسانسور پرو"
+        />
 
-class HomeController extends Controller
-{
+        <div class="latest-projects-grid">
 
-    public function index()
-    {
+            @forelse($latestInquiries as $inquiry)
 
-        $topCompanies = Company::where('is_active', 1)
-            ->latest()
-            ->limit(6)
-            ->get();
+                @include('components.card-inquiry')
 
+            @empty
 
-        $topManufacturers = Manufacturer::where('is_active', 1)
-            ->latest()
-            ->limit(6)
-            ->get();
+                <div class="slider-empty">
 
+                    <i class="fa-regular fa-folder-open"></i>
 
-        $topStores = Store::where('is_active', 1)
-            ->latest()
-            ->limit(6)
-            ->get();
+                    <h3>هنوز استعلامی ثبت نشده است.</h3>
 
+                </div>
 
-        $latestProjects = Project::where('is_active', 1)
-            ->latest()
-            ->limit(6)
-            ->get();
+            @endforelse
 
+        </div>
 
-        $latestInquiries = collect([]);
+    </div>
 
-
-        $topTechnicians = Technician::where('is_active', 1)
-            ->latest()
-            ->limit(6)
-            ->get();
-
-
-        $dollar = 0;
-
-
-
-        return view('pages.home', [
-
-            'topCompanies' => $topCompanies,
-
-            'topManufacturers' => $topManufacturers,
-
-            'topStores' => $topStores,
-
-            'latestProjects' => $latestProjects,
-
-            'latestInquiries' => $latestInquiries,
-
-            'topTechnicians' => $topTechnicians,
-
-            'dollar' => $dollar,
-
-        ]);
-
-    }
-
-}
+</section>
