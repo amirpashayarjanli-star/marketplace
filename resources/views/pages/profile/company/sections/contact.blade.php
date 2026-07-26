@@ -1,76 +1,102 @@
 <section class="profile-contact">
 
 
-    <div class="contact-card">
+    <div class="section-title">
 
+        <h2>
 
+            ارتباط با شرکت
 
-        <div class="contact-content">
+        </h2>
 
-
-
-            <h2>
-
-                نیاز به همکاری با این شرکت دارید؟
-
-            </h2>
+    </div>
 
 
 
 
 
-            <p>
-
-                برای دریافت مشاوره، استعلام قیمت
-                و درخواست خدمات آسانسور اقدام کنید.
-
-            </p>
+    <div class="contact-info">
 
 
+        @if($company->phone)
 
+        <div class="contact-item">
 
+            <i class="fa-solid fa-phone"></i>
 
-            <div class="contact-actions">
+            <a href="tel:{{ $company->phone }}">
 
+                {{ $company->phone }}
 
-
-                <a href="#"
-
-                   class="btn-primary">
-
-
-                    درخواست همکاری
-
-
-                </a>
-
-
-
-
-
-                <a href="#"
-
-                   class="btn-secondary">
-
-
-                    تماس با شرکت
-
-
-                </a>
-
-
-
-            </div>
-
-
+            </a>
 
         </div>
 
+        @endif
+
+
+
+
+
+        @if($company->mobile)
+
+        <div class="contact-item">
+
+            <i class="fa-solid fa-mobile-screen"></i>
+
+            <a href="tel:{{ $company->mobile }}">
+
+                {{ $company->mobile }}
+
+            </a>
+
+        </div>
+
+        @endif
+
+
+
+
+
+        @if($company->website)
+
+        <div class="contact-item">
+
+            <i class="fa-solid fa-globe"></i>
+
+            <a href="{{ $company->website }}" target="_blank">
+
+                وب‌سایت شرکت
+
+            </a>
+
+        </div>
+
+        @endif
+
+
+
+
+
+        @if($company->address)
+
+        <div class="contact-item">
+
+            <i class="fa-solid fa-location-dot"></i>
+
+            <span>
+
+                {{ $company->address }}
+
+            </span>
+
+        </div>
+
+        @endif
 
 
 
     </div>
-
 
 
 </section>
