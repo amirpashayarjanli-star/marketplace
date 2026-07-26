@@ -1,78 +1,30 @@
 <section class="profile-reviews">
 
 
-    <div class="profile-section-card">
+    <div class="section-title">
 
+        <h2>
 
+            نظرات کاربران
 
-        <div class="section-title">
+        </h2>
 
-
-            <i class="fa-solid fa-star"></i>
-
-
-            نظرات مشتریان
-
-
-
-        </div>
+    </div>
 
 
 
 
 
+    <div class="reviews-list">
 
 
-        <div class="reviews-summary">
+        @if($technician->reviews && $technician->reviews->count())
 
 
-            <strong>
-
-                {{ $technician->rating }}
-
-            </strong>
+            @foreach($technician->reviews as $review)
 
 
-
-            <div>
-
-
-                <div class="stars">
-
-                    ★ ★ ★ ★ ★
-
-                </div>
-
-
-                <span>
-
-                    {{ $technician->reviews_count }} نظر
-
-                </span>
-
-
-            </div>
-
-
-
-        </div>
-
-
-
-
-
-
-
-        <div class="reviews-list">
-
-
-
-            @forelse($technician->reviews as $review)
-
-
-
-                <div class="review-card">
-
+                <div class="review-item">
 
 
                     <div class="review-header">
@@ -86,9 +38,12 @@
 
 
 
+
                         <span>
 
-                            {{ str_repeat('★', $review->rating) }}
+                            <i class="fa-solid fa-star"></i>
+
+                            {{ $review->rating }}
 
                         </span>
 
@@ -106,31 +61,23 @@
                     </p>
 
 
-
                 </div>
 
 
-
-            @empty
-
+            @endforeach
 
 
-                <p>
-
-                    هنوز نظری ثبت نشده است.
-
-                </p>
+        @else
 
 
+            <div class="empty-data">
 
-            @endforelse
+                نظری ثبت نشده است.
+
+            </div>
 
 
-
-
-
-        </div>
-
+        @endif
 
 
 
