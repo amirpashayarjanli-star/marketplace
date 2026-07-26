@@ -4,13 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Manufacturer;
 
-
 class ManufacturerController extends Controller
 {
 
     public function index()
     {
-
         $manufacturers = Manufacturer::where('is_active', true)
             ->latest()
             ->get();
@@ -20,8 +18,9 @@ class ManufacturerController extends Controller
             'pages.directory.manufacturers.index',
             compact('manufacturers')
         );
-
     }
+
+
 
 
 
@@ -30,7 +29,13 @@ class ManufacturerController extends Controller
 
         $manufacturer = Manufacturer::where('slug', $slug)
             ->where('is_active', true)
+            ->with([
+                'products',
+                'projects',
+                'reviews'
+            ])
             ->firstOrFail();
+
 
 
         return view(
