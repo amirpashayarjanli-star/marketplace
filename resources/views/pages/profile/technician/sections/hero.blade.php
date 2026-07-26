@@ -21,9 +21,6 @@
 
 
 
-
-
-
         <div class="profile-info">
 
 
@@ -47,16 +44,11 @@
 
 
 
-
-
             <h1>
 
                 {{ $technician->name }}
 
-
             </h1>
-
-
 
 
 
@@ -74,11 +66,7 @@
 
                     {{ $technician->city }}
 
-
                 </span>
-
-
-
 
 
 
@@ -88,13 +76,9 @@
 
                     <i class="fa-solid fa-star"></i>
 
-                    {{ $technician->rating }}
-
+                    {{ $technician->rating ?? 0 }}
 
                 </span>
-
-
-
 
 
 
@@ -104,8 +88,7 @@
 
                     <i class="fa-solid fa-screwdriver-wrench"></i>
 
-                    تکنسین نصب و تعمیر آسانسور
-
+                    تکنسین آسانسور
 
                 </span>
 
@@ -119,47 +102,29 @@
 
 
 
+            @if(isset($technician->skills))
 
 
             <div class="manufacturer-tags">
 
 
-
-                <span>
-
-                    نصب آسانسور
-
-                </span>
-
+                @foreach($technician->skills as $skill)
 
 
                 <span>
 
-                    تعمیر تابلو فرمان
+                    {{ $skill->name }}
 
                 </span>
 
 
-
-                <span>
-
-                    تعمیر موتور
-
-                </span>
-
-
-
-                <span>
-
-                    تنظیم درب
-
-                </span>
-
+                @endforeach
 
 
             </div>
 
 
+            @endif
 
 
 
@@ -171,7 +136,9 @@
 
 
 
-                <a href="#"
+                @if($technician->phone || $technician->mobile)
+
+                <a href="tel:{{ $technician->phone ?? $technician->mobile }}"
 
                    class="btn-primary">
 
@@ -181,10 +148,11 @@
 
                 </a>
 
+                @endif
+
 
 
             </div>
-
 
 
 
@@ -193,9 +161,7 @@
 
 
 
-
     </div>
 
 
-
-</section>  
+</section>
