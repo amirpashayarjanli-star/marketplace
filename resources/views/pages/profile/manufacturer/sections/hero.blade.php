@@ -4,7 +4,6 @@
     <div class="profile-hero-card">
 
 
-
         <div class="profile-logo">
 
 
@@ -16,9 +15,6 @@
 
 
         </div>
-
-
-
 
 
 
@@ -47,16 +43,11 @@
 
 
 
-
-
             <h1>
 
                 {{ $manufacturer->name }}
 
-
             </h1>
-
-
 
 
 
@@ -67,20 +58,13 @@
             <div class="profile-meta">
 
 
-
                 <span>
 
                     <i class="fa-solid fa-location-dot"></i>
 
-
                     {{ $manufacturer->city }}
 
-
                 </span>
-
-
-
-
 
 
 
@@ -89,15 +73,9 @@
 
                     <i class="fa-solid fa-star"></i>
 
-
-                    {{ $manufacturer->rating }}
-
+                    {{ $manufacturer->rating ?? 0 }}
 
                 </span>
-
-
-
-
 
 
 
@@ -106,9 +84,7 @@
 
                     <i class="fa-solid fa-industry"></i>
 
-
                     تولیدکننده تجهیزات آسانسور
-
 
                 </span>
 
@@ -122,39 +98,29 @@
 
 
 
+            @if(isset($manufacturer->products))
 
 
             <div class="manufacturer-tags">
 
 
-
-                <span>
-
-                    موتور آسانسور
-
-                </span>
-
+                @foreach($manufacturer->products->take(4) as $product)
 
 
                 <span>
 
-                    تابلو فرمان
+                    {{ $product->name }}
 
                 </span>
 
 
-
-                <span>
-
-                    درب آسانسور
-
-                </span>
-
+                @endforeach
 
 
             </div>
 
 
+            @endif
 
 
 
@@ -166,12 +132,29 @@
 
 
 
-                <a href="#"
+                @if($manufacturer->phone || $manufacturer->mobile)
+
+                <a href="tel:{{ $manufacturer->phone ?? $manufacturer->mobile }}"
 
                    class="btn-primary">
 
 
                     تماس با تولیدکننده
+
+
+                </a>
+
+                @endif
+
+
+
+
+                <a href="#contact"
+
+                   class="btn-secondary">
+
+
+                    درخواست همکاری
 
 
                 </a>
@@ -183,14 +166,11 @@
 
 
 
-
         </div>
 
 
 
-
     </div>
-
 
 
 </section>
