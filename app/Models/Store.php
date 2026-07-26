@@ -53,4 +53,5 @@ class Store extends Model
         return $this->morphMany(Review::class, 'reviewable');
     }
 
+
 }
