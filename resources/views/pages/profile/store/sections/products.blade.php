@@ -1,53 +1,47 @@
 <section class="profile-products">
 
 
-    <div class="profile-section-card">
+    <div class="section-title">
 
-
-
-        <div class="section-title">
-
-
-            <i class="fa-solid fa-box"></i>
-
+        <h2>
 
             محصولات فروشگاه
 
+        </h2>
 
-
-        </div>
-
-
+    </div>
 
 
 
 
 
-        <div class="profile-product-grid">
+    <div class="products-grid">
 
 
-
-            @forelse($store->products as $product)
-
+        @if($store->products && $store->products->count())
 
 
-                <div class="profile-product-card">
+            @foreach($store->products as $product)
 
 
+                <div class="product-card">
+
+
+                    @if($product->image)
 
                     <div class="product-image">
 
 
                         <img
 
-                        src="{{ asset($product->image ?? 'images/logo/company-logo.png') }}"
+                        src="{{ asset($product->image) }}"
 
                         alt="{{ $product->name }}">
 
 
                     </div>
 
-
+                    @endif
 
 
 
@@ -63,31 +57,13 @@
 
 
 
-
-
-                    @if($product->brand)
+                    @if($product->category)
 
                     <span>
 
-                        <i class="fa-solid fa-tag"></i>
-
-                        {{ $product->brand->name }}
+                        {{ $product->category }}
 
                     </span>
-
-                    @endif
-
-
-
-
-
-                    @if($product->description)
-
-                    <p>
-
-                        {{ Str::limit($product->description, 80) }}
-
-                    </p>
 
                     @endif
 
@@ -96,28 +72,20 @@
                 </div>
 
 
+            @endforeach
 
 
-            @empty
+        @else
 
 
+            <div class="empty-data">
 
-                <p>
+                محصولی ثبت نشده است.
 
-                    هنوز محصولی برای این فروشگاه ثبت نشده است.
-
-                </p>
-
+            </div>
 
 
-            @endforelse
-
-
-
-
-
-        </div>
-
+        @endif
 
 
 
