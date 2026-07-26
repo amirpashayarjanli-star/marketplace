@@ -1,53 +1,47 @@
 <section class="profile-products">
 
 
-    <div class="profile-section-card">
+    <div class="section-title">
 
+        <h2>
 
+            محصولات
 
-        <div class="section-title">
+        </h2>
 
-
-            <i class="fa-solid fa-box"></i>
-
-
-            محصولات تولیدکننده
-
-
-
-        </div>
+    </div>
 
 
 
 
 
+    <div class="products-grid">
 
 
-        <div class="profile-product-grid">
+        @if($manufacturer->products && $manufacturer->products->count())
 
 
-
-            @forelse($manufacturer->products as $product)
-
+            @foreach($manufacturer->products as $product)
 
 
-                <div class="profile-product-card">
+                <div class="product-card">
 
 
+                    @if($product->image)
 
                     <div class="product-image">
 
 
                         <img
 
-                        src="{{ asset($product->image ?? 'images/logo/company-logo.png') }}"
+                        src="{{ asset($product->image) }}"
 
                         alt="{{ $product->name }}">
 
 
                     </div>
 
-
+                    @endif
 
 
 
@@ -63,15 +57,11 @@
 
 
 
-
-
-                    @if($product->brand)
+                    @if($product->category)
 
                     <span>
 
-                        <i class="fa-solid fa-tag"></i>
-
-                        {{ $product->brand->name }}
+                        {{ $product->category }}
 
                     </span>
 
@@ -79,41 +69,23 @@
 
 
 
-
-
-                    <p>
-
-                        {{ Str::limit($product->description, 80) }}
-
-                    </p>
-
-
-
                 </div>
 
 
+            @endforeach
 
 
-            @empty
+        @else
 
 
+            <div class="empty-data">
 
-                <p>
+                محصولی ثبت نشده است.
 
-                    هنوز محصولی ثبت نشده است.
-
-                </p>
-
+            </div>
 
 
-            @endforelse
-
-
-
-
-
-        </div>
-
+        @endif
 
 
 
