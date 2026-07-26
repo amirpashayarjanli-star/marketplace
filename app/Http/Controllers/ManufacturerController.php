@@ -2,45 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Manufacturer;
 
-use App\Models\Technician;
 
-
-class TechnicianController extends Controller
+class ManufacturerController extends Controller
 {
 
     public function index()
     {
 
-        $technicians = Technician::where('is_active', true)
+        $manufacturers = Manufacturer::where('is_active', true)
             ->latest()
             ->get();
 
 
-
         return view(
-            'pages.directory.technicians.index',
-            compact('technicians')
+            'pages.directory.manufacturers.index',
+            compact('manufacturers')
         );
 
     }
 
 
 
-
-
     public function show($slug)
     {
 
-        $technician = Technician::where('slug', $slug)
+        $manufacturer = Manufacturer::where('slug', $slug)
             ->where('is_active', true)
             ->firstOrFail();
 
 
-
         return view(
-            'pages.profile.technician.index',
-            compact('technician')
+            'pages.profile.manufacturer.index',
+            compact('manufacturer')
         );
 
     }
