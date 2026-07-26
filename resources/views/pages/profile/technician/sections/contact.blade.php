@@ -1,76 +1,82 @@
 <section class="profile-contact">
 
 
-    <div class="contact-card">
+    <div class="section-title">
 
+        <h2>
 
+            ارتباط با تکنسین
 
-        <div class="contact-content">
+        </h2>
 
-
-
-            <h2>
-
-                نیاز به تکنسین آسانسور دارید؟
-
-            </h2>
+    </div>
 
 
 
 
 
-            <p>
-
-                برای تعمیر، سرویس یا رفع خرابی آسانسور
-                درخواست خود را ثبت کنید تا تکنسین با شما تماس بگیرد.
-
-            </p>
+    <div class="contact-info">
 
 
+        @if($technician->phone)
 
+        <div class="contact-item">
 
+            <i class="fa-solid fa-phone"></i>
 
-            <div class="contact-actions">
+            <a href="tel:{{ $technician->phone }}">
 
+                {{ $technician->phone }}
 
-
-                <a href="#"
-
-                   class="btn-primary">
-
-
-                    درخواست تکنسین
-
-
-                </a>
-
-
-
-
-
-                <a href="#"
-
-                   class="btn-secondary">
-
-
-                    تماس مستقیم
-
-
-                </a>
-
-
-
-            </div>
-
-
+            </a>
 
         </div>
 
+        @endif
+
+
+
+
+
+        @if($technician->mobile)
+
+        <div class="contact-item">
+
+            <i class="fa-solid fa-mobile-screen"></i>
+
+            <a href="tel:{{ $technician->mobile }}">
+
+                {{ $technician->mobile }}
+
+            </a>
+
+        </div>
+
+        @endif
+
+
+
+
+
+        @if($technician->address)
+
+        <div class="contact-item">
+
+            <i class="fa-solid fa-location-dot"></i>
+
+            <span>
+
+                {{ $technician->address }}
+
+            </span>
+
+        </div>
+
+        @endif
 
 
 
     </div>
-
 
 
 </section>
