@@ -34,22 +34,33 @@
 
     @include('sections.quick-access')
 
+
     @include('sections.collaboration')
+
 
     @include('sections.top-companies')
 
+
     @include('sections.top-manufacturers')
+
 
     @include('sections.top-stores')
 
+
+    @include('sections.top-technicians')
+
+
     @include('sections.latest-projects')
 
+
     @include('sections.latest-inquiries')
+
 
     @include('sections.articles')
 
 
 </main>
+
 
 
 @include('sections.footer')
