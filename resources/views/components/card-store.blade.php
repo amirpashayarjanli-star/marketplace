@@ -1,76 +1,118 @@
-<div class="entity-card">
+<div class="company-card store-card">
 
-    <div class="entity-card__cover">
+
+    <div class="company-logo">
+
 
         <img
-            src="{{ $item->cover ?? asset('images/store-cover.jpg') }}"
-            alt="{{ $item->name }}"
-            loading="lazy">
+            src="{{ asset($store['logo']) }}"
+            alt="{{ $store['name'] }}">
 
-        @if($item->verified ?? false)
-            <span class="entity-badge">
-                <i class="fa-solid fa-badge-check"></i>
-                تایید شده
-            </span>
-        @endif
 
     </div>
 
-    <div class="entity-card__body">
 
-        <div class="entity-logo">
 
-            <img
-                src="{{ $item->logo ?? asset('images/store-logo.png') }}"
-                alt="{{ $item->name }}"
-                loading="lazy">
 
-        </div>
+    <h3>
 
-        <h3 class="entity-title">
-            {{ $item->name }}
-        </h3>
+        {{ $store['name'] }}
 
-        <div class="entity-city">
+    </h3>
+
+
+
+
+    <div class="store-type">
+
+
+        <i class="fa-solid fa-store"></i>
+
+
+        فروشگاه قطعات آسانسور
+
+
+    </div>
+
+
+
+
+    <div class="company-info">
+
+
+        <span>
 
             <i class="fa-solid fa-location-dot"></i>
 
-            {{ $item->city ?? '---' }}
+            {{ $store['city'] }}
 
-        </div>
+        </span>
 
-        <div class="entity-stats">
 
-            <div>
 
-                <i class="fa-solid fa-star"></i>
+        <span>
 
-                <span>
-                    {{ number_format($item->rating ?? 0,1) }}
-                </span>
+            <i class="fa-solid fa-star"></i>
 
-            </div>
+            {{ $store['rating'] }}
 
-            <div>
+        </span>
 
-                <i class="fa-solid fa-box"></i>
-
-                <span>
-                    {{ $item->products_count ?? 0 }}
-                </span>
-
-            </div>
-
-        </div>
-
-        <a
-            href="#"
-            class="entity-button">
-
-            ورود به فروشگاه
-
-        </a>
 
     </div>
+
+
+
+
+    <div class="store-products">
+
+
+        <span>
+            موتور
+        </span>
+
+
+        <span>
+            تابلو فرمان
+        </span>
+
+
+        <span>
+            درب آسانسور
+        </span>
+
+
+    </div>
+
+
+
+
+    <div class="company-comments">
+
+
+        <i class="fa-solid fa-comments"></i>
+
+
+        {{ $store['comments'] ?? $store['reviews_count'] ?? 0 }} نظر
+
+
+    </div>
+
+
+
+
+    <a href="{{ route('store.profile', $store['slug']) }}"
+       class="company-profile-btn">
+
+
+        مشاهده فروشگاه
+
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+
+    </a>
+
+
 
 </div>
