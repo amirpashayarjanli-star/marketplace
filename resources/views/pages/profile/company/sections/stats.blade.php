@@ -1,26 +1,24 @@
 <section class="profile-stats">
 
 
-    <div class="stats-grid">
+    <div class="stats-card">
 
 
+        <div class="stat-item">
 
-        <div class="stat-card">
-
+            <i class="fa-solid fa-calendar-days"></i>
 
             <strong>
 
-                {{ $company->experience }}
+                {{ $company->experience ?? 0 }}
 
             </strong>
 
-
             <span>
 
-                سال سابقه فعالیت
+                سال تجربه
 
             </span>
-
 
         </div>
 
@@ -28,17 +26,15 @@
 
 
 
+        <div class="stat-item">
 
-
-        <div class="stat-card">
-
+            <i class="fa-solid fa-building"></i>
 
             <strong>
 
-                {{ $company->projects_count }}
+                {{ $company->projects_count ?? 0 }}
 
             </strong>
-
 
             <span>
 
@@ -46,31 +42,27 @@
 
             </span>
 
-
         </div>
 
 
 
 
 
+        <div class="stat-item">
 
-
-        <div class="stat-card">
-
+            <i class="fa-solid fa-star"></i>
 
             <strong>
 
-                {{ $company->rating }}
+                {{ $company->rating ?? 0 }}
 
             </strong>
-
 
             <span>
 
-                امتیاز مشتریان
+                امتیاز
 
             </span>
-
 
         </div>
 
@@ -78,17 +70,15 @@
 
 
 
+        <div class="stat-item">
 
-
-        <div class="stat-card">
-
+            <i class="fa-solid fa-comments"></i>
 
             <strong>
 
-                {{ $company->reviews_count }}
+                {{ $company->reviews_count ?? 0 }}
 
             </strong>
-
 
             <span>
 
@@ -96,10 +86,7 @@
 
             </span>
 
-
         </div>
-
-
 
 
 
