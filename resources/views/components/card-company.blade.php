@@ -3,22 +3,16 @@
 
     <div class="company-logo">
 
-
         <img
-            src="{{ asset($company['logo']) }}"
-            alt="{{ $company['name'] }}">
-
+            src="{{ $company->logo ? asset($company->logo) : asset('images/default-logo.png') }}"
+            alt="{{ $company->name }}">
 
     </div>
 
 
-
     <h3>
-
-        {{ $company['name'] }}
-
+        {{ $company->name }}
     </h3>
-
 
 
     <div class="company-info">
@@ -28,17 +22,16 @@
 
             <i class="fa-solid fa-location-dot"></i>
 
-            {{ $company['city'] }}
+            {{ $company->city }}
 
         </span>
-
 
 
         <span>
 
             <i class="fa-solid fa-star"></i>
 
-            {{ $company['rating'] }}
+            {{ $company->rating ?? 0 }}
 
         </span>
 
@@ -46,22 +39,17 @@
     </div>
 
 
-
-
     <div class="company-comments">
-
 
         <i class="fa-solid fa-comments"></i>
 
-        {{ $company['comments'] ?? $company['reviews_count'] ?? 0 }} نظر
-
+        {{ $company->reviews_count ?? 0 }} نظر
 
     </div>
 
 
 
-
-    <a href="{{ route('company.profile', $company['slug']) }}"
+    <a href="{{ route('company.profile', $company->slug) }}"
        class="company-profile-btn">
 
 
@@ -72,7 +60,6 @@
 
 
     </a>
-
 
 
 </div>
