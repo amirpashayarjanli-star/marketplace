@@ -1,92 +1,32 @@
 <section class="profile-about">
 
 
-    <div class="profile-section-card">
+    <div class="section-title">
 
-
-
-        <div class="section-title">
-
-
-            <i class="fa-solid fa-shop"></i>
-
+        <h2>
 
             درباره فروشگاه
 
+        </h2>
+
+    </div>
 
 
-        </div>
 
 
 
-
-
+    <div class="about-content">
 
 
         <p>
 
-            {{ $store->description }}
+            {{ $store->description ?? 'توضیحی برای این فروشگاه ثبت نشده است.' }}
 
         </p>
 
 
 
-
-
-
-
-        <div class="about-tags">
-
-
-
-            <span>
-
-                تامین قطعات آسانسور
-
-            </span>
-
-
-
-            <span>
-
-                موتور آسانسور
-
-            </span>
-
-
-
-            <span>
-
-                تابلو فرمان
-
-            </span>
-
-
-
-            <span>
-
-                {{ $store->city }}
-
-            </span>
-
-
-
-            <span>
-
-                {{ $store->experience }} سال سابقه
-
-            </span>
-
-
-
-        </div>
-
-
-
-
-
     </div>
-
 
 
 </section>
