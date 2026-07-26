@@ -3,38 +3,25 @@
 
     <div class="company-logo">
 
-
         <img
-            src="{{ asset($manufacturer['logo']) }}"
-            alt="{{ $manufacturer['name'] }}">
-
+            src="{{ $manufacturer->logo ? asset($manufacturer->logo) : asset('images/default-logo.png') }}"
+            alt="{{ $manufacturer->name }}">
 
     </div>
 
 
-
-
     <h3>
-
-        {{ $manufacturer['name'] }}
-
+        {{ $manufacturer->name }}
     </h3>
-
-
 
 
     <div class="manufacturer-type">
 
-
         <i class="fa-solid fa-industry"></i>
-
 
         تولیدکننده تجهیزات آسانسور
 
-
     </div>
-
-
 
 
     <div class="company-info">
@@ -44,64 +31,53 @@
 
             <i class="fa-solid fa-location-dot"></i>
 
-            {{ $manufacturer['city'] }}
+            {{ $manufacturer->city }}
 
         </span>
-
 
 
         <span>
 
             <i class="fa-solid fa-star"></i>
 
-            {{ $manufacturer['rating'] }}
+            {{ $manufacturer->rating ?? 0 }}
 
         </span>
 
 
     </div>
-
 
 
 
     <div class="manufacturer-products">
 
-
         <span>
             موتور آسانسور
         </span>
-
 
         <span>
             تابلو فرمان
         </span>
 
-
         <span>
             قطعات
         </span>
 
-
     </div>
-
 
 
 
     <div class="company-comments">
 
-
         <i class="fa-solid fa-comments"></i>
 
-
-        {{ $manufacturer['comments'] ?? $manufacturer['reviews_count'] ?? 0 }} نظر
-
+        {{ $manufacturer->reviews_count ?? 0 }} نظر
 
     </div>
 
 
 
-
-    <a href="{{ route('manufacturer.profile', $manufacturer['slug']) }}"
+    <a href="{{ route('manufacturer.profile', $manufacturer->slug) }}"
        class="company-profile-btn">
 
 
@@ -112,7 +88,6 @@
 
 
     </a>
-
 
 
 </div>
