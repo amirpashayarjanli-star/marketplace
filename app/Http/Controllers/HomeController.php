@@ -6,55 +6,61 @@ use App\Models\Company;
 use App\Models\Manufacturer;
 use App\Models\Store;
 use App\Models\Project;
-use App\Services\NavasanService;
-
+use App\Models\Technician;
 
 class HomeController extends Controller
 {
 
-    public function index(NavasanService $navasan)
+    public function index()
     {
+
+        $topCompanies = Company::where('is_active', 1)
+            ->latest()
+            ->limit(6)
+            ->get();
+
+
+        $topManufacturers = Manufacturer::where('is_active', 1)
+            ->latest()
+            ->limit(6)
+            ->get();
+
+
+        $topStores = Store::where('is_active', 1)
+            ->latest()
+            ->limit(6)
+            ->get();
+
+
+        $latestProjects = Project::where('is_active', 1)
+            ->latest()
+            ->limit(6)
+            ->get();
+
+
+        $topTechnicians = Technician::where('is_active', 1)
+            ->latest()
+            ->limit(6)
+            ->get();
+
+
+        $dollar = 0;
+
+
 
         return view('pages.home', [
 
-            'topCompanies' => Company::where('is_active', true)
-                ->latest()
-                ->take(6)
-                ->get(),
+            'topCompanies' => $topCompanies,
 
+            'topManufacturers' => $topManufacturers,
 
-            'topManufacturers' => Manufacturer::where('is_active', true)
-                ->latest()
-                ->take(6)
-                ->get(),
+            'topStores' => $topStores,
 
+            'latestProjects' => $latestProjects,
 
-            'topStores' => Store::where('is_active', true)
-                ->latest()
-                ->take(6)
-                ->get(),
+            'topTechnicians' => $topTechnicians,
 
-
-            'latestProjects' => Project::where('is_active', true)
-                ->latest()
-                ->take(6)
-                ->get(),
-
-
-            'latestInquiries' => collect(),
-
-
-            'latestArticles' => collect(),
-
-
-            'dollar' => $navasan->getUsdPrice() ?? [
-
-                'price' => 0,
-                'change' => 0,
-                'date' => 'اکنون'
-
-            ],
-
+            'dollar' => $dollar,
 
         ]);
 

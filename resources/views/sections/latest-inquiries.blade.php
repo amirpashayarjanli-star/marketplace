@@ -1,32 +1,74 @@
-<section class="latest-inquiries">
+<?php
 
-    <div class="container">
+namespace App\Http\Controllers;
 
-        <x-section-title
-            title="آخرین استعلام‌ها"
-            description="جدیدترین درخواست‌های ثبت شده در آسانسور پرو"
-        />
+use App\Models\Company;
+use App\Models\Manufacturer;
+use App\Models\Store;
+use App\Models\Project;
+use App\Models\Technician;
 
-        <div class="latest-projects-grid">
+class HomeController extends Controller
+{
 
-            @forelse($latestInquiries as $inquiry)
+    public function index()
+    {
 
-                @include('components.card-inquiry')
+        $topCompanies = Company::where('is_active', 1)
+            ->latest()
+            ->limit(6)
+            ->get();
 
-            @empty
 
-                <div class="slider-empty">
+        $topManufacturers = Manufacturer::where('is_active', 1)
+            ->latest()
+            ->limit(6)
+            ->get();
 
-                    <i class="fa-regular fa-folder-open"></i>
 
-                    <h3>هنوز استعلامی ثبت نشده است.</h3>
+        $topStores = Store::where('is_active', 1)
+            ->latest()
+            ->limit(6)
+            ->get();
 
-                </div>
 
-            @endforelse
+        $latestProjects = Project::where('is_active', 1)
+            ->latest()
+            ->limit(6)
+            ->get();
 
-        </div>
 
-    </div>
+        $latestInquiries = collect([]);
 
-</section>
+
+        $topTechnicians = Technician::where('is_active', 1)
+            ->latest()
+            ->limit(6)
+            ->get();
+
+
+        $dollar = 0;
+
+
+
+        return view('pages.home', [
+
+            'topCompanies' => $topCompanies,
+
+            'topManufacturers' => $topManufacturers,
+
+            'topStores' => $topStores,
+
+            'latestProjects' => $latestProjects,
+
+            'latestInquiries' => $latestInquiries,
+
+            'topTechnicians' => $topTechnicians,
+
+            'dollar' => $dollar,
+
+        ]);
+
+    }
+
+}
