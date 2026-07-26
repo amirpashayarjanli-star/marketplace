@@ -1,26 +1,24 @@
 <section class="profile-stats">
 
 
-    <div class="stats-grid">
+    <div class="stats-card">
 
 
+        <div class="stat-item">
 
-        <div class="stat-card">
-
+            <i class="fa-solid fa-calendar-days"></i>
 
             <strong>
 
-                {{ $manufacturer->experience }}
+                {{ $manufacturer->experience ?? 0 }}
 
             </strong>
 
-
             <span>
 
-                سال سابقه تولید
+                سال تجربه
 
             </span>
-
 
         </div>
 
@@ -28,24 +26,21 @@
 
 
 
+        <div class="stat-item">
 
-
-        <div class="stat-card">
-
+            <i class="fa-solid fa-boxes-stacked"></i>
 
             <strong>
 
-                {{ $manufacturer->products_count }}
+                {{ $manufacturer->products_count ?? 0 }}
 
             </strong>
 
-
             <span>
 
-                محصول تولیدی
+                محصول
 
             </span>
-
 
         </div>
 
@@ -53,24 +48,21 @@
 
 
 
+        <div class="stat-item">
 
-
-        <div class="stat-card">
-
+            <i class="fa-solid fa-users"></i>
 
             <strong>
 
-                {{ $manufacturer->customers_count }}
+                {{ $manufacturer->customers_count ?? 0 }}
 
             </strong>
 
-
             <span>
 
-                مشتری فعال
+                مشتری
 
             </span>
-
 
         </div>
 
@@ -78,28 +70,23 @@
 
 
 
+        <div class="stat-item">
 
-
-        <div class="stat-card">
-
+            <i class="fa-solid fa-star"></i>
 
             <strong>
 
-                {{ $manufacturer->rating }}
+                {{ $manufacturer->rating ?? 0 }}
 
             </strong>
 
-
             <span>
 
-                امتیاز مشتریان
+                امتیاز
 
             </span>
 
-
         </div>
-
-
 
 
 
