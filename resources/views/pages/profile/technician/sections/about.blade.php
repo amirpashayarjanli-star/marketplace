@@ -1,92 +1,32 @@
 <section class="profile-about">
 
 
-    <div class="profile-section-card">
+    <div class="section-title">
 
-
-
-        <div class="section-title">
-
-
-            <i class="fa-solid fa-screwdriver-wrench"></i>
-
+        <h2>
 
             درباره تکنسین
 
+        </h2>
+
+    </div>
 
 
-        </div>
 
 
 
-
-
+    <div class="about-content">
 
 
         <p>
 
-            {{ $technician->description }}
+            {{ $technician->description ?? 'توضیحی برای این تکنسین ثبت نشده است.' }}
 
         </p>
 
 
 
-
-
-
-
-        <div class="about-tags">
-
-
-
-            <span>
-
-                نصب آسانسور
-
-            </span>
-
-
-
-            <span>
-
-                تعمیرات تخصصی
-
-            </span>
-
-
-
-            <span>
-
-                عیب‌یابی
-
-            </span>
-
-
-
-            <span>
-
-                {{ $technician->city }}
-
-            </span>
-
-
-
-            <span>
-
-                {{ $technician->experience }} سال سابقه
-
-            </span>
-
-
-
-        </div>
-
-
-
-
-
     </div>
-
 
 
 </section>

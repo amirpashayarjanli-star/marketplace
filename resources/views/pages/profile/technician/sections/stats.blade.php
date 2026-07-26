@@ -1,26 +1,24 @@
 <section class="profile-stats">
 
 
-    <div class="stats-grid">
+    <div class="stats-card">
 
 
+        <div class="stat-item">
 
-        <div class="stat-card">
-
+            <i class="fa-solid fa-calendar-days"></i>
 
             <strong>
 
-                {{ $technician->experience }}
+                {{ $technician->experience ?? 0 }}
 
             </strong>
 
-
             <span>
 
-                سال سابقه فعالیت
+                سال تجربه
 
             </span>
-
 
         </div>
 
@@ -28,17 +26,15 @@
 
 
 
+        <div class="stat-item">
 
-
-        <div class="stat-card">
-
+            <i class="fa-solid fa-building"></i>
 
             <strong>
 
-                {{ $technician->projects_count }}
+                {{ $technician->projects_count ?? 0 }}
 
             </strong>
-
 
             <span>
 
@@ -46,24 +42,21 @@
 
             </span>
 
-
         </div>
 
 
 
 
 
+        <div class="stat-item">
 
-
-        <div class="stat-card">
-
+            <i class="fa-solid fa-screwdriver-wrench"></i>
 
             <strong>
 
-                {{ $technician->repairs_count }}
+                {{ $technician->repairs_count ?? 0 }}
 
             </strong>
-
 
             <span>
 
@@ -71,39 +64,33 @@
 
             </span>
 
-
         </div>
 
 
 
 
 
+        <div class="stat-item">
 
-
-        <div class="stat-card">
-
+            <i class="fa-solid fa-star"></i>
 
             <strong>
 
-                {{ $technician->rating }}
+                {{ $technician->rating ?? 0 }}
 
             </strong>
 
-
             <span>
 
-                امتیاز مشتریان
+                امتیاز
 
             </span>
 
-
         </div>
-
-
 
 
 
     </div>
 
 
-</section>
+</section>  
