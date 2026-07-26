@@ -1,76 +1,102 @@
 <section class="profile-contact">
 
 
-    <div class="contact-card">
+    <div class="section-title">
 
+        <h2>
 
+            ارتباط با فروشگاه
 
-        <div class="contact-content">
+        </h2>
 
-
-
-            <h2>
-
-                نیاز به تامین قطعات آسانسور دارید؟
-
-            </h2>
+    </div>
 
 
 
 
 
-            <p>
-
-                برای دریافت قیمت، موجودی قطعات
-                و همکاری با این فروشگاه درخواست خود را ارسال کنید.
-
-            </p>
+    <div class="contact-info">
 
 
+        @if($store->phone)
 
+        <div class="contact-item">
 
+            <i class="fa-solid fa-phone"></i>
 
-            <div class="contact-actions">
+            <a href="tel:{{ $store->phone }}">
 
+                {{ $store->phone }}
 
-
-                <a href="#"
-
-                   class="btn-primary">
-
-
-                    استعلام قیمت
-
-
-                </a>
-
-
-
-
-
-                <a href="#"
-
-                   class="btn-secondary">
-
-
-                    تماس با فروشگاه
-
-
-                </a>
-
-
-
-            </div>
-
-
+            </a>
 
         </div>
 
+        @endif
+
+
+
+
+
+        @if($store->mobile)
+
+        <div class="contact-item">
+
+            <i class="fa-solid fa-mobile-screen"></i>
+
+            <a href="tel:{{ $store->mobile }}">
+
+                {{ $store->mobile }}
+
+            </a>
+
+        </div>
+
+        @endif
+
+
+
+
+
+        @if($store->website)
+
+        <div class="contact-item">
+
+            <i class="fa-solid fa-globe"></i>
+
+            <a href="{{ $store->website }}" target="_blank">
+
+                وب‌سایت فروشگاه
+
+            </a>
+
+        </div>
+
+        @endif
+
+
+
+
+
+        @if($store->address)
+
+        <div class="contact-item">
+
+            <i class="fa-solid fa-location-dot"></i>
+
+            <span>
+
+                {{ $store->address }}
+
+            </span>
+
+        </div>
+
+        @endif
 
 
 
     </div>
-
 
 
 </section>
