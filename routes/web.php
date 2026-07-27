@@ -25,26 +25,27 @@ Route::get('/test-dollar', function (NavasanService $navasan) {
 
 
 
+/*
+|--------------------------------------------------------------------------
+| Directory Pages
+|--------------------------------------------------------------------------
+*/
 
 
 Route::get('/companies', [CompanyController::class, 'index'])
     ->name('companies.index');
 
 
-
 Route::get('/manufacturers', [ManufacturerController::class, 'index'])
     ->name('manufacturers.index');
-
 
 
 Route::get('/stores', [StoreController::class, 'index'])
     ->name('stores.index');
 
 
-
 Route::get('/technicians', [TechnicianController::class, 'index'])
     ->name('technicians.index');
-
 
 
 Route::get('/projects', [ProjectController::class, 'index'])
@@ -52,22 +53,28 @@ Route::get('/projects', [ProjectController::class, 'index'])
 
 
 
+/*
+|--------------------------------------------------------------------------
+| Profiles
+|--------------------------------------------------------------------------
+*/
 
 
 Route::get('/company/{slug}', [CompanyController::class, 'show'])
     ->name('company.profile');
 
 
-
 Route::get('/manufacturer/{slug}', [ManufacturerController::class, 'show'])
     ->name('manufacturer.profile');
-
 
 
 Route::get('/store/{slug}', [StoreController::class, 'show'])
     ->name('store.profile');
 
 
-
 Route::get('/technician/{slug}', [TechnicianController::class, 'show'])
     ->name('technician.profile');
+
+
+Route::get('/project/{slug}', [ProjectController::class, 'show'])
+    ->name('project.profile');
