@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Filament\Resources\Companies;
+namespace App\Filament\Admin\Resources\Companies;
 
-use App\Filament\Resources\Companies\Pages\CreateCompany;
-use App\Filament\Resources\Companies\Pages\EditCompany;
-use App\Filament\Resources\Companies\Pages\ListCompanies;
-use App\Filament\Resources\Companies\Schemas\CompanyForm;
-use App\Filament\Resources\Companies\Tables\CompaniesTable;
+use App\Filament\Admin\Resources\Companies\Pages\CreateCompany;
+use App\Filament\Admin\Resources\Companies\Pages\EditCompany;
+use App\Filament\Admin\Resources\Companies\Pages\ListCompanies;
+use App\Filament\Admin\Resources\Companies\Schemas\CompanyForm;
+use App\Filament\Admin\Resources\Companies\Tables\CompaniesTable;
 use App\Models\Company;
 use BackedEnum;
 use Filament\Resources\Resource;
@@ -22,22 +22,24 @@ class CompanyResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
+
     public static function form(Schema $schema): Schema
     {
         return CompanyForm::configure($schema);
     }
+
 
     public static function table(Table $table): Table
     {
         return CompaniesTable::configure($table);
     }
 
+
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
+
 
     public static function getPages(): array
     {
