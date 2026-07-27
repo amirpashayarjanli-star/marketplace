@@ -9,9 +9,9 @@
 
         <div class="articles-grid">
 
-            @forelse($latestArticles as $article)
+            @forelse($latestArticles ?? [] as $article)
 
-                @include('components.card-article')
+                @include('components.card-article', ['article' => $article])
 
             @empty
 
@@ -19,7 +19,9 @@
 
                     <i class="fa-regular fa-newspaper"></i>
 
-                    <h3>هنوز مقاله‌ای منتشر نشده است.</h3>
+                    <h3>
+                        هنوز مقاله‌ای منتشر نشده است.
+                    </h3>
 
                 </div>
 

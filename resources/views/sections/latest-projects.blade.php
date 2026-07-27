@@ -1,45 +1,34 @@
-<section class="section latest-projects">
+<section class="latest-inquiries">
 
-<div class="container">
+    <div class="container">
 
+        <x-section-title
+            title="آخرین استعلام‌ها"
+            description="جدیدترین درخواست‌های ثبت شده در آسانسور پرو"
+        />
 
-<div class="section-header flex justify-between items-center mb-6">
+        <div class="latest-projects-grid">
 
+            @forelse($latestInquiries ?? [] as $inquiry)
 
-<x-section-title
-title="آخرین پروژه‌ها"
-subtitle="پروژه‌های ثبت شده"
-/>
+                @include('components.card-inquiry', ['inquiry' => $inquiry])
 
+            @empty
 
-<a href="{{ route('projects.index') }}"
-class="btn btn-primary">
-مشاهده همه
-</a>
+                <div class="slider-empty">
 
+                    <i class="fa-regular fa-folder-open"></i>
 
-</div>
+                    <h3>
+                        هنوز استعلامی ثبت نشده است.
+                    </h3>
 
+                </div>
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            @endforelse
 
+        </div>
 
-@forelse($latestProjects ?? [] as $project)
-
-
-<x-card-project :project="$project"/>
-
-
-@empty
-
-<p>پروژه‌ای ثبت نشده است.</p>
-
-@endforelse
-
-
-</div>
-
-
-</div>
+    </div>
 
 </section>
