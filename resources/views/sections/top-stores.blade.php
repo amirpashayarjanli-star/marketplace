@@ -10,7 +10,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-            @foreach($topStores as $store)
+            @forelse($topStores ?? [] as $store)
 
                 <a href="{{ route('store.profile', $store->slug) }}"
                    class="block">
@@ -19,7 +19,13 @@
 
                 </a>
 
-            @endforeach
+            @empty
+
+                <div class="col-span-full text-center py-8">
+                    هنوز فروشگاهی ثبت نشده است.
+                </div>
+
+            @endforelse
 
         </div>
 

@@ -10,7 +10,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-            @foreach($topTechnicians as $technician)
+            @forelse($topTechnicians ?? [] as $technician)
 
                 <a href="{{ route('technician.profile', $technician->slug) }}"
                    class="block">
@@ -19,7 +19,13 @@
 
                 </a>
 
-            @endforeach
+            @empty
+
+                <div class="col-span-full text-center py-8">
+                    هنوز تکنسینی ثبت نشده است.
+                </div>
+
+            @endforelse
 
         </div>
 
