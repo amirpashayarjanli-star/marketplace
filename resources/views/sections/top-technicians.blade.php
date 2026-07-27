@@ -1,44 +1,27 @@
-<section class="top-companies-section technicians-section">
+<section class="section top-technicians">
 
     <div class="container">
 
+        <x-section-title
+            title="برترین تکنسین‌ها"
+            link="{{ route('technicians.index') }}"
+            linkText="مشاهده همه"
+        />
 
-        <div class="section-header">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-            <h2>
-                تکنسین‌های برتر آسانسور
-            </h2>
+            @foreach($topTechnicians as $technician)
 
+                <a href="{{ route('technician.profile', $technician->slug) }}"
+                   class="block">
 
-            <a href="#">
-                مشاهده همه
-                <i class="fa-solid fa-arrow-left"></i>
-            </a>
+                    <x-card-technician :technician="$technician" />
 
-        </div>
+                </a>
 
-
-
-        <div class="companies-grid">
-
-
-            @forelse($topTechnicians as $technician)
-
-                @include('components.card-technician', [
-                    'technician' => $technician
-                ])
-
-            @empty
-
-                <p>
-                    هنوز تکنسینی ثبت نشده است.
-                </p>
-
-            @endforelse
-
+            @endforeach
 
         </div>
-
 
     </div>
 
