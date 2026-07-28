@@ -16,4 +16,23 @@ class CompanyController extends Controller
             'companies' => $companies
         ]);
     }
+
+
+    public function show($slug)
+    {
+        $company = Company::where('slug', $slug)
+            ->where('is_active', true)
+            ->with([
+                'reviews' => function ($query) {
+                    $query->where('is_verified', true)
+                        ->latest();
+                }
+            ])
+            ->firstOrFail();
+
+
+        return view('pages.profile.company.index', [
+            'company' => $company
+        ]);
+    }
 }
