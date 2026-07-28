@@ -1,84 +1,61 @@
-<section class="profile-reviews">
+<div class="review-form-card">
+
+    @if(session()->has('success'))
+
+        <div class="success-message">
+            {{ session('success') }}
+        </div>
+
+    @endif
 
 
-    <div class="section-title">
-
-        <h2>
-            نظرات کاربران
-        </h2>
-
-    </div>
+    <form wire:submit="submit">
 
 
+        <div class="form-group">
 
-    <div class="reviews-list">
+            <input
+                type="text"
+                wire:model="name"
+                placeholder="نام شما"
+            >
 
-
-        @if($company->reviews && $company->reviews->count())
-
-
-            @foreach($company->reviews as $review)
-
-
-                <div class="review-card">
-
-
-                    <div class="review-header">
-
-
-                        <strong>
-                            {{ $review->name }}
-                        </strong>
+        </div>
 
 
 
-                        <span>
+        <div class="form-group">
 
-                            <i class="fa-solid fa-star"></i>
+            <select wire:model="rating">
 
-                            {{ $review->rating }}
+                <option value="5">★★★★★</option>
+                <option value="4">★★★★</option>
+                <option value="3">★★★</option>
+                <option value="2">★★</option>
+                <option value="1">★</option>
 
-                        </span>
+            </select>
 
-
-                    </div>
-
-
-
-                    <p>
-                        {{ $review->comment }}
-                    </p>
-
-
-                </div>
-
-
-            @endforeach
-
-
-        @else
-
-
-            <div class="empty-data">
-
-                نظری ثبت نشده است.
-
-            </div>
-
-
-        @endif
+        </div>
 
 
 
-    </div>
+        <div class="form-group">
+
+            <textarea
+                wire:model="comment"
+                placeholder="نظر خود را بنویسید"
+            ></textarea>
+
+        </div>
 
 
 
-    <div class="review-form">
-
-        <livewire:review-form :model="$company" />
-
-    </div>
+        <button type="submit">
+            ارسال نظر
+        </button>
 
 
-</section>
+    </form>
+
+</div>

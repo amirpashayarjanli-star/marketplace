@@ -10,8 +10,8 @@ class ReviewForm extends Component
 {
     public Company $company;
 
-    public $name;
-    public $comment;
+    public $name = '';
+    public $comment = '';
     public $rating = 5;
 
 

@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Company extends Model
 {
+    use HasFactory;
+
 
     protected $fillable = [
 
@@ -17,9 +17,7 @@ class Company extends Model
         'manager_name',
         'mobile',
         'phone',
-        'email',
         'website',
-        'province',
         'city',
         'address',
         'logo',
@@ -29,27 +27,41 @@ class Company extends Model
         'reviews_count',
         'experience',
         'projects_count',
-        'is_verified',
         'is_active',
 
     ];
 
 
 
+    protected $casts = [
+
+        'is_active' => 'boolean',
+        'rating' => 'float',
+
+    ];
 
 
-    public function projects(): HasMany
+
+    public function projects()
     {
         return $this->hasMany(Project::class);
     }
 
 
 
-
-
-    public function reviews(): MorphMany
+    public function reviews()
     {
-        return $this->morphMany(Review::class, 'reviewable');
+        return $this->morphMany(
+            Review::class,
+            'reviewable'
+        );
     }
 
+
+
+    public function services()
+    {
+        return $this->belongsToMany(Service::class)
+            ->withTimestamps();
+    }
 }
