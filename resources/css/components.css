@@ -5522,3 +5522,75 @@ grid-template-columns:1fr;
 
 
 }
+
+/* Review Form */
+
+.review-form-card{
+
+    margin-top:30px;
+    padding:25px;
+    border-radius:20px;
+    background:#fff;
+    border:1px solid #eee;
+
+}
+
+
+.review-form-card .form-group{
+
+    margin-bottom:15px;
+
+}
+
+
+.review-form-card input,
+.review-form-card textarea,
+.review-form-card select{
+
+    width:100%;
+    padding:14px 16px;
+    border-radius:12px;
+    border:1px solid #ddd;
+    font-family:inherit;
+    font-size:14px;
+
+}
+
+
+.review-form-card textarea{
+
+    min-height:120px;
+    resize:none;
+
+}
+
+
+.review-form-card button{
+
+    background:#2563eb;
+    color:#fff;
+    border:none;
+    padding:12px 30px;
+    border-radius:12px;
+    cursor:pointer;
+    font-family:inherit;
+
+}
+
+
+.review-form-card button:hover{
+
+    opacity:.9;
+
+}
+
+
+.success-message{
+
+    background:#dcfce7;
+    color:#166534;
+    padding:12px;
+    border-radius:12px;
+    margin-bottom:20px;
+
+}   
