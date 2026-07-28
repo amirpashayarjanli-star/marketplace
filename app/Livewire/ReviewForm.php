@@ -3,29 +3,32 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Models\Company;
+use App\Models\Review;
 
 class ReviewForm extends Component
 {
-    public $model;
+    public Company $company;
 
     public $name;
     public $comment;
     public $rating = 5;
 
 
+    public function mount(Company $model)
+    {
+        $this->company = $model;
+    }
+
+
     public function submit()
     {
-        $this->validate([
-            'name' => 'required|min:2',
-            'comment' => 'required|min:5',
-            'rating' => 'required|integer|min:1|max:5',
-        ]);
-
-
-        $this->model->reviews()->create([
+        Review::create([
             'name' => $this->name,
             'comment' => $this->comment,
             'rating' => $this->rating,
+            'reviewable_type' => Company::class,
+            'reviewable_id' => $this->company->id,
             'is_verified' => false,
         ]);
 
@@ -33,7 +36,7 @@ class ReviewForm extends Component
         $this->reset([
             'name',
             'comment',
-            'rating',
+            'rating'
         ]);
 
 
