@@ -1,7 +1,8 @@
 <?php
 
-namespace App\\Filament\\Admin\\Resources\\Companies\Schemas;
+namespace App\Filament\Admin\Resources\Companies\Schemas;
 
+use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
 class CompanyForm
@@ -10,7 +11,8 @@ class CompanyForm
     {
         return $schema
             ->components([
-                //
+                TextInput::make('name')
+                    ->required(),
             ]);
     }
 }

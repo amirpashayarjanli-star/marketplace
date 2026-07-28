@@ -26,6 +26,7 @@ class ModeratorPanelProvider extends PanelProvider
         return $panel
             ->id('moderator')
             ->path('moderator')
+            ->login()
             ->colors([
                 'primary' => Color::Amber,
             ])
