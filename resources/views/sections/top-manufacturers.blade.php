@@ -4,9 +4,10 @@
 
         <x-section-title
             title="برترین تولیدکنندگان"
-            link="{{ route('manufacturers.index') }}"
-            linkText="مشاهده همه"
+            url="{{ route('manufacturers.index') }}"
+            button="مشاهده همه"
         />
+
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 

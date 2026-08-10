@@ -1,24 +1,18 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl" class="scroll-smooth">
+<html lang="fa" dir="rtl">
 
 <head>
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
     <title>
         @yield('title', 'آسانسور پرو')
     </title>
-
-
-    <meta name="description"
-          content="@yield('description','مرجع صنعت آسانسور ایران')">
 
 
     @vite([
@@ -27,22 +21,22 @@
     ])
 
 
-    @stack('styles')
-
-
 </head>
 
 
-<body class="bg-[var(--background)] text-[var(--text)] antialiased overflow-x-hidden">
+<body>
 
 
-    @yield('content')
 
 
-    @stack('scripts')
+
+    <main>
+
+        @yield('content')
+
+    </main>
 
 
 </body>
-
 
 </html>

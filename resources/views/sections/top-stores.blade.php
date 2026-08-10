@@ -4,9 +4,10 @@
 
         <x-section-title
             title="برترین فروشگاه‌ها"
-            link="{{ route('stores.index') }}"
-            linkText="مشاهده همه"
+            url="{{ route('stores.index') }}"
+            button="مشاهده همه"
         />
+
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 

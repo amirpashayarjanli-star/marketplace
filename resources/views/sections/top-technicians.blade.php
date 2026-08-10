@@ -4,9 +4,10 @@
 
         <x-section-title
             title="برترین تکنسین‌ها"
-            link="{{ route('technicians.index') }}"
-            linkText="مشاهده همه"
+            url="{{ route('technicians.index') }}"
+            button="مشاهده همه"
         />
+
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 

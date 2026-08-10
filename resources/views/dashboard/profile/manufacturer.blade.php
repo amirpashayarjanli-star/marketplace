@@ -1,0 +1,303 @@
+@extends('dashboard.layouts.dashboard')
+
+
+@section('content')
+
+
+<h1 class="text-3xl font-bold mb-6">
+
+پروفایل تولیدکننده
+
+</h1>
+
+
+
+
+<div class="bg-white rounded-2xl shadow p-6">
+
+
+
+@if(session('success'))
+
+<div class="bg-green-100 text-green-700 p-4 rounded-xl mb-5">
+
+{{ session('success') }}
+
+</div>
+
+@endif
+
+
+
+
+
+
+@if($profile)
+
+
+
+<form method="POST" action="{{ route('dashboard.profile.update') }}">
+
+@csrf
+
+
+
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+
+
+<div>
+
+<label class="block mb-2">
+
+نام تولیدکننده
+
+</label>
+
+
+<input
+
+type="text"
+
+name="name"
+
+value="{{ $profile->name }}"
+
+class="w-full border rounded-xl p-3"
+
+>
+
+</div>
+
+
+
+
+
+<div>
+
+<label class="block mb-2">
+
+شماره تماس
+
+</label>
+
+
+<input
+
+type="text"
+
+name="phone"
+
+value="{{ $profile->phone }}"
+
+class="w-full border rounded-xl p-3"
+
+>
+
+</div>
+
+
+
+
+
+
+
+<div>
+
+<label class="block mb-2">
+
+استان
+
+</label>
+
+
+<input
+
+type="text"
+
+name="province"
+
+value="{{ $profile->province }}"
+
+class="w-full border rounded-xl p-3"
+
+>
+
+</div>
+
+
+
+
+
+
+
+<div>
+
+<label class="block mb-2">
+
+شهر
+
+</label>
+
+
+<input
+
+type="text"
+
+name="city"
+
+value="{{ $profile->city }}"
+
+class="w-full border rounded-xl p-3"
+
+>
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="mt-5">
+
+
+<label class="block mb-2">
+
+توضیحات
+
+</label>
+
+
+
+<textarea
+
+name="description"
+
+rows="5"
+
+class="w-full border rounded-xl p-3"
+
+>{{ $profile->description }}</textarea>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
+
+
+
+<div>
+
+<label class="block mb-2">
+
+سابقه فعالیت
+
+</label>
+
+
+<input
+
+type="number"
+
+name="experience"
+
+value="{{ $profile->experience }}"
+
+class="w-full border rounded-xl p-3"
+
+>
+
+</div>
+
+
+
+
+
+<div>
+
+<label class="block mb-2">
+
+وضعیت تایید
+
+</label>
+
+
+<input
+
+type="text"
+
+value="{{ $profile->is_verified ? 'تایید شده' : 'در انتظار تایید' }}"
+
+disabled
+
+class="w-full border rounded-xl p-3 bg-gray-100"
+
+>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<button
+
+class="mt-6 bg-blue-600 text-white px-6 py-3 rounded-xl"
+
+>
+
+ذخیره تغییرات
+
+</button>
+
+
+
+
+</form>
+
+
+
+
+
+@else
+
+
+<div class="text-gray-500">
+
+پروفایل تولیدکننده یافت نشد.
+
+</div>
+
+
+@endif
+
+
+
+</div>
+
+
+
+
+
+@endsection

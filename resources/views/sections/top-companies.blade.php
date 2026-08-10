@@ -4,9 +4,10 @@
 
         <x-section-title
             title="برترین شرکت‌های آسانسوری"
-            link="{{ route('companies.index') }}"
-            linkText="مشاهده همه"
+            url="{{ route('companies.index') }}"
+            button="مشاهده همه"
         />
+
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 

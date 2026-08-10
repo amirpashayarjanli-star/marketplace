@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 
 class Project extends Model
@@ -18,6 +19,7 @@ class Project extends Model
         'city',
         'type',
         'description',
+        'status',
         'employer_id',
         'company_id',
         'technician_id',
@@ -40,10 +42,12 @@ class Project extends Model
 
 
 
+
     public function technician(): BelongsTo
     {
         return $this->belongsTo(Technician::class);
     }
+
 
 
 
@@ -58,9 +62,21 @@ class Project extends Model
 
 
 
+
     public function employer(): BelongsTo
     {
         return $this->belongsTo(Employer::class);
     }
+
+
+
+
+
+
+    public function inquiries(): HasMany
+    {
+        return $this->hasMany(ProjectInquiry::class);
+    }
+
 
 }

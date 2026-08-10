@@ -8,9 +8,11 @@ class EntitySlider {
 
         if (!this.cards.length) return;
 
+
         this.prev = section.querySelector('.slider-prev');
         this.next = section.querySelector('.slider-next');
         this.pagination = section.querySelector('.slider-pagination');
+
 
         this.index = 0;
 
@@ -18,9 +20,12 @@ class EntitySlider {
 
         this.cardWidth = 0;
 
+
+        this.isDragging = false;
         this.startX = 0;
-        this.currentX = 0;
-        this.dragging = false;
+        this.currentTranslate = 0;
+        this.prevTranslate = 0;
+
 
         this.update();
 
@@ -31,6 +36,8 @@ class EntitySlider {
         this.autoPlay();
 
     }
+
+
 
     getVisible() {
 
@@ -44,6 +51,8 @@ class EntitySlider {
 
     }
 
+
+
     update() {
 
         this.visible = this.getVisible();
@@ -54,28 +63,62 @@ class EntitySlider {
 
     }
 
+
+
     maxIndex() {
 
-        return Math.max(this.cards.length - this.visible, 0);
+        return Math.max(
+            this.cards.length - this.visible,
+            0
+        );
 
     }
 
+
+
     go(index, animate = true) {
 
-        if (index > this.maxIndex()) index = 0;
 
-        if (index < 0) index = this.maxIndex();
+        if (index > this.maxIndex())
+            index = 0;
+
+
+        if (index < 0)
+            index = this.maxIndex();
+
+
 
         this.index = index;
 
-        this.track.style.transition = animate ? '.45s ease' : 'none';
+
+
+        this.track.style.transition = animate
+            ? 'transform .45s ease'
+            : 'none';
+
+
+
+        this.currentTranslate =
+            this.index * this.cardWidth;
+
+
+
+        this.prevTranslate =
+            this.currentTranslate;
+
+
 
         this.track.style.transform =
-            `translateX(-${this.index * this.cardWidth}px)`;
+            `translateX(${this.currentTranslate}px)`;
+
 
         this.updatePagination();
 
     }
+
+
+
+
 
     nextSlide() {
 
@@ -83,96 +126,279 @@ class EntitySlider {
 
     }
 
+
+
+
     prevSlide() {
 
         this.go(this.index - 1);
 
     }
 
+
+
+
+
+
     createPagination() {
 
-        this.pagination.innerHTML = '';
 
-        for (let i = 0; i <= this.maxIndex(); i++) {
+        this.pagination.innerHTML = "";
 
-            const dot = document.createElement('button');
 
-            if (i === 0) dot.classList.add('active');
+        for(
+            let i = 0;
+            i <= this.maxIndex();
+            i++
+        ){
 
-            dot.addEventListener('click', () => this.go(i));
+
+            let dot = document.createElement('button');
+
+
+            if(i === 0)
+                dot.classList.add('active');
+
+
+
+            dot.onclick = () => this.go(i);
+
 
             this.pagination.appendChild(dot);
 
         }
 
-    }
-
-    updatePagination() {
-
-        [...this.pagination.children].forEach((dot, i) => {
-
-            dot.classList.toggle('active', i === this.index);
-
-        });
 
     }
 
-    autoPlay() {
 
-        setInterval(() => {
 
-            this.nextSlide();
 
-        }, 4500);
 
-    }
+    updatePagination(){
 
-    events() {
+        [
+            ...this.pagination.children
+        ].forEach((dot,i)=>{
 
-        this.next.addEventListener('click', () => this.nextSlide());
-
-        this.prev.addEventListener('click', () => this.prevSlide());
-
-        window.addEventListener('resize', () => {
-
-            this.update();
-
-            this.createPagination();
-
-        });
-
-        this.track.addEventListener('touchstart', e => {
-
-            this.startX = e.touches[0].clientX;
-
-        });
-
-        this.track.addEventListener('touchend', e => {
-
-            this.currentX = e.changedTouches[0].clientX;
-
-            if (this.startX - this.currentX > 60) this.nextSlide();
-
-            if (this.currentX - this.startX > 60) this.prevSlide();
-
-        });
-
-        document.addEventListener('keydown', e => {
-
-            if (e.key === 'ArrowLeft') this.nextSlide();
-
-            if (e.key === 'ArrowRight') this.prevSlide();
+            dot.classList.toggle(
+                'active',
+                i === this.index
+            );
 
         });
 
     }
+
+
+
+
+
+
+
+    events(){
+
+
+
+        this.next.onclick =
+            ()=> this.nextSlide();
+
+
+
+        this.prev.onclick =
+            ()=> this.prevSlide();
+
+
+
+
+
+        window.addEventListener(
+            'resize',
+            ()=>{
+                this.update();
+                this.createPagination();
+            }
+        );
+
+
+
+
+
+        // Mouse Drag
+
+        this.track.addEventListener(
+            'mousedown',
+            e=>{
+
+
+                this.isDragging = true;
+
+
+                this.startX = e.clientX;
+
+
+                this.track.style.transition='none';
+
+
+                this.section.classList.add(
+                    'dragging'
+                );
+
+
+            }
+        );
+
+
+
+
+
+        window.addEventListener(
+            'mouseup',
+            ()=>{
+
+
+                if(!this.isDragging)
+                    return;
+
+
+                this.isDragging=false;
+
+
+                this.section.classList.remove(
+                    'dragging'
+                );
+
+
+                let moved =
+                    this.currentTranslate -
+                    this.prevTranslate;
+
+
+
+                if(moved > 80)
+                    this.nextSlide();
+
+
+
+                if(moved < -80)
+                    this.prevSlide();
+
+
+
+                else
+                    this.go(this.index);
+
+
+            }
+        );
+
+
+
+
+
+
+
+        window.addEventListener(
+            'mousemove',
+            e=>{
+
+
+                if(!this.isDragging)
+                    return;
+
+
+
+                let diff =
+                    e.clientX -
+                    this.startX;
+
+
+
+                this.track.style.transform =
+                    `translateX(${this.currentTranslate + diff}px)`;
+
+
+            }
+        );
+
+
+
+
+
+
+        // Touch
+
+        this.track.addEventListener(
+            'touchstart',
+            e=>{
+
+                this.startX =
+                    e.touches[0].clientX;
+
+            }
+        );
+
+
+
+        this.track.addEventListener(
+            'touchend',
+            e=>{
+
+
+                let endX =
+                    e.changedTouches[0].clientX;
+
+
+
+                if(this.startX - endX > 60)
+                    this.nextSlide();
+
+
+
+                if(endX - this.startX > 60)
+                    this.prevSlide();
+
+
+
+            }
+        );
+
+
+    }
+
+
+
+
+
+
+
+    autoPlay(){
+
+        setInterval(
+            ()=>this.nextSlide(),
+            5000
+        );
+
+    }
+
 
 }
 
-document.addEventListener('DOMContentLoaded', () => {
 
-    document
+
+
+
+document.addEventListener(
+    'DOMContentLoaded',
+    ()=>{
+
+
+        document
         .querySelectorAll('.entity-slider-section')
-        .forEach(section => new EntitySlider(section));
+        .forEach(
+            section=>new EntitySlider(section)
+        );
 
-});
+
+    }
+);

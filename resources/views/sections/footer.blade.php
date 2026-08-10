@@ -36,19 +36,19 @@
                 </h4>
 
 
-                <a href="#">
+                <a href="/companies">
                     شرکت‌ها
                 </a>
 
-                <a href="#">
+                <a href="/manufacturers">
                     تولیدکنندگان
                 </a>
 
-                <a href="#">
+                <a href="/stores">
                     فروشگاه‌ها
                 </a>
 
-                <a href="#">
+                <a href="/projects">
                     پروژه‌ها
                 </a>
 

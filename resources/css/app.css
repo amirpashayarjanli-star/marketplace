@@ -1,66 +1,40 @@
 @import "tailwindcss";
 
-@source "../views";
-@source "../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php";
-
 @import "./theme.css";
 @import "./utilities.css";
 @import "./components.css";
 @import "./animations.css";
 
-@theme {
-    --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
-
-    --color-primary: #0B5FFF;
-    --color-primary-dark: #0847C2;
-    --color-accent: #FFC107;
-
-    --radius-sm: 8px;
-    --radius-md: 14px;
-    --radius-lg: 20px;
-    --radius-xl: 28px;
-}
-
 @import "./components/entity-slider.css";
 @import "./components/projects.css";
 @import "./components/articles.css";
 
-.desktop-home{
 
-    display:block;
+@source "../views";
+@source "../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php";
 
+
+
+.desktop-home {
+    display: block;
 }
 
 
-
-.mobile-home{
-
-    display:none;
-
+.mobile-home {
+    display: none;
 }
-
-
 
 
 
 @media(max-width:768px){
 
-
-
-    .desktop-home{
-
+    .desktop-home {
         display:none;
-
     }
 
 
-
-    .mobile-home{
-
+    .mobile-home {
         display:block;
-
     }
-
-
 
 }
