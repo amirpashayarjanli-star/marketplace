@@ -71,7 +71,7 @@
 
 
 
-    <a href="#"
+    <a href="{{ route('company.profile', $company->slug) }}"
        class="company-profile-btn">
 
 

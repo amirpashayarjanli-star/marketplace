@@ -164,21 +164,21 @@
             </a>
 
 
-            <a href="#" class="glass radius-md p-5 text-center hover-lift">
+            <a href="{{ route('dashboard.profile') }}" class="glass radius-md p-5 text-center hover-lift">
 
                 پروفایل
 
             </a>
 
 
-            <a href="#" class="glass radius-md p-5 text-center hover-lift">
+            <a href="#" class="glass radius-md p-5 text-center hover-lift" title="درحال تکمیل">
 
                 پیام‌ها
 
             </a>
 
 
-            <a href="#" class="glass radius-md p-5 text-center hover-lift">
+            <a href="#" class="glass radius-md p-5 text-center hover-lift" title="درحال تکمیل">
 
                 تنظیمات
 

@@ -65,15 +65,15 @@
                 </h4>
 
 
-                <a href="#">
+                <a href="{{ route('register') }}">
                     ثبت‌نام
                 </a>
 
-                <a href="#">
+                <a href="{{ route('login') }}">
                     ورود
                 </a>
 
-                <a href="#">
+                <a href="#" title="درحال تکمیل">
                     تماس با ما
                 </a>
 

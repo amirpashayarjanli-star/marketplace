@@ -108,10 +108,17 @@
 <?php endif; ?>
 
 
-                <a href="#"
-                   class="btn btn-primary">
-                    ورود | ثبت‌نام
-                </a>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(auth()->guard()->check()): ?>
+                    <a href="<?php echo e(route('dashboard')); ?>"
+                       class="btn btn-primary">
+                        داشبورد
+                    </a>
+                <?php else: ?>
+                    <a href="<?php echo e(route('login')); ?>"
+                       class="btn btn-primary">
+                        ورود | ثبت‌نام
+                    </a>
+                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
             </div>
 

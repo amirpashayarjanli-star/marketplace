@@ -133,7 +133,7 @@
 
 
 
-    <a href="#"
+    <a href="{{ route('manufacturer.profile', $manufacturer->slug) }}"
        class="company-profile-btn">
 
 

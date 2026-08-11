@@ -24,10 +24,17 @@
                 <x-header.search />
 
 
-                <a href="#"
-                   class="btn btn-primary">
-                    ورود | ثبت‌نام
-                </a>
+                @auth
+                    <a href="{{ route('dashboard') }}"
+                       class="btn btn-primary">
+                        داشبورد
+                    </a>
+                @else
+                    <a href="{{ route('login') }}"
+                       class="btn btn-primary">
+                        ورود | ثبت‌نام
+                    </a>
+                @endauth
 
             </div>
 

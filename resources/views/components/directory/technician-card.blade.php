@@ -158,7 +158,7 @@
 
 
 
-    <a href="#"
+    <a href="{{ route('technician.profile', $technician->slug) }}"
        class="company-profile-btn">
 
 

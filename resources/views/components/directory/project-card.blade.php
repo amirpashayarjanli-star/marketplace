@@ -123,7 +123,7 @@
 
 
 
-    <a href="#"
+    <a href="{{ route('project.profile', $project->slug) }}"
 
        class="company-profile-btn">
 

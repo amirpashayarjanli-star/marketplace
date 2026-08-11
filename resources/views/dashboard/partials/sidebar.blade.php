@@ -41,28 +41,28 @@
         @if(auth()->user()->type == 'company')
 
 
-            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100">
+            <a href="{{ route('dashboard.projects') }}" class="block p-3 rounded-xl hover:bg-gray-100">
 
                 📁 پروژه‌های من
 
             </a>
 
 
-            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100">
+            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100" title="درحال تکمیل">
 
                 🛠 خدمات
 
             </a>
 
 
-            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100">
+            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100" title="درحال تکمیل">
 
                 📩 درخواست‌ها
 
             </a>
 
 
-            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100">
+            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100" title="درحال تکمیل">
 
                 📄 استعلام‌ها
 
@@ -74,21 +74,21 @@
         @elseif(auth()->user()->type == 'manufacturer')
 
 
-            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100">
+            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100" title="درحال تکمیل">
 
                 📦 محصولات
 
             </a>
 
 
-            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100">
+            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100" title="درحال تکمیل">
 
                 🏷 برندها
 
             </a>
 
 
-            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100">
+            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100" title="درحال تکمیل">
 
                 📁 پروژه‌ها
 
@@ -101,21 +101,21 @@
         @elseif(auth()->user()->type == 'store')
 
 
-            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100">
+            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100" title="درحال تکمیل">
 
                 📦 محصولات
 
             </a>
 
 
-            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100">
+            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100" title="درحال تکمیل">
 
                 🏷 برندها
 
             </a>
 
 
-            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100">
+            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100" title="درحال تکمیل">
 
                 ⭐ نظرات
 
@@ -128,14 +128,14 @@
         @elseif(auth()->user()->type == 'technician')
 
 
-            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100">
+            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100" title="درحال تکمیل">
 
                 🔧 کارهای من
 
             </a>
 
 
-            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100">
+            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100" title="درحال تکمیل">
 
                 📁 سوابق کاری
 
@@ -148,21 +148,21 @@
         @elseif(auth()->user()->type == 'employer')
 
 
-            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100">
+            <a href="{{ route('dashboard.projects.create') }}" class="block p-3 rounded-xl hover:bg-gray-100">
 
                 ➕ ثبت پروژه جدید
 
             </a>
 
 
-            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100">
+            <a href="{{ route('dashboard.projects') }}" class="block p-3 rounded-xl hover:bg-gray-100">
 
                 📁 پروژه‌های من
 
             </a>
 
 
-            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100">
+            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100" title="درحال تکمیل">
 
                 🏢 شرکت‌های پیشنهادی
 
@@ -183,7 +183,7 @@
 
 
 
-        <a href="#" class="block p-3 rounded-xl hover:bg-gray-100">
+        <a href="#" class="block p-3 rounded-xl hover:bg-gray-100" title="درحال تکمیل">
 
             💬 پیام‌ها
 
@@ -192,7 +192,7 @@
 
 
 
-        <a href="#" class="block p-3 rounded-xl hover:bg-gray-100">
+        <a href="#" class="block p-3 rounded-xl hover:bg-gray-100" title="درحال تکمیل">
 
             ⚙ تنظیمات
 

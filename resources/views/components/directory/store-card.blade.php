@@ -132,7 +132,7 @@
 
 
 
-    <a href="#"
+    <a href="{{ route('store.profile', $store->slug) }}"
        class="company-profile-btn">
 
 

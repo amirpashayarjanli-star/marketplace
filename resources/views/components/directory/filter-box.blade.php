@@ -43,7 +43,7 @@
     </form>
 
     {{-- Register Company --}}
-    <a href="#"
+    <a href="{{ route('register') }}"
        class="register-company-btn block text-center mt-3">
         <i class="fa-solid fa-building"></i>
         {{ $register ?? 'ثبت' }}
