@@ -50,15 +50,6 @@ Route::get('/', [
 
 
 
-Route::get('/test-dollar', function (NavasanService $navasan) {
-
-    return $navasan->getUsdPrice();
-
-});
-
-
-
-
 
 
 

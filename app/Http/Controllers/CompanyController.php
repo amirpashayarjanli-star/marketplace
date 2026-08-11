@@ -43,7 +43,9 @@ class CompanyController extends Controller
 
                 },
 
-                'projects',
+                'projects' => function ($query) {
+                    $query->latest();
+                },
 
                 'services',
 

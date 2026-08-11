@@ -21,31 +21,75 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@example.com',
+        User::create([
+            'name' => 'Admin User',
+            'mobile' => '09000000000',
+            'email' => null,
+            'password' => \Illuminate\Support\Facades\Hash::make('password'),
+            'status' => 'approved',
+            'role' => 'admin',
         ]);
 
+        User::create([
+            'name' => 'Sample Company',
+            'mobile' => '09111111111',
+            'email' => 'company@example.com',
+            'password' => \Illuminate\Support\Facades\Hash::make('password'),
+            'status' => 'approved',
+            'type' => 'company',
+        ]);
 
+        Company::create([
+            'user_id' => 2,
+            'name' => 'شرکت آسانسور پرو',
+            'slug' => 'asansor-pro',
+            'manager_name' => 'علی محمدی',
+            'mobile' => '09111111111',
+            'phone' => '02144445555',
+            'email' => 'company@example.com',
+            'website' => 'https://example.com',
+            'province' => 'تهران',
+            'city' => 'تهران',
+            'address' => 'تهران، خیابان انقلاب',
+            'description' => 'شرکت متخصص در تولید و نصب آسانسور',
+            'is_active' => true,
+            'is_verified' => true,
+        ]);
 
-        Company::factory(10)->create();
+        Company::create([
+            'user_id' => 2,
+            'name' => 'شرکت اورج',
+            'slug' => 'oraj',
+            'manager_name' => 'مریم کریمی',
+            'mobile' => '09999999999',
+            'phone' => '02133334444',
+            'email' => 'oraj@example.com',
+            'website' => 'https://oraj.com',
+            'province' => 'تهران',
+            'city' => 'تهران',
+            'address' => 'تهران، خیابان فلسطین',
+            'description' => 'متخصص در تکنسینی و تعمیر آسانسور',
+            'is_active' => true,
+            'is_verified' => true,
+        ]);
 
-        Manufacturer::factory(10)->create();
+        Review::create([
+            'name' => 'احمد',
+            'comment' => 'خدمات بسیار خوبی دریافت کردم. تیم حرفه‌ای و وقت‌شناس.',
+            'rating' => 5,
+            'reviewable_type' => Company::class,
+            'reviewable_id' => 1,
+            'is_verified' => true,
+        ]);
 
-        Store::factory(10)->create();
-
-        Technician::factory(10)->create();
-
-        Employer::factory(10)->create();
-
-
-
-        Project::factory(30)->create();
-
-        Product::factory(50)->create();
-
-        Review::factory(50)->create();
-
+        Review::create([
+            'name' => 'فاطمه',
+            'comment' => 'تجربه خوبی داشتم. هزینه‌ها منطقی و سرویس عالی.',
+            'rating' => 4,
+            'reviewable_type' => Company::class,
+            'reviewable_id' => 2,
+            'is_verified' => true,
+        ]);
 
     }
 

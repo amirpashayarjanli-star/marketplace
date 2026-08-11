@@ -23,22 +23,35 @@ class ReviewForm extends Component
 
     public function submit()
     {
+        $validated = $this->validate([
+            'name' => 'required|string|max:100',
+            'comment' => 'required|string|min:10|max:1000',
+            'rating' => 'required|integer|min:1|max:5',
+        ], [
+            'name.required' => 'نام الزامی است.',
+            'name.max' => 'نام نمی‌تواند بیش از 100 کاراکتر باشد.',
+            'comment.required' => 'نظر الزامی است.',
+            'comment.min' => 'نظر باید حداقل 10 کاراکتر باشد.',
+            'comment.max' => 'نظر نمی‌تواند بیش از 1000 کاراکتر باشد.',
+            'rating.required' => 'امتیاز الزامی است.',
+            'rating.min' => 'امتیاز باید بین 1 تا 5 باشد.',
+            'rating.max' => 'امتیاز باید بین 1 تا 5 باشد.',
+        ]);
+
         Review::create([
-            'name' => $this->name,
-            'comment' => $this->comment,
-            'rating' => $this->rating,
+            'name' => $validated['name'],
+            'comment' => $validated['comment'],
+            'rating' => $validated['rating'],
             'reviewable_type' => Company::class,
             'reviewable_id' => $this->company->id,
             'is_verified' => false,
         ]);
-
 
         $this->reset([
             'name',
             'comment',
             'rating'
         ]);
-
 
         session()->flash(
             'success',
