@@ -36,7 +36,7 @@ class StoreController extends Controller
             $query->latest();
         }
 
-        $stores = $query->get();
+        $stores = $query->paginate(15)->withQueryString();
 
         return view(
             'pages.directory.stores.index',

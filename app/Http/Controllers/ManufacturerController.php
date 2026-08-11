@@ -37,7 +37,7 @@ class ManufacturerController extends Controller
             $query->latest();
         }
 
-        $manufacturers = $query->get();
+        $manufacturers = $query->paginate(15)->withQueryString();
 
         return view(
             'pages.directory.manufacturers.index',

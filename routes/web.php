@@ -270,12 +270,9 @@ Route::get('/login', [
 
 
 Route::post('/login', [
-
     AuthController::class,
-
     'login'
-
-]);
+])->middleware('throttle:5,1');
 
 
 
@@ -294,12 +291,9 @@ Route::get('/login/otp', [
 
 
 Route::post('/login/otp', [
-
     OtpController::class,
-
     'verifyLoginOtp'
-
-]);
+])->middleware('throttle:5,1');
 
 
 
@@ -329,12 +323,9 @@ Route::get('/register', [
 
 
 Route::post('/register', [
-
     RegisterController::class,
-
     'store'
-
-]);
+])->middleware('throttle:5,1');
 
 
 
@@ -352,12 +343,9 @@ Route::get('/register/otp', [
 
 
 Route::post('/register/otp', [
-
     OtpController::class,
-
     'verifyRegisterOtp'
-
-]);
+])->middleware('throttle:5,1');
 
 
 

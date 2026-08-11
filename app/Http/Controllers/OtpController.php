@@ -28,9 +28,50 @@ class OtpController extends Controller
 
     public function verifyLoginOtp(Request $request)
     {
+        $request->validate([
+            'mobile' => 'required|regex:/^(\+98|0)?9\d{9}$/',
+            'code' => 'required|digits:5',
+        ], [
+            'mobile.required' => 'شماره موبایل الزامی است.',
+            'mobile.regex' => 'شماره موبایل صحیح نیست.',
+            'code.required' => 'کد تایید الزامی است.',
+            'code.digits' => 'کد باید 5 رقم باشد.',
+        ]);
 
-        // قبلا ساختیم
+        // Find OTP code
+        $otp = OtpCode::where('mobile', $request->mobile)
+            ->where('type', 'login')
+            ->where('code', $request->code)
+            ->whereNull('verified_at')
+            ->latest()
+            ->first();
 
+        if (!$otp) {
+            return back()->withErrors(['code' => 'کد وارد شده صحیح نیست.']);
+        }
+
+        if ($otp->isExpired()) {
+            return back()->withErrors(['code' => 'کد منقضی شده است.']);
+        }
+
+        // Find or create user
+        $user = User::where('mobile', $request->mobile)->first();
+
+        if (!$user) {
+            return back()->withErrors(['mobile' => 'کاربری با این شماره ثبت نام نکرده است.']);
+        }
+
+        if ($user->status !== 'approved') {
+            return back()->withErrors(['mobile' => 'حساب کاربری شما هنوز تایید نشده است.']);
+        }
+
+        // Mark OTP as verified
+        $otp->update(['verified_at' => now()]);
+
+        // Login user
+        Auth::login($user, remember: true);
+
+        return redirect()->intended(route('dashboard'));
     }
 
 

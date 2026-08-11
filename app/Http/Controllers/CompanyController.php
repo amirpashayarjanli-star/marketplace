@@ -33,7 +33,7 @@ class CompanyController extends Controller
             $query->latest();
         }
 
-        $companies = $query->get();
+        $companies = $query->paginate(15)->withQueryString();
 
         return view('pages.companies.index', [
             'companies' => $companies

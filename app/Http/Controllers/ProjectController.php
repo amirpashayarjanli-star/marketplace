@@ -32,7 +32,7 @@ class ProjectController extends Controller
             $query->latest();
         }
 
-        $projects = $query->latest()->get();
+        $projects = $query->latest()->paginate(15)->withQueryString();
 
         return view(
             'pages.directory.projects.index',

@@ -36,7 +36,7 @@ class TechnicianController extends Controller
             $query->latest();
         }
 
-        $technicians = $query->get();
+        $technicians = $query->paginate(15)->withQueryString();
 
         return view(
             'pages.directory.technicians.index',

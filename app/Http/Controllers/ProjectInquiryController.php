@@ -110,15 +110,16 @@ class ProjectInquiryController extends Controller
 
     public function destroy(ProjectInquiry $inquiry)
     {
+        $user = Auth::user();
 
+        // تنها صاحب پروژه یا فردی که درخواست را کرده می‌تواند حذف کند
+        if ($inquiry->project->user_id !== $user->id && $inquiry->user_id !== $user->id) {
+            abort(403, 'دسترسی رد شد');
+        }
 
         $inquiry->delete();
 
-
-
-        return back();
-
-
+        return back()->with('success', 'درخواست حذف شد');
     }
 
 
