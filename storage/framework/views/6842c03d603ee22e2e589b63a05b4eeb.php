@@ -43,7 +43,7 @@
     </form>
 
     
-    <a href="#"
+    <a href="<?php echo e(route('register')); ?>"
        class="register-company-btn block text-center mt-3">
         <i class="fa-solid fa-building"></i>
         <?php echo e($register ?? 'ثبت'); ?>

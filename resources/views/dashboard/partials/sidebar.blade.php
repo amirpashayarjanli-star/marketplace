@@ -1,206 +1,54 @@
 <aside class="w-72 bg-white shadow-lg min-h-screen p-5">
 
-
     <h2 class="text-2xl font-bold mb-8">
-
         <span class="text-blue-600">
             آسانسور
         </span>
-
         <span class="text-yellow-500">
             پرو
         </span>
-
     </h2>
-
-
 
     <nav class="space-y-2">
 
-
         <a href="{{ route('dashboard') }}"
-           class="block p-3 rounded-xl hover:bg-gray-100">
-
+           class="block p-3 rounded-xl hover:bg-gray-100 transition">
             🏠 داشبورد
-
         </a>
-
-
 
         <a href="{{ route('dashboard.profile') }}"
-           class="block p-3 rounded-xl hover:bg-gray-100">
-
+           class="block p-3 rounded-xl hover:bg-gray-100 transition">
             👤 پروفایل
-
         </a>
 
-
-
-
-
         @if(auth()->user()->type == 'company')
-
-
-            <a href="{{ route('dashboard.projects') }}" class="block p-3 rounded-xl hover:bg-gray-100">
-
+            <a href="{{ route('dashboard.projects') }}" class="block p-3 rounded-xl hover:bg-gray-100 transition">
                 📁 پروژه‌های من
-
             </a>
-
-
-            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100" title="درحال تکمیل">
-
-                🛠 خدمات
-
-            </a>
-
-
-            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100" title="درحال تکمیل">
-
-                📩 درخواست‌ها
-
-            </a>
-
-
-            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100" title="درحال تکمیل">
-
-                📄 استعلام‌ها
-
-            </a>
-
-
-
 
         @elseif(auth()->user()->type == 'manufacturer')
-
-
-            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100" title="درحال تکمیل">
-
-                📦 محصولات
-
-            </a>
-
-
-            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100" title="درحال تکمیل">
-
-                🏷 برندها
-
-            </a>
-
-
-            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100" title="درحال تکمیل">
-
-                📁 پروژه‌ها
-
-            </a>
-
-
-
-
+            <!-- Coming soon features: محصولات، برندها -->
 
         @elseif(auth()->user()->type == 'store')
-
-
-            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100" title="درحال تکمیل">
-
-                📦 محصولات
-
-            </a>
-
-
-            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100" title="درحال تکمیل">
-
-                🏷 برندها
-
-            </a>
-
-
-            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100" title="درحال تکمیل">
-
-                ⭐ نظرات
-
-            </a>
-
-
-
-
+            <!-- Coming soon features: محصولات، برندها -->
 
         @elseif(auth()->user()->type == 'technician')
-
-
-            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100" title="درحال تکمیل">
-
-                🔧 کارهای من
-
-            </a>
-
-
-            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100" title="درحال تکمیل">
-
-                📁 سوابق کاری
-
-            </a>
-
-
-
-
+            <!-- Coming soon features: کارهای من، سوابق کاری -->
 
         @elseif(auth()->user()->type == 'employer')
-
-
-            <a href="{{ route('dashboard.projects.create') }}" class="block p-3 rounded-xl hover:bg-gray-100">
-
+            <a href="{{ route('dashboard.projects.create') }}" class="block p-3 rounded-xl hover:bg-gray-100 transition">
                 ➕ ثبت پروژه جدید
-
             </a>
 
-
-            <a href="{{ route('dashboard.projects') }}" class="block p-3 rounded-xl hover:bg-gray-100">
-
+            <a href="{{ route('dashboard.projects') }}" class="block p-3 rounded-xl hover:bg-gray-100 transition">
                 📁 پروژه‌های من
-
             </a>
-
-
-            <a href="#" class="block p-3 rounded-xl hover:bg-gray-100" title="درحال تکمیل">
-
-                🏢 شرکت‌های پیشنهادی
-
-            </a>
-
-
         @endif
-
-
-
-
-
-
 
         <hr class="my-5">
 
-
-
-
-
-        <a href="#" class="block p-3 rounded-xl hover:bg-gray-100" title="درحال تکمیل">
-
-            💬 پیام‌ها
-
-        </a>
-
-
-
-
-        <a href="#" class="block p-3 rounded-xl hover:bg-gray-100" title="درحال تکمیل">
-
-            ⚙ تنظیمات
-
-        </a>
-
-
+        <!-- Coming soon: پیام‌ها و تنظیمات -->
 
     </nav>
-
 
 </aside>

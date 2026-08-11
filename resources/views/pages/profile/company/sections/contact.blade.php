@@ -64,10 +64,8 @@
 
             <i class="fa-solid fa-globe"></i>
 
-            <a href="{{ $company->website }}" target="_blank">
-
+            <a href="{{ $company->website }}" target="_blank" rel="noopener noreferrer">
                 وب‌سایت شرکت
-
             </a>
 
         </div>

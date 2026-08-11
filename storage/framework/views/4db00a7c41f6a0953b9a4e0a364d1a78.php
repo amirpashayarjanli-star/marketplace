@@ -1,139 +1,177 @@
 <?php $__env->startSection('content'); ?>
 
-<div class="min-h-screen flex items-center justify-center bg-gray-100 py-10">
-
-    <div class="w-full max-w-md bg-white rounded-2xl shadow p-8">
-
-
-        <div class="text-center mb-8">
-
-            <h1 class="text-2xl font-bold">
-                ورود به حساب کاربری
-            </h1>
-
-            <p class="text-gray-500 mt-2">
-                برای ورود شماره موبایل خود را وارد کنید
-            </p>
-
-        </div>
-
-
-
-        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($errors->any()): ?>
-
-            <div class="bg-red-100 text-red-700 p-3 rounded-lg mb-4">
-
-                <?php echo e($errors->first()); ?>
-
-
-            </div>
-
-        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
-
-
-
-        <form method="POST" action="<?php echo e(route('login')); ?>">
-
-            <?php echo csrf_field(); ?>
-
-
-
-            <div class="mb-4">
-
-                <label class="block mb-2">
-                    شماره موبایل
-                </label>
-
-
-                <input
-
-                    type="text"
-
-                    name="mobile"
-
-                    value="<?php echo e(old('mobile')); ?>"
-
-                    placeholder="09123456789"
-
-                    class="w-full border rounded-xl px-4 py-3"
-
-                    required
-
-                >
-
-            </div>
-
-
-
-            <div class="mb-6">
-
-                <label class="block mb-2">
-                    رمز عبور
-                </label>
-
-
-                <input
-
-                    type="password"
-
-                    name="password"
-
-                    placeholder="رمز عبور"
-
-                    class="w-full border rounded-xl px-4 py-3"
-
-                    required
-
-                >
-
-            </div>
-
-
-
-            <button
-
-                type="submit"
-
-                class="w-full bg-blue-600 text-white rounded-xl py-3"
-
-            >
-
-                مرحله بعد
-
-            </button>
-
-
-        </form>
-
-
-
-
-        <div class="text-center mt-6 text-gray-600">
-
-
-            آیا حساب کاربری ندارید؟
-
-            <a
-
-                href="<?php echo e(route('register')); ?>"
-
-                class="text-blue-600 font-bold"
-
-            >
-
-                ثبت نام
-
-            </a>
-
-
-        </div>
-
-
-
+<div class="min-h-screen flex items-center justify-center relative overflow-hidden py-8 px-4">
+    
+    <div class="absolute inset-0 -z-10">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-yellow-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style="animation-delay: 2s;"></div>
     </div>
 
+    <div class="w-full max-w-md">
+        
+        <div class="backdrop-blur-xl bg-white/30 border border-white/40 rounded-3xl shadow-2xl p-8 md:p-10">
+
+            
+            <div class="text-center mb-10">
+                <img src="<?php echo e(asset('images/logo/logo-asansor-pro.png')); ?>" alt="آسانسور پرو" class="w-20 h-20 mx-auto mb-4 drop-shadow-lg">
+                <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-yellow-500 bg-clip-text text-transparent">
+                    ورود
+                </h1>
+                <p class="text-gray-600 mt-2 text-sm">
+                    به آسانسور پرو خوش آمدید
+                </p>
+            </div>
+
+            
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($errors->any()): ?>
+                <div class="bg-red-500/20 border border-red-500/50 backdrop-blur-sm text-red-700 p-4 rounded-2xl mb-6 text-sm">
+                    <div class="flex items-start gap-3">
+                        <i class="fa-solid fa-circle-exclamation mt-0.5 flex-shrink-0"></i>
+                        <div>
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::openLoop(); ?><?php endif; ?><?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::startLoopIteration(); ?><?php endif; ?>
+                                <div><?php echo e($error); ?></div>
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::endLoop(); ?><?php endif; ?><?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php \Livewire\Features\SupportCompiledWireKeys\SupportCompiledWireKeys::closeLoop(); ?><?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
+            
+            <form method="POST" action="<?php echo e(route('login')); ?>" class="space-y-5">
+                <?php echo csrf_field(); ?>
+
+                
+                <div class="relative group">
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                        <i class="fa-solid fa-phone text-blue-600 group-focus-within:text-yellow-500 transition"></i>
+                    </div>
+                    <input
+                        type="tel"
+                        name="mobile"
+                        value="<?php echo e(old('mobile')); ?>"
+                        placeholder="09123456789"
+                        class="w-full bg-white/50 border border-white/60 rounded-2xl px-5 py-3.5 pr-12 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-sm transition-all <?php echo e($errors->has('mobile') ? 'ring-2 ring-red-500' : ''); ?>"
+                        required
+                    >
+                    <label class="absolute -top-2.5 right-4 text-xs font-semibold bg-white/80 px-2 text-gray-700">
+                        شماره موبایل
+                    </label>
+                </div>
+
+                
+                <div class="relative group">
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                        <i class="fa-solid fa-lock text-blue-600 group-focus-within:text-yellow-500 transition"></i>
+                    </div>
+                    <button
+                        type="button"
+                        class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-600 hover:text-blue-600 transition toggle-password"
+                        data-target="password-field"
+                    >
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                    <input
+                        id="password-field"
+                        type="password"
+                        name="password"
+                        placeholder="رمز عبور خود را وارد کنید"
+                        class="w-full bg-white/50 border border-white/60 rounded-2xl px-5 py-3.5 pr-12 pl-12 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-sm transition-all <?php echo e($errors->has('password') ? 'ring-2 ring-red-500' : ''); ?>"
+                        required
+                    >
+                    <label class="absolute -top-2.5 right-4 text-xs font-semibold bg-white/80 px-2 text-gray-700">
+                        رمز عبور
+                    </label>
+                </div>
+
+                
+                <div class="flex items-center justify-between pt-2">
+                    <label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer group">
+                        <input type="checkbox" name="remember" class="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500">
+                        <span class="group-hover:text-blue-600 transition">مرا به خاطر بسپار</span>
+                    </label>
+                    <a href="#" title="درحال تکمیل" class="text-sm text-blue-600 hover:text-yellow-500 font-semibold transition">
+                        فراموشی رمز عبور؟
+                    </a>
+                </div>
+
+                
+                <button
+                    type="submit"
+                    class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-yellow-600 text-white font-bold py-3.5 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg active:scale-95 flex items-center justify-center gap-2 mt-8"
+                >
+                    <span>ورود به حساب</span>
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+
+                
+                <div class="relative flex items-center gap-3 my-6">
+                    <div class="flex-1 h-px bg-gradient-to-r from-transparent to-gray-300"></div>
+                    <span class="text-xs text-gray-500">یا</span>
+                    <div class="flex-1 h-px bg-gradient-to-l from-transparent to-gray-300"></div>
+                </div>
+
+                <a
+                    href="<?php echo e(route('login.otp')); ?>"
+                    class="w-full border-2 border-yellow-500 text-yellow-600 hover:bg-yellow-50 font-bold py-3.5 rounded-2xl transition-all duration-300 flex items-center justify-center gap-2"
+                >
+                    <i class="fa-solid fa-message"></i>
+                    <span>ورود با کد یکبار مصرف</span>
+                </a>
+            </form>
+
+            
+            <div class="text-center mt-8 pt-6 border-t border-white/30">
+                <p class="text-gray-700 text-sm">
+                    آیا حساب کاربری ندارید؟
+                    <a
+                        href="<?php echo e(route('register')); ?>"
+                        class="text-blue-600 font-bold hover:text-yellow-500 transition ml-1"
+                    >
+                        ثبت نام کنید
+                    </a>
+                </p>
+            </div>
+        </div>
+
+        
+        <div class="mt-8 text-center text-xs text-gray-600">
+            <div class="inline-flex items-center gap-4">
+                <div class="flex items-center gap-1">
+                    <i class="fa-solid fa-shield text-green-500"></i>
+                    <span>امن</span>
+                </div>
+                <div class="flex items-center gap-1">
+                    <i class="fa-solid fa-zap text-yellow-500"></i>
+                    <span>سریع</span>
+                </div>
+                <div class="flex items-center gap-1">
+                    <i class="fa-solid fa-mobile text-blue-500"></i>
+                    <span>موبایل</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
+<script>
+    document.querySelectorAll('.toggle-password').forEach(button => {
+        button.addEventListener('click', function() {
+            const targetId = this.dataset.target;
+            const input = document.getElementById(targetId);
+            const icon = this.querySelector('i');
+
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+    });
+</script>
 
 <?php $__env->stopSection(); ?>
 

@@ -91,7 +91,7 @@
                         <input type="checkbox" name="remember" class="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500">
                         <span class="group-hover:text-blue-600 transition">مرا به خاطر بسپار</span>
                     </label>
-                    <a href="#" title="درحال تکمیل" class="text-sm text-blue-600 hover:text-yellow-500 font-semibold transition">
+                    <a href="javascript:alert('سیستم بازیابی رمز عبور از طریق ایمیل فعال است. لطفاً از صفحهٔ ثبت‌نام شروع کنید.');" class="text-sm text-blue-600 hover:text-yellow-500 font-semibold transition">
                         فراموشی رمز عبور؟
                     </a>
                 </div>
