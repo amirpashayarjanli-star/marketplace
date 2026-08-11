@@ -15,9 +15,7 @@
 
             {{-- Header --}}
             <div class="text-center mb-10">
-                <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-yellow-500 rounded-2xl mb-4">
-                    <i class="fa-solid fa-building text-white text-2xl"></i>
-                </div>
+                <img src="{{ asset('images/logo/logo-asansor-pro.png') }}" alt="آسانسور پرو" class="w-20 h-20 mx-auto mb-4 drop-shadow-lg">
                 <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-yellow-500 bg-clip-text text-transparent">
                     ورود
                 </h1>
