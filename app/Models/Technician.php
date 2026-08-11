@@ -5,18 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use App\Traits\HasSlug;
 
 
 class Technician extends Model
 {
 
+    use HasSlug;
+
     protected $fillable = [
 
+        'user_id',
         'name',
         'slug',
         'avatar',
         'mobile',
         'phone',
+        'skills',
         'province',
         'city',
         'address',

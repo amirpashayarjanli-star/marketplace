@@ -5,13 +5,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Support\Str;
+use App\Traits\HasSlug;
 
 
 class Company extends Model
 {
 
     use HasFactory;
+    use HasSlug;
 
 
 
@@ -72,34 +73,6 @@ class Company extends Model
 
     ];
 
-
-
-
-
-    protected static function boot()
-    {
-
-        parent::boot();
-
-
-        static::creating(function ($company) {
-
-
-            if (!$company->slug) {
-
-
-                $company->slug = Str::slug(
-                    $company->name
-                );
-
-
-            }
-
-
-        });
-
-
-    }
 
 
 
