@@ -9,23 +9,40 @@ class ManufacturerController extends Controller
 
     public function index()
     {
-
-        $manufacturers = Manufacturer::where('is_active', true)
+        $query = Manufacturer::where('is_active', true)
             ->with([
                 'products',
                 'projects',
                 'reviews'
-            ])
-            ->latest()
-            ->get();
+            ]);
 
+        if (request('search')) {
+            $search = request('search');
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%$search%")
+                  ->orWhere('description', 'like', "%$search%")
+                  ->orWhere('city', 'like', "%$search%");
+            });
+        }
 
+        if (request('city')) {
+            $query->where('city', request('city'));
+        }
+
+        if (request('sort') === 'rating') {
+            $query->orderBy('rating', 'desc');
+        } elseif (request('sort') === 'reviews') {
+            $query->orderBy('reviews_count', 'desc');
+        } else {
+            $query->latest();
+        }
+
+        $manufacturers = $query->get();
 
         return view(
             'pages.directory.manufacturers.index',
             compact('manufacturers')
         );
-
     }
 
 

@@ -10,18 +10,34 @@ class CompanyController extends Controller
 
     public function index()
     {
+        $query = Company::where('is_active', true);
 
-        $companies = Company::where('is_active', true)
-            ->latest()
-            ->get();
+        if (request('search')) {
+            $search = request('search');
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%$search%")
+                  ->orWhere('description', 'like', "%$search%")
+                  ->orWhere('city', 'like', "%$search%");
+            });
+        }
 
+        if (request('city')) {
+            $query->where('city', request('city'));
+        }
+
+        if (request('sort') === 'rating') {
+            $query->orderBy('rating', 'desc');
+        } elseif (request('sort') === 'reviews') {
+            $query->orderBy('reviews_count', 'desc');
+        } else {
+            $query->latest();
+        }
+
+        $companies = $query->get();
 
         return view('pages.companies.index', [
-
             'companies' => $companies
-
         ]);
-
     }
 
 

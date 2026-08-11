@@ -9,18 +9,35 @@ class ProjectController extends Controller
 
     public function index()
     {
+        $query = Project::where('is_active', true);
 
-        $projects = Project::where('is_active', true)
-            ->latest()
-            ->get();
+        if (request('search')) {
+            $search = request('search');
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', "%$search%")
+                  ->orWhere('description', 'like', "%$search%")
+                  ->orWhere('city', 'like', "%$search%");
+            });
+        }
 
+        if (request('city')) {
+            $query->where('city', request('city'));
+        }
 
+        if (request('type')) {
+            $query->where('type', request('type'));
+        }
+
+        if (request('sort') === 'newest') {
+            $query->latest();
+        }
+
+        $projects = $query->latest()->get();
 
         return view(
             'pages.directory.projects.index',
             compact('projects')
         );
-
     }
 
 

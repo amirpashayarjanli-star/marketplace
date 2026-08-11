@@ -62,7 +62,7 @@ Route::get('/', [
 */
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'approved'])->group(function () {
 
 
 
@@ -645,6 +645,31 @@ Route::middleware([
     ])
     ->name('admin.users.reject');
 
+    Route::get('/reviews', [
 
+        AdminController::class,
+
+        'reviews'
+
+    ])
+    ->name('admin.reviews');
+
+    Route::post('/reviews/{review}/approve', [
+
+        AdminController::class,
+
+        'approveReview'
+
+    ])
+    ->name('admin.reviews.approve');
+
+    Route::delete('/reviews/{review}', [
+
+        AdminController::class,
+
+        'rejectReview'
+
+    ])
+    ->name('admin.reviews.reject');
 
 });
