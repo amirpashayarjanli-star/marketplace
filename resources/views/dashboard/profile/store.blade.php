@@ -1,332 +1,244 @@
 @extends('dashboard.layouts.dashboard')
 
-
 @section('content')
 
+<div class="min-h-screen py-8 px-4">
+    {{-- Header --}}
+    <div class="mb-8">
+        <h1 class="text-4xl font-bold text-gray-900 mb-2">
+            ✏️ ویرایش پروفایل فروشگاه
+        </h1>
+        <p class="text-gray-600">
+            اطلاعات فروشگاه خود را بروزرسانی کنید
+        </p>
+    </div>
 
-<h1 class="text-3xl font-bold mb-6">
+    {{-- Card --}}
+    <div class="backdrop-blur-xl bg-white/80 border border-white/40 rounded-3xl shadow-xl p-8 md:p-10 max-w-4xl">
 
-پروفایل فروشگاه
+        {{-- Success Message --}}
+        @if(session('success'))
+            <div class="bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-500/50 text-green-700 p-4 rounded-2xl mb-6 flex items-start gap-3">
+                <i class="fa-solid fa-circle-check mt-1 flex-shrink-0 text-green-600"></i>
+                <div>{{ session('success') }}</div>
+            </div>
+        @endif
 
-</h1>
+        {{-- Errors --}}
+        @if($errors->any())
+            <div class="bg-gradient-to-r from-red-500/20 to-pink-500/20 border border-red-500/50 text-red-700 p-4 rounded-2xl mb-6">
+                <div class="flex items-start gap-3">
+                    <i class="fa-solid fa-circle-exclamation mt-1 flex-shrink-0 text-red-600"></i>
+                    <div>
+                        @foreach($errors->all() as $error)
+                            <div>{{ $error }}</div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        @endif
 
+        @if($profile)
+            <form method="POST" action="{{ route('dashboard.profile.update') }}" class="space-y-6">
+                @csrf
 
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {{-- Name --}}
+                    <div class="relative group">
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                            <i class="fa-solid fa-shop text-green-600 group-focus-within:text-green-500 transition"></i>
+                        </div>
+                        <input
+                            type="text"
+                            name="name"
+                            value="{{ $profile->name }}"
+                            placeholder="نام فروشگاه"
+                            class="w-full bg-white/50 border border-white/60 rounded-2xl px-5 py-3.5 pr-12 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent backdrop-blur-sm transition-all {{ $errors->has('name') ? 'ring-2 ring-red-500' : '' }}"
+                            required
+                        >
+                        <label class="absolute -top-2.5 right-4 text-xs font-semibold bg-white/80 px-2 text-gray-700">
+                            نام فروشگاه
+                        </label>
+                    </div>
 
+                    {{-- Manager Name --}}
+                    <div class="relative group">
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                            <i class="fa-solid fa-user text-green-600 group-focus-within:text-green-500 transition"></i>
+                        </div>
+                        <input
+                            type="text"
+                            name="manager_name"
+                            value="{{ $profile->manager_name }}"
+                            placeholder="نام مدیر یا صاحب"
+                            class="w-full bg-white/50 border border-white/60 rounded-2xl px-5 py-3.5 pr-12 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent backdrop-blur-sm transition-all"
+                        >
+                        <label class="absolute -top-2.5 right-4 text-xs font-semibold bg-white/80 px-2 text-gray-700">
+                            نام مدیر
+                        </label>
+                    </div>
 
-<div class="bg-white rounded-2xl shadow p-6">
+                    {{-- Phone --}}
+                    <div class="relative group">
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                            <i class="fa-solid fa-phone text-green-600 group-focus-within:text-green-500 transition"></i>
+                        </div>
+                        <input
+                            type="tel"
+                            name="phone"
+                            value="{{ $profile->phone }}"
+                            placeholder="021-12345678"
+                            inputmode="numeric"
+                            pattern="[0-9\s\-\+\(\)]{10,20}"
+                            class="w-full bg-white/50 border border-white/60 rounded-2xl px-5 py-3.5 pr-12 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent backdrop-blur-sm transition-all {{ $errors->has('phone') ? 'ring-2 ring-red-500' : '' }}"
+                        >
+                        <label class="absolute -top-2.5 right-4 text-xs font-semibold bg-white/80 px-2 text-gray-700">
+                            شماره تماس
+                        </label>
+                    </div>
 
+                    {{-- City --}}
+                    <div class="relative group">
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none z-10">
+                            <i class="fa-solid fa-map-location-dot text-green-600 group-focus-within:text-green-500 transition"></i>
+                        </div>
+                        <select
+                            name="city"
+                            class="w-full bg-white/50 border border-white/60 rounded-2xl px-5 py-3.5 pr-12 text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent backdrop-blur-sm transition-all {{ $errors->has('city') ? 'ring-2 ring-red-500' : '' }}"
+                        >
+                            <option value="">انتخاب شهر...</option>
+                            @foreach(\App\Enums\IranianCity::all() as $key => $city)
+                                <option value="{{ $key }}" {{ $profile->city === $key ? 'selected' : '' }}>{{ $city }}</option>
+                            @endforeach
+                        </select>
+                        <label class="absolute -top-2.5 right-4 text-xs font-semibold bg-white/80 px-2 text-gray-700">
+                            شهر
+                        </label>
+                    </div>
 
+                    {{-- Province --}}
+                    <div class="relative group">
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                            <i class="fa-solid fa-map text-green-600 group-focus-within:text-green-500 transition"></i>
+                        </div>
+                        <input
+                            type="text"
+                            name="province"
+                            value="{{ $profile->province }}"
+                            placeholder="استان"
+                            class="w-full bg-white/50 border border-white/60 rounded-2xl px-5 py-3.5 pr-12 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent backdrop-blur-sm transition-all"
+                        >
+                        <label class="absolute -top-2.5 right-4 text-xs font-semibold bg-white/80 px-2 text-gray-700">
+                            استان
+                        </label>
+                    </div>
 
-@if(session('success'))
+                    {{-- Experience --}}
+                    <div class="relative group">
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                            <i class="fa-solid fa-briefcase text-green-600 group-focus-within:text-green-500 transition"></i>
+                        </div>
+                        <input
+                            type="number"
+                            name="experience"
+                            value="{{ $profile->experience }}"
+                            placeholder="سال"
+                            min="0"
+                            class="w-full bg-white/50 border border-white/60 rounded-2xl px-5 py-3.5 pr-12 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent backdrop-blur-sm transition-all"
+                        >
+                        <label class="absolute -top-2.5 right-4 text-xs font-semibold bg-white/80 px-2 text-gray-700">
+                            سابقه فعالیت (سال)
+                        </label>
+                    </div>
+                </div>
 
-<div class="bg-green-100 text-green-700 p-4 rounded-xl mb-5">
+                {{-- Email --}}
+                <div class="relative group">
+                    <div class="absolute top-4 right-0 flex items-center pr-4 pointer-events-none">
+                        <i class="fa-solid fa-envelope text-green-600 group-focus-within:text-green-500 transition"></i>
+                    </div>
+                    <input
+                        type="email"
+                        name="email"
+                        value="{{ $profile->email }}"
+                        placeholder="ایمیل"
+                        class="w-full bg-white/50 border border-white/60 rounded-2xl px-5 py-3.5 pr-12 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent backdrop-blur-sm transition-all {{ $errors->has('email') ? 'ring-2 ring-red-500' : '' }}"
+                    >
+                    <label class="absolute -top-2.5 right-4 text-xs font-semibold bg-white/80 px-2 text-gray-700">
+                        ایمیل
+                    </label>
+                </div>
 
-{{ session('success') }}
+                {{-- Website --}}
+                <div class="relative group">
+                    <div class="absolute top-4 right-0 flex items-center pr-4 pointer-events-none">
+                        <i class="fa-solid fa-globe text-green-600 group-focus-within:text-green-500 transition"></i>
+                    </div>
+                    <input
+                        type="url"
+                        name="website"
+                        value="{{ $profile->website }}"
+                        placeholder="https://example.com"
+                        class="w-full bg-white/50 border border-white/60 rounded-2xl px-5 py-3.5 pr-12 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent backdrop-blur-sm transition-all"
+                    >
+                    <label class="absolute -top-2.5 right-4 text-xs font-semibold bg-white/80 px-2 text-gray-700">
+                        وب سایت
+                    </label>
+                </div>
+
+                {{-- Address --}}
+                <div class="relative group">
+                    <div class="absolute top-4 right-0 flex items-center pr-4 pointer-events-none">
+                        <i class="fa-solid fa-location-dot text-green-600 group-focus-within:text-green-500 transition"></i>
+                    </div>
+                    <textarea
+                        name="address"
+                        placeholder="آدرس کامل"
+                        rows="3"
+                        class="w-full bg-white/50 border border-white/60 rounded-2xl px-5 py-3.5 pr-12 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent backdrop-blur-sm transition-all"
+                    >{{ $profile->address }}</textarea>
+                    <label class="absolute -top-2.5 right-4 text-xs font-semibold bg-white/80 px-2 text-gray-700">
+                        آدرس
+                    </label>
+                </div>
+
+                {{-- Description --}}
+                <div class="relative group">
+                    <div class="absolute top-4 right-0 flex items-center pr-4 pointer-events-none">
+                        <i class="fa-solid fa-align-left text-green-600 group-focus-within:text-green-500 transition"></i>
+                    </div>
+                    <textarea
+                        name="description"
+                        placeholder="درباره فروشگاه خود توضیح دهید"
+                        rows="5"
+                        class="w-full bg-white/50 border border-white/60 rounded-2xl px-5 py-3.5 pr-12 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent backdrop-blur-sm transition-all"
+                    >{{ $profile->description }}</textarea>
+                    <label class="absolute -top-2.5 right-4 text-xs font-semibold bg-white/80 px-2 text-gray-700">
+                        توضیحات
+                    </label>
+                </div>
+
+                {{-- Submit Button --}}
+                <button
+                    type="submit"
+                    class="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-bold py-3.5 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg active:scale-95 flex items-center justify-center gap-2 mt-8"
+                >
+                    <span>💾 ذخیره تغییرات</span>
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+            </form>
+
+        @else
+            <div class="text-center py-12">
+                <i class="fa-solid fa-info-circle text-3xl text-gray-400 mb-4"></i>
+                <p class="text-gray-600 text-lg">
+                    پروفایل فروشگاه یافت نشد.
+                </p>
+            </div>
+        @endif
+
+    </div>
 
 </div>
-
-@endif
-
-
-
-
-
-@if($profile)
-
-
-
-<form method="POST" action="{{ route('dashboard.profile.update') }}">
-
-@csrf
-
-
-
-<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-
-
-
-<div>
-
-<label class="block mb-2">
-
-نام فروشگاه
-
-</label>
-
-
-<input
-
-type="text"
-
-name="name"
-
-value="{{ $profile->name }}"
-
-class="w-full border rounded-xl p-3"
-
->
-
-</div>
-
-
-
-
-
-
-<div>
-
-<label class="block mb-2">
-
-نام مدیر
-
-</label>
-
-
-<input
-
-type="text"
-
-name="manager_name"
-
-value="{{ $profile->manager_name }}"
-
-class="w-full border rounded-xl p-3"
-
->
-
-</div>
-
-
-
-
-
-
-
-<div>
-
-<label class="block mb-2">
-
-شماره تماس
-
-</label>
-
-
-<input
-
-type="text"
-
-name="phone"
-
-value="{{ $profile->phone }}"
-
-class="w-full border rounded-xl p-3"
-
->
-
-</div>
-
-
-
-
-
-
-
-<div>
-
-<label class="block mb-2">
-
-شهر
-
-</label>
-
-
-<input
-
-type="text"
-
-name="city"
-
-value="{{ $profile->city }}"
-
-class="w-full border rounded-xl p-3"
-
->
-
-</div>
-
-
-
-
-</div>
-
-
-
-
-
-
-
-<div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
-
-
-
-<div>
-
-<label class="block mb-2">
-
-استان
-
-</label>
-
-
-<input
-
-type="text"
-
-name="province"
-
-value="{{ $profile->province }}"
-
-class="w-full border rounded-xl p-3"
-
->
-
-</div>
-
-
-
-
-
-<div>
-
-<label class="block mb-2">
-
-سابقه فعالیت
-
-</label>
-
-
-<input
-
-type="number"
-
-name="experience"
-
-value="{{ $profile->experience }}"
-
-class="w-full border rounded-xl p-3"
-
->
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-
-<div class="mt-5">
-
-
-<label class="block mb-2">
-
-توضیحات فروشگاه
-
-</label>
-
-
-
-<textarea
-
-name="description"
-
-rows="5"
-
-class="w-full border rounded-xl p-3"
-
->{{ $profile->description }}</textarea>
-
-
-</div>
-
-
-
-
-
-
-
-<div class="mt-5">
-
-
-<label class="block mb-2">
-
-وب سایت
-
-</label>
-
-
-
-<input
-
-type="text"
-
-name="website"
-
-value="{{ $profile->website }}"
-
-class="w-full border rounded-xl p-3"
-
->
-
-
-</div>
-
-
-
-
-
-
-
-<button
-
-class="mt-6 bg-blue-600 text-white px-6 py-3 rounded-xl"
-
->
-
-ذخیره تغییرات
-
-</button>
-
-
-
-</form>
-
-
-
-
-
-@else
-
-
-<div class="text-gray-500">
-
-پروفایل فروشگاه یافت نشد.
-
-</div>
-
-
-@endif
-
-
-
-</div>
-
-
-
-
 
 @endsection
