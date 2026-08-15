@@ -52,6 +52,8 @@
                         name="mobile"
                         value="{{ old('mobile') }}"
                         placeholder="09123456789"
+                        pattern="[0-9\s\-\+\(\)]{10,20}"
+                        inputmode="numeric"
                         class="w-full bg-white/50 border border-white/60 rounded-2xl px-5 py-3.5 pr-12 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-sm transition-all {{ $errors->has('mobile') ? 'ring-2 ring-red-500' : '' }}"
                         required
                     >

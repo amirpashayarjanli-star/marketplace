@@ -274,6 +274,11 @@ Route::post('/login', [
     'login'
 ])->middleware('throttle:5,1');
 
+Route::post('/logout', [
+    AuthController::class,
+    'logout'
+])->middleware('auth')->name('logout');
+
 
 
 
@@ -368,7 +373,8 @@ Route::post('/register/type', [
 
     'saveType'
 
-]);
+])
+->name('register.type.store');
 
 
 
@@ -398,7 +404,8 @@ Route::middleware('auth')->group(function(){
 
         'store'
 
-    ]);
+    ])
+    ->name('register.profile.store');
 
 
 });

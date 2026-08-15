@@ -1,203 +1,183 @@
 @extends('layouts.app')
 
-
 @section('content')
 
+<div class="min-h-screen flex items-center justify-center relative overflow-hidden py-8 px-4">
+    {{-- Background gradient --}}
+    <div class="absolute inset-0 -z-10">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-yellow-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style="animation-delay: 2s;"></div>
+    </div>
 
-<div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="w-full max-w-md">
+        {{-- Card --}}
+        <div class="backdrop-blur-xl bg-white/30 border border-white/40 rounded-3xl shadow-2xl p-8 md:p-10">
 
+            {{-- Header --}}
+            <div class="text-center mb-8">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-500 rounded-2xl mb-4">
+                    <i class="fa-solid fa-wrench text-white text-2xl"></i>
+                </div>
+                <h1 class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-purple-500 bg-clip-text text-transparent">
+                    اطلاعات تکنسین
+                </h1>
+                <p class="text-gray-600 mt-2 text-sm">
+                    اطلاعات تخصصی و مهارت‌های خود را تکمیل کنید
+                </p>
 
-<div class="bg-white rounded-2xl shadow p-8 w-full max-w-lg">
+                {{-- Progress --}}
+                <div class="flex items-center justify-center gap-2 mt-6">
+                    <div class="w-8 h-8 rounded-full bg-gray-400 text-white flex items-center justify-center text-xs font-bold">✓</div>
+                    <div class="w-8 h-8 rounded-full bg-gray-400 text-white flex items-center justify-center text-xs font-bold">✓</div>
+                    <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold">3</div>
+                </div>
+            </div>
 
+            {{-- Errors --}}
+            @if($errors->any())
+                <div class="bg-red-500/20 border border-red-500/50 backdrop-blur-sm text-red-700 p-4 rounded-2xl mb-6 text-sm">
+                    <div class="flex items-start gap-3">
+                        <i class="fa-solid fa-circle-exclamation mt-0.5 flex-shrink-0"></i>
+                        <div>
+                            @foreach($errors->all() as $error)
+                                <div>{{ $error }}</div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            @endif
 
-<h1 class="text-2xl font-bold text-center mb-3">
+            {{-- Form --}}
+            <form method="POST" action="{{ route('register.profile.store') }}" class="space-y-4">
+                @csrf
 
-اطلاعات تکنسین
+                {{-- Name --}}
+                <div class="relative group">
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                        <i class="fa-solid fa-user text-purple-600 group-focus-within:text-purple-500 transition"></i>
+                    </div>
+                    <input
+                        type="text"
+                        name="name"
+                        value="{{ old('name') }}"
+                        placeholder="نام تکنسین"
+                        class="w-full bg-white/50 border border-white/60 rounded-2xl px-5 py-3.5 pr-12 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent backdrop-blur-sm transition-all {{ $errors->has('name') ? 'ring-2 ring-red-500' : '' }}"
+                        required
+                    >
+                    <label class="absolute -top-2.5 right-4 text-xs font-semibold bg-white/80 px-2 text-gray-700">
+                        نام
+                    </label>
+                </div>
 
-</h1>
+                {{-- Skills --}}
+                <div class="relative group">
+                    <div class="absolute top-4 right-0 flex items-center pr-4 pointer-events-none">
+                        <i class="fa-solid fa-star text-purple-600 group-focus-within:text-purple-500 transition"></i>
+                    </div>
+                    <textarea
+                        name="skills"
+                        placeholder="مهارت‌های شما (مثل: تعمیر موتور، نصب نرم، الکتریکی)"
+                        rows="3"
+                        class="w-full bg-white/50 border border-white/60 rounded-2xl px-5 py-3.5 pr-12 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent backdrop-blur-sm transition-all {{ $errors->has('skills') ? 'ring-2 ring-red-500' : '' }}"
+                        required
+                    >{{ old('skills') }}</textarea>
+                    <label class="absolute -top-2.5 right-4 text-xs font-semibold bg-white/80 px-2 text-gray-700">
+                        مهارت‌ها
+                    </label>
+                </div>
 
+                {{-- City --}}
+                <div class="relative group">
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none z-10">
+                        <i class="fa-solid fa-map-location-dot text-purple-600 group-focus-within:text-purple-500 transition"></i>
+                    </div>
+                    <select
+                        name="city"
+                        class="w-full bg-white/50 border border-white/60 rounded-2xl px-5 py-3.5 pr-12 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent backdrop-blur-sm transition-all {{ $errors->has('city') ? 'ring-2 ring-red-500' : '' }}"
+                        required
+                    >
+                        <option value="">انتخاب شهر...</option>
+                        @php
+                            use App\Enums\IranianCity;
+                            $cities = IranianCity::all();
+                        @endphp
+                        @foreach($cities as $key => $city)
+                            <option value="{{ $key }}" {{ old('city') === $key ? 'selected' : '' }}>{{ $city }}</option>
+                        @endforeach
+                    </select>
+                    <label class="absolute -top-2.5 right-4 text-xs font-semibold bg-white/80 px-2 text-gray-700">
+                        شهر
+                    </label>
+                </div>
 
-<p class="text-gray-500 text-center mb-6">
+                {{-- Phone --}}
+                <div class="relative group">
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                        <i class="fa-solid fa-phone text-purple-600 group-focus-within:text-purple-500 transition"></i>
+                    </div>
+                    <input
+                        type="tel"
+                        name="phone"
+                        value="{{ old('phone') }}"
+                        placeholder="0211234567"
+                        inputmode="numeric"
+                        pattern="[0-9\s\-\+\(\)]{10,20}"
+                        class="w-full bg-white/50 border border-white/60 rounded-2xl px-5 py-3.5 pr-12 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent backdrop-blur-sm transition-all {{ $errors->has('phone') ? 'ring-2 ring-red-500' : '' }}"
+                    >
+                    <label class="absolute -top-2.5 right-4 text-xs font-semibold bg-white/80 px-2 text-gray-700">
+                        شماره تماس
+                    </label>
+                </div>
 
-اطلاعات تخصصی خود را وارد کنید
+                {{-- Experience --}}
+                <div class="relative group">
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
+                        <i class="fa-solid fa-briefcase text-purple-600 group-focus-within:text-purple-500 transition"></i>
+                    </div>
+                    <input
+                        type="text"
+                        name="experience"
+                        value="{{ old('experience') }}"
+                        placeholder="مثال: 5 سال تجربه"
+                        class="w-full bg-white/50 border border-white/60 rounded-2xl px-5 py-3.5 pr-12 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent backdrop-blur-sm transition-all"
+                    >
+                    <label class="absolute -top-2.5 right-4 text-xs font-semibold bg-white/80 px-2 text-gray-700">
+                        سابقهٔ کار
+                    </label>
+                </div>
 
-</p>
+                {{-- Description --}}
+                <div class="relative group">
+                    <textarea
+                        name="description"
+                        placeholder="توضیحات اضافی"
+                        rows="3"
+                        class="w-full bg-white/50 border border-white/60 rounded-2xl px-5 py-3.5 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent backdrop-blur-sm transition-all"
+                    >{{ old('description') }}</textarea>
+                    <label class="absolute -top-2.5 right-4 text-xs font-semibold bg-white/80 px-2 text-gray-700">
+                        توضیحات
+                    </label>
+                </div>
 
+                {{-- Submit Button --}}
+                <button
+                    type="submit"
+                    class="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-bold py-3.5 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg active:scale-95 flex items-center justify-center gap-2 mt-8"
+                >
+                    <span>ثبت اطلاعات و ارسال برای تایید</span>
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
 
+                {{-- Back Link --}}
+                <div class="text-center">
+                    <a href="{{ route('register.type') }}" class="text-sm text-purple-600 hover:text-purple-500 font-semibold transition">
+                        بازگشت
+                    </a>
+                </div>
+            </form>
 
-@if($errors->any())
-
-<div class="bg-red-100 text-red-700 p-3 rounded-xl mb-4">
-
-{{ $errors->first() }}
-
+        </div>
+    </div>
 </div>
-
-@endif
-
-
-
-
-<form method="POST" action="/register/profile">
-
-@csrf
-
-
-
-<div class="mb-4">
-
-<label class="block mb-2">
-
-نام و نام خانوادگی
-
-</label>
-
-
-<input
-
-type="text"
-
-name="name"
-
-value="{{ auth()->user()->name }}"
-
-class="w-full border rounded-xl p-3"
-
-required
-
->
-
-</div>
-
-
-
-
-<div class="mb-4">
-
-<label class="block mb-2">
-
-شهر فعالیت
-
-</label>
-
-
-<input
-
-type="text"
-
-name="city"
-
-class="w-full border rounded-xl p-3"
-
-placeholder="قم"
-
-required
-
->
-
-</div>
-
-
-
-
-<div class="mb-4">
-
-<label class="block mb-2">
-
-تخصص‌ها
-
-</label>
-
-
-<input
-
-type="text"
-
-name="skills"
-
-class="w-full border rounded-xl p-3"
-
-placeholder="نصب، سرویس، تعمیرات"
-
-required
-
->
-
-</div>
-
-
-
-
-<div class="mb-4">
-
-<label class="block mb-2">
-
-سابقه کار (سال)
-
-</label>
-
-
-<input
-
-type="number"
-
-name="experience"
-
-class="w-full border rounded-xl p-3"
-
-placeholder="5"
-
->
-
-</div>
-
-
-
-
-<div class="mb-6">
-
-<label class="block mb-2">
-
-توضیحات
-
-</label>
-
-
-<textarea
-
-name="description"
-
-class="w-full border rounded-xl p-3"
-
-rows="4"
-
-></textarea>
-
-
-</div>
-
-
-
-
-<button
-
-class="w-full bg-blue-600 text-white rounded-xl py-3"
-
->
-
-ثبت اطلاعات و ارسال برای تایید
-
-</button>
-
-
-
-</form>
-
-
-</div>
-
-
-</div>
-
 
 @endsection

@@ -51,6 +51,11 @@ class RegisterController extends Controller
                 'required',
                 'confirmed',
                 'min:6'
+            ],
+
+            'terms' => [
+                'required',
+                'accepted'
             ]
 
         ]);

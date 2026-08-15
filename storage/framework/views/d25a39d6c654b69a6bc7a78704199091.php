@@ -41,23 +41,6 @@
                 <?php echo csrf_field(); ?>
 
                 
-                <div>
-                    <label class="text-xs font-semibold text-gray-700 mb-2 block">نوع حساب</label>
-                    <select
-                        name="type"
-                        id="user-type"
-                        class="w-full bg-white/50 border border-white/60 rounded-2xl px-5 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-sm transition-all <?php echo e($errors->has('type') ? 'ring-2 ring-red-500' : ''); ?>"
-                    >
-                        <option value="">انتخاب کنید...</option>
-                        <option value="company" <?php echo e(old('type') === 'company' ? 'selected' : ''); ?>>شرکت آسانسوری</option>
-                        <option value="manufacturer" <?php echo e(old('type') === 'manufacturer' ? 'selected' : ''); ?>>تولیدکننده</option>
-                        <option value="store" <?php echo e(old('type') === 'store' ? 'selected' : ''); ?>>فروشگاه</option>
-                        <option value="technician" <?php echo e(old('type') === 'technician' ? 'selected' : ''); ?>>تکنسین</option>
-                        <option value="employer" <?php echo e(old('type') === 'employer' ? 'selected' : ''); ?>>کارفرما</option>
-                    </select>
-                </div>
-
-                
                 <div class="relative group">
                     <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
                         <i class="fa-solid fa-user text-blue-600 group-focus-within:text-yellow-500 transition"></i>
@@ -85,6 +68,8 @@
                         name="mobile"
                         value="<?php echo e(old('mobile')); ?>"
                         placeholder="09123456789"
+                        pattern="[0-9\s\-\+\(\)]{10,20}"
+                        inputmode="numeric"
                         class="w-full bg-white/50 border border-white/60 rounded-2xl px-5 py-3.5 pr-12 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-sm transition-all <?php echo e($errors->has('mobile') ? 'ring-2 ring-red-500' : ''); ?>"
                         required
                     >
