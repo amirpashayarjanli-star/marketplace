@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "marketplace-dev",
-      "runtimeExecutable": "composer",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeExecutable": "php",
+      "runtimeArgs": ["artisan", "serve", "--port=8000"],
       "port": 8000
     }
   ]

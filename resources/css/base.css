@@ -32,6 +32,19 @@ html {
     scroll-behavior: smooth;
 }
 
+/*
+| کشوی موبایل در حالت بسته با transform بیرونِ لبه‌ی صفحه پارک می‌شود و
+| به عرضِ scroll اضافه می‌کند. در RTL نتیجه‌اش این بود که صفحه از همان
+| ابتدا با اسکرول افقی باز می‌شد و کل محتوا بریده دیده می‌شد.
+|
+| clip به‌جای hidden، چون hidden روی html یک scroll container می‌سازد و
+| position:sticky داخل صفحه را از کار می‌اندازد.
+*/
+html,
+body {
+    overflow-x: clip;
+}
+
 body {
     margin: 0;
     min-height: 100vh;
