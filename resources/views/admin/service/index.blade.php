@@ -9,6 +9,9 @@
     <div class="wizard-shell" style="max-width:960px">
 
 
+        @include('admin.partials.nav')
+
+
         <div class="wizard-intro" style="text-align:start;">
             <h1 class="wizard-title">مدیریت پروسرویس</h1>
             <p class="wizard-subtitle">همه‌ی خرابی‌های ثبت‌شده توسط مشتریان</p>

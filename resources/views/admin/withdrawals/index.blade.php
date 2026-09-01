@@ -9,6 +9,9 @@
     <div class="wizard-shell" style="max-width:960px">
 
 
+        @include('admin.partials.nav')
+
+
         <div class="service-page-head">
             <div>
                 <h1 class="wizard-title">برداشت‌های کیف‌پول</h1>

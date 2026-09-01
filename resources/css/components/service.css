@@ -809,3 +809,62 @@
     flex:1 1 260px;
     min-width:0;
 }
+
+
+/* ---- ناوبری صفحه‌های مدیریتی ---- */
+
+.admin-nav{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:24px;
+    padding-bottom:20px;
+    border-bottom:1px solid var(--border);
+}
+
+
+/* ---- تایید نظرات ---- */
+
+.review-moderation{
+    padding:20px 22px;
+}
+
+.review-moderation-head{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+}
+
+.review-moderation-head h3{
+    margin:0 0 4px;
+    font-size:1rem;
+    font-weight:800;
+    color:var(--text);
+}
+
+.review-moderation-stars{
+    display:flex;
+    gap:2px;
+    flex:none;
+}
+
+.review-moderation-comment{
+    margin:14px 0;
+    padding:14px;
+
+    border-radius:var(--radius-md);
+    background:var(--surface-2);
+
+    font-size:.9rem;
+    line-height:1.95;
+    color:var(--text-muted);
+}
+
+.review-moderation-actions{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+    gap:8px;
+}
