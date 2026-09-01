@@ -45,18 +45,3 @@
 
 @source "../views";
 @source "../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php";
-
-
-/* ===========================================================
-   سوییچ دسکتاپ / موبایل
-   -----------------------------------------------------------
-   فاز فعلی روی دسکتاپه؛ نسخه‌ی موبایل در گام بعد بازطراحی میشه.
-   =========================================================== */
-
-.desktop-home{ display:block; }
-.mobile-home{ display:none; }
-
-@media (max-width: 768px){
-    .desktop-home{ display:none; }
-    .mobile-home{ display:block; }
-}

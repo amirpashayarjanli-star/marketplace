@@ -16,17 +16,10 @@
 
 <main>
 
-    <div class="desktop-home">
-        @include('sections.hero')
-    </div>
+    @include('sections.hero')
 
-    <div class="mobile-home">
-        @include('mobile.hero')
-    </div>
 
-    <div class="desktop-home">
-        @include('sections.trust-bar')
-    </div>
+    @include('sections.trust-bar')
 
 
     @include('sections.quick-access')

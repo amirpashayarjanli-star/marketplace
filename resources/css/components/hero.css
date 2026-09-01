@@ -362,10 +362,19 @@
 
     .hero-rates{
         display:grid;
-        grid-template-columns:repeat(auto-fit, minmax(190px, 1fr));
+        grid-template-columns:repeat(auto-fit, minmax(min(100%, 190px), 1fr));
     }
 
+    /*
+    | flex:1 1 auto باعث می‌شد دکمه‌ها هرجا که جا بود بشکنن و چیدمان
+    | ۲+۱ نامتوازن بسازن. حالا کنش اصلی یک ردیف کامل می‌گیره و دو
+    | دکمه‌ی «پرو» ردیف بعدی رو نصف‌نصف.
+    */
     .hero-actions .btn{
-        flex:1 1 auto;
+        flex:1 1 calc(50% - .4rem);
+    }
+
+    .hero-actions .btn-primary{
+        flex-basis:100%;
     }
 }

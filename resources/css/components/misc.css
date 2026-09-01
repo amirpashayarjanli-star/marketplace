@@ -20,20 +20,20 @@
 
 .projects-grid,
 .articles-grid{
-    grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns:repeat(auto-fill, minmax(min(100%, 300px), 1fr));
 }
 
 .products-grid,
 .brands-grid{
-    grid-template-columns:repeat(auto-fill, minmax(210px, 1fr));
+    grid-template-columns:repeat(auto-fill, minmax(min(100%, 210px), 1fr));
 }
 
 .skills-grid{
-    grid-template-columns:repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns:repeat(auto-fill, minmax(min(100%, 180px), 1fr));
 }
 
 .services-list{
-    grid-template-columns:repeat(auto-fill, minmax(230px, 1fr));
+    grid-template-columns:repeat(auto-fill, minmax(min(100%, 230px), 1fr));
 }
 
 
@@ -108,7 +108,7 @@
 .manufacturer-products,
 .store-products{
     display:grid;
-    grid-template-columns:repeat(auto-fill, minmax(210px, 1fr));
+    grid-template-columns:repeat(auto-fill, minmax(min(100%, 210px), 1fr));
     gap:18px;
 }
 
