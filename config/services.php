@@ -33,4 +33,22 @@ return [
         'key' => env('NAVASAN_API_KEY'),
     ],
 
+    'melipayamak' => [
+        'username' => env('MELIPAYAMAK_USERNAME'),
+        'password' => env('MELIPAYAMAK_PASSWORD'),
+        'from'     => env('MELIPAYAMAK_NUMBER'),
+    ],
+
+    /*
+    | زرین‌پال — شارژ کیف‌پول.
+    | مبلغ‌ها همه‌جای سایت تومان است، پس currency را IRT می‌فرستیم.
+    | تا وقتی merchant_id خالی باشد، دکمه‌ی شارژ پیام «فعال نیست» می‌دهد.
+    */
+    'zarinpal' => [
+        'merchant_id' => env('ZARINPAL_MERCHANT_ID'),
+        'sandbox'     => env('ZARINPAL_SANDBOX', false),
+        'min_amount'  => env('ZARINPAL_MIN_AMOUNT', 10000),
+        'max_amount'  => env('ZARINPAL_MAX_AMOUNT', 500000000),
+    ],
+
 ];

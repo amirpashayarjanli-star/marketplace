@@ -9,10 +9,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\RegisterProfileController;
+use App\Http\Controllers\ProfileWizardController;
 
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DashboardProfileController;
 
 use App\Http\Controllers\ProjectDashboardController;
 use App\Http\Controllers\ProjectInquiryController;
@@ -23,8 +22,19 @@ use App\Http\Controllers\ManufacturerController;
 use App\Http\Controllers\StoreController;
 use App\Http\Controllers\TechnicianController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\SearchController;
+
+use App\Http\Controllers\AuctionController;
+use App\Http\Controllers\AuctionDashboardController;
+use App\Http\Controllers\BidController;
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminServiceController;
+
+use App\Http\Controllers\CustomerProfileController;
+use App\Http\Controllers\ServiceRequestController;
+use App\Http\Controllers\TechnicianServiceJobController;
+use App\Http\Controllers\WalletController;
 
 use App\Services\NavasanService;
 
@@ -35,6 +45,16 @@ use App\Services\NavasanService;
 | Home
 |--------------------------------------------------------------------------
 */
+
+
+/*
+| نقشه‌ی سایت — به گوگل کمک می‌کند صفحه‌های واقعی را ببیند و نشانی‌های
+| فروشگاه وردپرسی قدیمی را از ایندکس کنار بگذارد.
+*/
+Route::get('/sitemap.xml', [
+    App\Http\Controllers\SitemapController::class,
+    'index'
+])->name('sitemap');
 
 
 Route::get('/', [
@@ -85,27 +105,6 @@ Route::middleware(['auth', 'approved'])->group(function () {
     |--------------------------------------------------------------------------
     */
 
-
-    Route::get('/dashboard/profile', [
-
-        DashboardProfileController::class,
-
-        'show'
-
-    ])
-    ->name('dashboard.profile');
-
-
-
-
-    Route::post('/dashboard/profile', [
-
-        DashboardProfileController::class,
-
-        'update'
-
-    ])
-    ->name('dashboard.profile.update');
 
 
 
@@ -241,6 +240,84 @@ Route::middleware(['auth', 'approved'])->group(function () {
 
 
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | پرو مزایده — سمت کارفرما
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('/dashboard/auctions', [
+        AuctionDashboardController::class,
+        'index'
+    ])->name('dashboard.auctions');
+
+    Route::get('/dashboard/auctions/create', [
+        AuctionDashboardController::class,
+        'create'
+    ])->name('dashboard.auctions.create');
+
+    Route::post('/dashboard/auctions', [
+        AuctionDashboardController::class,
+        'store'
+    ])->name('dashboard.auctions.store');
+
+    Route::get('/dashboard/auctions/{auction}', [
+        AuctionDashboardController::class,
+        'show'
+    ])->name('dashboard.auctions.show');
+
+    Route::post('/dashboard/auctions/{auction}/request-callback', [
+        AuctionDashboardController::class,
+        'requestCallback'
+    ])->name('dashboard.auctions.callback');
+
+    Route::post('/dashboard/auctions/{auction}/pay-consultation', [
+        AuctionDashboardController::class,
+        'payConsultation'
+    ])->name('dashboard.auctions.pay-consultation');
+
+    Route::post('/dashboard/auctions/{auction}/award', [
+        AuctionDashboardController::class,
+        'award'
+    ])->name('dashboard.auctions.award');
+
+    Route::post('/dashboard/auctions/{auction}/cancel', [
+        AuctionDashboardController::class,
+        'cancel'
+    ])->name('dashboard.auctions.cancel');
+
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | پرو مزایده — سمت پیشنهاددهنده
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('/dashboard/bids', [
+        BidController::class,
+        'index'
+    ])->name('dashboard.bids');
+
+    Route::post('/auction/{auction}/bids', [
+        BidController::class,
+        'store'
+    ])->name('auction.bids.store');
+
+    Route::put('/dashboard/bids/{bid}', [
+        BidController::class,
+        'update'
+    ])->name('dashboard.bids.update');
+
+    Route::post('/dashboard/bids/{bid}/withdraw', [
+        BidController::class,
+        'withdraw'
+    ])->name('dashboard.bids.withdraw');
+
+
+
 });
 
 
@@ -295,6 +372,12 @@ Route::get('/login/otp', [
 
 
 
+Route::post('/login/otp/send', [
+    OtpController::class,
+    'sendLoginOtp'
+])->middleware('throttle:5,1')->name('login.otp.send');
+
+
 Route::post('/login/otp', [
     OtpController::class,
     'verifyLoginOtp'
@@ -347,6 +430,19 @@ Route::get('/register/otp', [
 
 
 
+Route::post('/register/otp/resend', [
+
+    OtpController::class,
+
+    'resendRegisterOtp'
+
+])
+->middleware('throttle:5,1')
+->name('register.otp.resend');
+
+
+
+
 Route::post('/register/otp', [
     OtpController::class,
     'verifyRegisterOtp'
@@ -355,57 +451,87 @@ Route::post('/register/otp', [
 
 
 
-Route::get('/register/type', [
-
-    RegisterController::class,
-
-    'type'
-
-])
-->name('register.type');
-
-
-
-
-Route::post('/register/type', [
-
-    RegisterController::class,
-
-    'saveType'
-
-])
-->name('register.type.store');
-
-
-
-
-
-
-
+/*
+|--------------------------------------------------------------------------
+| ویزارد تکمیل پروفایل
+|--------------------------------------------------------------------------
+|
+| عمداً پشت middleware 'approved' نیست — کاربری که هنوز پروفایلش کامل
+| نشده باید بتواند به اینجا برسد تا کاملش کند.
+|
+*/
 
 Route::middleware('auth')->group(function(){
 
 
-    Route::get('/register/profile',[
+    Route::get('/profile/setup/type',[
 
-        RegisterProfileController::class,
+        ProfileWizardController::class,
 
-        'show'
-
-    ])
-    ->name('register.profile');
-
-
-
-
-    Route::post('/register/profile',[
-
-        RegisterProfileController::class,
-
-        'store'
+        'chooseType'
 
     ])
-    ->name('register.profile.store');
+    ->name('profile.wizard.type');
+
+
+
+
+    Route::post('/profile/setup/type',[
+
+        ProfileWizardController::class,
+
+        'saveType'
+
+    ])
+    ->name('profile.wizard.type.store');
+
+
+
+
+    Route::get('/profile/setup',[
+
+        ProfileWizardController::class,
+
+        'overview'
+
+    ])
+    ->name('profile.wizard');
+
+
+
+
+    Route::post('/profile/setup/submit',[
+
+        ProfileWizardController::class,
+
+        'submit'
+
+    ])
+    ->name('profile.wizard.submit');
+
+
+
+
+    Route::get('/profile/setup/{step}',[
+
+        ProfileWizardController::class,
+
+        'editStep'
+
+    ])
+    ->name('profile.wizard.step');
+
+
+
+
+    Route::post('/profile/setup/{step}',[
+
+        ProfileWizardController::class,
+
+        'saveStep'
+
+    ])
+    ->name('profile.wizard.step.store');
 
 
 });
@@ -418,24 +544,152 @@ Route::middleware('auth')->group(function(){
 
 
 
+
+
+
+
+
+
+
+
+
+
 /*
 |--------------------------------------------------------------------------
-| Pending
+| پروسرویس — تکمیل پروفایل مشتری
+|--------------------------------------------------------------------------
+|
+| مثل ویزارد کسب‌وکارها، پشت 'approved' نیست چون تا این فرم پر نشه
+| کاربر اصلاً approved نمیشه.
+|
+*/
+
+Route::middleware('auth')->group(function () {
+
+    Route::get('/service/setup', [
+        CustomerProfileController::class,
+        'show'
+    ])
+    ->name('service.setup');
+
+
+    Route::post('/service/setup', [
+        CustomerProfileController::class,
+        'store'
+    ])
+    ->name('service.setup.store');
+
+});
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| پروسرویس — سمت مشتری و تکنسین
 |--------------------------------------------------------------------------
 */
 
+Route::middleware(['auth', 'approved'])->group(function () {
 
-Route::get('/pending', function(){
-
-    return view('auth.pending');
-
-})
-->name('pending');
-
-
+    Route::get('/service', [
+        ServiceRequestController::class,
+        'index'
+    ])
+    ->name('service.index');
 
 
+    Route::get('/service/create', [
+        ServiceRequestController::class,
+        'create'
+    ])
+    ->name('service.create');
 
+
+    Route::post('/service', [
+        ServiceRequestController::class,
+        'store'
+    ])
+    ->name('service.store');
+
+
+    Route::get('/service/{serviceRequest}', [
+        ServiceRequestController::class,
+        'show'
+    ])
+    ->name('service.show');
+
+
+    Route::post('/service/{serviceRequest}/technician', [
+        ServiceRequestController::class,
+        'chooseTechnician'
+    ])
+    ->name('service.technician');
+
+
+    Route::post('/service/{serviceRequest}/confirm', [
+        ServiceRequestController::class,
+        'confirm'
+    ])
+    ->name('service.confirm');
+
+
+    Route::get('/service-jobs', [
+        TechnicianServiceJobController::class,
+        'index'
+    ])
+    ->name('service.jobs');
+
+
+    Route::get('/service-jobs/{serviceRequest}', [
+        TechnicianServiceJobController::class,
+        'show'
+    ])
+    ->name('service.jobs.show');
+
+
+    Route::post('/service-jobs/{serviceRequest}/advance', [
+        TechnicianServiceJobController::class,
+        'advance'
+    ])
+    ->name('service.jobs.advance');
+
+
+    Route::get('/wallet', [
+        WalletController::class,
+        'show'
+    ])
+    ->name('wallet');
+
+
+    Route::post('/wallet/top-up', [
+        WalletController::class,
+        'topUp'
+    ])
+    ->middleware('throttle:10,1')
+    ->name('wallet.topup');
+
+});
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| بازگشت از درگاه پرداخت
+|--------------------------------------------------------------------------
+|
+| عمداً بیرون از 'approved' است — اگر وضعیت کاربر بین شروع پرداخت و بازگشت
+| عوض شود، نباید پول پرداخت‌شده بی‌ثبت بماند.
+|
+*/
+
+Route::get('/wallet/callback', [
+    WalletController::class,
+    'callback'
+])
+->middleware('auth')
+->name('wallet.callback');
 
 
 
@@ -445,6 +699,18 @@ Route::get('/pending', function(){
 | Directory
 |--------------------------------------------------------------------------
 */
+
+
+Route::get('/search', [
+
+    SearchController::class,
+
+    'index'
+
+])
+->name('search');
+
+
 
 
 Route::get('/companies',[
@@ -503,6 +769,30 @@ Route::get('/projects',[
 
 ])
 ->name('projects.index');
+
+
+
+
+Route::get('/auctions', [
+
+    AuctionController::class,
+
+    'index'
+
+])
+->name('auctions.index');
+
+
+
+
+Route::get('/auction/{slug}', [
+
+    AuctionController::class,
+
+    'show'
+
+])
+->name('auction.show');
 
 
 
@@ -640,7 +930,17 @@ Route::middleware([
     ])
     ->name('admin.users.reject');
 
-    Route::get('/reviews', [
+    /*
+    | مسیر این بخش عمداً /admin/reviews نیست.
+    | پنل Filament خودش روی /admin نشسته و یک ReviewResource دارد که
+    | همان /admin/reviews را می‌گیرد. چون routes/web.php بعد از پنل
+    | ثبت می‌شود، مسیر ما روی مسیر Filament می‌افتاد و روت
+    | filament.admin.resources.reviews.index حذف می‌شد — نتیجه‌اش
+    | خطای «Route not defined» در سایدبار و ۵۰۰ شدن کل پنل بود.
+    | نام روت‌ها دست‌نخورده مانده، پس همه‌ی route('admin.reviews') ها کار می‌کنند.
+    */
+
+    Route::get('/review-approvals', [
 
         AdminController::class,
 
@@ -649,7 +949,7 @@ Route::middleware([
     ])
     ->name('admin.reviews');
 
-    Route::post('/reviews/{review}/approve', [
+    Route::post('/review-approvals/{review}/approve', [
 
         AdminController::class,
 
@@ -658,7 +958,7 @@ Route::middleware([
     ])
     ->name('admin.reviews.approve');
 
-    Route::delete('/reviews/{review}', [
+    Route::delete('/review-approvals/{review}', [
 
         AdminController::class,
 
@@ -666,5 +966,40 @@ Route::middleware([
 
     ])
     ->name('admin.reviews.reject');
+
+
+    Route::get('/service-requests', [
+        AdminServiceController::class,
+        'index'
+    ])
+    ->name('admin.service.index');
+
+
+    Route::get('/service-requests/{serviceRequest}', [
+        AdminServiceController::class,
+        'show'
+    ])
+    ->name('admin.service.show');
+
+
+    Route::post('/service-requests/{serviceRequest}/invoice', [
+        AdminServiceController::class,
+        'saveInvoice'
+    ])
+    ->name('admin.service.invoice');
+
+
+    Route::post('/service-requests/{serviceRequest}/technician', [
+        AdminServiceController::class,
+        'assignTechnician'
+    ])
+    ->name('admin.service.technician');
+
+
+    Route::post('/service-requests/{serviceRequest}/cancel', [
+        AdminServiceController::class,
+        'cancel'
+    ])
+    ->name('admin.service.cancel');
 
 });

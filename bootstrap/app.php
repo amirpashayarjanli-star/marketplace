@@ -6,7 +6,7 @@ use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
 
 
-return Application::configure(basePath: dirname(__DIR__))
+$app = Application::configure(basePath: dirname(__DIR__))
 
     ->withRouting(
 
@@ -46,3 +46,12 @@ return Application::configure(basePath: dirname(__DIR__))
     })
 
     ->create();
+
+// روی هاست، پوشه‌ی public جدا از ریشه‌ی برنامه است (public_html کنار asansorpro_app،
+// نه زیرپوشه‌ش)، برای همین لاراول باید بدونه فایل‌های build/manifest.json واقعاً کجان.
+// DOCUMENT_ROOT همون پوشه‌ایه که وب‌سرور واقعاً ازش سرو می‌کنه، پس همیشه درسته.
+if (! empty($_SERVER['DOCUMENT_ROOT']) && is_dir($_SERVER['DOCUMENT_ROOT'])) {
+    $app->usePublicPath($_SERVER['DOCUMENT_ROOT']);
+}
+
+return $app;

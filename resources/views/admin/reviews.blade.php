@@ -36,7 +36,7 @@
 </div>
 <div class="flex gap-1">
 @for($i = 1; $i <= 5; $i++)
-<i class="fa-solid fa-star{{ $i <= $review->rating ? '' : '-regular' }}" style="color: #fbbf24;"></i>
+<x-ui.icon name="star" style="color: {{ $i <= $review->rating ? 'var(--gold)' : 'var(--border-strong)' }}" />
 @endfor
 </div>
 </div>
@@ -49,7 +49,7 @@
 <form method="POST" action="{{ route('admin.reviews.approve', $review) }}">
 @csrf
 <button class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
-<i class="fa-solid fa-check ml-2"></i>تایید
+<x-ui.icon name="check" class="ml-2" />تایید
 </button>
 </form>
 
@@ -57,7 +57,7 @@
 @csrf
 @method('DELETE')
 <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">
-<i class="fa-solid fa-trash ml-2"></i>حذف
+<x-ui.icon name="trash" class="ml-2" />حذف
 </button>
 </form>
 </div>

@@ -26,6 +26,12 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->id('admin')
             ->path('admin')
+            ->favicon(asset('images/logo/logo-asansor-pro.png'))
+            // بدون این‌ها، فیلامنت نام و لوگوی پیش‌فرض خودش/لاراول را
+            // در صفحه‌ی ورود و بالای سایدبار نشان می‌دهد.
+            ->brandName('آسانسور پرو')
+            ->brandLogo(asset('images/logo/logo.png'))
+            ->brandLogoHeight('2.5rem')
             ->login()
             ->colors([
                 'primary' => Color::Amber,

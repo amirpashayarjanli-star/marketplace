@@ -21,8 +21,8 @@ class CompanyController extends Controller
             });
         }
 
-        if (request('city')) {
-            $query->where('city', request('city'));
+        if (request('province')) {
+            $query->where('province', request('province'));
         }
 
         if (request('sort') === 'rating') {

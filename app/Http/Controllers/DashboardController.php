@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 
 
+use App\Models\Auction;
+use App\Models\Bid;
 use App\Models\Product;
 use App\Models\Project;
 use App\Models\ProjectInquiry;
@@ -43,7 +45,9 @@ class DashboardController extends Controller
 
 
 
-            default => abort(404),
+            // ادمین و مشتری داشبورد کسب‌وکار ندارند و قبلاً اینجا 404 می‌گرفتند —
+            // ادمین دقیقاً بعد از لاگین به همین‌جا هدایت می‌شد.
+            default => $this->fallback($user),
 
 
         };
@@ -55,6 +59,34 @@ class DashboardController extends Controller
 
 
 
+
+
+
+
+    /**
+     * کاربری که نوع کسب‌وکار ندارد (ادمین، مشتری، یا حسابی که هنوز
+     * نوعش را انتخاب نکرده) باید به خانه‌ی خودش برود، نه به صفحه‌ی 404.
+     */
+    private function fallback($user)
+    {
+
+        if ($user->role === 'admin') {
+
+            return redirect()->route('admin.users');
+
+        }
+
+
+        if ($user->type === 'customer') {
+
+            return redirect()->route('service.index');
+
+        }
+
+
+        return redirect()->route('profile.wizard.type');
+
+    }
 
 
 
@@ -454,6 +486,10 @@ class DashboardController extends Controller
 
         $inquiries = 0;
 
+        $activeAuctions = 0;
+
+        $auctionBids = 0;
+
 
 
 
@@ -526,6 +562,30 @@ class DashboardController extends Controller
 
 
 
+
+            $activeAuctions = Auction::where('employer_id', $employer->id)
+
+                ->whereIn('status', ['pending_review','active'])
+
+                ->count();
+
+
+
+
+            $auctionBids = Bid::whereHas(
+
+                'auction',
+
+                fn($query) => $query->where('employer_id', $employer->id)
+
+            )
+
+            ->where('status','active')
+
+            ->count();
+
+
+
         }
 
 
@@ -548,7 +608,11 @@ class DashboardController extends Controller
 
                 'assignedProjects',
 
-                'inquiries'
+                'inquiries',
+
+                'activeAuctions',
+
+                'auctionBids'
 
             )
 

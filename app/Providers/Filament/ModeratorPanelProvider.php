@@ -26,6 +26,12 @@ class ModeratorPanelProvider extends PanelProvider
         return $panel
             ->id('moderator')
             ->path('moderator')
+            ->favicon(asset('images/logo/logo-asansor-pro.png'))
+            // بدون این‌ها، فیلامنت نام و لوگوی پیش‌فرض خودش/لاراول را
+            // در صفحه‌ی ورود و بالای سایدبار نشان می‌دهد.
+            ->brandName('آسانسور پرو — مدیر')
+            ->brandLogo(asset('images/logo/logo.png'))
+            ->brandLogoHeight('2.5rem')
             ->login()
             ->colors([
                 'primary' => Color::Amber,
