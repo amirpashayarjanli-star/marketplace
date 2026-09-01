@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ServiceInvoice;
 use App\Models\ServiceRequest;
 use App\Models\Technician;
+use App\Services\ServiceNotifier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,6 +21,12 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminServiceController extends Controller
 {
+    public function __construct(
+        private ServiceNotifier $notifier,
+    ) {
+    }
+
+
     public function index(Request $request)
     {
         $query = ServiceRequest::with(['customer', 'technician', 'invoice'])->latest();
@@ -92,6 +99,7 @@ class AdminServiceController extends Controller
 
         if ($serviceRequest->status === 'reported') {
             $serviceRequest->moveTo('invoiced', 'فاکتور توسط مدیر صادر شد.');
+            $this->notifier->invoiced($serviceRequest, (int) $invoice->subtotal);
         }
 
         return redirect()
@@ -125,6 +133,8 @@ class AdminServiceController extends Controller
             'تکنسین توسط مدیر به «' . $technician->name . '» تغییر کرد.'
         );
 
+        $this->notifier->technicianAssigned($serviceRequest->fresh('technician'));
+
         return back()->with('success', 'تکنسین تنظیم شد.');
     }
 
@@ -136,6 +146,8 @@ class AdminServiceController extends Controller
         }
 
         $serviceRequest->moveTo('cancelled', 'توسط مدیر لغو شد.');
+
+        $this->notifier->requestCancelled($serviceRequest);
 
         return back()->with('success', 'خرابی لغو شد.');
     }

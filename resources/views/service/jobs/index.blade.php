@@ -54,6 +54,46 @@
         </div>
 
 
+        {{-- ---- بازدیدهای دوره‌ای ---- --}}
+
+        @if($visits->isNotEmpty())
+
+            <h3 class="wizard-progress-label" style="margin-top:28px; margin-bottom:14px;">
+                بازدیدهای دوره‌ای ({{ $visits->count() }})
+            </h3>
+
+            @foreach($visits as $visit)
+
+                <div class="card visit-item @if($visit->isOverdue()) is-overdue @endif">
+
+                    <div>
+                        <strong>{{ $visit->contract->building->title }}</strong>
+                        <p class="building-card-meta">
+                            موعد: {{ jdate($visit->due_on) }}
+                            @if($visit->isOverdue())
+                                — عقب‌افتاده
+                            @endif
+                        </p>
+                        <p class="building-card-meta">
+                            📍 {{ $visit->contract->building->fullAddress() }}
+                        </p>
+                    </div>
+
+                    <form method="POST" action="{{ route('service.visits.complete', $visit) }}"
+                          class="visit-item-form">
+                        @csrf
+                        <input type="text" name="report" class="input"
+                               placeholder="گزارش بازدید" required>
+                        <button type="submit" class="btn btn-sm btn-success">ثبت انجام</button>
+                    </form>
+
+                </div>
+
+            @endforeach
+
+        @endif
+
+
         @if($history->isNotEmpty())
 
             <h3 class="wizard-progress-label" style="margin-top:28px; margin-bottom:14px;">کارهای قبلی</h3>

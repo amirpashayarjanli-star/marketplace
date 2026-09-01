@@ -784,3 +784,28 @@
     .visit-item-form .input,
     .visit-item-form .btn{ flex-basis:100%; width:100%; }
 }
+
+
+/* ---- درخواست‌های برداشت در پنل ادمین ---- */
+
+.withdrawal-item{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:16px;
+    padding:18px 22px;
+}
+
+.withdrawal-item-main{
+    flex:1 1 280px;
+    min-width:0;
+}
+
+.withdrawal-item-actions{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    flex:1 1 260px;
+    min-width:0;
+}

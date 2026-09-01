@@ -9,6 +9,7 @@ use App\Models\ServiceContract;
 use App\Models\Technician;
 use App\Models\Wallet;
 use App\Services\ServiceContractService;
+use App\Services\ServiceNotifier;
 use Illuminate\Http\Request;
 
 /**
@@ -18,6 +19,7 @@ class ServiceContractController extends Controller
 {
     public function __construct(
         private ServiceContractService $contracts,
+        private ServiceNotifier $notifier,
     ) {
     }
 
@@ -153,6 +155,8 @@ class ServiceContractController extends Controller
                 'موجودی کیف‌پول کافی نیست. مبلغ لازم: ' . number_format($contract->total_amount) . ' تومان.'
             );
         }
+
+        $this->notifier->contractActivated($contract->fresh('building.customer'));
 
         return redirect()
             ->route('service.contracts.show', $contract)

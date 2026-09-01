@@ -104,6 +104,87 @@
         </div>
 
 
+        {{-- ---- برداشت ---- --}}
+
+        <div class="wizard-form-card">
+
+            <h3 class="wizard-progress-label" style="margin-bottom:6px;">برداشت از کیف‌پول</h3>
+
+            <p class="field-hint">
+                مبلغ همان لحظه‌ی ثبت درخواست از موجودی کسر می‌شود و پس از بررسی
+                به شبای شما واریز می‌گردد. اگر درخواست رد شود مبلغ برمی‌گردد.
+            </p>
+
+            <form method="POST" action="{{ route('wallet.withdraw') }}" class="building-form"
+                  style="padding:0; border:none; background:none; gap:14px;">
+                @csrf
+
+                <div class="field-row">
+
+                    <div class="field">
+                        <label class="field-label" for="w-amount">مبلغ (تومان)</label>
+                        <input id="w-amount" type="number" name="amount" class="input"
+                               min="{{ $minWithdrawal }}" max="{{ $wallet->balance }}" required
+                               placeholder="حداقل {{ number_format($minWithdrawal) }}">
+                    </div>
+
+                    <div class="field">
+                        <label class="field-label" for="w-holder">نام صاحب حساب</label>
+                        <input id="w-holder" type="text" name="account_holder" class="input" required>
+                    </div>
+
+                </div>
+
+                <div class="field">
+                    <label class="field-label" for="w-iban">شماره شبا</label>
+                    <input id="w-iban" type="text" name="iban" class="input" required
+                           placeholder="IR000000000000000000000000"
+                           pattern="IR[0-9]{24}">
+                    <p class="field-hint">با IR شروع شود و ۲۴ رقم داشته باشد.</p>
+                </div>
+
+                <button type="submit" class="btn btn-primary"
+                        @disabled($wallet->balance < $minWithdrawal)>
+                    ثبت درخواست برداشت
+                </button>
+
+            </form>
+
+
+            @if($withdrawals->isNotEmpty())
+
+                <h4 class="wizard-progress-label" style="margin:22px 0 8px;">درخواست‌های اخیر</h4>
+
+                <div class="service-list">
+                    @foreach($withdrawals as $withdrawal)
+                        <div class="card elevator-item">
+                            <div>
+                                <strong>{{ number_format($withdrawal->amount) }} تومان</strong>
+                                <p class="building-card-meta">
+                                    {{ $withdrawal->iban }} · {{ jdatetime($withdrawal->created_at) }}
+                                </p>
+                                @if($withdrawal->reference)
+                                    <p class="building-card-meta">پیگیری: {{ $withdrawal->reference }}</p>
+                                @endif
+                                @if($withdrawal->admin_note)
+                                    <p class="building-card-meta">{{ $withdrawal->admin_note }}</p>
+                                @endif
+                            </div>
+                            <span @class([
+                                'badge',
+                                'badge-success' => $withdrawal->status === 'approved',
+                                'badge-danger'  => $withdrawal->status === 'rejected',
+                                'badge-warning' => $withdrawal->status === 'pending',
+                            ])>{{ $withdrawal->statusLabel() }}</span>
+                        </div>
+                    @endforeach
+                </div>
+
+            @endif
+
+        </div>
+
+
         <div class="wizard-form-card">
 
             <h3 class="wizard-progress-label" style="margin-bottom:6px;">تراکنش‌ها</h3>

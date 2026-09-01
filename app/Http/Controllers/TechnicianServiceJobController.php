@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MaintenanceVisit;
 use App\Models\ServiceRequest;
+use App\Services\ServiceNotifier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,6 +19,12 @@ use Illuminate\Support\Facades\Auth;
 
 class TechnicianServiceJobController extends Controller
 {
+    public function __construct(
+        private ServiceNotifier $notifier,
+    ) {
+    }
+
+
     // ترتیب دقیقاً باید همینی باشه که تکنسین یکی‌یکی طی می‌کنه
     private const NEXT_STAGE = [
         'assigned'    => 'accepted',
@@ -64,10 +72,21 @@ class TechnicianServiceJobController extends Controller
             ->limit(20)
             ->get();
 
+        /*
+        | بازدیدهای دوره‌ای هم کارِ همین تکنسین‌اند ولی چرخه‌ی وضعیت
+        | خرابی را ندارند — یک‌بار «انجام شد» می‌خورند و تمام.
+        */
+        $visits = MaintenanceVisit::with('contract.building')
+            ->where('technician_id', $technician->id)
+            ->where('status', 'due')
+            ->orderBy('due_on')
+            ->get();
+
         return view('service.jobs.index', [
             'technician' => $technician,
             'jobs'       => $jobs,
             'history'    => $history,
+            'visits'     => $visits,
         ]);
     }
 
@@ -110,8 +129,39 @@ class TechnicianServiceJobController extends Controller
             $serviceRequest->update(['completed_at' => now()]);
         }
 
+        $this->notifier->stageAdvanced($serviceRequest, $next);
+
         return redirect()
             ->route('service.jobs.show', $serviceRequest)
             ->with('success', 'وضعیت به‌روزرسانی شد.');
+    }
+
+
+    /**
+     * ثبت انجام یک بازدید دوره‌ای توسط تکنسین.
+     */
+    public function completeVisit(Request $request, MaintenanceVisit $visit)
+    {
+        $technician = $this->technicianOrAbort();
+
+        if ($visit->technician_id !== $technician->id) {
+            abort(403);
+        }
+
+        if ($visit->status !== 'due') {
+            return back()->with('error', 'این بازدید قبلاً ثبت شده است.');
+        }
+
+        $validated = $request->validate([
+            'report' => 'required|string|min:5|max:1000',
+        ], [], ['report' => 'گزارش بازدید']);
+
+        $visit->update([
+            'status'  => 'done',
+            'report'  => $validated['report'],
+            'done_at' => now(),
+        ]);
+
+        return back()->with('success', 'بازدید ثبت شد.');
     }
 }

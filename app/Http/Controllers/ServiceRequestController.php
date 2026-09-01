@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ServiceRequest;
 use App\Models\Technician;
+use App\Services\ServiceNotifier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,6 +20,12 @@ use Illuminate\Support\Facades\Auth;
 
 class ServiceRequestController extends Controller
 {
+    public function __construct(
+        private ServiceNotifier $notifier,
+    ) {
+    }
+
+
     private function customerOrAbort()
     {
         $user = Auth::user();
@@ -116,6 +123,8 @@ class ServiceRequestController extends Controller
 
         $serviceRequest->moveTo('reported', 'خرابی توسط مشتری ثبت شد.');
 
+        $this->notifier->requestCreated($serviceRequest);
+
         return redirect()
             ->route('service.show', $serviceRequest)
             ->with('success', 'خرابی شما ثبت شد. به‌زودی فاکتور برایتان صادر می‌شود.');
@@ -173,6 +182,8 @@ class ServiceRequestController extends Controller
 
         $serviceRequest->update(['technician_id' => $technician->id]);
         $serviceRequest->moveTo('assigned', 'تکنسین «' . $technician->name . '» انتخاب شد.');
+
+        $this->notifier->technicianAssigned($serviceRequest->fresh('technician'));
 
         if ($request->boolean('make_dedicated')) {
             $customer->update(['dedicated_technician_id' => $technician->id]);
@@ -238,8 +249,49 @@ class ServiceRequestController extends Controller
 
         });
 
+        $this->notifier->settled($serviceRequest, (int) $invoice->technician_amount);
+
         return redirect()
             ->route('service.show', $serviceRequest)
             ->with('success', 'از رضایت شما متشکریم. مبلغ به کیف پول تکنسین واریز شد.');
+    }
+
+
+    /**
+     * لغو خرابی توسط خود مشتری. فقط تا قبل از اینکه تکنسین راه بیفتد
+     * مجاز است — بعد از آن باید با پشتیبانی هماهنگ شود، وگرنه تکنسینی
+     * که وقت گذاشته بی‌تکلیف می‌ماند.
+     */
+    public function cancel(Request $request, ServiceRequest $serviceRequest)
+    {
+        $customer = $this->customerOrAbort();
+
+        if ($serviceRequest->customer_id !== $customer->id) {
+            abort(403);
+        }
+
+        $cancellable = ['reported', 'invoiced', 'assigned', 'accepted'];
+
+        if (! in_array($serviceRequest->status, $cancellable, true)) {
+            return back()->with(
+                'error',
+                'در این مرحله نمی‌توانید خودتان لغو کنید. با پشتیبانی تماس بگیرید.'
+            );
+        }
+
+        $validated = $request->validate([
+            'reason' => 'nullable|string|max:300',
+        ], [], ['reason' => 'دلیل']);
+
+        $serviceRequest->update([
+            'cancelled_at'  => now(),
+            'cancel_reason' => $validated['reason'] ?? null,
+        ]);
+
+        $serviceRequest->moveTo('cancelled', 'توسط مشتری لغو شد.');
+
+        $this->notifier->requestCancelled($serviceRequest);
+
+        return back()->with('success', 'درخواست لغو شد.');
     }
 }

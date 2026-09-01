@@ -26,3 +26,11 @@ Schedule::command('auctions:close')
 Schedule::command('auctions:notify')
     ->everyFiveMinutes()
     ->withoutOverlapping();
+
+/*
+| قراردادهای پرو سرویس — انقضا، بازدیدهای عقب‌افتاده و یادآوری‌ها.
+| روزی یک بار کافی است چون همه‌ی این‌ها دقت روز دارند.
+*/
+Schedule::command('proservice:daily')
+    ->dailyAt('07:00')
+    ->withoutOverlapping();

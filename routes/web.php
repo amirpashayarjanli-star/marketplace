@@ -30,6 +30,7 @@ use App\Http\Controllers\BidController;
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminContractController;
+use App\Http\Controllers\AdminWithdrawalController;
 use App\Http\Controllers\AdminServiceController;
 
 use App\Http\Controllers\BuildingController;
@@ -748,6 +749,13 @@ Route::middleware(['auth', 'approved'])->group(function () {
     ->name('service.confirm');
 
 
+    Route::post('/service/{serviceRequest}/cancel', [
+        ServiceRequestController::class,
+        'cancel'
+    ])
+    ->name('service.cancel');
+
+
     Route::get('/service-jobs', [
         TechnicianServiceJobController::class,
         'index'
@@ -769,6 +777,13 @@ Route::middleware(['auth', 'approved'])->group(function () {
     ->name('service.jobs.advance');
 
 
+    Route::post('/service-visits/{visit}/complete', [
+        TechnicianServiceJobController::class,
+        'completeVisit'
+    ])
+    ->name('service.visits.complete');
+
+
     Route::get('/wallet', [
         WalletController::class,
         'show'
@@ -782,6 +797,14 @@ Route::middleware(['auth', 'approved'])->group(function () {
     ])
     ->middleware('throttle:10,1')
     ->name('wallet.topup');
+
+
+    Route::post('/wallet/withdraw', [
+        WalletController::class,
+        'withdraw'
+    ])
+    ->middleware('throttle:10,1')
+    ->name('wallet.withdraw');
 
 });
 
@@ -1179,5 +1202,34 @@ Route::middleware([
         'cancel'
     ])
     ->name('admin.contracts.cancel');
+
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | برداشت از کیف‌پول
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('/withdrawals', [
+        AdminWithdrawalController::class,
+        'index'
+    ])
+    ->name('admin.withdrawals.index');
+
+
+    Route::post('/withdrawals/{withdrawal}/approve', [
+        AdminWithdrawalController::class,
+        'approve'
+    ])
+    ->name('admin.withdrawals.approve');
+
+
+    Route::post('/withdrawals/{withdrawal}/reject', [
+        AdminWithdrawalController::class,
+        'reject'
+    ])
+    ->name('admin.withdrawals.reject');
 
 });

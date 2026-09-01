@@ -7,6 +7,7 @@ use App\Models\MaintenanceVisit;
 use App\Models\ServiceContract;
 use App\Models\Technician;
 use App\Services\ServiceContractService;
+use App\Services\ServiceNotifier;
 use Illuminate\Http\Request;
 
 /*
@@ -23,6 +24,7 @@ class AdminContractController extends Controller
 {
     public function __construct(
         private ServiceContractService $contracts,
+        private ServiceNotifier $notifier,
     ) {
     }
 
@@ -82,6 +84,8 @@ class AdminContractController extends Controller
             (int) $validated['monthly_fee'],
             $validated['admin_note'] ?? null,
         );
+
+        $this->notifier->contractQuoted($contract->fresh('building.customer'));
 
         return back()->with('success', 'قیمت ثبت شد و قرارداد برای پرداخت به مشتری رفت.');
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Wallet;
 use App\Models\WalletPayment;
+use App\Models\WalletWithdrawal;
 use App\Services\ZarinpalService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -32,6 +33,11 @@ class WalletController extends Controller
             'gatewayEnabled' => $this->zarinpal->isEnabled(),
             'minAmount'      => (int) config('services.zarinpal.min_amount', 10000),
             'maxAmount'      => (int) config('services.zarinpal.max_amount', 500000000),
+            'withdrawals'    => WalletWithdrawal::where('user_id', $user->id)
+                ->latest()
+                ->limit(10)
+                ->get(),
+            'minWithdrawal'  => (int) config('services.wallet.min_withdrawal', 100000),
         ]);
     }
 
@@ -170,4 +176,62 @@ class WalletController extends Controller
             'کیف‌پول شما با موفقیت شارژ شد. کد پیگیری: '.$result['ref_id']
         );
     }
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | برداشت از کیف‌پول
+    |--------------------------------------------------------------------------
+    |
+    | مبلغ همین‌جا کسر می‌شود، نه موقع تایید ادمین — وگرنه کاربر می‌توانست
+    | همان موجودی را همزمان جای دیگری هم خرج کند و کیف‌پول منفی شود.
+    | رد کردن درخواست توسط ادمین مبلغ را برمی‌گرداند.
+    |
+    */
+
+    public function withdraw(Request $request)
+    {
+        $user = Auth::user();
+
+        $min = (int) config('services.wallet.min_withdrawal', 100000);
+
+        $data = $request->validate([
+            'amount'         => "required|integer|min:{$min}",
+            'iban'           => 'required|string|regex:/^IR[0-9]{24}$/',
+            'account_holder' => 'required|string|max:120',
+        ], [
+            'iban.regex' => 'شماره شبا باید با IR شروع شود و ۲۴ رقم داشته باشد.',
+        ], [
+            'amount'         => 'مبلغ',
+            'iban'           => 'شماره شبا',
+            'account_holder' => 'نام صاحب حساب',
+        ]);
+
+        $wallet = Wallet::forUser($user);
+
+        try {
+
+            DB::transaction(function () use ($wallet, $user, $data) {
+
+                $wallet->debit(
+                    (int) $data['amount'],
+                    'درخواست برداشت به شبا ' . $data['iban'],
+                );
+
+                WalletWithdrawal::create([
+                    'user_id'        => $user->id,
+                    'amount'         => (int) $data['amount'],
+                    'iban'           => $data['iban'],
+                    'account_holder' => $data['account_holder'],
+                ]);
+
+            });
+
+        } catch (\App\Exceptions\InsufficientWalletBalanceException $e) {
+            return back()->with('error', 'موجودی کیف‌پول برای این برداشت کافی نیست.');
+        }
+
+        return back()->with('success', 'درخواست برداشت ثبت شد و پس از بررسی واریز می‌شود.');
+    }
+
 }

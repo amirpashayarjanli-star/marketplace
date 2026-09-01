@@ -51,4 +51,13 @@ return [
         'max_amount'  => env('ZARINPAL_MAX_AMOUNT', 500000000),
     ],
 
+
+    /*
+    | کیف‌پول. حداقل مبلغ برداشت را می‌گذاریم تا درخواست‌های خیلی کوچک
+    | که کارمزد انتقالشان بیشتر از خودشان است ثبت نشوند.
+    */
+    'wallet' => [
+        'min_withdrawal' => (int) env('WALLET_MIN_WITHDRAWAL', 100000),
+    ],
+
 ];
