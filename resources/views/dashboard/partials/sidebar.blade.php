@@ -112,6 +112,20 @@
                     <span aria-hidden="true">💰</span> کیف پول
                 </a>
 
+            @elseif($user->type == 'customer')
+
+                <a href="{{ route('service.buildings') }}" class="dashboard-nav-link">
+                    <span aria-hidden="true">🏢</span> پرونده‌های من
+                </a>
+
+                <a href="{{ route('service.index') }}" class="dashboard-nav-link">
+                    <span aria-hidden="true">🛠️</span> خرابی‌های من
+                </a>
+
+                <a href="{{ route('wallet') }}" class="dashboard-nav-link">
+                    <span aria-hidden="true">💰</span> کیف پول
+                </a>
+
             @elseif($user->type == 'manufacturer')
 
                 <a href="{{ route('dashboard.bids') }}" class="dashboard-nav-link">

@@ -16,9 +16,14 @@
                 <p class="wizard-subtitle">خرابی‌های ثبت‌شده‌ی شما</p>
             </div>
 
-            <a href="{{ route('service.create') }}" class="wizard-btn wizard-btn-primary">
-                ثبت خرابی جدید
-            </a>
+            <div class="service-page-head-actions">
+                <a href="{{ route('service.buildings') }}" class="wizard-btn wizard-btn-ghost">
+                    پرونده‌های من
+                </a>
+                <a href="{{ route('service.create') }}" class="wizard-btn wizard-btn-primary">
+                    ثبت خرابی جدید
+                </a>
+            </div>
 
         </div>
 

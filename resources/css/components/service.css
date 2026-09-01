@@ -345,3 +345,442 @@
 .service-rating label:hover ~ label{
     color:var(--gold);
 }
+
+
+/* ===========================================================
+   پرونده‌ی ساختمان و قرارداد سرویس
+   =========================================================== */
+
+.service-page-head{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:16px;
+    margin-bottom:24px;
+}
+
+.service-page-head-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.building-code{
+    display:inline-block;
+    margin-bottom:6px;
+
+    font-size:.78rem;
+    font-weight:700;
+    letter-spacing:.04em;
+    color:var(--text-soft);
+    font-variant-numeric:tabular-nums;
+}
+
+
+/* ---- فهرست پرونده‌ها ---- */
+
+.building-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+    gap:clamp(14px, 1rem + 1vw, 22px);
+}
+
+.building-card{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    height:100%;
+    padding:20px;
+
+    text-decoration:none;
+    color:inherit;
+}
+
+.building-card-head{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+}
+
+.building-card-head .building-code{ margin-bottom:0; }
+
+.building-card-title{
+    margin:0;
+    font-size:1.02rem;
+    font-weight:800;
+    line-height:1.7;
+    color:var(--text);
+}
+
+.building-card-meta{
+    margin:0;
+    font-size:.83rem;
+    line-height:1.9;
+    color:var(--text-muted);
+}
+
+.building-card-foot{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+
+    margin-top:auto;
+    padding-top:12px;
+    border-top:1px solid var(--border);
+
+    font-size:.83rem;
+    color:var(--text-muted);
+}
+
+.building-card-note{
+    margin:0;
+    font-size:.8rem;
+    color:var(--success);
+}
+
+
+/* ---- بلوک‌های صفحه‌ی پرونده ---- */
+
+.building-block{
+    margin-top:clamp(26px, 1.5rem + 2vw, 42px);
+}
+
+.building-block-title{
+    margin:0 0 14px;
+    font-size:1.1rem;
+    font-weight:800;
+    color:var(--text);
+}
+
+
+/* ---- فرم پرونده ---- */
+
+.building-form{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    padding:clamp(22px, 1.2rem + 1.5vw, 30px);
+}
+
+.building-form-section{
+    margin:14px 0 0;
+    padding-top:18px;
+    border-top:1px solid var(--border);
+
+    font-size:1.02rem;
+    font-weight:800;
+    color:var(--text);
+}
+
+.building-form-section:first-of-type{
+    margin-top:0;
+    padding-top:0;
+    border-top:none;
+}
+
+.building-form-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    padding-top:18px;
+    border-top:1px solid var(--border);
+}
+
+
+/* ---- ردیف دستگاه ---- */
+
+.elevator-row{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:flex-end;
+    gap:12px;
+
+    padding:14px;
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    background:var(--surface-2);
+}
+
+.elevator-row .field{ flex:1 1 140px; min-width:0; }
+
+.elevator-row-remove{ flex:0 0 auto; }
+
+.elevator-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-bottom:14px;
+}
+
+.elevator-item{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:16px 18px;
+}
+
+.elevator-add summary{
+    cursor:pointer;
+    padding:10px 0;
+    font-size:.9rem;
+    font-weight:700;
+    color:var(--primary);
+}
+
+.elevator-add[open] summary{ margin-bottom:12px; }
+
+
+/* ---- خلاصه‌ی قرارداد روی پرونده ---- */
+
+.contract-summary,
+.contract-detail{
+    padding:clamp(20px, 1.2rem + 1vw, 28px);
+}
+
+.contract-summary-head{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:18px;
+}
+
+.contract-summary-head h2{
+    margin:8px 0 0;
+    font-size:1.1rem;
+    font-weight:800;
+    color:var(--text);
+}
+
+.contract-facts{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+    gap:16px;
+    margin:0;
+}
+
+.contract-facts dt{
+    margin-bottom:4px;
+    font-size:.8rem;
+    color:var(--text-muted);
+}
+
+.contract-facts dd{
+    margin:0;
+    font-weight:700;
+    color:var(--text);
+    font-variant-numeric:tabular-nums;
+}
+
+.contract-facts dd small{
+    font-weight:400;
+    color:var(--text-muted);
+}
+
+.contract-cta{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:18px;
+    padding:clamp(22px, 1.2rem + 1.5vw, 30px);
+
+    border-color:var(--gold);
+    background:linear-gradient(-90deg, var(--gold-soft) 0%, var(--surface) 65%);
+}
+
+.contract-cta h2{
+    margin:0 0 8px;
+    font-size:1.1rem;
+    font-weight:800;
+    color:var(--text);
+}
+
+.contract-cta p{
+    margin:0;
+    max-width:52ch;
+    font-size:.9rem;
+    line-height:1.9;
+    color:var(--text-muted);
+}
+
+.contract-covered{
+    font-weight:700;
+    color:var(--success);
+}
+
+
+/* ---- انتخاب طرح ---- */
+
+.plan-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+    gap:14px;
+    margin-bottom:8px;
+}
+
+.plan-card{
+    display:block;
+    cursor:pointer;
+}
+
+.plan-card input{
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
+}
+
+.plan-card-body{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:8px;
+    height:100%;
+    padding:18px;
+
+    border:1.5px solid var(--border);
+    border-radius:var(--radius-lg);
+    background:var(--surface);
+
+    transition:border-color var(--transition) ease,
+               box-shadow var(--transition) ease;
+}
+
+.plan-card:hover .plan-card-body{ border-color:var(--border-strong); }
+
+.plan-card input:checked + .plan-card-body{
+    border-color:var(--primary);
+    box-shadow:0 0 0 4px var(--primary-soft);
+}
+
+.plan-card input:focus-visible + .plan-card-body{
+    outline:2px solid var(--primary);
+    outline-offset:2px;
+}
+
+.plan-card-body strong{
+    font-size:1rem;
+    color:var(--text);
+}
+
+.plan-card-desc{
+    font-size:.84rem;
+    line-height:1.9;
+    color:var(--text-muted);
+}
+
+.plan-card-price{
+    margin-top:auto;
+    font-size:1.05rem;
+    font-weight:800;
+    color:var(--primary);
+    font-variant-numeric:tabular-nums;
+}
+
+
+/* ---- جمع‌بندی و پرداخت ---- */
+
+.contract-total,
+.contract-pay{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:18px;
+
+    margin-top:24px;
+    padding:clamp(20px, 1.2rem + 1vw, 28px);
+}
+
+.contract-total-label{
+    margin:0 0 4px;
+    font-size:.85rem;
+    color:var(--text-muted);
+}
+
+.contract-total-amount{
+    margin:0 0 8px;
+    font-size:1.5rem;
+    font-weight:800;
+    color:var(--text);
+    font-variant-numeric:tabular-nums;
+}
+
+.contract-pay-actions{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:12px;
+}
+
+
+/* ---- بیمه‌نامه و بازدیدها ---- */
+
+.policy-card,
+.visit-item{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+
+    margin-bottom:10px;
+    padding:16px 18px;
+}
+
+.policy-card.is-valid{ border-color:var(--pastel-success-border); }
+
+.visit-item.is-overdue{ border-color:var(--pastel-warning-border); }
+
+.policy-card-side{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+}
+
+
+@media (max-width:640px){
+
+    .service-page-head .btn,
+    .building-form-actions .btn,
+    .contract-total .btn,
+    .contract-pay-actions .btn{ width:100%; }
+
+    .contract-pay-actions,
+    .contract-pay-actions form{ width:100%; }
+
+    .elevator-row .field{ flex-basis:100%; }
+
+    .elevator-row .btn{ width:100%; }
+
+}
+
+
+/* ---- ثبت گزارش بازدید در پنل ادمین ---- */
+
+.visit-item-form{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:8px;
+}
+
+.visit-item-form .input{
+    flex:1 1 180px;
+    min-width:0;
+    height:42px;
+}
+
+@media (max-width:640px){
+    .visit-item-form{ width:100%; }
+    .visit-item-form .input,
+    .visit-item-form .btn{ flex-basis:100%; width:100%; }
+}

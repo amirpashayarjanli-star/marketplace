@@ -29,6 +29,7 @@ use App\Http\Controllers\AuctionDashboardController;
 use App\Http\Controllers\BidController;
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminContractController;
 use App\Http\Controllers\AdminServiceController;
 
 use App\Http\Controllers\BuildingController;
@@ -1114,5 +1115,69 @@ Route::middleware([
         'cancel'
     ])
     ->name('admin.service.cancel');
+
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | قراردادهای سرویس
+    |--------------------------------------------------------------------------
+    */
+
+    Route::get('/contracts', [
+        AdminContractController::class,
+        'index'
+    ])
+    ->name('admin.contracts.index');
+
+
+    Route::get('/contracts/{contract}', [
+        AdminContractController::class,
+        'show'
+    ])
+    ->name('admin.contracts.show');
+
+
+    Route::post('/contracts/{contract}/quote', [
+        AdminContractController::class,
+        'quote'
+    ])
+    ->name('admin.contracts.quote');
+
+
+    Route::post('/contracts/{contract}/technician', [
+        AdminContractController::class,
+        'assignTechnician'
+    ])
+    ->name('admin.contracts.technician');
+
+
+    Route::post('/contracts/{contract}/policies', [
+        AdminContractController::class,
+        'storePolicy'
+    ])
+    ->name('admin.contracts.policies.store');
+
+
+    Route::delete('/contracts/{contract}/policies/{policy}', [
+        AdminContractController::class,
+        'destroyPolicy'
+    ])
+    ->name('admin.contracts.policies.destroy');
+
+
+    Route::post('/contracts/{contract}/visits/{visit}', [
+        AdminContractController::class,
+        'completeVisit'
+    ])
+    ->name('admin.contracts.visits.complete');
+
+
+    Route::post('/contracts/{contract}/cancel', [
+        AdminContractController::class,
+        'cancel'
+    ])
+    ->name('admin.contracts.cancel');
 
 });
