@@ -1,2 +1,12 @@
 User-agent: *
-Disallow:
+Allow: /
+
+# بخش‌های خصوصی نباید ایندکس شوند
+Disallow: /dashboard
+Disallow: /admin
+Disallow: /moderator
+Disallow: /wallet
+Disallow: /login
+Disallow: /register
+
+Sitemap: https://www.asansorpro.com/sitemap.xml

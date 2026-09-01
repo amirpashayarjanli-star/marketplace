@@ -1,138 +1,197 @@
-<section class="relative py-10 hero-section">
+{{--
+    هیروی صفحه‌ی اصلی — سه ستون
+    ------------------------------------------------------------------
+    راست : متن معرفی و دکمه‌ها
+    وسط  : نرخ لحظه‌ای دلار / طلا / سکه
+    چپ   : اسلایدر تصویری که از پنل مدیریت تنظیم میشه
+--}}
 
+<section class="hero">
+
+    <div class="hero-aura hero-aura-a" aria-hidden="true"></div>
+    <div class="hero-aura hero-aura-b" aria-hidden="true"></div>
 
     <div class="container-app">
 
-
-        <div class="relative overflow-hidden rounded-[40px] shadow-2xl hero-wrapper">
-
+        <div class="hero-grid">
 
 
-            {{-- Header داخل هیرو --}}
+            {{-- ستون ۱ — متن --}}
 
-            <div class="hero-header-overlay">
+            <div class="hero-intro">
 
-                @include('sections.header')
-
-            </div>
-
-
-
-
-            <img
-                src="{{ asset('images/hero/hero.webp') }}"
-                alt="آسانسور پرو"
-                class="block w-full h-auto hero-image">
-
-
-
-
-
-            {{-- Floating Glow --}}
-
-            <div class="hero-glow hero-glow-one"></div>
-
-            <div class="hero-glow hero-glow-two"></div>
-
-
-
-
-
-            {{-- متن Hero --}}
-
-            <div class="absolute left-20 top-1/2 w-[42%] -translate-y-1/2">
-
-
-
-                <span class="hero-reveal hero-delay-1 inline-flex rounded-full bg-white/80 px-4 py-2 text-sm font-bold text-blue-700 backdrop-blur">
-
+                <span class="hero-eyebrow">
+                    <x-ui.icon name="bolt" :size="15" />
                     مرجع صنعت آسانسور ایران
-
                 </span>
 
-
-
-
-
-                <h1 class="hero-reveal hero-delay-2 mt-6 text-6xl font-black leading-tight text-slate-900">
-
-
+                <h1 class="hero-title">
                     شروع هر پروژه از
-
-
                     <br>
-
-
-                    <span class="text-blue-700">
-                        آسانسور
-                    </span>
-
-
-                    <span class="text-yellow-500">
-                        پرو
-                    </span>
-
-
+                    <span class="brand-blue">آسانسور</span><span class="brand-yellow">پرو</span>
                 </h1>
 
-
-
-
-
-                <p class="hero-reveal hero-delay-3 mt-8 text-xl leading-9 text-slate-600">
-
-
-                    شرکت‌های آسانسوری، تولیدکنندگان، فروشگاه‌ها،
-                    تکنسین‌ها و پروژه‌های ساختمانی را در یکجا پیدا کنید.
-
-
+                <p class="hero-lead">
+                    شرکت‌های آسانسوری، تولیدکنندگان، فروشگاه‌ها، تکنسین‌ها
+                    و پروژه‌های ساختمانی را در یک‌جا پیدا کنید.
                 </p>
 
+                <div class="hero-actions">
 
-
-
-
-                <div class="hero-reveal hero-delay-4 mt-10 flex gap-4">
-
-
-                    <a href="#"
-                       class="rounded-full bg-blue-600 px-8 py-4 font-bold text-white transition hover:bg-blue-700">
-
+                    <a href="{{ route('register') }}" class="btn btn-primary btn-lg">
                         شروع کنید
-
+                        <x-ui.icon name="arrow-left" :size="18" />
                     </a>
 
-
-
-
-                    <a href="#"
-                       class="rounded-full border border-slate-300 bg-white px-8 py-4 font-bold text-slate-700 transition hover:border-blue-600 hover:text-blue-600">
-
-                        مشاهده شرکت‌ها
-
+                    <a href="{{ route('service.index') }}" class="btn btn-lg pro-service-btn pro-service-btn-lg">
+                        <span class="pro-service-pro">پرو</span><span class="pro-service-service">سرویس</span>
                     </a>
 
+                    <a href="{{ route('auctions.index') }}" class="btn btn-lg pro-service-btn pro-auction-btn pro-service-btn-lg">
+                        <span class="pro-service-pro">پرو</span><span class="pro-auction-word">مزایده</span>
+                    </a>
 
                 </div>
 
+                <ul class="hero-trust">
+                    <li><x-ui.icon name="shield" :size="16" /> شرکت‌های تاییدشده</li>
+                    <li><x-ui.icon name="bolt" :size="16" /> پاسخ سریع</li>
+                    <li><x-ui.icon name="star" :size="16" /> امتیاز واقعی کاربران</li>
+                </ul>
 
             </div>
 
 
+            {{-- ستون ۲ — نرخ بازار --}}
+
+            <div class="hero-rates" role="region" aria-label="نرخ لحظه‌ای بازار">
+
+                @foreach($marketRates as $key => $rate)
+
+                    @php
+                        $tone = match($key){
+                            'usd'  => 'mint',
+                            'gold' => 'lemon',
+                            default => 'sky',
+                        };
+                        $icon = match($key){
+                            'usd'  => 'bolt',
+                            'gold' => 'star',
+                            default => 'certificate',
+                        };
+                        $toman = \App\Services\MarketRatesService::toToman($rate['value']);
+                        $up = ($rate['change'] ?? 0) > 0;
+                    @endphp
+
+                    <article class="rate-card">
+
+                        <span class="rate-icon tint-{{ $tone }}">
+                            <x-ui.icon :name="$icon" :size="18" />
+                        </span>
+
+                        <div class="rate-body">
+
+                            <span class="rate-label">{{ $rate['label'] }}</span>
+
+                            @if($rate['available'])
+
+                                <strong class="rate-value">
+                                    {{ number_format($toman) }}
+                                    <small>{{ $rate['unit'] }}</small>
+                                </strong>
+
+                                @if(!empty($rate['change']))
+                                    <span class="rate-change {{ $up ? 'is-up' : 'is-down' }}">
+                                        {{ $up ? '▲' : '▼' }}
+                                        {{ number_format(abs(\App\Services\MarketRatesService::toToman($rate['change']))) }}
+                                    </span>
+                                @endif
+
+                            @else
+
+                                {{-- منبع این نرخ هنوز وصل نشده؛ عدد جعلی نمایش نمی‌دهیم --}}
+                                <span class="rate-pending">به‌زودی</span>
+
+                            @endif
+
+                        </div>
+
+                    </article>
+
+                @endforeach
+
+            </div>
 
 
+            {{-- ستون ۳ — اسلایدر --}}
 
-            {{-- Dollar Widget --}}
+            <div class="hero-slider"
+                 x-data="heroSlider({{ $heroSlides->count() }})"
+                 x-init="start()"
+                 @mouseenter="stop()"
+                 @mouseleave="start()">
 
-            <x-hero-dollar :dollar="$dollar" />
+                @forelse($heroSlides as $i => $slide)
+
+                    <figure class="hero-slide"
+                            x-show="current === {{ $i }}"
+                            x-transition.opacity.duration.600ms
+                            @if($i > 0) style="display:none" @endif>
+
+                        <img src="{{ asset('storage/' . $slide->image) }}"
+                             alt="{{ $slide->title ?? 'اسلاید' }}"
+                             loading="{{ $i === 0 ? 'eager' : 'lazy' }}">
+
+                        @if($slide->title || $slide->hasButton())
+                            <figcaption class="hero-slide-caption">
+
+                                @if($slide->title)
+                                    <strong>{{ $slide->title }}</strong>
+                                @endif
+
+                                @if($slide->subtitle)
+                                    <span>{{ $slide->subtitle }}</span>
+                                @endif
+
+                                @if($slide->hasButton())
+                                    <a href="{{ $slide->button_url }}" class="btn btn-primary btn-sm">
+                                        {{ $slide->button_label }}
+                                    </a>
+                                @endif
+
+                            </figcaption>
+                        @endif
+
+                    </figure>
+
+                @empty
+
+                    {{-- هنوز اسلایدی ثبت نشده --}}
+                    <div class="hero-slide hero-slide-empty">
+                        <x-ui.icon name="building" :size="34" />
+                        <strong>اسلایدی ثبت نشده</strong>
+                        <span>از پنل مدیریت › اسلایدر صفحه اصلی اضافه کنید.</span>
+                    </div>
+
+                @endforelse
 
 
+                @if($heroSlides->count() > 1)
+                    <div class="hero-slider-dots">
+                        @foreach($heroSlides as $i => $slide)
+                            <button type="button"
+                                    @click="go({{ $i }})"
+                                    :class="{ 'is-active': current === {{ $i }} }"
+                                    aria-label="اسلاید {{ $i + 1 }}"></button>
+                        @endforeach
+                    </div>
+                @endif
+
+            </div>
 
 
         </div>
 
-
     </div>
-
 
 </section>

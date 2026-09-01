@@ -73,7 +73,12 @@
 
     {{-- دلار --}}
 
-    <x-hero-dollar :dollar="$dollar" />
+    {{-- نسخه‌ی موبایل در فاز بعد بازطراحی میشه؛ فعلاً از همون
+         نرخ دلارِ سرویس جدید تغذیه می‌کنه تا نشکنه. --}}
+    <x-hero-dollar :dollar="[
+        'price'  => \App\Services\MarketRatesService::toToman($marketRates['usd']['value'] ?? null) ?? 0,
+        'change' => \App\Services\MarketRatesService::toToman($marketRates['usd']['change'] ?? null) ?? 0,
+    ]" />
 
 
 
