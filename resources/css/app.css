@@ -36,6 +36,8 @@
 @import "./components/misc.css";
 @import "./components/wizard.css";
 @import "./components/service.css";
+@import "./components/auction.css";
+@import "./components/dashboard.css";
 
 /* ---- تنظیمات مخصوص حالت شب ---- */
 @import "./dark-overrides.css";

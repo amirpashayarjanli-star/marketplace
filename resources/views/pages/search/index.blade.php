@@ -37,17 +37,17 @@
 
     <div class="container-app">
 
-        <form method="GET" action="{{ route('search') }}" class="relative" style="max-width:560px;margin:0 auto 2.5rem">
+        <form method="GET" action="{{ route('search') }}" class="directory-search search-hero-form">
 
             <input
                 type="search"
                 name="q"
                 value="{{ $q }}"
                 placeholder="جستجو در آسانسور پرو..."
-                class="input header-search-input w-full rounded-full"
+                class="input"
                 autofocus>
 
-            <button type="submit" class="absolute inset-y-0 right-4 flex items-center text-slate-400 hover:text-blue-600 transition">
+            <button type="submit" class="directory-search-btn" aria-label="جستجو">
                 <x-ui.icon name="search" :size="20" />
             </button>
 
@@ -76,9 +76,9 @@
                     url="{{ route('companies.index', ['search' => $q]) }}"
                     button="مشاهده همه"
                 />
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div class="company-grid search-group">
                     @foreach($companies as $company)
-                        <a href="{{ route('company.profile', $company->slug) }}" class="block">
+                        <a href="{{ route('company.profile', $company->slug) }}" class="search-result-link">
                             <x-card-company :company="$company" />
                         </a>
                     @endforeach
@@ -92,9 +92,9 @@
                     url="{{ route('manufacturers.index', ['search' => $q]) }}"
                     button="مشاهده همه"
                 />
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div class="company-grid search-group">
                     @foreach($manufacturers as $manufacturer)
-                        <a href="{{ route('manufacturer.profile', $manufacturer->slug) }}" class="block">
+                        <a href="{{ route('manufacturer.profile', $manufacturer->slug) }}" class="search-result-link">
                             <x-card-manufacturer :manufacturer="$manufacturer" />
                         </a>
                     @endforeach
@@ -108,9 +108,9 @@
                     url="{{ route('stores.index', ['search' => $q]) }}"
                     button="مشاهده همه"
                 />
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div class="company-grid search-group">
                     @foreach($stores as $store)
-                        <a href="{{ route('store.profile', $store->slug) }}" class="block">
+                        <a href="{{ route('store.profile', $store->slug) }}" class="search-result-link">
                             <x-card-store :store="$store" />
                         </a>
                     @endforeach
@@ -124,9 +124,9 @@
                     url="{{ route('technicians.index', ['search' => $q]) }}"
                     button="مشاهده همه"
                 />
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <div class="company-grid search-group">
                     @foreach($technicians as $technician)
-                        <a href="{{ route('technician.profile', $technician->slug) }}" class="block">
+                        <a href="{{ route('technician.profile', $technician->slug) }}" class="search-result-link">
                             <x-card-technician :technician="$technician" />
                         </a>
                     @endforeach
@@ -140,7 +140,7 @@
                     url="{{ route('projects.index', ['search' => $q]) }}"
                     button="مشاهده همه"
                 />
-                <div class="company-grid mb-12">
+                <div class="company-grid search-group">
                     @foreach($projects as $project)
                         <x-directory.project-card :project="$project" />
                     @endforeach

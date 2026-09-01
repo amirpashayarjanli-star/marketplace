@@ -1,0 +1,290 @@
+/* ===========================================================
+   شل داشبورد
+   -----------------------------------------------------------
+   داشبورد قبلاً روی cdn.tailwindcss.com سوار بود و عملاً یک سایت
+   دوم با ظاهر جدا بود. حالا از همون توکن‌های سیستم طراحی تغذیه
+   می‌کنه تا با بقیه‌ی سایت یکی باشه — شامل حالت شب.
+   =========================================================== */
+
+.dashboard-shell{
+    display:flex;
+    min-height:100vh;
+    background:var(--background);
+}
+
+.dashboard-main{
+    display:flex;
+    flex-direction:column;
+    flex:1 1 auto;
+    min-width:0;
+}
+
+.dashboard-content{
+    flex:1 1 auto;
+    padding:clamp(18px, 1rem + 1.5vw, 32px);
+}
+
+
+/* ===========================================================
+   سایدبار
+   =========================================================== */
+
+.dashboard-sidebar{
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+    flex:none;
+
+    width:272px;
+    padding:22px 18px;
+
+    border-inline-start:1px solid var(--border);
+    background:var(--surface);
+}
+
+.dashboard-brand{
+    font-size:1.5rem;
+    font-weight:800;
+    text-decoration:none;
+    letter-spacing:-.02em;
+}
+
+
+/* ---- نوار پیشرفت پروفایل ---- */
+
+.dashboard-progress{
+    display:block;
+    padding:16px;
+
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    background:var(--primary-soft);
+
+    text-decoration:none;
+
+    transition:border-color var(--transition) ease;
+}
+
+.dashboard-progress:hover{ border-color:var(--primary); }
+
+.dashboard-progress-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    margin-bottom:10px;
+
+    font-size:.85rem;
+    font-weight:700;
+    color:var(--text);
+}
+
+.dashboard-progress-head strong{
+    color:var(--primary);
+    font-variant-numeric:tabular-nums;
+}
+
+.dashboard-progress-track{
+    height:8px;
+    border-radius:var(--radius-full);
+    background:var(--surface-3, var(--surface-2));
+    overflow:hidden;
+}
+
+.dashboard-progress-bar{
+    height:100%;
+    border-radius:var(--radius-full);
+    background:var(--gradient-button);
+}
+
+.dashboard-progress-note{
+    margin:10px 0 0;
+    font-size:.76rem;
+    line-height:1.8;
+    color:var(--text-muted);
+}
+
+
+/* ---- منو ---- */
+
+.dashboard-nav{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+}
+
+.dashboard-nav-link{
+    display:flex;
+    align-items:center;
+    gap:.6rem;
+    width:100%;
+
+    padding:12px 14px;
+
+    border:none;
+    border-radius:var(--radius-md);
+    background:none;
+
+    color:var(--text-muted);
+    font-family:inherit;
+    font-size:.92rem;
+    font-weight:700;
+    text-align:start;
+    text-decoration:none;
+    cursor:pointer;
+
+    transition:background var(--transition) ease,
+               color var(--transition) ease;
+}
+
+.dashboard-nav-link:hover{
+    background:var(--surface-2);
+    color:var(--text);
+}
+
+.dashboard-nav-link.is-disabled{
+    opacity:.4;
+    pointer-events:none;
+}
+
+.dashboard-nav-logout{ color:var(--danger); }
+
+.dashboard-nav-logout:hover{
+    background:var(--danger-soft);
+    color:var(--danger);
+}
+
+.dashboard-nav-sep{
+    margin-block:12px;
+    border:none;
+    border-top:1px solid var(--border);
+}
+
+
+/* ===========================================================
+   هدر
+   =========================================================== */
+
+.dashboard-header{
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    padding:16px clamp(18px, 1rem + 1.5vw, 28px);
+
+    border-bottom:1px solid var(--border);
+    background:var(--surface);
+}
+
+.dashboard-header-greeting{
+    flex:1 1 auto;
+    min-width:0;
+}
+
+.dashboard-header-greeting h3{
+    margin:0;
+    font-size:1.05rem;
+    font-weight:800;
+    color:var(--text);
+
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.dashboard-header-greeting p{
+    margin:2px 0 0;
+    font-size:.82rem;
+    color:var(--text-muted);
+}
+
+.dashboard-header-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex:none;
+}
+
+
+/* ---- دکمه‌ی همبرگری — فقط موبایل ---- */
+
+.dashboard-nav-toggle{
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    gap:5px;
+    flex:none;
+
+    width:42px;
+    height:42px;
+    padding:0 10px;
+
+    border:1px solid var(--border);
+    border-radius:var(--radius-md);
+    background:var(--surface);
+    cursor:pointer;
+}
+
+.dashboard-nav-toggle span{
+    display:block;
+    height:2px;
+    border-radius:2px;
+    background:var(--text);
+}
+
+.dashboard-nav-backdrop{
+    display:none;
+}
+
+
+/* ===========================================================
+   موبایل — سایدبار کشویی
+   =========================================================== */
+
+@media (max-width:1023px){
+
+    .dashboard-nav-toggle{ display:flex; }
+
+    .dashboard-sidebar{
+        position:fixed;
+        inset-block:0;
+        inset-inline-start:0;
+        z-index:70;
+
+        width:min(272px, 84vw);
+        overflow-y:auto;
+
+        box-shadow:var(--shadow-lg);
+
+        /* بسته: بیرون از لبه پارک می‌شود. سرریز افقی‌اش را
+           overflow-x:clip روی html/body می‌گیرد. */
+        transform:translateX(100%);
+        visibility:hidden;
+        transition:transform .25s var(--ease-out), visibility .25s;
+    }
+
+    [dir="ltr"] .dashboard-sidebar{ transform:translateX(-100%); }
+
+    .dashboard-sidebar.is-open{
+        transform:translateX(0);
+        visibility:visible;
+    }
+
+    .dashboard-nav-backdrop{
+        position:fixed;
+        inset:0;
+        z-index:69;
+
+        display:block;
+        background:rgba(15, 23, 42, .5);
+        backdrop-filter:blur(2px);
+    }
+
+}
+
+
+@media (max-width:640px){
+
+    .dashboard-header-greeting p{ display:none; }
+
+}

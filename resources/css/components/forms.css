@@ -73,3 +73,93 @@ textarea.input{
     font-weight:700;
     color:var(--text);
 }
+
+
+/* ===========================================================
+   جفتِ برچسب و ورودی
+   -----------------------------------------------------------
+   قبلاً هر صفحه این ساختار رو با کلاس‌های خام Tailwind از نو
+   می‌نوشت. اینجا یک بار تعریف میشه تا فرم‌ها همه‌جا یک شکل باشن.
+   =========================================================== */
+
+.field{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.field-label{
+    font-size:.88rem;
+    font-weight:700;
+    color:var(--text);
+}
+
+.field-hint{
+    font-size:.8rem;
+    line-height:1.9;
+    color:var(--text-muted);
+}
+
+.field-error{
+    font-size:.8rem;
+    font-weight:600;
+    color:var(--danger);
+}
+
+/* ردیف فرم — فیلدها کنار هم، و زیر ۷۶۸ زیر هم */
+.field-row{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:flex-end;
+    gap:14px;
+}
+
+.field-row .field{
+    flex:1 1 180px;
+    min-width:0;
+}
+
+
+/* ===========================================================
+   پیام‌ها
+   =========================================================== */
+
+.alert{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+
+    margin-bottom:20px;
+    padding:16px 18px;
+
+    border:1px solid var(--pastel-info-border);
+    border-radius:var(--radius-lg);
+    background:var(--pastel-info-bg);
+
+    color:var(--pastel-info-text);
+    font-size:.9rem;
+    line-height:1.9;
+}
+
+.alert ul{
+    margin:0;
+    padding-inline-start:1.2rem;
+}
+
+.alert-success{
+    border-color:var(--pastel-success-border);
+    background:var(--pastel-success-bg);
+    color:var(--pastel-success-text);
+}
+
+.alert-warning{
+    border-color:var(--pastel-warning-border);
+    background:var(--pastel-warning-bg);
+    color:var(--pastel-warning-text);
+}
+
+.alert-error{
+    border-color:var(--pastel-danger-border);
+    background:var(--pastel-danger-bg);
+    color:var(--pastel-danger-text);
+}

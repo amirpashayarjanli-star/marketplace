@@ -1,0 +1,898 @@
+/* ===========================================================
+   پرو مزایده
+   -----------------------------------------------------------
+   صفحات مزایده اول با کلاس‌های خام Tailwind نوشته شده بودن
+   (bg-white، text-slate-800، bg-blue-600). نتیجه‌اش این بود که
+   حالت شب رو نمی‌شناختن و رنگ‌هاشون با بقیه‌ی سایت نمی‌خوند.
+   اینجا همون صفحه‌ها روی توکن‌های سیستم طراحی بازنویسی شدن.
+   =========================================================== */
+
+
+/* ===========================================================
+   فراخوان مشاوره — بالای فهرست مزایده‌ها
+   =========================================================== */
+
+.auction-cta{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:clamp(20px, 1rem + 2vw, 36px);
+
+    margin-bottom:clamp(24px, 1.5rem + 1.5vw, 36px);
+    padding:clamp(22px, 1.2rem + 1.5vw, 32px);
+
+    border:1.5px solid var(--gold);
+    border-radius:var(--radius-xl);
+    background:
+        linear-gradient(
+            var(--auction-cta-angle, -90deg),
+            var(--gold-soft) 0%,
+            var(--surface) 60%
+        );
+}
+
+/*
+| متن و دکمه‌ها هر کدوم یک ستون‌ان. min-width:0 لازمه وگرنه ستون متن
+| زیر ۷۶۸ کوچک نمی‌شه و از کارت می‌زنه بیرون — همون باگی که باعث شده
+| بود عنوان و پاراگراف روی هم بیفتن.
+*/
+.auction-cta-text{
+    flex:1 1 clamp(240px, 26rem, 100%);
+    min-width:0;
+}
+
+.auction-cta-text h2{
+    margin:0 0 10px;
+    font-size:clamp(1.15rem, .95rem + .8vw, 1.45rem);
+    font-weight:800;
+    line-height:1.7;
+    color:var(--text);
+}
+
+.auction-cta-text p{
+    margin:0 0 14px;
+    font-size:.9rem;
+    line-height:1.95;
+    color:var(--text-muted);
+}
+
+.auction-cta-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.auction-cta-actions{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    flex:1 1 220px;
+    min-width:0;
+}
+
+.auction-cta-actions .btn{ width:100%; }
+
+.auction-cta-phone{
+    background:var(--gradient-warm);
+    color:#3A2400;
+    box-shadow:var(--shadow-gold);
+    font-variant-numeric:tabular-nums;
+}
+
+.auction-cta-phone:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 30px color-mix(in srgb, var(--gold) 40%, transparent);
+}
+
+
+/* ===========================================================
+   تب‌های منبع (همه / ثبت‌شده در سایت / سامانه ستاد)
+   =========================================================== */
+
+.auction-tabs{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:16px;
+}
+
+.auction-tab{
+    display:inline-flex;
+    align-items:center;
+    height:40px;
+    padding-inline:1.2rem;
+
+    border:1.5px solid var(--border);
+    border-radius:var(--radius-full);
+    background:var(--surface);
+
+    color:var(--text-muted);
+    font-size:.88rem;
+    font-weight:700;
+    text-decoration:none;
+
+    transition:border-color var(--transition) ease,
+               background var(--transition) ease,
+               color var(--transition) ease;
+}
+
+.auction-tab:hover{
+    border-color:var(--primary);
+    color:var(--primary);
+}
+
+.auction-tab.is-active{
+    border-color:transparent;
+    background:var(--gradient-button);
+    color:var(--primary-contrast);
+}
+
+
+/* ===========================================================
+   نوار فیلتر
+   =========================================================== */
+
+.auction-filter{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:flex-end;
+    gap:14px;
+
+    margin-bottom:clamp(24px, 1.5rem + 1.5vw, 36px);
+    padding:18px;
+
+    border:1px solid var(--border);
+    border-radius:var(--radius-xl);
+    background:var(--surface);
+    box-shadow:var(--shadow-sm);
+}
+
+.auction-filter .field{ flex:1 1 180px; min-width:0; }
+
+.auction-filter .btn{ flex:0 0 auto; height:54px; }
+
+
+/* ===========================================================
+   فهرست مزایده‌ها
+   =========================================================== */
+
+.auction-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+    gap:clamp(16px, 1rem + 1vw, 26px);
+}
+
+.auction-card{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    height:100%;
+    padding:22px;
+
+    text-decoration:none;
+    color:inherit;
+}
+
+.auction-card-head{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+}
+
+.auction-card-tags{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:6px;
+}
+
+.auction-card h2,
+.auction-card-title{
+    margin:0;
+    font-size:1.02rem;
+    font-weight:800;
+    line-height:1.7;
+    color:var(--text);
+
+    /* عنوان مناقصه‌های ستاد بلنده — سه خط بسه */
+    display:-webkit-box;
+    -webkit-line-clamp:3;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+}
+
+.auction-card-meta{
+    margin:0;
+    font-size:.85rem;
+    line-height:1.9;
+    color:var(--text-muted);
+}
+
+.auction-card-foot{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+
+    margin-top:auto;
+    padding-top:14px;
+    border-top:1px solid var(--border);
+
+    font-size:.86rem;
+    color:var(--text-muted);
+}
+
+.auction-lead{
+    font-weight:800;
+    color:var(--success);
+    font-variant-numeric:tabular-nums;
+}
+
+.auction-deadline{
+    margin:0;
+    font-size:.78rem;
+    color:var(--text-soft);
+}
+
+
+/* ---- نشان وضعیت ---- */
+
+.auction-status{
+    font-size:.8rem;
+    font-weight:800;
+}
+
+.auction-status-active{ color:var(--success); }
+.auction-status-closed{ color:var(--warning); }
+.auction-status-awarded{ color:var(--primary); }
+.auction-status-cancelled{ color:var(--danger); }
+
+
+/* ===========================================================
+   صفحه‌ی جزئیات
+   =========================================================== */
+
+.auction-detail{
+    display:grid;
+    grid-template-columns:minmax(0, 2fr) minmax(0, 1fr);
+    align-items:start;
+    gap:clamp(20px, 1.2rem + 2vw, 34px);
+}
+
+@media (max-width:1023px){
+    .auction-detail{ grid-template-columns:minmax(0, 1fr); }
+}
+
+.auction-detail-main{ min-width:0; }
+
+.auction-detail-head{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:8px;
+    margin-bottom:12px;
+}
+
+.auction-detail h1{
+    margin:0 0 10px;
+    font-size:clamp(1.35rem, 1.1rem + 1.2vw, 1.9rem);
+    font-weight:800;
+    line-height:1.6;
+    color:var(--text);
+}
+
+.auction-description{
+    margin-bottom:24px;
+    white-space:pre-line;
+    line-height:2;
+    color:var(--text-muted);
+}
+
+.auction-specs{
+    margin-bottom:24px;
+    padding:18px;
+
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    background:var(--surface-2);
+
+    font-size:.9rem;
+    line-height:1.95;
+    white-space:pre-line;
+    color:var(--text-muted);
+}
+
+.auction-specs strong{
+    display:block;
+    margin-bottom:6px;
+    color:var(--text);
+}
+
+
+/* ---- بلوک مناقصه‌ی ستاد ---- */
+
+.auction-external{
+    margin-bottom:24px;
+    padding:18px;
+
+    border:1px solid var(--pastel-info-border);
+    border-radius:var(--radius-lg);
+    background:var(--pastel-info-bg);
+
+    color:var(--pastel-info-text);
+    font-size:.9rem;
+}
+
+.auction-external-head{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:8px;
+    margin-bottom:12px;
+    font-weight:700;
+    line-height:1.8;
+}
+
+.auction-external dl{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+    gap:6px 18px;
+    margin:0;
+}
+
+.auction-external dt,
+.auction-external dd{
+    display:inline;
+    margin:0;
+}
+
+.auction-external dd{ font-weight:700; }
+
+
+/* ===========================================================
+   جدول پیشنهادها
+   =========================================================== */
+
+.auction-bids-title{
+    margin:32px 0 14px;
+    font-size:1.15rem;
+    font-weight:800;
+    color:var(--text);
+}
+
+.auction-table-wrap{
+    overflow-x:auto;
+    border:1px solid var(--border);
+    border-radius:var(--radius-xl);
+    background:var(--surface);
+}
+
+.auction-table{
+    width:100%;
+    min-width:520px;
+    border-collapse:collapse;
+    text-align:start;
+    font-size:.88rem;
+}
+
+.auction-table th{
+    padding:14px;
+    background:var(--surface-2);
+    color:var(--text-muted);
+    font-weight:700;
+    text-align:start;
+    white-space:nowrap;
+}
+
+.auction-table td{
+    padding:14px;
+    border-top:1px solid var(--border);
+    color:var(--text-muted);
+    vertical-align:middle;
+}
+
+.auction-table .is-leading{
+    background:var(--pastel-success-bg);
+}
+
+.auction-bidder{
+    font-weight:700;
+    color:var(--text);
+}
+
+.auction-amount{
+    font-weight:800;
+    color:var(--text);
+    font-variant-numeric:tabular-nums;
+    white-space:nowrap;
+}
+
+.auction-empty-row{
+    padding:32px;
+    text-align:center;
+    color:var(--text-soft);
+}
+
+/* نشان کوچک داخل جدول (پیشرو / برنده / شما) */
+.auction-flag{
+    display:inline-flex;
+    align-items:center;
+    height:22px;
+    padding-inline:.5rem;
+    margin-inline-start:.4rem;
+
+    border-radius:var(--radius-sm);
+    font-size:.68rem;
+    font-weight:800;
+    white-space:nowrap;
+}
+
+.auction-flag-lead{
+    background:var(--success);
+    color:#fff;
+}
+
+.auction-flag-won{
+    background:var(--gradient-button);
+    color:var(--primary-contrast);
+}
+
+.auction-flag-mine{
+    background:var(--surface-2);
+    color:var(--text-soft);
+}
+
+
+/* ===========================================================
+   پنل کناری — خلاصه و ثبت پیشنهاد
+   =========================================================== */
+
+.auction-panel{
+    position:sticky;
+    inset-block-start:112px;
+
+    padding:clamp(20px, 1.2rem + 1vw, 26px);
+
+    border:1px solid var(--border);
+    border-radius:var(--radius-xl);
+    background:var(--surface);
+    box-shadow:var(--shadow-sm);
+}
+
+@media (max-width:1023px){
+    .auction-panel{ position:static; }
+}
+
+.auction-summary{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-bottom:20px;
+    font-size:.88rem;
+}
+
+.auction-summary-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+}
+
+.auction-summary-row dt,
+.auction-summary-key{
+    color:var(--text-muted);
+}
+
+.auction-summary-row dd,
+.auction-summary-value{
+    margin:0;
+    font-weight:700;
+    color:var(--text);
+    font-variant-numeric:tabular-nums;
+    text-align:end;
+}
+
+.auction-form{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.auction-form .input{ height:50px; }
+
+.auction-mybid{
+    margin-bottom:16px;
+    padding:16px;
+
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    background:var(--surface-2);
+}
+
+.auction-mybid-label{
+    margin:0 0 4px;
+    font-size:.82rem;
+    color:var(--text-muted);
+}
+
+.auction-mybid-amount{
+    margin:0;
+    font-size:1.2rem;
+    font-weight:800;
+    color:var(--text);
+    font-variant-numeric:tabular-nums;
+}
+
+.auction-mybid-meta{
+    margin:4px 0 0;
+    font-size:.82rem;
+    color:var(--text-muted);
+}
+
+/* دکمه‌ی انصراف — خطر، ولی نه پررنگ */
+.btn-danger-outline{
+    background:transparent;
+    border:1.5px solid var(--pastel-danger-border);
+    color:var(--danger);
+}
+
+.btn-danger-outline:hover{
+    background:var(--danger-soft);
+    border-color:var(--danger);
+}
+
+/* دکمه‌ی ثبت پیشنهاد — تایید، نه کنش خنثی */
+.btn-success{
+    background:var(--success);
+    color:#fff;
+}
+
+.btn-success:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 30px color-mix(in srgb, var(--success) 36%, transparent);
+}
+
+.auction-note{
+    margin:0;
+    padding:12px 14px;
+
+    border:1px solid var(--pastel-warning-border);
+    border-radius:var(--radius-md);
+    background:var(--pastel-warning-bg);
+
+    color:var(--pastel-warning-text);
+    font-size:.8rem;
+    line-height:1.9;
+}
+
+.auction-blocked{
+    margin:0;
+    padding:18px;
+
+    border-radius:var(--radius-lg);
+    background:var(--surface-2);
+
+    color:var(--text-muted);
+    font-size:.88rem;
+    line-height:1.95;
+    text-align:center;
+}
+
+
+/* ===========================================================
+   داشبورد — مزایده‌های من و پیشنهادهای من
+   =========================================================== */
+
+.auction-board-head{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    margin-bottom:22px;
+}
+
+.auction-board-head h1{
+    margin:0;
+    font-size:clamp(1.3rem, 1.1rem + 1vw, 1.7rem);
+    font-weight:800;
+    color:var(--text);
+}
+
+.auction-board-head p{
+    margin:4px 0 0;
+    font-size:.9rem;
+    color:var(--text-muted);
+}
+
+.auction-board-list{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.auction-board-item{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+
+    padding:20px;
+    text-decoration:none;
+    color:inherit;
+}
+
+.auction-board-item-main{
+    flex:1 1 260px;
+    min-width:0;
+}
+
+.auction-board-item-main h2{
+    margin:0 0 6px;
+    font-size:1rem;
+    font-weight:800;
+    line-height:1.7;
+    color:var(--text);
+}
+
+.auction-board-item-meta{
+    margin:0;
+    font-size:.85rem;
+    line-height:1.9;
+    color:var(--text-muted);
+}
+
+.auction-board-item-side{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:4px;
+    flex:0 0 auto;
+}
+
+.auction-board-amount{
+    font-size:1.05rem;
+    font-weight:800;
+    color:var(--text);
+    font-variant-numeric:tabular-nums;
+}
+
+.auction-board-empty{
+    padding:clamp(32px, 2rem + 2vw, 56px);
+    border:1px dashed var(--border-strong);
+    border-radius:var(--radius-xl);
+
+    color:var(--text-muted);
+    text-align:center;
+}
+
+.auction-board-empty p{ margin:0 0 16px; }
+
+
+/* ===========================================================
+   موبایل
+   =========================================================== */
+
+@media (max-width:640px){
+
+    .auction-cta{ background:var(--surface); }
+
+    .auction-cta-actions{ flex-basis:100%; }
+
+    .auction-filter{ padding:14px; }
+
+    .auction-filter .field{ flex-basis:100%; }
+
+    .auction-filter .btn{ width:100%; }
+
+    .auction-board-item-side{
+        align-items:flex-start;
+        flex-basis:100%;
+    }
+
+}
+
+
+/* ---- فرم ساخت مزایده ---- */
+
+.auction-create-form{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+
+    max-width:680px;
+    padding:clamp(22px, 1.2rem + 1.5vw, 30px);
+}
+
+.auction-create-form .btn{ align-self:flex-start; }
+
+.auction-note a{
+    font-weight:800;
+    color:inherit;
+    text-decoration:underline;
+}
+
+@media (max-width:640px){
+    .auction-create-form .btn{ width:100%; }
+}
+
+
+/* ===========================================================
+   داشبورد — جزئیات مزایده و مرحله‌ی مشاوره
+   =========================================================== */
+
+.auction-back{
+    margin-bottom:20px;
+}
+
+.auction-back a{
+    color:var(--primary);
+    font-weight:700;
+    font-size:.9rem;
+    text-decoration:none;
+}
+
+.auction-back a:hover{ text-decoration:underline; }
+
+
+.auction-detail-card{
+    padding:clamp(22px, 1.2rem + 1.5vw, 30px);
+    margin-bottom:26px;
+}
+
+.auction-detail-card-head{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:12px;
+}
+
+.auction-detail-card-head h1{
+    margin:0;
+    font-size:clamp(1.2rem, 1rem + 1vw, 1.6rem);
+    font-weight:800;
+    line-height:1.6;
+    color:var(--text);
+}
+
+.auction-detail-card .auction-description{
+    margin-block:18px 0;
+}
+
+.auction-cancel-form{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:22px;
+    padding-top:20px;
+    border-top:1px solid var(--border);
+}
+
+.auction-cancel-form .input{
+    flex:1 1 220px;
+    min-width:0;
+    height:46px;
+}
+
+
+/* ---- پنل مشاوره ---- */
+
+.consult-panel{
+    margin-bottom:26px;
+    padding:clamp(22px, 1.2rem + 1.5vw, 30px);
+
+    border:1.5px solid var(--gold);
+    border-radius:var(--radius-xl);
+    background:linear-gradient(-90deg, var(--gold-soft) 0%, var(--surface) 65%);
+}
+
+.consult-panel-head{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:18px;
+}
+
+.consult-panel-icon{
+    display:grid;
+    place-items:center;
+    flex:none;
+
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    background:var(--gradient-warm);
+    font-size:1.4rem;
+}
+
+.consult-panel-head h2{
+    margin:0;
+    font-size:clamp(1.05rem, .95rem + .5vw, 1.25rem);
+    font-weight:800;
+    color:var(--text);
+}
+
+.consult-panel-head p{
+    margin:4px 0 0;
+    font-size:.86rem;
+    color:var(--text-muted);
+}
+
+.consult-benefits{
+    margin:0 0 20px;
+    padding:0;
+    list-style:none;
+
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+
+    font-size:.88rem;
+    color:var(--text-muted);
+}
+
+.consult-benefits li::before{
+    content:"✅";
+    margin-inline-end:.5rem;
+}
+
+.consult-step{
+    padding:18px;
+    margin-bottom:14px;
+
+    border:1px solid var(--gold-soft);
+    border-radius:var(--radius-lg);
+    background:var(--surface);
+}
+
+.consult-step:last-child{ margin-bottom:0; }
+
+.consult-step-head{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:8px;
+    margin-bottom:10px;
+}
+
+.consult-step-title{
+    font-weight:800;
+    color:var(--text);
+}
+
+/* نشان «انجام شد» می‌ره ته ردیف */
+.consult-step-head .badge-success{ margin-inline-start:auto; }
+
+.consult-step-desc{
+    margin:0 0 14px;
+    font-size:.88rem;
+    line-height:1.9;
+    color:var(--text-muted);
+}
+
+.consult-step-desc strong{ color:var(--text); }
+
+.consult-step-actions{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:12px;
+}
+
+@media (max-width:640px){
+
+    .consult-step-actions{ flex-direction:column; align-items:stretch; }
+
+    .consult-step-actions .btn,
+    .consult-step-actions form,
+    .consult-step-actions form .btn{ width:100%; }
+
+    .auction-cancel-form .btn{ width:100%; }
+
+}

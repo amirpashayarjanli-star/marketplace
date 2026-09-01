@@ -162,3 +162,27 @@
     background:var(--gradient-brand);
     color:#fff;
 }
+
+
+/* ---- فرم جستجوی صفحه‌ی نتایج ---- */
+
+.search-hero-form{
+    max-width:560px;
+    margin-inline:auto;
+    margin-bottom:clamp(28px, 2rem + 1vw, 44px);
+}
+
+.search-hero-form .input{
+    border-radius:var(--radius-full);
+}
+
+/* فاصله‌ی بین گروه‌های نتیجه (شرکت‌ها، تکنسین‌ها، …) */
+.search-group{
+    margin-bottom:clamp(32px, 2rem + 2vw, 56px);
+}
+
+.search-result-link{
+    display:block;
+    text-decoration:none;
+    color:inherit;
+}

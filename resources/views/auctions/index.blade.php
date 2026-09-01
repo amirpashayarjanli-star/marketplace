@@ -32,45 +32,46 @@
 
         {{-- فراخوان کارفرما — مانور روی مشاوره --}}
 
-        <div class="mb-8 overflow-hidden rounded-2xl border-2 border-amber-300 bg-gradient-to-l from-amber-50 via-white to-white">
+        @php $consultFee = (int) config('proauction.consultation_fee', 0); @endphp
 
-            <div class="flex flex-wrap items-center gap-6 p-7">
+        <div class="auction-cta">
 
-                <div class="flex-1 min-w-[260px]">
-                    @php $consultFee = (int) config('proauction.consultation_fee', 0); @endphp
+            <div class="auction-cta-text">
 
-                    <h2 class="mb-2 text-xl font-extrabold text-slate-800">
-                        پروژه‌ی آسانسور دارید؟
-                        {{ $consultFee > 0 ? 'مشاوره‌ی تخصصی بگیرید' : 'رایگان مشاوره بگیرید' }}
-                    </h2>
-                    <p class="mb-3 text-sm leading-7 text-slate-600">
-                        کارشناسان آسانسور پرو پروژه‌ی شما را بررسی می‌کنند، برآورد واقعی هزینه می‌دهند
-                        و مزایده‌تان را طوری تنظیم می‌کنند که شرکت‌های معتبر رقابت کنند —
-                        نه اینکه فقط ارزان‌ترین بیاید.
-                    </p>
-                    <div class="flex flex-wrap gap-2 text-xs">
-                        <span class="rounded-full bg-white px-3 py-1 font-bold text-slate-600 ring-1 ring-slate-200">برآورد کارشناسی هزینه</span>
-                        <span class="rounded-full bg-white px-3 py-1 font-bold text-slate-600 ring-1 ring-slate-200">تنظیم شرح فنی</span>
-                        <span class="rounded-full bg-white px-3 py-1 font-bold text-slate-600 ring-1 ring-slate-200">راهنمایی انتخاب برنده</span>
-                        @if($consultFee > 0)
-                            <span class="rounded-full bg-amber-100 px-3 py-1 font-bold text-amber-800">
-                                هزینه: {{ number_format($consultFee) }} تومان
-                            </span>
-                        @endif
-                    </div>
+                <h2>
+                    پروژه‌ی آسانسور دارید؟
+                    {{ $consultFee > 0 ? 'مشاوره‌ی تخصصی بگیرید' : 'رایگان مشاوره بگیرید' }}
+                </h2>
+
+                <p>
+                    کارشناسان آسانسور پرو پروژه‌ی شما را بررسی می‌کنند، برآورد واقعی هزینه می‌دهند
+                    و مزایده‌تان را طوری تنظیم می‌کنند که شرکت‌های معتبر رقابت کنند —
+                    نه اینکه فقط ارزان‌ترین بیاید.
+                </p>
+
+                <div class="auction-cta-tags">
+                    <span class="badge">برآورد کارشناسی هزینه</span>
+                    <span class="badge">تنظیم شرح فنی</span>
+                    <span class="badge">راهنمایی انتخاب برنده</span>
+                    @if($consultFee > 0)
+                        <span class="badge badge-gold">
+                            هزینه: {{ number_format($consultFee) }} تومان
+                        </span>
+                    @endif
                 </div>
 
-                <div class="flex flex-col gap-3">
-                    <a href="tel:{{ config('proauction.consultation_phone') }}"
-                       class="inline-flex items-center justify-center gap-2 rounded-xl bg-amber-500 px-8 py-4 text-lg font-black text-white shadow-lg transition hover:bg-amber-600">
-                        📞 {{ config('proauction.consultation_phone') }}
-                    </a>
+            </div>
 
-                    <a href="{{ route('dashboard.auctions.create') }}"
-                       class="rounded-xl border border-slate-300 bg-white px-8 py-3 text-center text-sm font-bold text-slate-700 transition hover:border-amber-400">
-                        ثبت پروژه در مزایده
-                    </a>
-                </div>
+            <div class="auction-cta-actions">
+
+                <a href="tel:{{ config('proauction.consultation_phone') }}"
+                   class="btn btn-lg auction-cta-phone">
+                    📞 {{ config('proauction.consultation_phone') }}
+                </a>
+
+                <a href="{{ route('dashboard.auctions.create') }}" class="btn btn-outline">
+                    ثبت پروژه در مزایده
+                </a>
 
             </div>
 
@@ -80,37 +81,31 @@
 
         {{-- تب منبع --}}
 
-        <div class="mb-6 flex flex-wrap gap-2">
-            <a href="{{ route('auctions.index', array_merge(request()->except(['source','page']))) }}"
-               @class([
-                   'rounded-full px-5 py-2 text-sm font-bold transition',
-                   'bg-blue-600 text-white' => !request('source'),
-                   'bg-white text-slate-600 border border-slate-200' => request('source'),
-               ])>همه</a>
+        <div class="auction-tabs">
+
+            <a href="{{ route('auctions.index', request()->except(['source','page'])) }}"
+               @class(['auction-tab', 'is-active' => ! request('source')])>همه</a>
 
             @foreach($sources as $key => $label)
                 <a href="{{ route('auctions.index', array_merge(request()->except('page'), ['source' => $key])) }}"
-                   @class([
-                       'rounded-full px-5 py-2 text-sm font-bold transition',
-                       'bg-blue-600 text-white' => request('source') === $key,
-                       'bg-white text-slate-600 border border-slate-200' => request('source') !== $key,
-                   ])>{{ $label }}</a>
+                   @class(['auction-tab', 'is-active' => request('source') === $key])>{{ $label }}</a>
             @endforeach
+
         </div>
 
 
 
         {{-- فیلترها --}}
 
-        <form method="GET" class="mb-8 flex flex-wrap items-end gap-3">
+        <form method="GET" class="auction-filter">
 
             @if(request('source'))
                 <input type="hidden" name="source" value="{{ request('source') }}">
             @endif
 
-            <div>
-                <label class="block mb-1 text-sm font-semibold text-slate-600">نوع کار</label>
-                <select name="scope" class="h-11 rounded-xl border border-slate-300 bg-white px-3">
+            <div class="field">
+                <label class="field-label" for="filter-scope">نوع کار</label>
+                <select id="filter-scope" name="scope" class="input">
                     <option value="">همه</option>
                     @foreach($scopes as $key => $label)
                         <option value="{{ $key }}" @selected(request('scope') === $key)>{{ $label }}</option>
@@ -118,15 +113,15 @@
                 </select>
             </div>
 
-            <div>
-                <label class="block mb-1 text-sm font-semibold text-slate-600">استان</label>
-                <input type="text" name="province" value="{{ request('province') }}"
-                       class="h-11 rounded-xl border border-slate-300 bg-white px-3" placeholder="مثلاً تهران">
+            <div class="field">
+                <label class="field-label" for="filter-province">استان</label>
+                <input id="filter-province" type="text" name="province" class="input"
+                       value="{{ request('province') }}" placeholder="مثلاً تهران">
             </div>
 
-            <div>
-                <label class="block mb-1 text-sm font-semibold text-slate-600">وضعیت</label>
-                <select name="status" class="h-11 rounded-xl border border-slate-300 bg-white px-3">
+            <div class="field">
+                <label class="field-label" for="filter-status">وضعیت</label>
+                <select id="filter-status" name="status" class="input">
                     <option value="">همه</option>
                     <option value="active" @selected(request('status') === 'active')>در حال برگزاری</option>
                     <option value="closed" @selected(request('status') === 'closed')>پایان مهلت</option>
@@ -134,9 +129,7 @@
                 </select>
             </div>
 
-            <button type="submit" class="h-11 rounded-xl bg-blue-600 px-6 font-bold text-white">
-                اعمال فیلتر
-            </button>
+            <button type="submit" class="btn btn-primary">اعمال فیلتر</button>
 
         </form>
 
@@ -144,48 +137,43 @@
 
         {{-- فهرست --}}
 
-        <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div class="auction-grid">
 
             @forelse($auctions as $auction)
 
-                <a href="{{ route('auction.show', $auction->slug) }}"
-                   class="block rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-blue-400 hover:shadow-lg">
+                <a href="{{ route('auction.show', $auction->slug) }}" class="card auction-card">
 
-                    <div class="mb-3 flex items-center justify-between">
-                        <div class="flex items-center gap-1.5">
-                            <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600">
-                                {{ $scopes[$auction->scope] ?? $auction->scope }}
-                            </span>
+                    <div class="auction-card-head">
+
+                        <div class="auction-card-tags">
+                            <span class="badge">{{ $scopes[$auction->scope] ?? $auction->scope }}</span>
                             @if($auction->isExternal())
-                                <span class="rounded-full bg-sky-100 px-2 py-1 text-[11px] font-bold text-sky-700">ستاد</span>
+                                <span class="badge badge-gold">ستاد</span>
                             @endif
                         </div>
-                        <span class="text-xs font-bold
-                            @class([
-                                'text-green-600' => $auction->status === 'active',
-                                'text-amber-600' => $auction->status === 'closed',
-                                'text-blue-600'  => $auction->status === 'awarded',
-                            ])">
+
+                        <span class="auction-status auction-status-{{ $auction->status }}">
                             {{ $auction->statusLabel() }}
                         </span>
+
                     </div>
 
-                    <h2 class="mb-2 text-lg font-extrabold text-slate-800">{{ $auction->title }}</h2>
+                    <h2 class="auction-card-title">{{ $auction->title }}</h2>
 
                     @if($auction->organization)
-                        <p class="mb-1 text-sm text-slate-500">🏛️ {{ $auction->organization }}</p>
+                        <p class="auction-card-meta">🏛️ {{ $auction->organization }}</p>
                     @endif
 
-                    <p class="mb-4 text-sm text-slate-500">
+                    <p class="auction-card-meta">
                         📍 {{ $auction->province ?: '—' }}{{ $auction->city ? ' - '.$auction->city : '' }}
                         @if($auction->tender_no)
                             &nbsp;·&nbsp; شماره: {{ $auction->tender_no }}
                         @endif
                     </p>
 
-                    <div class="flex items-center justify-between border-t border-slate-100 pt-3 text-sm">
-                        <span class="text-slate-500">{{ $auction->bids_count }} پیشنهاد</span>
-                        <span class="font-bold text-slate-700">
+                    <div class="auction-card-foot">
+                        <span>{{ $auction->bids_count }} پیشنهاد</span>
+                        <span class="auction-lead">
                             @if($auction->leading_amount)
                                 پیشرو: {{ number_format($auction->leading_amount) }} ت
                             @else
@@ -195,7 +183,7 @@
                     </div>
 
                     @if($auction->status === 'active' && $auction->ends_at)
-                        <p class="mt-3 text-xs text-slate-400">
+                        <p class="auction-deadline">
                             پایان مهلت: {{ jdatetime($auction->ends_at) }}
                             ({{ jdiff($auction->ends_at) }})
                         </p>
@@ -205,8 +193,8 @@
 
             @empty
 
-                <div class="col-span-full rounded-2xl border border-slate-200 bg-white p-10 text-center text-slate-500">
-                    فعلاً مزایده‌ای ثبت نشده است.
+                <div class="auction-board-empty" style="grid-column:1 / -1;">
+                    <p>فعلاً مزایده‌ای ثبت نشده است.</p>
                 </div>
 
             @endforelse
@@ -214,9 +202,7 @@
         </div>
 
 
-        <div class="mt-8">
-            {{ $auctions->links() }}
-        </div>
+        {{ $auctions->links() }}
 
 
     </div>

@@ -1,80 +1,47 @@
-<header class="bg-white shadow-sm p-5 flex items-center justify-between">
+@php
+    $user = auth()->user();
+
+    $roleLabels = [
+        'company'      => 'شرکت آسانسوری',
+        'employer'     => 'کارفرما',
+        'technician'   => 'تکنسین',
+        'manufacturer' => 'تولیدکننده',
+        'store'        => 'فروشگاه',
+        'customer'     => 'مشتری',
+    ];
+@endphp
 
 
-    <div>
-
-        <h3 class="text-xl font-bold">
-
-            سلام،
-            {{ auth()->user()->name }}
-
-            👋
-
-        </h3>
+<header class="dashboard-header">
 
 
-        <p class="text-gray-500 text-sm mt-1">
-
-            به داشبورد آسانسور پرو خوش آمدید
-
-        </p>
-
-
-    </div>
-
-
-
-
-    <div class="flex items-center gap-5">
+    {{-- دکمه‌ی منو — فقط موبایل --}}
+    <button type="button"
+            class="dashboard-nav-toggle"
+            x-on:click="nav = ! nav"
+            aria-label="منوی داشبورد">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 
 
-        <button class="relative text-xl">
+    <div class="dashboard-header-greeting">
 
-            🔔
+        <h3>سلام، {{ $user->name ?: 'کاربر' }} 👋</h3>
 
-            <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-2">
-
-                3
-
-            </span>
-
-        </button>
-
-
-
-
-
-        <div class="bg-gray-100 px-4 py-2 rounded-xl">
-
-
-            <span class="font-bold">
-
-                {{ auth()->user()->type }}
-
-            </span>
-
-
-        </div>
-
-
-
-
-        <form method="POST" action="/logout">
-
-            @csrf
-
-            <button class="text-red-500">
-
-                خروج
-
-            </button>
-
-
-        </form>
-
+        <p>به داشبورد آسانسور پرو خوش آمدید</p>
 
     </div>
 
+
+    <div class="dashboard-header-actions">
+
+        <span class="badge">{{ $roleLabels[$user->type] ?? $user->type }}</span>
+
+        <x-header.theme-toggle />
+
+    </div>
 
 
 </header>
