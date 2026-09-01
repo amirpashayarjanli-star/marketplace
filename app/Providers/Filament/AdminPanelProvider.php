@@ -2,16 +2,18 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Admin\Widgets\ActionQueueWidget;
+use App\Filament\Admin\Widgets\BusinessOverviewWidget;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\NavigationItem;
 use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
-use Filament\Widgets\AccountWidget;
-use Filament\Widgets\FilamentInfoWidget;
+use Filament\Support\Icons\Heroicon;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\PreventRequestForgery;
@@ -52,8 +54,38 @@ class AdminPanelProvider extends PanelProvider
                 for: 'App\Filament\Admin\Widgets'
             )
             ->widgets([
-                AccountWidget::class,
-                FilamentInfoWidget::class,
+                ActionQueueWidget::class,
+                BusinessOverviewWidget::class,
+            ])
+
+            /*
+            | صفحه‌های گردش‌کاری بیرون از Filament ساخته شده‌اند (خرابی،
+            | قرارداد، برداشت، تایید نظرات). بدون این آیتم‌ها تنها راه
+            | رسیدن به آن‌ها حفظ کردن آدرسشان بود.
+            */
+            ->navigationItems([
+
+                NavigationItem::make('خرابی‌ها')
+                    ->group('پرو سرویس')
+                    ->icon(Heroicon::OutlinedWrenchScrewdriver)
+                    ->sort(3)
+                    ->url(fn () => route('admin.service.index'))
+                    ->isActiveWhen(fn () => request()->routeIs('admin.service.*')),
+
+                NavigationItem::make('قراردادها')
+                    ->group('پرو سرویس')
+                    ->icon(Heroicon::OutlinedDocumentText)
+                    ->sort(4)
+                    ->url(fn () => route('admin.contracts.index'))
+                    ->isActiveWhen(fn () => request()->routeIs('admin.contracts.*')),
+
+                NavigationItem::make('برداشت‌ها')
+                    ->group('مالی')
+                    ->icon(Heroicon::OutlinedBanknotes)
+                    ->sort(3)
+                    ->url(fn () => route('admin.withdrawals.index'))
+                    ->isActiveWhen(fn () => request()->routeIs('admin.withdrawals.*')),
+
             ])
             ->middleware([
                 EncryptCookies::class,

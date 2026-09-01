@@ -2,6 +2,8 @@
 
 namespace App\Filament\Admin\Resources\Companies\Schemas;
 
+use App\Filament\Admin\Support\DirectoryProfile;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
 
@@ -9,10 +11,29 @@ class CompanyForm
 {
     public static function configure(Schema $schema): Schema
     {
-        return $schema
-            ->components([
-                TextInput::make('name')
-                    ->required(),
-            ]);
+        return $schema->components(DirectoryProfile::formSections([
+
+            TextInput::make('manager_name')
+                ->label('نام مدیر')
+                ->maxLength(255),
+
+            TextInput::make('email')
+                ->label('ایمیل')
+                ->email()
+                ->maxLength(255),
+
+            TextInput::make('website')
+                ->label('وب‌سایت')
+                ->url()
+                ->maxLength(255),
+
+            Select::make('services')
+                ->label('خدمات')
+                ->relationship('services', 'name')
+                ->multiple()
+                ->preload()
+                ->columnSpanFull(),
+
+        ]));
     }
 }

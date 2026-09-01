@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
+use App\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 
 class Brand extends Model
 {
+
+    use HasSlug;
+
 
     protected $fillable = [
 

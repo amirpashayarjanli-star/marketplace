@@ -11,6 +11,25 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Project extends Model
 {
 
+    /*
+    | برچسب‌های فارسی. مقادیر همان‌هایی‌اند که فرم ثبت پروژه و
+    | ProjectDashboardController می‌نویسند.
+    */
+    public const TYPES = [
+        'new_installation' => 'نصب آسانسور جدید',
+        'repair'           => 'تعمیرات',
+        'service'          => 'سرویس و نگهداری',
+        'upgrade'          => 'بازسازی و ارتقا',
+    ];
+
+
+    public const STATUSES = [
+        'pending'  => 'در انتظار بررسی',
+        'open'     => 'باز — پذیرای استعلام',
+        'assigned' => 'واگذار شده',
+    ];
+
+
     protected $fillable = [
 
         'title',

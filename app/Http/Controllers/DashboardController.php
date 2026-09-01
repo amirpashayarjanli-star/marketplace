@@ -72,7 +72,7 @@ class DashboardController extends Controller
 
         if ($user->role === 'admin') {
 
-            return redirect()->route('admin.users');
+            return redirect()->route('filament.admin.pages.dashboard');
 
         }
 

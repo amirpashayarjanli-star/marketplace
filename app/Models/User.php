@@ -65,6 +65,46 @@ class User extends Authenticatable implements FilamentUser
 
 
 
+    /*
+    | برچسب‌های فارسی ستون‌های وضعیتی. تا امروز هر صفحه‌ای برای خودش
+    | یک match می‌نوشت و برچسب‌ها با هم فرق می‌کرد.
+    */
+    public const TYPES = [
+        'company'      => 'شرکت آسانسوری',
+        'manufacturer' => 'تولیدکننده',
+        'store'        => 'فروشگاه',
+        'technician'   => 'تکنسین',
+        'employer'     => 'کارفرما',
+        'customer'     => 'مشتری',
+    ];
+
+
+    public const STATUSES = [
+        'incomplete' => 'پروفایل ناقص',
+        'pending'    => 'در انتظار تایید',
+        'approved'   => 'تایید شده',
+        'rejected'   => 'رد شده',
+    ];
+
+
+    public const ROLES = [
+        'admin' => 'مدیر سیستم',
+        'user'  => 'کاربر عادی',
+    ];
+
+
+    public function typeLabel(): string
+    {
+        return self::TYPES[$this->type] ?? '—';
+    }
+
+
+    public function statusLabel(): string
+    {
+        return self::STATUSES[$this->status] ?? (string) $this->status;
+    }
+
+
     protected function casts(): array
     {
 

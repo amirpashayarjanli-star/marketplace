@@ -13,12 +13,21 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class CompanyResource extends Resource
 {
     protected static ?string $model = Company::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+
+    protected static string|UnitEnum|null $navigationGroup = 'کاربران';
+
+    protected static ?int $navigationSort = 2;
+
+    protected static ?string $navigationLabel = 'شرکت‌ها';
+    protected static ?string $modelLabel = 'شرکت';
+    protected static ?string $pluralModelLabel = 'شرکت‌ها';
 
     protected static ?string $recordTitleAttribute = 'name';
 

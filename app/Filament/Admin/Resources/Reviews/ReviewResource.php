@@ -13,12 +13,21 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class ReviewResource extends Resource
 {
     protected static ?string $model = Review::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedStar;
+
+    protected static string|UnitEnum|null $navigationGroup = 'محتوا';
+
+    protected static ?int $navigationSort = 3;
+
+    protected static ?string $navigationLabel = 'نظرات';
+    protected static ?string $modelLabel = 'نظر';
+    protected static ?string $pluralModelLabel = 'نظرات';
 
     protected static ?string $recordTitleAttribute = 'name';
 

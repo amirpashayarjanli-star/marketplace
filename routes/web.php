@@ -29,7 +29,6 @@ use App\Http\Controllers\AuctionDashboardController;
 use App\Http\Controllers\BidController;
 
 use App\Http\Controllers\AdminBuildingController;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminContractController;
 use App\Http\Controllers\AdminWithdrawalController;
 use App\Http\Controllers\AdminServiceController;
@@ -1033,78 +1032,20 @@ Route::middleware([
 
 
 
-    Route::get('/users',[
-
-        AdminController::class,
-
-        'users'
-
-    ])
-    ->name('admin.users');
-
-
-
-
-
-    Route::post('/users/{user}/approve',[
-
-        AdminController::class,
-
-        'approve'
-
-    ])
-    ->name('admin.users.approve');
-
-
-
-
-
-    Route::post('/users/{user}/reject',[
-
-        AdminController::class,
-
-        'reject'
-
-    ])
-    ->name('admin.users.reject');
-
     /*
-    | مسیر این بخش عمداً /admin/reviews نیست.
-    | پنل Filament خودش روی /admin نشسته و یک ReviewResource دارد که
-    | همان /admin/reviews را می‌گیرد. چون routes/web.php بعد از پنل
-    | ثبت می‌شود، مسیر ما روی مسیر Filament می‌افتاد و روت
-    | filament.admin.resources.reviews.index حذف می‌شد — نتیجه‌اش
-    | خطای «Route not defined» در سایدبار و ۵۰۰ شدن کل پنل بود.
-    | نام روت‌ها دست‌نخورده مانده، پس همه‌ی route('admin.reviews') ها کار می‌کنند.
+    | تایید کاربران به ریسورس Filament منتقل شد.
+    |
+    | صفحه‌ی قبلی فقط کاربران pending را نشان می‌داد و راهی برای گشتن
+    | دنبال یک کاربر تاییدشده نداشت. مهم‌تر اینکه GET /admin/users با
+    | مسیر همان ریسورس یکی بود و چون routes/web.php بعد از پنل ثبت
+    | می‌شود، مسیر ما روی آن می‌افتاد و لیست کامل هرگز باز نمی‌شد.
     */
 
-    Route::get('/review-approvals', [
-
-        AdminController::class,
-
-        'reviews'
-
-    ])
-    ->name('admin.reviews');
-
-    Route::post('/review-approvals/{review}/approve', [
-
-        AdminController::class,
-
-        'approveReview'
-
-    ])
-    ->name('admin.reviews.approve');
-
-    Route::delete('/review-approvals/{review}', [
-
-        AdminController::class,
-
-        'rejectReview'
-
-    ])
-    ->name('admin.reviews.reject');
-
+    /*
+    | تایید نظرات هم به ReviewResource منتقل شد. صفحه‌ی دست‌ساز روی
+    | /admin/review-approvals بود تا با مسیر همان ریسورس تصادف نکند،
+    | و دقیقاً همان دو کار (تایید و حذف) را می‌کرد.
+    */
 
     Route::get('/service-requests', [
         AdminServiceController::class,
