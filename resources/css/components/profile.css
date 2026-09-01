@@ -1,0 +1,244 @@
+/* ===========================================================
+   صفحات پروفایل (شرکت · تولیدکننده · فروشگاه · تکنسین)
+   =========================================================== */
+
+.profile-page{
+    padding-block:clamp(2rem, 1rem + 3vw, 3.5rem) clamp(3rem, 2rem + 3vw, 5rem);
+}
+
+
+/* ---- هیروی پروفایل ---- */
+
+.profile-hero{
+    margin-bottom:clamp(24px, 1.5rem + 1.5vw, 40px);
+}
+
+.profile-hero-card{
+    position:relative;
+    overflow:hidden;
+
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    align-items:center;
+    gap:clamp(18px, 1rem + 1.5vw, 34px);
+
+    padding:clamp(24px, 1.5rem + 2vw, 42px);
+
+    border:1px solid var(--border);
+    border-radius:var(--radius-2xl);
+    background:var(--surface);
+    box-shadow:var(--shadow-sm);
+}
+
+/* درخشش ملایم گوشه */
+.profile-hero-card::before{
+    content:"";
+    position:absolute;
+    inset-block-start:-160px;
+    inset-inline-end:-80px;
+
+    width:340px;
+    height:340px;
+
+    background:radial-gradient(circle,
+        color-mix(in srgb, var(--primary) 14%, transparent) 0%,
+        transparent 70%);
+    filter:blur(60px);
+    pointer-events:none;
+}
+
+.profile-hero-card > *{ position:relative; }
+
+.profile-logo{
+    width:clamp(90px, 8vw, 118px);
+    height:clamp(90px, 8vw, 118px);
+    margin:0;
+    border-radius:var(--radius-xl);
+}
+
+.profile-info h1{
+    margin:0;
+    font-size:clamp(1.4rem, 1.1rem + 1.4vw, 2.1rem);
+    font-weight:800;
+    letter-spacing:-.015em;
+    color:var(--text);
+}
+
+.profile-verified{
+    display:inline-flex;
+    align-items:center;
+    gap:.35rem;
+
+    margin-inline-start:.5rem;
+    padding:4px 11px;
+
+    border:1px solid var(--pastel-success-border);
+    border-radius:var(--radius-full);
+    background:var(--pastel-success-bg);
+
+    color:var(--pastel-success-text);
+    font-size:.72rem;
+    font-weight:700;
+    vertical-align:middle;
+}
+
+.profile-meta{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:8px 18px;
+
+    margin-top:12px;
+
+    color:var(--text-muted);
+    font-size:.9rem;
+}
+
+.profile-meta > *{
+    display:inline-flex;
+    align-items:center;
+    gap:.35rem;
+}
+
+.profile-meta svg{ color:var(--accent); flex:none; }
+
+.profile-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+
+/* ---- آمار ---- */
+
+.profile-stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(160px, 1fr));
+    gap:16px;
+
+    margin-bottom:clamp(24px, 1.5rem + 1.5vw, 40px);
+}
+
+.stats-card{
+    padding:22px;
+    text-align:center;
+}
+
+.stat-item{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+}
+
+.stat-item strong,
+.stats-card strong{
+    font-size:1.7rem;
+    font-weight:900;
+    color:var(--text);
+    font-variant-numeric:tabular-nums;
+}
+
+.stat-item span,
+.stats-card span{
+    font-size:.86rem;
+    color:var(--text-muted);
+}
+
+.stats-card svg{
+    margin-inline:auto;
+    margin-bottom:10px;
+    color:var(--primary);
+}
+
+
+/* ---- بخش‌های محتوایی ---- */
+
+.profile-about,
+.profile-services,
+.profile-projects,
+.profile-products,
+.profile-brands,
+.profile-skills,
+.profile-reviews,
+.profile-contact,
+.profile-section-card{
+    margin-bottom:clamp(20px, 1rem + 1.5vw, 32px);
+    padding:clamp(22px, 1.2rem + 1.5vw, 34px);
+}
+
+.about-content{
+    color:var(--text-muted);
+    line-height:2.05;
+}
+
+.about-content p + p{ margin-top:1rem; }
+
+
+/* شبکه‌های داخلی پروفایل */
+
+.profile-services ul,
+.profile-skills ul{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.profile-services li,
+.profile-skills li{
+    padding:8px 15px;
+
+    border:1px solid var(--border);
+    border-radius:var(--radius-full);
+    background:var(--surface-2);
+
+    font-size:.87rem;
+    font-weight:600;
+    color:var(--text-muted);
+}
+
+.profile-projects .company-grid,
+.profile-products .company-grid,
+.profile-brands .company-grid{
+    grid-template-columns:repeat(auto-fill, minmax(230px, 1fr));
+}
+
+
+/* ---- تماس ---- */
+
+.contact-info{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(230px, 1fr));
+    gap:14px;
+}
+
+.contact-item{
+    display:flex;
+    align-items:center;
+    gap:.7rem;
+
+    padding:15px 18px;
+
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    background:var(--surface-2);
+
+    color:var(--text);
+    font-size:.92rem;
+    text-decoration:none;
+
+    transition:border-color var(--transition) ease,
+               background var(--transition) ease;
+}
+
+.contact-item:hover{
+    border-color:var(--primary);
+    background:var(--primary-soft);
+}
+
+.contact-item svg{ color:var(--primary); flex:none; }
+
+.contact-item span{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}

@@ -1,6 +1,6 @@
 <section class="section top-manufacturers">
 
-    <div class="container">
+    <div class="container-app">
 
         <x-section-title
             title="برترین تولیدکنندگان"

@@ -1,6 +1,6 @@
 <footer class="site-footer">
 
-    <div class="container">
+    <div class="container-app">
 
         <div class="footer-glass">
 
@@ -12,7 +12,7 @@
                         آسانسور
                     </span>
 
-                    <span class="text-yellow-500">
+                    <span class="brand-yellow">
                         پرو
                     </span>
                 </h3>
@@ -91,13 +91,7 @@
 
 
                 <p>
-                    <i class="fa-solid fa-phone"></i>
-                    09343448008
-                </p>
-
-
-                <p>
-                    <i class="fa-solid fa-location-dot"></i>
+                    <x-ui.icon name="location-dot" />
                     ایران
                 </p>
 

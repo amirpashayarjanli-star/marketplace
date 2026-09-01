@@ -30,7 +30,7 @@
             <div class="profile-verified">
 
 
-                <i class="fa-solid fa-circle-check"></i>
+                <x-ui.icon name="circle-check" />
 
 
                 تایید شده آسانسور پرو
@@ -62,7 +62,7 @@
 
                 <span>
 
-                    <i class="fa-solid fa-location-dot"></i>
+                    <x-ui.icon name="location-dot" />
 
                     {{ $store->city }}
 
@@ -74,7 +74,7 @@
 
                 <span>
 
-                    <i class="fa-solid fa-star"></i>
+                    <x-ui.icon name="star" />
 
                     {{ $store->rating ?? 0 }}
 
@@ -86,7 +86,7 @@
 
                 <span>
 
-                    <i class="fa-solid fa-shop"></i>
+                    <x-ui.icon name="shop" />
 
                     فروشگاه قطعات آسانسور
 

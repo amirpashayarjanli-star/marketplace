@@ -1,54 +1,41 @@
+@php
+    $links = [
+        ['icon' => 'building', 'label' => 'شرکت‌ها',      'desc' => 'نصب و نگهداری', 'tone' => 'sky',   'route' => 'companies.index'],
+        ['icon' => 'industry', 'label' => 'تولیدکنندگان', 'desc' => 'قطعات و کابین', 'tone' => 'lilac', 'route' => 'manufacturers.index'],
+        ['icon' => 'shop',     'label' => 'فروشگاه‌ها',   'desc' => 'خرید تجهیزات',  'tone' => 'peach', 'route' => 'stores.index'],
+        ['icon' => 'wrench',   'label' => 'تکنسین‌ها',    'desc' => 'تعمیر و سرویس', 'tone' => 'mint',  'route' => 'technicians.index'],
+        ['icon' => 'clipboard',   'label' => 'پروژه‌ها',     'desc' => 'فرصت همکاری',   'tone' => 'lemon', 'route' => 'projects.index'],
+    ];
+@endphp
+
 <section class="quick-access-section">
 
-    <div class="container mx-auto px-5">
+    <div class="container-app">
 
-        <div class="section-title">
-
-            <span>دنبال چه چیزی هستید؟</span>
-
+        <div class="section-header">
+            <div class="section-header-right">
+                <span class="section-subtitle">دسترسی سریع</span>
+                <h2>دنبال چه چیزی هستید؟</h2>
+            </div>
         </div>
 
         <div class="quick-access-grid">
 
-            <a href="/companies" class="quick-card">
+            @foreach($links as $link)
 
-                <img src="{{ asset('images/icons/company-q.png') }}" alt="شرکت">
+                <a href="{{ route($link['route']) }}" class="quick-card">
 
-                <h3>شرکت‌ها</h3>
+                    <span class="quick-icon tint-{{ $link['tone'] }}">
+                        <x-ui.icon :name="$link['icon']" :size="26" />
+                    </span>
 
-            </a>
+                    <h3>{{ $link['label'] }}</h3>
 
-            <a href="/manufacturers" class="quick-card">
+                    <p>{{ $link['desc'] }}</p>
 
-                <img src="{{ asset('images/icons/manufacturer-q.png') }}" alt="تولیدکننده">
+                </a>
 
-                <h3>تولیدکنندگان</h3>
-
-            </a>
-
-            <a href="/stores" class="quick-card">
-
-                <img src="{{ asset('images/icons/store-q.png') }}" alt="فروشگاه">
-
-                <h3>فروشگاه‌ها</h3>
-
-            </a>
-
-            <a href="/technicians" class="quick-card">
-
-                <img src="{{ asset('images/icons/technician-q.png') }}" alt="تکنسین">
-
-                <h3>تکنسین‌ها</h3>
-
-            </a>
-
-            <a href="/projects" class="quick-card">
-
-                <img src="{{ asset('images/icons/project-q.png') }}" alt="پروژه">
-
-                <h3>پروژه‌ها</h3>
-
-            </a>
+            @endforeach
 
         </div>
 

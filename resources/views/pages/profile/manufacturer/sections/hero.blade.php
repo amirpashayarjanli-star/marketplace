@@ -29,7 +29,7 @@
             <div class="profile-verified">
 
 
-                <i class="fa-solid fa-circle-check"></i>
+                <x-ui.icon name="circle-check" />
 
 
                 تایید شده آسانسور پرو
@@ -60,7 +60,7 @@
 
                 <span>
 
-                    <i class="fa-solid fa-location-dot"></i>
+                    <x-ui.icon name="location-dot" />
 
                     {{ $manufacturer->city }}
 
@@ -71,7 +71,7 @@
 
                 <span>
 
-                    <i class="fa-solid fa-star"></i>
+                    <x-ui.icon name="star" />
 
                     {{ $manufacturer->rating ?? 0 }}
 
@@ -82,7 +82,7 @@
 
                 <span>
 
-                    <i class="fa-solid fa-industry"></i>
+                    <x-ui.icon name="industry" />
 
                     تولیدکننده تجهیزات آسانسور
 

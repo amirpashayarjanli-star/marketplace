@@ -1,0 +1,271 @@
+/* ===========================================================
+   بخش‌های پراکنده
+   -----------------------------------------------------------
+   این فایل کلاس‌هایی رو پوشش می‌ده که در ویوها استفاده میشن
+   ولی جای طبیعی‌شون در فایل‌های دیگه نبود. بدون این‌ها اون
+   بخش‌ها بی‌استایل رندر می‌شدن.
+   =========================================================== */
+
+/* ---- شبکه‌های محتوایی ---- */
+
+.projects-grid,
+.products-grid,
+.brands-grid,
+.skills-grid,
+.articles-grid,
+.services-list{
+    display:grid;
+    gap:18px;
+}
+
+.projects-grid,
+.articles-grid{
+    grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.products-grid,
+.brands-grid{
+    grid-template-columns:repeat(auto-fill, minmax(210px, 1fr));
+}
+
+.skills-grid{
+    grid-template-columns:repeat(auto-fill, minmax(180px, 1fr));
+}
+
+.services-list{
+    grid-template-columns:repeat(auto-fill, minmax(230px, 1fr));
+}
+
+
+/* ---- کارت محصول ---- */
+
+.product-card{
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius-xl);
+    box-shadow:var(--shadow-sm);
+
+    transition:transform var(--transition) var(--ease-out),
+               box-shadow var(--transition) var(--ease-out);
+}
+
+.product-card:hover{
+    transform:translateY(-5px);
+    box-shadow:var(--shadow-lg);
+}
+
+.product-image{
+    aspect-ratio:4 / 3;
+    background:var(--surface-2);
+    overflow:hidden;
+}
+
+.product-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+
+/* ---- آیتم خدمت / مهارت ---- */
+
+.service-item,
+.skill-card{
+    display:flex;
+    align-items:center;
+    gap:.6rem;
+
+    padding:14px 16px;
+
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    background:var(--surface-2);
+
+    font-size:.9rem;
+    font-weight:600;
+    color:var(--text);
+}
+
+.service-item svg,
+.skill-card svg{ color:var(--primary); flex:none; }
+
+
+/* ---- تعداد کار تکنسین ---- */
+
+.technician-jobs{
+    font-size:.84rem;
+    color:var(--text-muted);
+    font-variant-numeric:tabular-nums;
+}
+
+
+/* ---- محصولات/برندهای پروفایل ---- */
+
+.manufacturer-products,
+.store-products{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(210px, 1fr));
+    gap:18px;
+}
+
+
+/* ---- دکمه‌ی ثبت کسب‌وکار در نوار فیلتر ---- */
+
+.register-company-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:.45rem;
+
+    height:54px;
+    padding-inline:1.4rem;
+
+    border:none;
+    border-radius:var(--radius-md);
+    background:var(--gradient-button);
+    box-shadow:var(--shadow-primary);
+
+    color:var(--primary-contrast);
+    font-weight:800;
+    font-size:.92rem;
+    white-space:nowrap;
+    text-decoration:none;
+
+    transition:transform var(--transition) var(--ease-out),
+               box-shadow var(--transition) var(--ease-out);
+}
+
+.register-company-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 30px color-mix(in srgb, var(--primary) 34%, transparent);
+}
+
+
+/* ---- وضعیت استعلام ---- */
+
+.status-open{
+    display:inline-flex;
+    align-items:center;
+    gap:.3rem;
+
+    padding:4px 11px;
+
+    border:1px solid var(--pastel-success-border);
+    border-radius:var(--radius-full);
+    background:var(--pastel-success-bg);
+
+    color:var(--pastel-success-text);
+    font-size:.74rem;
+    font-weight:700;
+}
+
+
+/* ---- فرم نظر ---- */
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+    gap:.5rem;
+}
+
+.success-message{
+    padding:14px 18px;
+
+    border:1px solid var(--pastel-success-border);
+    border-radius:var(--radius-md);
+    background:var(--pastel-success-bg);
+
+    color:var(--pastel-success-text);
+    font-size:.9rem;
+    font-weight:600;
+}
+
+
+/* ---- ورودی تک‌رقمی کد تایید ---- */
+
+.digit-input{
+    width:52px;
+    height:60px;
+
+    border:1.5px solid var(--border);
+    border-radius:var(--radius-md);
+    background:var(--surface);
+
+    color:var(--text);
+    font-family:inherit;
+    font-size:1.4rem;
+    font-weight:800;
+    text-align:center;
+
+    outline:none;
+    transition:border-color var(--transition) ease,
+               box-shadow var(--transition) ease;
+}
+
+.digit-input:focus{
+    border-color:var(--primary);
+    box-shadow:0 0 0 4px var(--primary-soft);
+}
+
+
+/* ---- کلید نمایش رمز ---- */
+
+.toggle-password{
+    background:transparent;
+    border:none;
+    color:var(--text-soft);
+    cursor:pointer;
+    transition:color var(--transition) ease;
+}
+
+.toggle-password:hover{ color:var(--primary); }
+
+
+/* ---- نشانه‌ی مرحله در ویزارد ---- */
+
+.wizard-rail-mark{
+    display:grid;
+    place-items:center;
+    width:100%;
+    height:100%;
+    font-size:.85rem;
+    font-weight:800;
+}
+
+
+/* ---- اسلایدر شرکت‌های منتخب (کتابخانه‌ی swiper) ---- */
+
+.companies-swiper{
+    width:100%;
+    padding-block:8px 34px;
+}
+
+.companies-swiper .swiper-slide{
+    height:auto;
+}
+
+.companies-swiper .swiper-pagination-bullet{
+    background:var(--border-strong);
+    opacity:1;
+}
+
+.companies-swiper .swiper-pagination-bullet-active{
+    background:var(--primary);
+    width:22px;
+    border-radius:var(--radius-full);
+}
+
+
+/* ---- شمارنده‌ی اعضا ---- */
+
+.members{
+    display:inline-flex;
+    align-items:center;
+    gap:.35rem;
+    font-size:.84rem;
+    color:var(--text-muted);
+    font-variant-numeric:tabular-nums;
+}

@@ -4,6 +4,16 @@
 
 @section('content')
 
+{{-- هدر: بیرون و بالای هیرو، با اسکرول بالای صفحه sticky می‌مونه.
+     مستقیم فرزند main هست تا sticky در کل صفحه کار کنه، نه فقط داخل یه wrapper کوتاه. --}}
+
+<div class="home-page-header">
+
+    @include('sections.header')
+
+</div>
+
+
 <main>
 
     <div class="desktop-home">
@@ -14,7 +24,7 @@
         @include('mobile.hero')
     </div>
 
-    <div class="desktop-only">
+    <div class="desktop-home">
         @include('sections.trust-bar')
     </div>
 
@@ -42,6 +52,11 @@
 
     @include('sections.top-technicians', [
         'topTechnicians' => $topTechnicians
+    ])
+
+
+    @include('sections.latest-auctions', [
+        'latestAuctions' => $latestAuctions
     ])
 
 

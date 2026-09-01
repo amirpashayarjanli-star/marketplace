@@ -1,6 +1,6 @@
 <section class="section top-companies">
 
-    <div class="container">
+    <div class="container-app">
 
         <x-section-title
             title="برترین شرکت‌های آسانسوری"

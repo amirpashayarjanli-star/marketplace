@@ -1,40 +1,60 @@
 @import "tailwindcss";
 
+/* ===========================================================
+   آسانسور پرو — نقطه‌ی ورود استایل‌ها
+   -----------------------------------------------------------
+   ترتیب مهمه:
+     ۱) توکن‌ها      — منبع همه‌ی رنگ/فاصله/گردی
+     ۲) پل Tailwind  — پالت خام Tailwind رو به توکن گره می‌زنه
+     ۳) پایه         — ریست و تایپوگرافی
+     ۴) ابزارها      — کلاس‌های کمکی
+     ۵) کامپوننت‌ها  — از عمومی به خاص
+   =========================================================== */
+
 @import "./theme.css";
+@import "./tailwind-bridge.css";
+@import "./base.css";
 @import "./utilities.css";
-@import "./components.css";
 @import "./animations.css";
 
-@import "./components/entity-slider.css";
-@import "./components/projects.css";
-@import "./components/articles.css";
+/* ---- کامپوننت‌های پایه ---- */
+@import "./components/buttons.css";
+@import "./components/forms.css";
+@import "./components/badges.css";
+@import "./components/cards.css";
+@import "./components/layout.css";
+
+/* ---- ناحیه‌های صفحه ---- */
+@import "./components/header.css";
+@import "./components/footer.css";
+@import "./components/hero.css";
+@import "./components/homepage.css";
+
+/* ---- صفحات ---- */
+@import "./components/directory.css";
+@import "./components/profile.css";
+@import "./components/misc.css";
+@import "./components/wizard.css";
+@import "./components/service.css";
+
+/* ---- تنظیمات مخصوص حالت شب ---- */
+@import "./dark-overrides.css";
 
 
 @source "../views";
 @source "../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php";
 
 
+/* ===========================================================
+   سوییچ دسکتاپ / موبایل
+   -----------------------------------------------------------
+   فاز فعلی روی دسکتاپه؛ نسخه‌ی موبایل در گام بعد بازطراحی میشه.
+   =========================================================== */
 
-.desktop-home {
-    display: block;
-}
+.desktop-home{ display:block; }
+.mobile-home{ display:none; }
 
-
-.mobile-home {
-    display: none;
-}
-
-
-
-@media(max-width:768px){
-
-    .desktop-home {
-        display:none;
-    }
-
-
-    .mobile-home {
-        display:block;
-    }
-
+@media (max-width: 768px){
+    .desktop-home{ display:none; }
+    .mobile-home{ display:block; }
 }

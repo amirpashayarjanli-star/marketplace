@@ -164,7 +164,7 @@
             </a>
 
 
-            <a href="{{ route('dashboard.profile') }}" class="glass radius-md p-5 text-center hover-lift">
+            <a href="{{ route('profile.wizard') }}" class="glass radius-md p-5 text-center hover-lift">
 
                 پروفایل
 

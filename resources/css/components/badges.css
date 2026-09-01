@@ -1,0 +1,48 @@
+/* ===========================================================
+   نشان‌ها
+   =========================================================== */
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:.35rem;
+
+    height:32px;
+    padding-inline:.9rem;
+
+    border:1px solid var(--pastel-info-border);
+    border-radius:var(--radius-full);
+    background:var(--pastel-info-bg);
+
+    color:var(--pastel-info-text);
+    font-size:.82rem;
+    font-weight:700;
+    white-space:nowrap;
+}
+
+.badge-success{
+    border-color:var(--pastel-success-border);
+    background:var(--pastel-success-bg);
+    color:var(--pastel-success-text);
+}
+
+.badge-warning{
+    border-color:var(--pastel-warning-border);
+    background:var(--pastel-warning-bg);
+    color:var(--pastel-warning-text);
+}
+
+.badge-danger{
+    border-color:var(--pastel-danger-border);
+    background:var(--pastel-danger-bg);
+    color:var(--pastel-danger-text);
+}
+
+.badge-gold{
+    border-color:var(--gold);
+    background:var(--gold-soft);
+    color:var(--gold-dark);
+}
+
+:root[data-theme="dark"] .badge-gold{ color:var(--gold); }

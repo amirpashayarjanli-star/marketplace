@@ -6,7 +6,7 @@
 
         <div class="stat-item">
 
-            <i class="fa-solid fa-calendar-days"></i>
+            <x-ui.icon name="calendar-days" />
 
             <strong>
 
@@ -28,7 +28,7 @@
 
         <div class="stat-item">
 
-            <i class="fa-solid fa-building"></i>
+            <x-ui.icon name="building" />
 
             <strong>
 
@@ -50,7 +50,7 @@
 
         <div class="stat-item">
 
-            <i class="fa-solid fa-star"></i>
+            <x-ui.icon name="star" />
 
             <strong>
 
@@ -72,7 +72,7 @@
 
         <div class="stat-item">
 
-            <i class="fa-solid fa-comments"></i>
+            <x-ui.icon name="comments" />
 
             <strong>
 

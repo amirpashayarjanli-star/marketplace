@@ -18,7 +18,7 @@
 
         <span>
 
-            <i class="fa-solid fa-location-dot"></i>
+            <x-ui.icon name="location-dot" />
 
             {{ $project['city'] ?? 'نامشخص' }}
 
@@ -27,7 +27,7 @@
 
         <span>
 
-            <i class="fa-solid fa-building"></i>
+            <x-ui.icon name="building" />
 
             {{ $project['type'] ?? 'پروژه آسانسور' }}
 
@@ -51,7 +51,7 @@
 
         مشاهده پروژه
 
-        <i class="fa-solid fa-arrow-left"></i>
+        <x-ui.icon name="arrow-left" />
 
     </a>
 

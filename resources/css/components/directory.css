@@ -1,0 +1,164 @@
+/* ===========================================================
+   صفحات فهرست (شرکت‌ها، تولیدکنندگان، فروشگاه‌ها، تکنسین‌ها، پروژه‌ها)
+   =========================================================== */
+
+.directory-page{
+    padding-block:clamp(2rem, 1rem + 3vw, 3.5rem) clamp(3rem, 2rem + 3vw, 5rem);
+}
+
+
+/* ---- سربرگ صفحه ---- */
+
+.directory-top{
+    margin-bottom:clamp(24px, 1.5rem + 1.5vw, 40px);
+    text-align:center;
+}
+
+.directory-top h1{
+    margin:0;
+    font-size:clamp(1.7rem, 1.2rem + 2vw, 2.6rem);
+    font-weight:800;
+    letter-spacing:-.02em;
+    color:var(--text);
+}
+
+.directory-top p{
+    margin-top:12px;
+    margin-inline:auto;
+    max-width:56ch;
+    color:var(--text-muted);
+    line-height:1.9;
+}
+
+
+/* ---- نوار فیلتر ---- */
+
+.directory-filter{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:14px;
+
+    margin-bottom:clamp(24px, 1.5rem + 1.5vw, 36px);
+    padding:18px;
+
+    border:1px solid var(--border);
+    border-radius:var(--radius-xl);
+    background:var(--surface);
+    box-shadow:var(--shadow-sm);
+}
+
+/* .directory-filter-form فقط wrapper معنایی فرمه — نباید لایوت رو
+   بشکنه، پس با display:contents فرزندهاش مستقیم flex item‌های
+   .directory-filter می‌شن (کنار دکمه‌ی ثبت که بیرون از فرمه). */
+.directory-filter-form{
+    display:contents;
+}
+
+.directory-search{
+    position:relative;
+    flex:1 1 260px;
+}
+
+.directory-search .input{
+    padding-inline-end:2.9rem;
+}
+
+.directory-search-btn{
+    position:absolute;
+    inset-inline-end:1rem;
+    inset-block-start:50%;
+    transform:translateY(-50%);
+
+    display:flex;
+    padding:0;
+    border:none;
+    background:none;
+    color:var(--text-soft);
+    cursor:pointer;
+
+    transition:color var(--transition) ease;
+}
+
+.directory-search-btn:hover{ color:var(--primary); }
+
+.directory-options{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.directory-province{
+    flex:1 1 200px;
+}
+
+.directory-options select{
+    height:54px;
+    padding-inline:1rem;
+
+    border:1.5px solid var(--border);
+    border-radius:var(--radius-md);
+    background:var(--surface);
+    color:var(--text);
+
+    font-family:inherit;
+    font-size:.92rem;
+    cursor:pointer;
+
+    transition:border-color var(--transition) ease,
+               box-shadow var(--transition) ease;
+}
+
+.directory-options select:hover{ border-color:var(--border-strong); }
+
+.directory-options select:focus{
+    outline:none;
+    border-color:var(--primary);
+    box-shadow:0 0 0 4px var(--primary-soft);
+}
+
+
+/* ---- صفحه‌بندی ---- */
+
+.pagination{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    margin-top:clamp(28px, 2rem + 1vw, 44px);
+}
+
+.pagination a,
+.pagination span{
+    display:grid;
+    place-items:center;
+
+    min-width:42px;
+    height:42px;
+    padding-inline:.6rem;
+
+    border:1px solid var(--border);
+    border-radius:var(--radius-md);
+    background:var(--surface);
+
+    color:var(--text-muted);
+    font-size:.9rem;
+    font-weight:700;
+    text-decoration:none;
+
+    transition:border-color var(--transition) ease,
+               background var(--transition) ease,
+               color var(--transition) ease;
+}
+
+.pagination a:hover{
+    border-color:var(--primary);
+    color:var(--primary);
+    background:var(--primary-soft);
+}
+
+.pagination .is-current,
+.pagination [aria-current="page"]{
+    border-color:transparent;
+    background:var(--gradient-brand);
+    color:#fff;
+}

@@ -6,7 +6,7 @@
 
 <main>
 
-    <div class="container">
+    <div class="container-app">
 
         <h1>
             {{ $project->name ?? 'پروژه آسانسور' }}

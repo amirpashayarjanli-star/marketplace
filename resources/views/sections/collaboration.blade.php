@@ -1,21 +1,38 @@
+{{--
+    بخش عضویت
+    ------------------------------------------------------------------
+    مهم‌ترین نقطه‌ی جذب کاربر در صفحه‌ی اصلی. قبلاً همه‌ی لینک‌هاش
+    مرده بودن و آیکون‌هاش PNGهای قدیمی با کارت‌های خالی بزرگ.
+--}}
+
+@php
+    $types = [
+        ['icon' => 'building', 'label' => 'شرکت آسانسوری', 'desc' => 'نصب و نگهداری', 'tone' => 'sky',   'route' => 'companies.index'],
+        ['icon' => 'industry', 'label' => 'تولیدکننده',    'desc' => 'قطعات و کابین', 'tone' => 'lilac', 'route' => 'manufacturers.index'],
+        ['icon' => 'shop',     'label' => 'فروشگاه',       'desc' => 'خرید تجهیزات',  'tone' => 'peach', 'route' => 'stores.index'],
+        ['icon' => 'wrench',   'label' => 'تکنسین',        'desc' => 'تعمیر و سرویس', 'tone' => 'mint',  'route' => 'technicians.index'],
+    ];
+
+    $benefits = ['ثبت‌نام رایگان', 'پروفایل اختصاصی', 'فرصت‌های همکاری'];
+@endphp
+
 <section class="collaboration-section">
+
     <div class="container-app">
 
-        <div class="collaboration-box">
+        <div class="collaboration-box glass">
 
             <div class="collaboration-content">
 
                 <span class="collaboration-badge">
+                    <x-ui.icon name="star" :size="14" />
                     عضویت در آسانسور پرو
                 </span>
 
                 <h2 class="collaboration-title">
-                 به خانواده
-                    <span class="brand-name">
-                    <span class="brand-blue">آسانسور</span>
-                    <span class="brand-yellow">پرو</span>
-                    </span>
-                 بپیوندید.
+                    به خانواده
+                    <span class="brand-name"><span class="brand-blue">آسانسور</span><span class="brand-yellow">پرو</span></span>
+                    بپیوندید.
                 </h2>
 
                 <p class="collaboration-description">
@@ -26,111 +43,50 @@
 
                 <div class="collaboration-actions">
 
-                    <a href="javascript:void(0)" class="btn-primary">
+                    <a href="{{ route('register') }}" class="btn btn-primary">
                         ثبت‌نام رایگان
                     </a>
 
-                    <a href="javascript:void(0)" class="btn-secondary">
+                    <a href="{{ route('login') }}" class="btn btn-outline">
                         ورود اعضا
                     </a>
 
                 </div>
 
-                <div class="collaboration-features">
-
-                    <div class="feature-item">
-                        <i class="fa-solid fa-circle-check"></i>
-                        <span>ثبت‌نام رایگان</span>
-                    </div>
-
-                    <div class="feature-item">
-                        <i class="fa-solid fa-circle-check"></i>
-                        <span>پروفایل اختصاصی</span>
-                    </div>
-
-                    <div class="feature-item">
-                        <i class="fa-solid fa-circle-check"></i>
-                        <span>فرصت‌های همکاری</span>
-                    </div>
-
-                    <div class="feature-item">
-                        <i class="fa-solid fa-circle-check"></i>
-                        <span>افزایش دیده‌شدن</span>
-                    </div>
-
-                </div>
+                <ul class="collaboration-features">
+                    @foreach($benefits as $benefit)
+                        <li class="feature-item">
+                            <x-ui.icon name="circle-check" :size="17" />
+                            {{ $benefit }}
+                        </li>
+                    @endforeach
+                </ul>
 
             </div>
+
 
             <div class="collaboration-icons">
 
-                <a href="javascript:void(0)" class="collaboration-card manufacturer">
+                @foreach($types as $type)
 
-                    <div class="icon-box">
-                        <img class="icon-normal"
-                             src="{{ asset('images/icons/manufacturer-q.png') }}"
-                             alt="تولیدکننده">
+                    <a href="{{ route($type['route']) }}" class="collaboration-card">
 
-                        <img class="icon-hover"
-                             src="{{ asset('images/icons/manufacturer-t.png') }}"
-                             alt="تولیدکننده">
-                    </div>
+                        <span class="icon-box tint-{{ $type['tone'] }}">
+                            <x-ui.icon :name="$type['icon']" :size="28" />
+                        </span>
 
-                    <span>تولیدکننده</span>
+                        <strong>{{ $type['label'] }}</strong>
+                        <small>{{ $type['desc'] }}</small>
 
-                </a>
+                    </a>
 
-                <a href="javascript:void(0)" class="collaboration-card store">
-
-                    <div class="icon-box">
-                        <img class="icon-normal"
-                             src="{{ asset('images/icons/store-q.png') }}"
-                             alt="فروشگاه">
-
-                        <img class="icon-hover"
-                             src="{{ asset('images/icons/store-t.png') }}"
-                             alt="فروشگاه">
-                    </div>
-
-                    <span>فروشگاه</span>
-
-                </a>
-
-                <a href="javascript:void(0)" class="collaboration-card company">
-
-                    <div class="icon-box">
-                        <img class="icon-normal"
-                             src="{{ asset('images/icons/company-q.png') }}"
-                             alt="شرکت آسانسوری">
-
-                        <img class="icon-hover"
-                             src="{{ asset('images/icons/company-t.png') }}"
-                             alt="شرکت آسانسوری">
-                    </div>
-
-                    <span>شرکت آسانسوری</span>
-
-                </a>
-
-                <a href="javascript:void(0)" class="collaboration-card technician">
-
-                    <div class="icon-box">
-                        <img class="icon-normal"
-                             src="{{ asset('images/icons/technician-q.png') }}"
-                             alt="تکنسین">
-
-                        <img class="icon-hover"
-                             src="{{ asset('images/icons/technician-t.png') }}"
-                             alt="تکنسین">
-                    </div>
-
-                    <span>تکنسین</span>
-
-                </a>
+                @endforeach
 
             </div>
+
 
         </div>
 
     </div>
+
 </section>

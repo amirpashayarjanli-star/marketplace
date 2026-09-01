@@ -8,7 +8,7 @@
         <div class="section-title">
 
 
-            <i class="fa-solid fa-tags"></i>
+            <x-ui.icon name="tags" />
 
 
             برندهای قابل تامین

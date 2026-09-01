@@ -62,7 +62,7 @@
 
                         <span>
 
-                            <i class="fa-solid fa-location-dot"></i>
+                            <x-ui.icon name="location-dot" />
 
                             {{ $project->city }}
 
@@ -72,7 +72,7 @@
 
                         <span>
 
-                            <i class="fa-solid fa-building"></i>
+                            <x-ui.icon name="building" />
 
                             {{ $project->type }}
 

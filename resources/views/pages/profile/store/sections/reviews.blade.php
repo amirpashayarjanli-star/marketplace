@@ -41,7 +41,7 @@
 
                         <span>
 
-                            <i class="fa-solid fa-star"></i>
+                            <x-ui.icon name="star" />
 
                             {{ $review->rating }}
 

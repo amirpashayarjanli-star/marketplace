@@ -57,7 +57,7 @@
         <span>
 
 
-            <i class="fa-solid fa-location-dot"></i>
+            <x-ui.icon name="location-dot" />
 
 
             {{ $technician->city }}
@@ -74,7 +74,7 @@
         <span>
 
 
-            <i class="fa-solid fa-star"></i>
+            <x-ui.icon name="star" />
 
 
             {{ $technician->rating }}
@@ -125,7 +125,7 @@
     <div class="company-comments">
 
 
-        <i class="fa-solid fa-comments"></i>
+        <x-ui.icon name="comments" />
 
 
         {{ $technician->reviews_count }} نظر
@@ -165,7 +165,7 @@
         مشاهده پروفایل
 
 
-        <i class="fa-solid fa-arrow-left"></i>
+        <x-ui.icon name="arrow-left" />
 
 
     </a>

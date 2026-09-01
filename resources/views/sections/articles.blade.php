@@ -1,6 +1,6 @@
-<section class="latest-articles">
+<section id="articles" class="latest-articles">
 
-    <div class="container">
+    <div class="container-app">
 
         <x-section-title
             title="آخرین مقالات"
@@ -17,7 +17,7 @@
 
                 <div class="slider-empty">
 
-                    <i class="fa-regular fa-newspaper"></i>
+                    <x-ui.icon name="newspaper" />
 
                     <h3>
                         هنوز مقاله‌ای منتشر نشده است.

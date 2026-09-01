@@ -20,7 +20,7 @@
 
         <span>
 
-            <i class="fa-solid fa-location-dot"></i>
+            <x-ui.icon name="location-dot" />
 
             {{ $company->city }}
 
@@ -29,7 +29,7 @@
 
         <span>
 
-            <i class="fa-solid fa-star"></i>
+            <x-ui.icon name="star" />
 
             {{ $company->rating ?? 0 }}
 
@@ -41,7 +41,7 @@
 
     <div class="company-comments">
 
-        <i class="fa-solid fa-comments"></i>
+        <x-ui.icon name="comments" />
 
         {{ $company->reviews_count ?? 0 }} نظر
 
@@ -56,7 +56,7 @@
         مشاهده پروفایل
 
 
-        <i class="fa-solid fa-arrow-left"></i>
+        <x-ui.icon name="arrow-left" />
 
 
     </a>

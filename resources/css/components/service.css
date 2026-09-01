@@ -1,0 +1,347 @@
+/* =========================
+   پروسرویس
+========================= */
+
+.wizard-type-card-customer .wizard-type-body{
+    border-color:var(--pastel-warning-border);
+    background:linear-gradient(135deg, rgba(250,204,21,.06), rgba(239,68,68,.04));
+}
+
+.wizard-type-card-customer input:checked + .wizard-type-body{
+    border-color:var(--gold);
+    box-shadow:0 0 0 4px rgba(202,138,4,.14);
+}
+
+
+/* ---- کارت‌های لیست خرابی/کار ---- */
+
+.service-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.service-card{
+    display:block;
+    padding:18px 22px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:18px;
+    text-decoration:none;
+    transition:border-color .2s, box-shadow .2s, transform .2s;
+}
+
+.service-card:hover{
+    border-color:#93c5fd;
+    box-shadow:0 4px 16px rgba(37,99,235,.1);
+    transform:translateY(-1px);
+}
+
+.service-card-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    margin-bottom:6px;
+}
+
+.service-card-title{
+    font-weight:800;
+    color:var(--text);
+}
+
+.service-card-meta{
+    font-size:.8rem;
+    color:var(--text-muted);
+    margin-top:4px;
+}
+
+.service-card-desc{
+    font-size:.85rem;
+    color:var(--text-muted);
+    margin-top:8px;
+    line-height:1.8;
+}
+
+
+/* ---- نشان وضعیت ---- */
+
+.service-status{
+    display:inline-flex;
+    align-items:center;
+    padding:4px 12px;
+    border-radius:99px;
+    font-size:.75rem;
+    font-weight:700;
+    white-space:nowrap;
+}
+
+.service-status-reported,
+.service-status-invoiced{ background:var(--pastel-info-bg); color:var(--primary); }
+
+.service-status-assigned,
+.service-status-accepted{ background:var(--pastel-warning-bg); color:var(--pastel-warning-text); }
+
+.service-status-on_the_way,
+.service-status-arrived,
+.service-status-in_progress{ background:var(--pastel-progress-bg); color:var(--pastel-progress-text); }
+
+.service-status-completed{ background:#f0fdf4; color:var(--success); }
+
+.service-status-confirmed{ background:var(--pastel-success-bg); color:var(--pastel-success-text); }
+
+.service-status-cancelled{ background:var(--pastel-danger-bg); color:var(--danger); }
+
+
+/* ---- تایم‌لاین ---- */
+
+.service-timeline{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+    margin:20px 0;
+}
+
+.service-timeline-item{
+    position:relative;
+    padding-inline-start:28px;
+    padding-bottom:22px;
+}
+
+.service-timeline-item::before{
+    content:'';
+    position:absolute;
+    right:5px;
+    top:4px;
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:var(--primary);
+}
+
+.service-timeline-item::after{
+    content:'';
+    position:absolute;
+    right:9px;
+    top:16px;
+    bottom:0;
+    width:2px;
+    background:var(--surface-3);
+}
+
+.service-timeline-item:last-child::after{
+    display:none;
+}
+
+.service-timeline-label{
+    font-weight:700;
+    font-size:.9rem;
+    color:var(--text);
+}
+
+.service-timeline-time{
+    font-size:.78rem;
+    color:var(--text-soft);
+    margin-top:2px;
+}
+
+
+/* ---- فاکتور ---- */
+
+.service-invoice-table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:.9rem;
+}
+
+.service-invoice-table th,
+.service-invoice-table td{
+    padding:10px 8px;
+    text-align:start;
+    border-bottom:1px solid var(--border);
+}
+
+.service-invoice-table th{
+    color:var(--text-muted);
+    font-weight:700;
+    font-size:.8rem;
+}
+
+.service-invoice-total-row td{
+    font-weight:800;
+    color:var(--text);
+    border-bottom:none;
+}
+
+
+/* ---- فرم پویا (ردیف‌های فاکتور) ---- */
+
+.service-item-row{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    margin-bottom:10px;
+}
+
+.service-item-row .wizard-input{
+    margin:0;
+}
+
+.service-item-remove{
+    flex:none;
+    width:38px;
+    height:38px;
+    border-radius:10px;
+    border:1px solid var(--pastel-danger-border);
+    background:var(--pastel-danger-bg);
+    color:var(--danger);
+    font-weight:800;
+    cursor:pointer;
+}
+
+
+/* ---- انتخاب تکنسین ---- */
+
+.service-tech-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+    gap:12px;
+}
+
+.service-tech-card{
+    display:block;
+    cursor:pointer;
+}
+
+.service-tech-card input{
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
+}
+
+.service-tech-body{
+    padding:16px;
+    background:var(--surface);
+    border:2px solid var(--border);
+    border-radius:16px;
+    transition:border-color .2s, box-shadow .2s;
+}
+
+.service-tech-card input:checked + .service-tech-body{
+    border-color:var(--primary);
+    box-shadow:0 0 0 4px rgba(37,99,235,.14);
+}
+
+.service-tech-name{
+    font-weight:800;
+    color:var(--text);
+}
+
+.service-tech-meta{
+    font-size:.78rem;
+    color:var(--text-muted);
+    margin-top:4px;
+}
+
+
+/* ---- کیف پول ---- */
+
+.wallet-balance-card{
+    background:linear-gradient(135deg,var(--primary),var(--primary));
+    color:#fff;
+    border-radius:24px;
+    padding:28px;
+    margin-bottom:24px;
+}
+
+.wallet-balance-label{
+    font-size:.85rem;
+    opacity:.85;
+}
+
+.wallet-balance-amount{
+    font-size:2.2rem;
+    font-weight:900;
+    margin-top:6px;
+}
+
+.wallet-tx-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:14px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.wallet-tx-desc{
+    font-weight:700;
+    color:var(--text);
+    font-size:.9rem;
+}
+
+.wallet-tx-time{
+    font-size:.78rem;
+    color:var(--text-soft);
+    margin-top:2px;
+}
+
+.wallet-tx-amount{
+    font-weight:800;
+    font-size:.95rem;
+    white-space:nowrap;
+}
+
+.wallet-tx-amount.is-credit{ color:var(--success); }
+.wallet-tx-amount.is-debit{ color:var(--danger); }
+
+
+/* ---- دکمه‌های مبلغ آماده در شارژ کیف‌پول ---- */
+
+.wallet-preset-btn{
+    padding:8px 16px;
+    border-radius:99px;
+    border:1px solid var(--glass-border);
+    background:var(--glass-bg);
+    color:var(--text-muted);
+    font-weight:700;
+    font-size:.85rem;
+    cursor:pointer;
+    transition:border-color .2s, color .2s, transform .2s;
+}
+
+.wallet-preset-btn:hover{
+    border-color:var(--primary);
+    color:var(--primary);
+    transform:translateY(-1px);
+}
+
+
+/* ---- ستاره‌ی امتیاز ---- */
+
+.service-rating{
+    display:flex;
+    flex-direction:row-reverse;
+    justify-content:flex-end;
+    gap:4px;
+}
+
+.service-rating input{
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
+}
+
+.service-rating label{
+    font-size:2rem;
+    line-height:1;
+    color:#e2e8f0;
+    cursor:pointer;
+    transition:color .15s;
+}
+
+.service-rating input:checked ~ label,
+.service-rating label:hover,
+.service-rating label:hover ~ label{
+    color:var(--gold);
+}

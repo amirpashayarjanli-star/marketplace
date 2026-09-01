@@ -15,6 +15,7 @@
 <main class="directory-page">
 
 
+    <div class="container-app">
 
     <section class="directory-top">
 
@@ -44,6 +45,8 @@
     <x-directory.filter-box
 
         register="ثبت تکنسین"
+
+        search="جستجوی تکنسین..."
 
     />
 
@@ -76,8 +79,7 @@
 
     </div>
 
-
-
+    </div>
 
 
 </main>

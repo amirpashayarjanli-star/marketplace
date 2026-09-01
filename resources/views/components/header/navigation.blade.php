@@ -1,11 +1,11 @@
 @php
 $items = [
     ['title' => 'خانه', 'url' => route('home')],
-    ['title' => 'شرکت‌ها', 'url' => '#'],
-    ['title' => 'تولیدکنندگان', 'url' => '#'],
-    ['title' => 'فروشگاه‌ها', 'url' => '#'],
-    ['title' => 'پروژه‌ها', 'url' => '#'],
-    ['title' => 'مقالات', 'url' => '#'],
+    ['title' => 'شرکت‌ها', 'url' => route('companies.index')],
+    ['title' => 'تولیدکنندگان', 'url' => route('manufacturers.index')],
+    ['title' => 'فروشگاه‌ها', 'url' => route('stores.index')],
+    ['title' => 'پروژه‌ها', 'url' => route('projects.index')],
+    ['title' => 'مقالات', 'url' => route('home') . '#articles'],
 ];
 @endphp
 
@@ -18,7 +18,7 @@ $items = [
             <li>
 
                 <a href="{{ $item['url'] }}"
-                   class="group relative flex h-11 items-center rounded-full px-5 text-[15px] font-semibold text-slate-700 transition duration-300 hover:text-blue-600">
+                   class="group relative flex h-11 items-center rounded-full px-3.5 text-[15px] font-semibold text-slate-700 transition duration-300 hover:text-blue-600">
 
                     {{ $item['title'] }}
 
@@ -29,6 +29,31 @@ $items = [
             </li>
 
         @endforeach
+
+
+        <li>
+
+            <a href="{{ route('auctions.index') }}"
+               class="pro-service-btn pro-auction-btn">
+
+                <span class="pro-service-pro">پرو</span><span class="pro-auction-word">مزایده</span>
+
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a href="{{ route('service.index') }}"
+               class="pro-service-btn">
+
+                <span class="pro-service-pro">پرو</span><span class="pro-service-service">سرویس</span>
+
+            </a>
+
+        </li>
+
 
     </ul>
 

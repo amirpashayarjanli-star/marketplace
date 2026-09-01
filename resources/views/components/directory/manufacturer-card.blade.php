@@ -28,7 +28,7 @@
     <div class="manufacturer-type">
 
 
-        <i class="fa-solid fa-industry"></i>
+        <x-ui.icon name="industry" />
 
 
         تولیدکننده تجهیزات آسانسور
@@ -50,7 +50,7 @@
         <span>
 
 
-            <i class="fa-solid fa-location-dot"></i>
+            <x-ui.icon name="location-dot" />
 
 
             {{ $manufacturer->city }}
@@ -65,7 +65,7 @@
         <span>
 
 
-            <i class="fa-solid fa-star"></i>
+            <x-ui.icon name="star" />
 
 
             {{ $manufacturer->rating }}
@@ -116,7 +116,7 @@
     <div class="company-comments">
 
 
-        <i class="fa-solid fa-comments"></i>
+        <x-ui.icon name="comments" />
 
 
         {{ $manufacturer->reviews_count }} نظر
@@ -140,7 +140,7 @@
         مشاهده پروفایل
 
 
-        <i class="fa-solid fa-arrow-left"></i>
+        <x-ui.icon name="arrow-left" />
 
 
     </a>

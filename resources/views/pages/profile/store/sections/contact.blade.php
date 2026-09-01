@@ -22,7 +22,7 @@
 
         <div class="contact-item">
 
-            <i class="fa-solid fa-phone"></i>
+            <x-ui.icon name="phone" />
 
             <a href="tel:{{ $store->phone }}">
 
@@ -42,7 +42,7 @@
 
         <div class="contact-item">
 
-            <i class="fa-solid fa-mobile-screen"></i>
+            <x-ui.icon name="mobile-screen" />
 
             <a href="tel:{{ $store->mobile }}">
 
@@ -62,7 +62,7 @@
 
         <div class="contact-item">
 
-            <i class="fa-solid fa-globe"></i>
+            <x-ui.icon name="globe" />
 
             <a href="{{ $store->website }}" target="_blank" rel="noopener noreferrer">
                 وب‌سایت فروشگاه
@@ -80,7 +80,7 @@
 
         <div class="contact-item">
 
-            <i class="fa-solid fa-location-dot"></i>
+            <x-ui.icon name="location-dot" />
 
             <span>
 

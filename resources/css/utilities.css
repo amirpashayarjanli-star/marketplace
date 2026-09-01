@@ -1,95 +1,107 @@
-/* ===========================
+/* ===========================================================
+   ابزارها
+   =========================================================== */
 
-   Layout
-=========================== */
-
-.container-app {
-    width: min(100% - 2rem, var(--container));
-    margin-inline: auto;
-}
-
-.section {
-    padding-block: 6rem;
-}
-
-/* ===========================
-   Glass
-=========================== */
-
-.glass {
-    background: rgba(255,255,255,.70);
-    backdrop-filter: var(--blur);
-    -webkit-backdrop-filter: var(--blur);
-
-    border: 1px solid rgba(255,255,255,.35);
-
-    box-shadow: var(--shadow-md);
-}
-
-.glass-premium {
-    background: rgba(255,255,255,.55);
-    backdrop-filter: var(--blur-premium);
-    -webkit-backdrop-filter: var(--blur-premium);
-
-    border: 1px solid rgba(255,255,255,.45);
-
-    box-shadow: var(--shadow-lg);
-}
-
-/* ===========================
-   Radius
-=========================== */
-
-.radius-sm { border-radius: var(--radius-sm); }
-.radius-md { border-radius: var(--radius-md); }
-.radius-lg { border-radius: var(--radius-lg); }
-.radius-xl { border-radius: var(--radius-xl); }
-
-/* ===========================
-   Shadow
-=========================== */
-
-.shadow-sm { box-shadow: var(--shadow-sm); }
-.shadow-md { box-shadow: var(--shadow-md); }
-.shadow-lg { box-shadow: var(--shadow-lg); }
-
-/* ===========================
-   Transition
-=========================== */
-
-.transition-default {
-    transition: all var(--transition) ease;
-}
-
-/* ===========================
-   Hover
-=========================== */
-
-.hover-lift:hover {
-    transform: translateY(-6px);
-}
-
-.hover-scale:hover {
-    transform: scale(1.03);
-}
-
-/* ===========================
-   Text
-=========================== */
-
-.text-muted {
-    color: var(--text-muted);
+.container-app{
+    width:min(100% - 2rem, var(--container));
+    margin-inline:auto;
 }
 
 
-/* ===========================
-   Main Container
-=========================== */
+/* ===========================================================
+   شیشه‌ی مایع
+   -----------------------------------------------------------
+   سه لایه با هم حس شیشه رو می‌سازن:
+     ۱) پس‌زمینه‌ی نیمه‌شفاف
+     ۲) بلور + اشباع (saturate باعث میشه رنگ پشت شیشه زنده بمونه)
+     ۳) درخشش نازک روی لبه‌ی بالا، مثل انعکاس نور روی شیشه‌ی واقعی
+   =========================================================== */
 
-.container {
+.glass{
+    background:var(--glass-bg);
+    backdrop-filter:var(--blur);
+    -webkit-backdrop-filter:var(--blur);
+    border:1px solid var(--glass-border);
+    box-shadow:var(--shadow-md), var(--glass-highlight);
+}
 
-    width: min(100% - 2rem, var(--container));
+.glass-premium{
+    background:var(--glass-bg-premium);
+    backdrop-filter:var(--blur-premium);
+    -webkit-backdrop-filter:var(--blur-premium);
+    border:1px solid var(--glass-border);
+    box-shadow:var(--shadow-lg), var(--glass-highlight);
+}
 
-    margin-inline: auto;
+.glass-strong{
+    background:var(--glass-bg-strong);
+    backdrop-filter:var(--blur);
+    -webkit-backdrop-filter:var(--blur);
+    border:1px solid var(--glass-border);
+    box-shadow:var(--shadow-md), var(--glass-highlight);
+}
 
+
+/* ---- نشانه‌ی کلامی برند ----
+   «آسانسور» سرمه‌ای و «پرو» کهربایی — هرجای سایت یکسان. */
+
+.brand-blue{ color:var(--brand-navy); }
+.brand-yellow{ color:var(--accent-dark); }
+
+:root[data-theme="dark"] .brand-yellow{ color:var(--brand-amber); }
+
+
+/* ---- گردی ---- */
+
+.radius-sm{ border-radius:var(--radius-sm); }
+.radius-md{ border-radius:var(--radius-md); }
+.radius-lg{ border-radius:var(--radius-lg); }
+.radius-xl{ border-radius:var(--radius-xl); }
+.radius-2xl{ border-radius:var(--radius-2xl); }
+
+
+/* ---- سایه ---- */
+
+.shadow-soft{ box-shadow:var(--shadow-sm); }
+.shadow-float{ box-shadow:var(--shadow-md); }
+.shadow-deep{ box-shadow:var(--shadow-lg); }
+
+
+/* ---- حرکت ---- */
+
+.transition-default{
+    transition:all var(--transition) var(--ease-out);
+}
+
+.hover-lift{
+    transition:transform var(--transition) var(--ease-out),
+               box-shadow var(--transition) var(--ease-out);
+}
+
+.hover-lift:hover{
+    transform:translateY(-6px);
+    box-shadow:var(--shadow-lg);
+}
+
+
+/* ---- ته‌رنگ‌های پاستیلی ----
+   روی هر سطحی می‌شینن تا کارت‌ها با پس‌زمینه یکی نشن. */
+
+.tint-sky   { background:var(--pastel-sky);   color:var(--pastel-sky-ink); }
+.tint-mint  { background:var(--pastel-mint);  color:var(--pastel-mint-ink); }
+.tint-peach { background:var(--pastel-peach); color:var(--pastel-peach-ink); }
+.tint-lilac { background:var(--pastel-lilac); color:var(--pastel-lilac-ink); }
+.tint-lemon { background:var(--pastel-lemon); color:var(--pastel-lemon-ink); }
+.tint-rose  { background:var(--pastel-rose);  color:var(--pastel-rose-ink); }
+
+
+/* ---- فقط برای صفحه‌خوان ---- */
+
+.visually-hidden{
+    position:absolute;
+    width:1px; height:1px;
+    margin:-1px; padding:0;
+    overflow:hidden;
+    clip-path:inset(50%);
+    white-space:nowrap;
 }

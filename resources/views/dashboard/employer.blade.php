@@ -121,6 +121,56 @@
 
 
 
+{{-- پرو مزایده --}}
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
+
+
+<a href="{{ route('dashboard.auctions') }}"
+   class="bg-white rounded-2xl shadow p-6 block hover:shadow-lg transition">
+
+<div class="text-gray-500 mb-3">
+
+مزایده‌های در جریان
+
+</div>
+
+
+<div class="text-4xl font-bold text-purple-600">
+
+{{ $activeAuctions ?? 0 }}
+
+</div>
+
+</a>
+
+
+
+
+<a href="{{ route('dashboard.auctions') }}"
+   class="bg-white rounded-2xl shadow p-6 block hover:shadow-lg transition">
+
+<div class="text-gray-500 mb-3">
+
+پیشنهادهای دریافتی
+
+</div>
+
+
+<div class="text-4xl font-bold text-purple-600">
+
+{{ $auctionBids ?? 0 }}
+
+</div>
+
+</a>
+
+
+</div>
+
+
+
+
 
 
 

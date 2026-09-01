@@ -29,7 +29,7 @@
 
             {{ $button }}
 
-            <i class="fa-solid fa-arrow-left"></i>
+            <x-ui.icon name="arrow-left" />
 
         </a>
 

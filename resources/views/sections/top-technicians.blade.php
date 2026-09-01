@@ -1,6 +1,6 @@
 <section class="section top-technicians">
 
-    <div class="container">
+    <div class="container-app">
 
         <x-section-title
             title="برترین تکنسین‌ها"

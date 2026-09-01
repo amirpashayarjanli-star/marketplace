@@ -8,7 +8,7 @@
 
 <section class="entity-slider-section">
 
-    <div class="container">
+    <div class="container-app">
 
         <div class="section-header">
 
@@ -38,7 +38,7 @@
 
                     مشاهده همه
 
-                    <i class="fa-solid fa-arrow-left"></i>
+                    <x-ui.icon name="arrow-left" />
 
                 </a>
 
@@ -48,7 +48,7 @@
                         class="slider-arrow slider-prev"
                         type="button">
 
-                        <i class="fa-solid fa-chevron-right"></i>
+                        <x-ui.icon name="chevron-right" />
 
                     </button>
 
@@ -56,7 +56,7 @@
                         class="slider-arrow slider-next"
                         type="button">
 
-                        <i class="fa-solid fa-chevron-left"></i>
+                        <x-ui.icon name="chevron-left" />
 
                     </button>
 
@@ -92,7 +92,7 @@
 
                     <div class="slider-empty">
 
-                        <i class="fa-regular fa-folder-open"></i>
+                        <x-ui.icon name="folder-open" />
 
                         <h3>موردی برای نمایش وجود ندارد</h3>
 

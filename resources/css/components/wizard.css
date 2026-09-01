@@ -1,0 +1,523 @@
+/* =========================
+   ویزارد تکمیل پروفایل
+========================= */
+
+.wizard-page{
+    min-height:100vh;
+    padding:48px 20px 80px;
+    background:var(--surface-2);
+}
+
+.wizard-shell{
+    max-width:760px;
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+
+/* ---- سرصفحه ---- */
+
+.wizard-intro{
+    text-align:center;
+    margin-bottom:8px;
+}
+
+.wizard-title{
+    font-size:1.75rem;
+    font-weight:900;
+    color:var(--text);
+    margin:0 0 8px;
+}
+
+.wizard-subtitle{
+    font-size:.95rem;
+    line-height:1.9;
+    color:var(--text-muted);
+    margin:0;
+}
+
+
+/* ---- وضعیت حساب ---- */
+
+.wizard-status{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    padding:18px 22px;
+    border-radius:18px;
+    border:1px solid transparent;
+}
+
+.wizard-status strong{ font-size:1rem; font-weight:800; }
+.wizard-status span{ font-size:.875rem; line-height:1.8; }
+
+.wizard-status-approved{
+    background:var(--pastel-success-bg);
+    border-color:var(--pastel-success-border);
+    color:var(--pastel-success-text);
+}
+
+.wizard-status-pending{
+    background:var(--pastel-warning-bg);
+    border-color:var(--pastel-warning-border);
+    color:var(--pastel-warning-text);
+}
+
+.wizard-status-rejected{
+    background:var(--pastel-danger-bg);
+    border-color:var(--pastel-danger-border);
+    color:var(--danger);
+}
+
+.wizard-status-incomplete{
+    background:var(--pastel-info-bg);
+    border-color:var(--pastel-info-border);
+    color:var(--primary);
+}
+
+
+/* ---- پیام‌ها ---- */
+
+.wizard-alert{
+    padding:14px 18px;
+    border-radius:14px;
+    font-size:.9rem;
+    line-height:1.8;
+}
+
+.wizard-alert ul{
+    margin:8px 0 0;
+    padding-inline-start:20px;
+}
+
+.wizard-alert-success{
+    background:var(--pastel-success-bg);
+    color:var(--pastel-success-text);
+    border:1px solid var(--pastel-success-border);
+}
+
+.wizard-alert-error{
+    background:var(--pastel-danger-bg);
+    color:var(--danger);
+    border:1px solid var(--pastel-danger-border);
+}
+
+
+/* ---- نوار پیشرفت ---- */
+
+.wizard-progress-card{
+    background:var(--surface);
+    border-radius:20px;
+    padding:22px 24px;
+    box-shadow:0 4px 20px rgba(15,23,42,.06);
+}
+
+.wizard-progress-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:12px;
+}
+
+.wizard-progress-label{
+    font-weight:800;
+    color:var(--text);
+}
+
+.wizard-progress-value{
+    font-weight:900;
+    font-size:1.25rem;
+    color:var(--primary);
+}
+
+.wizard-progress-track{
+    height:10px;
+    border-radius:99px;
+    background:var(--surface-3);
+    overflow:hidden;
+}
+
+.wizard-progress-fill{
+    height:100%;
+    border-radius:99px;
+    background:linear-gradient(90deg,var(--primary),var(--primary));
+    transition:width .4s ease;
+}
+
+.wizard-progress-note{
+    margin:10px 0 0;
+    font-size:.85rem;
+    color:var(--text-muted);
+}
+
+
+/* ---- فهرست مراحل ---- */
+
+.wizard-steps{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.wizard-step-row{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    padding:16px 20px;
+    background:var(--surface);
+    border-radius:16px;
+    border:1px solid var(--border);
+    text-decoration:none;
+    transition:border-color .2s, box-shadow .2s, transform .2s;
+}
+
+.wizard-step-row:hover{
+    border-color:#93c5fd;
+    box-shadow:0 4px 16px rgba(37,99,235,.1);
+    transform:translateY(-1px);
+}
+
+.wizard-step-row.is-next{
+    border-color:var(--primary);
+    box-shadow:0 0 0 3px rgba(37,99,235,.12);
+}
+
+.wizard-step-mark{
+    flex:none;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    font-weight:800;
+    background:var(--surface-3);
+    color:var(--text-muted);
+}
+
+.wizard-step-row.is-done .wizard-step-mark{
+    background:var(--success);
+    color:#fff;
+}
+
+.wizard-step-text{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+}
+
+.wizard-step-title{
+    font-weight:800;
+    color:var(--text);
+}
+
+.wizard-step-meta{
+    font-size:.8rem;
+    color:var(--text-muted);
+}
+
+.wizard-step-action{
+    font-size:.85rem;
+    font-weight:700;
+    color:var(--primary);
+}
+
+
+/* ---- نوار مراحل بالای فرم ---- */
+
+.wizard-rail{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+.wizard-rail-item{
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    background:var(--surface-3);
+    color:var(--text-muted);
+    font-weight:800;
+    font-size:.85rem;
+    text-decoration:none;
+    transition:transform .2s;
+}
+
+.wizard-rail-item:hover{ transform:scale(1.08); }
+
+.wizard-rail-item.is-done{
+    background:var(--success);
+    color:#fff;
+}
+
+.wizard-rail-item.is-current{
+    background:var(--primary);
+    color:#fff;
+    box-shadow:0 0 0 4px rgba(37,99,235,.18);
+}
+
+
+/* ---- فرم ---- */
+
+.wizard-form-card{
+    background:var(--surface);
+    border-radius:24px;
+    padding:32px;
+    box-shadow:0 6px 28px rgba(15,23,42,.07);
+}
+
+.wizard-form-head{
+    margin-bottom:24px;
+    text-align:center;
+}
+
+.wizard-form{
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+}
+
+.wizard-field{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.wizard-label{
+    font-weight:700;
+    font-size:.9rem;
+    color:var(--text);
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.wizard-required{ color:var(--danger); }
+
+.wizard-optional{
+    font-size:.7rem;
+    font-weight:600;
+    color:var(--text-muted);
+    background:var(--surface-2);
+    padding:2px 8px;
+    border-radius:99px;
+}
+
+.wizard-input{
+    width:100%;
+    padding:13px 16px;
+    border:1px solid var(--border);
+    border-radius:14px;
+    font-family:inherit;
+    font-size:.95rem;
+    color:var(--text);
+    background:var(--surface);
+    transition:border-color .2s, box-shadow .2s;
+}
+
+.wizard-input:focus{
+    outline:none;
+    border-color:var(--primary);
+    box-shadow:0 0 0 3px rgba(37,99,235,.14);
+}
+
+.wizard-input.has-error{
+    border-color:#dc2626;
+}
+
+.wizard-input.has-error:focus{
+    box-shadow:0 0 0 3px rgba(220,38,38,.14);
+}
+
+textarea.wizard-input{
+    resize:vertical;
+    line-height:1.9;
+}
+
+.wizard-file{
+    padding:10px 14px;
+    background:var(--surface-2);
+}
+
+.wizard-image-current{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:10px;
+    background:var(--surface-2);
+    border-radius:12px;
+    border:1px solid var(--border);
+}
+
+.wizard-image-current img{
+    width:64px;
+    height:64px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.wizard-image-current span{
+    font-size:.8rem;
+    color:var(--text-muted);
+}
+
+.wizard-hint{
+    margin:0;
+    font-size:.78rem;
+    color:var(--text-muted);
+}
+
+.wizard-error{
+    margin:0;
+    font-size:.8rem;
+    font-weight:600;
+    color:var(--danger);
+}
+
+
+/* ---- دکمه‌ها ---- */
+
+.wizard-form-actions{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding-top:8px;
+}
+
+.wizard-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:13px 26px;
+    border-radius:99px;
+    font-weight:800;
+    font-size:.95rem;
+    text-decoration:none;
+    border:none;
+    cursor:pointer;
+    transition:background .2s, transform .2s, box-shadow .2s;
+}
+
+.wizard-btn-primary{
+    background:var(--primary);
+    color:#fff;
+    box-shadow:0 4px 14px rgba(37,99,235,.28);
+}
+
+.wizard-btn-primary:hover{
+    background:var(--primary);
+    transform:translateY(-1px);
+}
+
+.wizard-btn-ghost{
+    background:transparent;
+    color:var(--text-muted);
+    border:1px solid var(--border);
+}
+
+.wizard-btn-ghost:hover{
+    border-color:#94a3b8;
+    color:#334155;
+}
+
+.wizard-btn-block{
+    width:100%;
+}
+
+
+/* ---- انتخاب نوع حساب ---- */
+
+.wizard-type-form{
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+}
+
+.wizard-type-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:14px;
+}
+
+.wizard-type-card{
+    position:relative;
+    display:block;
+    cursor:pointer;
+}
+
+.wizard-type-card input{
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
+}
+
+.wizard-type-body{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    padding:22px 20px;
+    background:var(--surface);
+    border:2px solid var(--border);
+    border-radius:18px;
+    transition:border-color .2s, box-shadow .2s, transform .2s;
+}
+
+.wizard-type-card:hover .wizard-type-body{
+    border-color:#93c5fd;
+    transform:translateY(-2px);
+}
+
+.wizard-type-card input:checked + .wizard-type-body{
+    border-color:var(--primary);
+    box-shadow:0 0 0 4px rgba(37,99,235,.14);
+}
+
+.wizard-type-name{
+    font-weight:800;
+    font-size:1.05rem;
+    color:var(--text);
+}
+
+.wizard-type-meta{
+    font-size:.8rem;
+    color:var(--text-muted);
+}
+
+
+/* ---- ارسال نهایی ---- */
+
+.wizard-submit{
+    background:var(--surface);
+    border-radius:20px;
+    padding:24px;
+    text-align:center;
+    box-shadow:0 4px 20px rgba(15,23,42,.06);
+}
+
+.wizard-submit-note{
+    margin:0 0 16px;
+    font-size:.9rem;
+    line-height:1.9;
+    color:var(--text-muted);
+}
+
+
+@media(max-width:640px){
+
+    .wizard-form-card{ padding:22px 18px; }
+
+    .wizard-form-actions{
+        flex-direction:column-reverse;
+        align-items:stretch;
+    }
+
+    .wizard-btn{ width:100%; }
+
+}

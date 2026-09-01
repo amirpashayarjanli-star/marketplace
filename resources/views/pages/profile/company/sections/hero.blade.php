@@ -30,7 +30,7 @@
             <div class="profile-verified">
 
 
-                <i class="fa-solid fa-circle-check"></i>
+                <x-ui.icon name="circle-check" />
 
 
                 تایید شده آسانسور پرو
@@ -63,7 +63,7 @@
 
                 <span>
 
-                    <i class="fa-solid fa-location-dot"></i>
+                    <x-ui.icon name="location-dot" />
 
                     {{ $company->city }}
 
@@ -75,7 +75,7 @@
 
                 <span>
 
-                    <i class="fa-solid fa-star"></i>
+                    <x-ui.icon name="star" />
 
                     {{ $company->rating ?? 0 }}
 
@@ -87,7 +87,7 @@
 
                 <span>
 
-                    <i class="fa-solid fa-comments"></i>
+                    <x-ui.icon name="comments" />
 
                     {{ $company->reviews_count ?? 0 }} نظر
 

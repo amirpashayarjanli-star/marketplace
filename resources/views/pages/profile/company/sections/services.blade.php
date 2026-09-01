@@ -27,7 +27,7 @@
                 <div class="service-item">
 
 
-                    <i class="fa-solid fa-check"></i>
+                    <x-ui.icon name="check" />
 
 
                     <span>

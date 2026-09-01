@@ -14,6 +14,7 @@
 <main class="directory-page">
 
 
+    <div class="container-app">
 
     <section class="directory-top">
 
@@ -41,6 +42,7 @@
 
     <x-directory.filter-box
         register="ثبت تولیدکننده"
+        search="جستجوی تولیدکننده..."
     />
 
 
@@ -71,8 +73,7 @@
 
     </div>
 
-
-
+    </div>
 
 
 </main>

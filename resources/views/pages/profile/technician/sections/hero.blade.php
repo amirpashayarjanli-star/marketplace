@@ -30,7 +30,7 @@
             <div class="profile-verified">
 
 
-                <i class="fa-solid fa-circle-check"></i>
+                <x-ui.icon name="circle-check" />
 
 
                 تایید شده آسانسور پرو
@@ -62,7 +62,7 @@
 
                 <span>
 
-                    <i class="fa-solid fa-location-dot"></i>
+                    <x-ui.icon name="location-dot" />
 
                     {{ $technician->city }}
 
@@ -74,7 +74,7 @@
 
                 <span>
 
-                    <i class="fa-solid fa-star"></i>
+                    <x-ui.icon name="star" />
 
                     {{ $technician->rating ?? 0 }}
 
@@ -86,7 +86,7 @@
 
                 <span>
 
-                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                    <x-ui.icon name="screwdriver-wrench" />
 
                     تکنسین آسانسور
 
@@ -102,18 +102,32 @@
 
 
 
-            @if(isset($technician->skills))
+            @php
+                // skills در دیتابیس یک ستون text است و با ویرگول جدا می‌شود،
+                // نه رابطه و نه آرایه. اینجا به لیست تمیز تبدیلش می‌کنیم.
+                $skillList = collect(
+                        is_array($technician->skills)
+                            ? $technician->skills
+                            : preg_split('/[،,]/u', (string) $technician->skills)
+                    )
+                    ->map(fn ($skill) => trim((string) $skill))
+                    ->filter()
+                    ->values();
+            @endphp
+
+
+            @if($skillList->isNotEmpty())
 
 
             <div class="manufacturer-tags">
 
 
-                @foreach($technician->skills as $skill)
+                @foreach($skillList as $skill)
 
 
                 <span>
 
-                    {{ $skill->name }}
+                    {{ $skill }}
 
                 </span>
 

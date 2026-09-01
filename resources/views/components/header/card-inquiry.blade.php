@@ -24,7 +24,7 @@
 
     <div class="project-location">
 
-        <i class="fa-solid fa-layer-group"></i>
+        <x-ui.icon name="layer-group" />
 
         {{ $inquiry->category ?? 'قطعات آسانسور' }}
 
@@ -34,7 +34,7 @@
 
         <div>
 
-            <i class="fa-solid fa-cubes"></i>
+            <x-ui.icon name="cubes" />
 
             {{ $inquiry->quantity ?? 1 }} عدد
 
@@ -42,7 +42,7 @@
 
         <div>
 
-            <i class="fa-solid fa-location-dot"></i>
+            <x-ui.icon name="location-dot" />
 
             {{ $inquiry->city ?? '---' }}
 

@@ -1,0 +1,105 @@
+/* ===========================================================
+   دکمه‌ها
+   =========================================================== */
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:.55rem;
+
+    height:50px;
+    padding-inline:1.6rem;
+
+    border:none;
+    border-radius:var(--radius-full);
+
+    font-family:inherit;
+    font-size:.95rem;
+    font-weight:700;
+    white-space:nowrap;
+    text-decoration:none;
+
+    cursor:pointer;
+
+    transition:transform var(--transition) var(--ease-out),
+               box-shadow var(--transition) var(--ease-out),
+               background var(--transition) ease,
+               border-color var(--transition) ease,
+               color var(--transition) ease;
+}
+
+.btn:active{ transform:translateY(1px); }
+
+.btn svg{ flex:none; }
+
+
+/* ---- گونه‌ها ---- */
+
+.btn-primary{
+    background:var(--gradient-button);
+    /* در حالت شب گرادیان روشن‌تره، پس متن باید تیره بشه وگرنه
+       سفیدِ روی آبیِ روشن کنتراست کافی نمی‌ده. */
+    color:var(--primary-contrast);
+    box-shadow:var(--shadow-primary);
+}
+
+.btn-primary:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 30px color-mix(in srgb, var(--primary) 36%, transparent);
+}
+
+
+.btn-outline,
+.btn-secondary{
+    background:var(--surface);
+    border:1.5px solid var(--border-strong);
+    color:var(--text);
+}
+
+.btn-outline:hover,
+.btn-secondary:hover{
+    border-color:var(--primary);
+    color:var(--primary);
+    background:var(--primary-soft);
+    transform:translateY(-2px);
+}
+
+
+.btn-ghost{
+    background:transparent;
+    color:var(--text-muted);
+}
+
+.btn-ghost:hover{
+    background:var(--surface-2);
+    color:var(--text);
+}
+
+
+/* ---- اندازه‌ها ---- */
+
+.btn-sm{
+    height:40px;
+    padding-inline:1.1rem;
+    font-size:.875rem;
+}
+
+.btn-lg{
+    height:58px;
+    padding-inline:2rem;
+    font-size:1.05rem;
+}
+
+.btn-block{ width:100%; }
+
+
+/* ---- دکمه‌ی گرد فقط-آیکون ---- */
+
+.btn-icon{
+    width:44px;
+    height:44px;
+    padding:0;
+    border-radius:50%;
+    flex:none;
+}

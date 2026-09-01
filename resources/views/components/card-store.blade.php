@@ -17,7 +17,7 @@
 
     <div class="store-type">
 
-        <i class="fa-solid fa-store"></i>
+        <x-ui.icon name="store" />
 
         فروشگاه قطعات آسانسور
 
@@ -29,7 +29,7 @@
 
         <span>
 
-            <i class="fa-solid fa-location-dot"></i>
+            <x-ui.icon name="location-dot" />
 
             {{ $store->city }}
 
@@ -38,7 +38,7 @@
 
         <span>
 
-            <i class="fa-solid fa-star"></i>
+            <x-ui.icon name="star" />
 
             {{ $store->rating ?? 0 }}
 
@@ -69,7 +69,7 @@
 
     <div class="company-comments">
 
-        <i class="fa-solid fa-comments"></i>
+        <x-ui.icon name="comments" />
 
         {{ $store->reviews_count ?? 0 }} نظر
 
@@ -84,7 +84,7 @@
         مشاهده فروشگاه
 
 
-        <i class="fa-solid fa-arrow-left"></i>
+        <x-ui.icon name="arrow-left" />
 
 
     </a>

@@ -33,7 +33,7 @@
 
             <span>
 
-                <i class="fa-regular fa-calendar"></i>
+                <x-ui.icon name="calendar" />
 
                 {{ $article->created_at?->diffForHumans() ?? 'همین الان' }}
 

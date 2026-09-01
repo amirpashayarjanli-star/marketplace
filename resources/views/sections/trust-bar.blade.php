@@ -1,39 +1,47 @@
+{{--
+    نوار اعتماد
+    ------------------------------------------------------------------
+    اعداد از دیتابیس میان، نه دستی. فقط موارد تاییدشده شمرده میشن —
+    یعنی دقیقاً همون تعدادی که کاربر بعد از کلیک در فهرست می‌بینه.
+    (قبلاً این اعداد ثابت و ساختگی بودن.)
+--}}
+
+@php
+    $items = [
+        ['key' => 'companies',     'icon' => 'building', 'label' => 'شرکت آسانسوری', 'tone' => 'sky',   'route' => 'companies.index'],
+        ['key' => 'manufacturers', 'icon' => 'industry', 'label' => 'تولیدکننده',    'tone' => 'lilac', 'route' => 'manufacturers.index'],
+        ['key' => 'stores',        'icon' => 'shop',     'label' => 'فروشگاه',       'tone' => 'peach', 'route' => 'stores.index'],
+        ['key' => 'technicians',   'icon' => 'wrench',   'label' => 'تکنسین',        'tone' => 'mint',  'route' => 'technicians.index'],
+        ['key' => 'projects',      'icon' => 'clipboard',   'label' => 'پروژه',         'tone' => 'lemon', 'route' => 'projects.index'],
+    ];
+@endphp
+
 <section class="trust-bar">
-    <div class="container mx-auto px-5">
 
-        <div class="trust-wrapper">
+    <div class="container-app">
 
-            <div class="trust-item">
-                <img src="{{ asset('images/icons/company-t.png') }}" alt="شرکت">
-                <h3>2,500<span>+</span></h3>
-                <p>شرکت</p>
-            </div>
+        <div class="trust-wrapper glass">
 
-            <div class="trust-item">
-                <img src="{{ asset('images/icons/manufacturer-t.png') }}" alt="تولیدکننده">
-                <h3>180<span>+</span></h3>
-                <p>تولیدکننده</p>
-            </div>
+            @foreach($items as $item)
 
-            <div class="trust-item">
-                <img src="{{ asset('images/icons/store-t.png') }}" alt="فروشگاه">
-                <h3>950<span>+</span></h3>
-                <p>فروشگاه</p>
-            </div>
+                <a href="{{ route($item['route']) }}" class="trust-item">
 
-            <div class="trust-item">
-                <img src="{{ asset('images/icons/technician-t.png') }}" alt="تکنسین">
-                <h3>4,800<span>+</span></h3>
-                <p>تکنسین</p>
-            </div>
+                    <span class="trust-icon tint-{{ $item['tone'] }}">
+                        <x-ui.icon :name="$item['icon']" :size="24" />
+                    </span>
 
-            <div class="trust-item">
-                <img src="{{ asset('images/icons/project-t.png') }}" alt="پروژه">
-                <h3>320<span>+</span></h3>
-                <p>پروژه</p>
-            </div>
+                    <strong class="trust-value">
+                        {{ number_format($stats[$item['key']] ?? 0) }}
+                    </strong>
+
+                    <span class="trust-label">{{ $item['label'] }}</span>
+
+                </a>
+
+            @endforeach
 
         </div>
 
     </div>
+
 </section>

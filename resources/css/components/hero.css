@@ -1,0 +1,371 @@
+/* ===========================================================
+   هیرو — سه ستون
+   =========================================================== */
+
+.hero{
+    position:relative;
+    overflow:hidden;
+    padding-block:clamp(2rem, 1rem + 4vw, 4.5rem) clamp(2.5rem, 1rem + 5vw, 5.5rem);
+}
+
+
+/* ---- هاله‌های رنگی پس‌زمینه ----
+   زیر شیشه می‌شینن و رنگ رو از پشت به سطح می‌دن. */
+
+.hero-aura{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(100px);
+    pointer-events:none;
+    z-index:0;
+}
+
+.hero-aura-a{
+    inset-inline-end:-6%;
+    top:-22%;
+    width:min(48vw, 660px);
+    aspect-ratio:1;
+    background:var(--halo-cool);
+}
+
+.hero-aura-b{
+    inset-inline-start:-10%;
+    bottom:-30%;
+    width:min(42vw, 560px);
+    aspect-ratio:1;
+    background:var(--halo-warm);
+}
+
+
+/* ---- شبکه ---- */
+
+.hero-grid{
+    position:relative;
+    z-index:1;
+    display:grid;
+    grid-template-columns:1.15fr .78fr 1fr;
+    align-items:stretch;
+    gap:clamp(1rem, .5rem + 1.6vw, 2.2rem);
+}
+
+
+/* ===========================================================
+   ستون ۱ — متن
+   =========================================================== */
+
+.hero-intro{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.hero-eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:.5rem;
+    align-self:flex-start;
+
+    padding:.55rem 1.05rem;
+
+    border:1px solid var(--glass-border);
+    border-radius:var(--radius-full);
+    background:var(--glass-bg);
+    backdrop-filter:var(--blur);
+    -webkit-backdrop-filter:var(--blur);
+    box-shadow:var(--shadow-sm), var(--glass-highlight);
+
+    font-size:.82rem;
+    font-weight:700;
+    color:var(--primary);
+}
+
+.hero-title{
+    margin-top:1.4rem;
+    font-size:clamp(1.9rem, 1.1rem + 2.6vw, 3.4rem);
+    font-weight:800;
+    line-height:1.28;
+    letter-spacing:-.02em;
+    color:var(--text);
+}
+
+.hero-lead{
+    margin-top:1.2rem;
+    max-width:32rem;
+    font-size:clamp(.96rem, .9rem + .25vw, 1.1rem);
+    line-height:2;
+    color:var(--text-muted);
+}
+
+.hero-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.8rem;
+    margin-top:1.9rem;
+}
+
+.hero-trust{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.8rem 1.4rem;
+    margin-top:1.9rem;
+    padding-top:1.4rem;
+    border-top:1px solid var(--border);
+}
+
+.hero-trust li{
+    display:inline-flex;
+    align-items:center;
+    gap:.4rem;
+    font-size:.86rem;
+    font-weight:600;
+    color:var(--text-muted);
+}
+
+.hero-trust svg{ color:var(--accent); flex:none; }
+
+
+/* ===========================================================
+   ستون ۲ — نرخ بازار
+   =========================================================== */
+
+.hero-rates{
+    display:flex;
+    flex-direction:column;
+    gap:.85rem;
+    justify-content:center;
+}
+
+.rate-card{
+    display:flex;
+    align-items:center;
+    gap:.9rem;
+
+    padding:1.05rem 1.2rem;
+
+    border:1px solid var(--glass-border);
+    border-radius:var(--radius-lg);
+    background:var(--glass-bg);
+    backdrop-filter:var(--blur);
+    -webkit-backdrop-filter:var(--blur);
+    box-shadow:var(--shadow-md), var(--glass-highlight);
+
+    transition:transform var(--transition) var(--ease-out),
+               box-shadow var(--transition) var(--ease-out);
+}
+
+.rate-card:hover{
+    transform:translateY(-3px);
+    box-shadow:var(--shadow-lg), var(--glass-highlight);
+}
+
+.rate-icon{
+    display:grid;
+    place-items:center;
+    width:42px;
+    height:42px;
+    flex:none;
+    border-radius:var(--radius-md);
+}
+
+.rate-body{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    min-width:0;
+}
+
+.rate-label{
+    font-size:.8rem;
+    font-weight:600;
+    color:var(--text-muted);
+}
+
+.rate-value{
+    font-size:1.15rem;
+    font-weight:900;
+    color:var(--text);
+    font-variant-numeric:tabular-nums;
+    white-space:nowrap;
+}
+
+.rate-value small{
+    font-size:.7rem;
+    font-weight:600;
+    color:var(--text-muted);
+    margin-inline-start:.2rem;
+}
+
+.rate-change{
+    font-size:.74rem;
+    font-weight:700;
+    font-variant-numeric:tabular-nums;
+}
+
+.rate-change.is-up{ color:var(--success); }
+.rate-change.is-down{ color:var(--danger); }
+
+.rate-pending{
+    font-size:.82rem;
+    font-weight:700;
+    color:var(--text-muted);
+}
+
+
+/* ===========================================================
+   ستون ۳ — اسلایدر
+   =========================================================== */
+
+.hero-slider{
+    position:relative;
+    border-radius:var(--radius-2xl);
+    overflow:hidden;
+    min-height:clamp(280px, 32vw, 440px);
+
+    border:1px solid var(--glass-border);
+    background:var(--surface-2);
+    box-shadow:var(--shadow-lg), var(--glass-highlight);
+}
+
+.hero-slide{
+    position:absolute;
+    inset:0;
+    margin:0;
+}
+
+.hero-slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter:var(--media-filter);
+}
+
+.hero-slide-caption{
+    position:absolute;
+    inset-inline:0;
+    bottom:0;
+
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:.5rem;
+
+    padding:1.4rem;
+
+    /* خوانایی متن روی هر تصویری تضمین بشه */
+    background:linear-gradient(to top,
+                rgba(10, 13, 32, .88) 0%,
+                rgba(10, 13, 32, .55) 55%,
+                transparent 100%);
+    color:#fff;
+}
+
+.hero-slide-caption strong{
+    font-size:1.05rem;
+    font-weight:800;
+    line-height:1.6;
+}
+
+.hero-slide-caption span{
+    font-size:.85rem;
+    opacity:.9;
+    line-height:1.8;
+}
+
+.hero-slide-caption .btn{
+    margin-top:.35rem;
+}
+
+
+/* ---- حالت بدون اسلاید ---- */
+
+.hero-slide-empty{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:.6rem;
+    padding:1.5rem;
+    text-align:center;
+    color:var(--text-muted);
+}
+
+.hero-slide-empty svg{ color:var(--text-soft); }
+
+.hero-slide-empty strong{
+    font-size:1rem;
+    font-weight:800;
+    color:var(--text);
+}
+
+.hero-slide-empty span{ font-size:.85rem; }
+
+
+/* ---- نقطه‌های ناوبری ---- */
+
+.hero-slider-dots{
+    position:absolute;
+    inset-inline:0;
+    bottom:.9rem;
+    z-index:2;
+
+    display:flex;
+    justify-content:center;
+    gap:.4rem;
+}
+
+.hero-slider-dots button{
+    width:8px;
+    height:8px;
+    padding:0;
+    border:none;
+    border-radius:var(--radius-full);
+    background:rgba(255, 255, 255, .55);
+    cursor:pointer;
+    transition:width var(--transition) var(--ease-out),
+               background var(--transition) ease;
+}
+
+.hero-slider-dots button.is-active{
+    width:22px;
+    background:#fff;
+}
+
+
+/* ===========================================================
+   واکنش‌گرا
+   =========================================================== */
+
+@media (max-width: 1180px){
+
+    .hero-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    /* متن تمام عرض بالا، نرخ و اسلایدر زیرش کنار هم */
+    .hero-intro{
+        grid-column:1 / -1;
+    }
+
+    .hero-slider{
+        min-height:300px;
+    }
+}
+
+
+@media (max-width: 760px){
+
+    .hero-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero-rates{
+        display:grid;
+        grid-template-columns:repeat(auto-fit, minmax(190px, 1fr));
+    }
+
+    .hero-actions .btn{
+        flex:1 1 auto;
+    }
+}

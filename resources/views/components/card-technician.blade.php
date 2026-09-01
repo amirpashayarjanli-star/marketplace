@@ -17,13 +17,13 @@
     <div class="company-info">
 
         <span>
-            <i class="fa-solid fa-location-dot"></i>
+            <x-ui.icon name="location-dot" />
             {{ $technician->city }}
         </span>
 
 
         <span>
-            <i class="fa-solid fa-star"></i>
+            <x-ui.icon name="star" />
             {{ $technician->rating ?? 0 }}
         </span>
 
@@ -42,7 +42,7 @@
 
         مشاهده پروفایل
 
-        <i class="fa-solid fa-arrow-left"></i>
+        <x-ui.icon name="arrow-left" />
 
     </a>
 

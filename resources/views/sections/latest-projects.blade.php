@@ -1,26 +1,26 @@
-<section class="latest-inquiries">
+<section class="latest-projects">
 
-    <div class="container">
+    <div class="container-app">
 
         <x-section-title
-            title="آخرین استعلام‌ها"
-            description="جدیدترین درخواست‌های ثبت شده در آسانسور پرو"
+            title="آخرین پروژه‌ها"
+            description="جدیدترین پروژه‌های ثبت شده در آسانسور پرو"
         />
 
         <div class="latest-projects-grid">
 
-            @forelse($latestInquiries ?? [] as $inquiry)
+            @forelse($latestProjects ?? [] as $project)
 
-                @include('components.card-inquiry', ['inquiry' => $inquiry])
+                <x-directory.project-card :project="$project" />
 
             @empty
 
                 <div class="slider-empty">
 
-                    <i class="fa-regular fa-folder-open"></i>
+                    <x-ui.icon name="folder-open" />
 
                     <h3>
-                        هنوز استعلامی ثبت نشده است.
+                        هنوز پروژه‌ای ثبت نشده است.
                     </h3>
 
                 </div>

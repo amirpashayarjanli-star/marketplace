@@ -1,0 +1,183 @@
+/* ===========================================================
+   پل Tailwind → توکن‌های برند
+   -----------------------------------------------------------
+   بخش بزرگی از ویوها مستقیم از کلاس‌های رنگی خام Tailwind
+   استفاده می‌کنن (bg-white، text-gray-500، text-blue-600 و…) —
+   ۵۸۴ کاربرد در ۸۸ رنگ مختلف. اون‌ها سیستم توکن رو کامل دور
+   می‌زدن، برای همین عوض‌کردن تم هیچ اثری روشون نداشت.
+
+   Tailwind v4 هر رنگ رو به‌صورت var(--color-…) کامپایل می‌کنه،
+   پس با بازتعریف همون متغیرها کل اون ۵۸۴ کاربرد یکجا به توکن
+   وصل میشه — هم در حالت روز، هم شب.
+
+   این فایل عمداً بدون @layer لود میشه تا طبق قوانین cascade
+   layers از تعریف‌های خود Tailwind جلو بزنه.
+
+   استثنا: --color-white دست‌نخورده می‌مونه، چون text-white روی
+   دکمه‌های رنگی باید سفید بمونه. فقط خودِ کلاس bg-white و
+   نمونه‌های شفافش پایین بازنویسی میشن.
+   =========================================================== */
+
+:root {
+
+    /* ---- خنثی‌ها ---- */
+
+    --color-gray-50:  var(--surface-2);
+    --color-gray-100: var(--surface-2);
+    --color-gray-200: var(--surface-3);
+    --color-gray-300: var(--border-strong);
+    --color-gray-400: var(--text-soft);
+    --color-gray-500: var(--text-muted);
+    --color-gray-600: var(--text-muted);
+    --color-gray-700: var(--text);
+    --color-gray-800: var(--text);
+    --color-gray-900: var(--text);
+
+    --color-slate-50:  var(--surface-2);
+    --color-slate-100: var(--surface-2);
+    --color-slate-200: var(--surface-3);
+    --color-slate-300: var(--border-strong);
+    --color-slate-400: var(--text-soft);
+    --color-slate-500: var(--text-muted);
+    --color-slate-600: var(--text-muted);
+    --color-slate-700: var(--text);
+    --color-slate-800: var(--text);
+    --color-slate-900: var(--text);
+
+    --color-zinc-100:    var(--surface-2);
+    --color-zinc-300:    var(--border-strong);
+    --color-zinc-500:    var(--text-muted);
+    --color-zinc-800:    var(--text);
+    --color-neutral-100: var(--surface-2);
+    --color-neutral-300: var(--border-strong);
+    --color-neutral-500: var(--text-muted);
+    --color-neutral-800: var(--text);
+    --color-stone-100:   var(--surface-2);
+    --color-stone-500:   var(--text-muted);
+    --color-stone-800:   var(--text);
+
+
+    /* ---- آبی برند ---- */
+
+    --color-blue-50:  var(--primary-soft);
+    --color-blue-100: var(--primary-soft);
+    --color-blue-200: var(--pastel-info-border);
+    --color-blue-300: var(--primary-light);
+    --color-blue-400: var(--primary-light);
+    --color-blue-500: var(--primary);
+    --color-blue-600: var(--primary);
+    --color-blue-700: var(--primary-dark);
+    --color-blue-800: var(--primary-dark);
+    --color-blue-900: var(--primary-dark);
+
+    --color-indigo-50:  var(--primary-soft);
+    --color-indigo-400: var(--primary-light);
+    --color-indigo-500: var(--primary);
+    --color-indigo-600: var(--primary);
+    --color-indigo-700: var(--primary-dark);
+
+    --color-sky-50:  var(--primary-soft);
+    --color-sky-400: var(--primary-light);
+    --color-sky-500: var(--primary);
+    --color-sky-600: var(--primary);
+
+
+    /* ---- فیروزه‌ای (تاکید دوم) ---- */
+
+    --color-cyan-50:  var(--accent-soft);
+    --color-cyan-100: var(--accent-soft);
+    --color-cyan-400: var(--accent-light);
+    --color-cyan-500: var(--accent);
+    --color-cyan-600: var(--accent);
+    --color-cyan-700: var(--accent-dark);
+
+    --color-teal-100: var(--accent-soft);
+    --color-teal-500: var(--accent);
+    --color-teal-600: var(--accent);
+
+
+    /* ---- طلایی ---- */
+
+    --color-yellow-50:  var(--gold-soft);
+    --color-yellow-100: var(--gold-soft);
+    --color-yellow-300: var(--gold-light);
+    --color-yellow-400: var(--gold-light);
+    --color-yellow-500: var(--gold);
+    --color-yellow-600: var(--gold-dark);
+    --color-yellow-700: var(--gold-dark);
+
+    --color-amber-50:  var(--gold-soft);
+    --color-amber-100: var(--gold-soft);
+    --color-amber-400: var(--gold-light);
+    --color-amber-500: var(--gold);
+    --color-amber-600: var(--gold-dark);
+
+    --color-orange-100: var(--pastel-progress-bg);
+    --color-orange-500: var(--gold);
+    --color-orange-600: var(--gold-dark);
+
+
+    /* ---- سبز ---- */
+
+    --color-green-50:  var(--pastel-success-bg);
+    --color-green-100: var(--pastel-success-bg);
+    --color-green-200: var(--pastel-success-border);
+    --color-green-400: var(--success);
+    --color-green-500: var(--success);
+    --color-green-600: var(--success);
+    --color-green-700: var(--pastel-success-text);
+    --color-green-800: var(--pastel-success-text);
+
+    --color-emerald-50:  var(--pastel-success-bg);
+    --color-emerald-100: var(--pastel-success-bg);
+    --color-emerald-500: var(--success);
+    --color-emerald-600: var(--success);
+
+
+    /* ---- قرمز ---- */
+
+    --color-red-50:  var(--pastel-danger-bg);
+    --color-red-100: var(--pastel-danger-bg);
+    --color-red-200: var(--pastel-danger-border);
+    --color-red-400: var(--danger);
+    --color-red-500: var(--danger);
+    --color-red-600: var(--danger);
+    --color-red-700: var(--pastel-danger-text);
+    --color-red-800: var(--pastel-danger-text);
+
+    --color-rose-50:  var(--pastel-danger-bg);
+    --color-rose-100: var(--pastel-danger-bg);
+    --color-rose-500: var(--danger);
+    --color-rose-600: var(--danger);
+
+    --color-pink-500:   var(--danger);
+    --color-purple-500: var(--primary-light);
+    --color-purple-600: var(--primary);
+}
+
+
+/* ===========================================================
+   سفید — جداگانه، چون معنی‌اش بسته به کاربرد فرق می‌کنه
+   -----------------------------------------------------------
+   text-white باید روی دکمه‌ی رنگی سفید بمونه، ولی bg-white
+   باید سطحِ تم‌آگاه بشه تا در حالت شب سفید کور نزنه.
+   =========================================================== */
+
+.bg-white        { background-color: var(--surface); }
+.bg-white\/95    { background-color: color-mix(in srgb, var(--surface) 95%, transparent); }
+.bg-white\/90    { background-color: color-mix(in srgb, var(--surface) 90%, transparent); }
+.bg-white\/80    { background-color: color-mix(in srgb, var(--surface) 80%, transparent); }
+.bg-white\/70    { background-color: color-mix(in srgb, var(--surface) 70%, transparent); }
+.bg-white\/60    { background-color: color-mix(in srgb, var(--surface) 60%, transparent); }
+.bg-white\/50    { background-color: color-mix(in srgb, var(--surface) 50%, transparent); }
+.bg-white\/40    { background-color: color-mix(in srgb, var(--surface) 40%, transparent); }
+.bg-white\/30    { background-color: color-mix(in srgb, var(--surface) 30%, transparent); }
+.bg-white\/20    { background-color: color-mix(in srgb, var(--surface) 20%, transparent); }
+.bg-white\/10    { background-color: color-mix(in srgb, var(--surface) 10%, transparent); }
+
+.border-white    { border-color: var(--glass-border); }
+.border-white\/60{ border-color: var(--glass-border); }
+.border-white\/50{ border-color: var(--glass-border); }
+.border-white\/40{ border-color: var(--glass-border); }
+.border-white\/30{ border-color: var(--glass-border); }
+.border-white\/20{ border-color: var(--glass-border); }

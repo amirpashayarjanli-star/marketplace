@@ -4,13 +4,13 @@
     'placeholder' => '0211234567',
     'required' => false,
     'value' => '',
-    'icon' => 'fa-phone',
+    'icon' => 'phone',
     'error' => false,
 ])
 
 <div class="relative group">
     <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
-        <i class="fa-solid {{ $icon }} text-blue-600 group-focus-within:text-yellow-500 transition"></i>
+        <x-ui.icon :name="$icon" class="text-blue-600 group-focus-within:text-yellow-500 transition" />
     </div>
     <input
         type="tel"

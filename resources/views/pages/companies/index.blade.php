@@ -14,45 +14,50 @@
 <main class="directory-page">
 
 
+    <div class="container-app">
 
-    <section class="directory-top">
-
-
-        <h1>
-            شرکت‌های آسانسوری ایران
-        </h1>
+        <section class="directory-top">
 
 
-        <p>
-            بهترین شرکت‌های آسانسوری را پیدا کنید
-        </p>
+            <h1>
+                شرکت‌های آسانسوری ایران
+            </h1>
 
 
-    </section>
+            <p>
+                بهترین شرکت‌های آسانسوری را پیدا کنید
+            </p>
 
 
-
-
-    <x-directory.filter-box />
+        </section>
 
 
 
 
-    <div class="company-grid">
+        <x-directory.filter-box
+            register="ثبت شرکت"
+            search="جستجوی شرکت آسانسوری..."
+        />
 
 
-        @foreach($companies as $company)
 
 
-            <x-directory.company-card
-                :company="$company" />
+        <div class="company-grid">
 
 
-        @endforeach
+            @foreach($companies as $company)
 
+
+                <x-directory.company-card
+                    :company="$company" />
+
+
+            @endforeach
+
+
+        </div>
 
     </div>
-
 
 
 </main>

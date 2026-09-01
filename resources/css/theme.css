@@ -1,42 +1,293 @@
+/* ===========================================================
+   آسانسور پرو — سیستم طراحی
+   -----------------------------------------------------------
+   حس: شیشه‌ی مایع (liquid glass)، پاستیلی، گوشه‌های خیلی ملو.
+
+   دو رنگ برند مستقیم از خود فایل لوگو استخراج شدن:
+       سرمه‌ای  #1B236F   → کلمه‌ی «آسانسور»
+       کهربایی  #FFA200   → کلمه‌ی «پرو»
+
+   سرمه‌ای لوگو برای عناصر تعاملی (دکمه، لینک) خیلی تیره‌ست و
+   کل سایت رو سنگین می‌کنه، پس یک آبیِ روشن‌ترِ هم‌خانواده به‌عنوان
+   رنگ کنش استفاده میشه و خودِ سرمه‌ای برای امضای برند می‌مونه.
+
+   خنثی‌ها ته‌رنگ بنفش‌آبی دارن (نه خاکستری خالص) تا زیر شیشه
+   تمیز و پاستیلی دیده بشن.
+   =========================================================== */
+
 :root {
-    /* Brand */
-    --primary: #0B5FFF;
-    --primary-dark: #0847C2;
-    --accent: #FFC107;
 
-    /* Surface */
-    --background: #F8FAFC;
+    /* ---- برند (از لوگو) ---- */
+    --brand-navy: #1B236F;
+    --brand-amber: #FFA200;
+
+    /* ---- رنگ کنش ---- */
+    --primary: #3B49C4;
+    --primary-dark: #2A3596;
+    --primary-light: #7C88E8;
+    --primary-soft: rgba(59, 73, 196, .09);
+    --primary-contrast: #FFFFFF;
+
+    /* ---- تاکید گرم ---- */
+    --accent: #FFA200;
+    --accent-dark: #C57A00;
+    --accent-light: #FFC153;
+    --accent-soft: rgba(255, 162, 0, .14);
+
+    /* برای سازگاری با کدهای قدیمی */
+    --gold: var(--accent);
+    --gold-dark: var(--accent-dark);
+    --gold-light: var(--accent-light);
+    --gold-soft: var(--accent-soft);
+
+    /* ---- گرادیان‌ها ---- */
+    --gradient-brand: linear-gradient(135deg, #3B49C4 0%, #7C88E8 100%);
+    --gradient-warm: linear-gradient(135deg, #FFA200 0%, #FFC153 100%);
+    /* گرادیان سطوحی که متن سفید روشون می‌شینه — عمداً تیره نگه داشته شده */
+    --gradient-button: linear-gradient(135deg, #3B49C4 0%, #2A3596 100%);
+
+
+    /* ===== پالت پاستیلی =====
+       برای رنگ‌کدکردن دسته‌ها و کارت‌ها، تا کارت‌ها با پس‌زمینه
+       یکی نشن. هر کدوم یک تهِ ملایم + یک رنگ مغز داره. */
+
+    --pastel-sky:    #E4EFFF;   --pastel-sky-ink:    #2C5FA8;
+    --pastel-mint:   #DFF6EF;   --pastel-mint-ink:   #14806B;
+    --pastel-peach:  #FFEDE0;   --pastel-peach-ink:  #B85E22;
+    --pastel-lilac:  #EDE9FF;   --pastel-lilac-ink:  #5B4BC4;
+    --pastel-lemon:  #FFF5D9;   --pastel-lemon-ink:  #9A6B00;
+    --pastel-rose:   #FFE7EE;   --pastel-rose-ink:   #B33A5E;
+
+
+    /* ---- سطوح ---- */
+    --background: #F3F5FC;
     --surface: #FFFFFF;
-    --surface-2: #F1F5F9;
+    --surface-2: #EDF1FB;
+    --surface-3: #E1E8F7;
 
-    /* Text */
-    --text: #0F172A;
-    --text-muted: #64748B;
+    /* ---- متن ---- */
+    --text: #171B34;
+    --text-muted: #626A8C;
+    --text-soft: #737B9E;   /* قبلاً #9AA1BD بود و روی سفید فقط ۲.۵ کنتراست می‌داد */
 
-    /* Border */
-    --border: #E2E8F0;
+    /* ---- خط ---- */
+    --border: #E2E7F5;
+    --border-soft: #EFF2FB;
+    --border-strong: #C8D1EA;
 
-    /* Radius */
-    --radius-sm: 8px;
-    --radius-md: 14px;
-    --radius-lg: 20px;
-    --radius-xl: 28px;
+
+    /* ===== شیشه‌ی مایع =====
+       سه لایه: پس‌زمینه‌ی نیمه‌شفاف، بلور، و یک درخشش داخلی
+       بالای لبه که حس «شیشه» رو می‌سازه. */
+
+    --glass-bg: rgba(255, 255, 255, .68);
+    --glass-bg-strong: rgba(255, 255, 255, .82);
+    --glass-bg-premium: rgba(255, 255, 255, .55);
+    --glass-border: rgba(255, 255, 255, .85);
+    --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, .95);
+    --blur: blur(18px) saturate(1.4);
+    --blur-premium: blur(30px) saturate(1.5);
+
+
+    /* ---- وضعیت ---- */
+    --success: #0E6E56;
+    --success-soft: rgba(18, 135, 107, .10);
+    --danger: #BC2F52;
+    --danger-soft: rgba(210, 63, 99, .10);
+    --warning: #C98200;
+    --warning-soft: rgba(201, 130, 0, .12);
+    --info: var(--primary);
+    --info-soft: var(--primary-soft);
+
+    --pastel-success-bg: var(--pastel-mint);
+    --pastel-success-border: #B4E5D8;
+    --pastel-success-text: var(--pastel-mint-ink);
+
+    --pastel-warning-bg: var(--pastel-lemon);
+    --pastel-warning-border: #F3DFA6;
+    --pastel-warning-text: var(--pastel-lemon-ink);
+
+    --pastel-danger-bg: var(--pastel-rose);
+    --pastel-danger-border: #F7C4D2;
+    --pastel-danger-text: var(--pastel-rose-ink);
+
+    --pastel-info-bg: var(--pastel-sky);
+    --pastel-info-border: #C3D8F5;
+    --pastel-info-text: var(--pastel-sky-ink);
+
+    --pastel-progress-bg: var(--pastel-peach);
+    --pastel-progress-border: #F7D2B8;
+    --pastel-progress-text: var(--pastel-peach-ink);
+
+
+    /* ---- هاله ---- */
+    --halo-warm: radial-gradient(circle at 50% 35%,
+                  rgba(255, 162, 0, .22) 0%, rgba(255, 162, 0, 0) 70%);
+    --halo-cool: radial-gradient(circle at 50% 35%,
+                  rgba(59, 73, 196, .20) 0%, rgba(59, 73, 196, 0) 70%);
+
+    --wave-1: #DEE6FB;
+    --wave-2: #C9D5F6;
+
+    --media-filter: saturate(1.04) contrast(1.02);
+
+
+    /* ===== گردی — «خیلی ملو» ===== */
+    --radius-sm: 12px;
+    --radius-md: 18px;
+    --radius-lg: 24px;
+    --radius-xl: 32px;
+    --radius-2xl: 42px;
     --radius-full: 9999px;
 
-    /* Shadow */
-    --shadow-sm: 0 2px 8px rgba(15, 23, 42, .05);
-    --shadow-md: 0 8px 32px rgba(15, 23, 42, .08);
-    --shadow-lg: 0 20px 60px rgba(15, 23, 42, .12);
 
-    /* Blur */
-    --blur: blur(18px);
-    --blur-premium: blur(30px);
+    /* ===== سایه =====
+       عمداً سخاوتمند: خواسته‌ی طراحی اینه که کارت به پس‌زمینه
+       «نچسبه» و شناور دیده بشه. */
 
-    /* Container */
-    --container: 1440px;
+    --shadow-sm: 0 2px 6px rgba(23, 27, 52, .05),
+                 0 8px 20px rgba(59, 73, 196, .06);
 
-    /* Transition */
+    --shadow-md: 0 6px 16px rgba(23, 27, 52, .07),
+                 0 18px 44px rgba(59, 73, 196, .10);
+
+    --shadow-lg: 0 14px 32px rgba(23, 27, 52, .09),
+                 0 36px 80px rgba(59, 73, 196, .14);
+
+    --shadow-primary: 0 10px 28px rgba(59, 73, 196, .32);
+    --shadow-accent: 0 10px 28px rgba(255, 162, 0, .30);
+    --shadow-gold: var(--shadow-accent);
+
+
+    /* ---- تایپوگرافی ---- */
+    --font-fa: 'Vazirmatn', 'Segoe UI', Tahoma, sans-serif;
+
+    /* ---- چیدمان ---- */
+    --container: 1400px;
+
+    /* ---- حرکت ---- */
     --transition-fast: .15s;
     --transition: .25s;
-    --transition-slow: .4s;
+    --transition-slow: .45s;
+    --ease-out: cubic-bezier(.22, 1, .36, 1);
+    --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+}
+
+
+/* ===========================================================
+   حالت شب
+   -----------------------------------------------------------
+   سرمه‌ای عمیقِ هم‌خانواده با لوگو، نه خاکستری و نه سیاه مطلق.
+   شیشه اینجا تیره‌ست ولی همچنان شفاف، تا حس liquid glass بمونه.
+   =========================================================== */
+
+[data-theme="dark"] {
+
+    --brand-navy: #8E9BFF;
+    --brand-amber: #FFB733;
+
+    --primary: #8390F0;
+    --primary-dark: #6B79E4;
+    --primary-light: #AEB7F7;
+    --primary-soft: rgba(131, 144, 240, .16);
+    --primary-contrast: #10132E;
+
+    --accent: #FFB733;
+    --accent-dark: #FFA200;
+    --accent-light: #FFCE70;
+    --accent-soft: rgba(255, 183, 51, .16);
+
+    --gradient-brand: linear-gradient(135deg, #6B79E4 0%, #AEB7F7 100%);
+    --gradient-warm: linear-gradient(135deg, #FFA200 0%, #FFCE70 100%);
+    --gradient-button: linear-gradient(135deg, #8390F0 0%, #6B79E4 100%);
+
+    /* پاستیلی‌ها در شب باید کم‌رمق بشن وگرنه روی زمینه‌ی تیره جیغ می‌زنن */
+    --pastel-sky:    rgba(108, 158, 240, .16);  --pastel-sky-ink:    #A9C8F5;
+    --pastel-mint:   rgba(52, 200, 168, .16);   --pastel-mint-ink:   #79E0C6;
+    --pastel-peach:  rgba(255, 150, 90, .16);   --pastel-peach-ink:  #FFB68C;
+    --pastel-lilac:  rgba(150, 130, 240, .16);  --pastel-lilac-ink:  #C0B4F7;
+    --pastel-lemon:  rgba(255, 190, 60, .16);   --pastel-lemon-ink:  #FFD583;
+    --pastel-rose:   rgba(240, 110, 145, .16);  --pastel-rose-ink:   #F7A6BC;
+
+    --background: #0D1024;
+    --surface: #161B36;
+    --surface-2: #1E2444;
+    --surface-3: #2A3155;
+
+    --text: #EAECFA;
+    --text-muted: #9AA2C4;
+    --text-soft: #8B93B8;   /* قبلاً #6D7597 بود و روی سطح تیره ۳.۴ می‌داد */
+
+    --border: #2A3155;
+    --border-soft: #1E2444;
+    --border-strong: #3B4370;
+
+    --glass-bg: rgba(22, 27, 54, .70);
+    --glass-bg-strong: rgba(22, 27, 54, .86);
+    --glass-bg-premium: rgba(22, 27, 54, .58);
+    --glass-border: rgba(234, 236, 250, .12);
+    --glass-highlight: inset 0 1px 0 rgba(234, 236, 250, .10);
+
+    --success: #34C8A8;
+    --success-soft: rgba(52, 200, 168, .16);
+    --danger: #F06E91;
+    --danger-soft: rgba(240, 110, 145, .16);
+    --warning: #FFBE3C;
+    --warning-soft: rgba(255, 190, 60, .16);
+
+    --pastel-success-bg: var(--pastel-mint);
+    --pastel-success-border: rgba(52, 200, 168, .34);
+    --pastel-success-text: var(--pastel-mint-ink);
+
+    --pastel-warning-bg: var(--pastel-lemon);
+    --pastel-warning-border: rgba(255, 190, 60, .34);
+    --pastel-warning-text: var(--pastel-lemon-ink);
+
+    --pastel-danger-bg: var(--pastel-rose);
+    --pastel-danger-border: rgba(240, 110, 145, .34);
+    --pastel-danger-text: var(--pastel-rose-ink);
+
+    --pastel-info-bg: var(--pastel-sky);
+    --pastel-info-border: rgba(108, 158, 240, .34);
+    --pastel-info-text: var(--pastel-sky-ink);
+
+    --pastel-progress-bg: var(--pastel-peach);
+    --pastel-progress-border: rgba(255, 150, 90, .34);
+    --pastel-progress-text: var(--pastel-peach-ink);
+
+    --halo-warm: radial-gradient(circle at 50% 35%,
+                  rgba(255, 183, 51, .20) 0%, rgba(255, 183, 51, 0) 70%);
+    --halo-cool: radial-gradient(circle at 50% 35%,
+                  rgba(131, 144, 240, .22) 0%, rgba(131, 144, 240, 0) 70%);
+
+    --wave-1: #1A2145;
+    --wave-2: #232B57;
+
+    --media-filter: saturate(.96) brightness(.86) contrast(1.02);
+
+    --shadow-sm: 0 2px 6px rgba(0, 0, 0, .40),
+                 0 8px 20px rgba(0, 0, 0, .30);
+    --shadow-md: 0 6px 16px rgba(0, 0, 0, .46),
+                 0 18px 44px rgba(0, 0, 0, .40);
+    --shadow-lg: 0 14px 32px rgba(0, 0, 0, .52),
+                 0 36px 80px rgba(0, 0, 0, .56);
+
+    --shadow-primary: 0 10px 28px rgba(131, 144, 240, .28);
+    --shadow-accent: 0 10px 28px rgba(255, 183, 51, .24);
+}
+
+
+/* ===========================================================
+   پایه
+   =========================================================== */
+
+html { color-scheme: light; }
+[data-theme="dark"] { color-scheme: dark; }
+
+body {
+    background: var(--background);
+    color: var(--text);
+    font-family: var(--font-fa);
+    transition: background var(--transition) ease,
+                color var(--transition) ease;
 }

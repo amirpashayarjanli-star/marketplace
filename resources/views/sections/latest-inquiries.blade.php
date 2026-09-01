@@ -1,6 +1,6 @@
 <section class="latest-inquiries">
 
-    <div class="container">
+    <div class="container-app">
 
         <x-section-title
             title="آخرین استعلام‌ها"
@@ -11,13 +11,13 @@
 
             @forelse($latestInquiries as $inquiry)
 
-                @include('components.card-inquiry')
+                @include('components.header.card-inquiry', ['inquiry' => $inquiry])
 
             @empty
 
                 <div class="slider-empty">
 
-                    <i class="fa-regular fa-folder-open"></i>
+                    <x-ui.icon name="folder-open" />
 
                     <h3>هنوز استعلامی ثبت نشده است.</h3>
 

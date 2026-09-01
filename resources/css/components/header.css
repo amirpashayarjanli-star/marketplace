@@ -1,0 +1,318 @@
+/* ===========================================================
+   هدر
+   =========================================================== */
+
+.inner-page-header,
+.home-page-header{
+    position:sticky;
+    top:15px;
+    z-index:9999;
+    width:100%;
+}
+
+/* هدر داخل wrapper خودش absolute نمیشه، وگرنه sticky کار نمی‌کنه */
+.inner-page-header header,
+.home-page-header header{
+    position:relative !important;
+    top:auto !important;
+    inset-inline:auto !important;
+}
+
+
+/* ---- جستجوی هدر ----
+   .input یک padding یکسان روی هر دو طرف می‌ذاره. آیکون ذره‌بین با
+   right-4 (فیزیکی) گذاشته شده که توی RTL یعنی سمت start، پس فضای
+   زیاد باید سمت start باشه نه end — قبلاً برعکس بود و متن زیر
+   ذره‌بین می‌رفت. */
+
+.header-search-input{
+    padding-inline-start:3rem;
+    padding-inline-end:1rem;
+    cursor:text;
+}
+
+.header-search-btn{
+    cursor:pointer;
+}
+
+
+/* ---- دکمه‌ی حساب کاربری ---- */
+
+.header-account-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    width:44px;
+    height:44px;
+    flex:none;
+
+    border-radius:50%;
+
+    transition:background var(--transition) ease,
+               transform var(--transition) var(--ease-out);
+}
+
+.header-account-btn:hover{
+    background:var(--primary-soft);
+    transform:translateY(-1px);
+}
+
+.header-account-btn svg{
+    width:34px;
+    height:34px;
+}
+
+
+/* ---- دکمه‌ی پرو سرویس ---- */
+
+.pro-service-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:3px;
+
+    height:40px;
+    padding-inline:18px;
+    margin-inline-start:4px;
+
+    border:1px solid var(--glass-border);
+    border-radius:var(--radius-full);
+
+    background:linear-gradient(135deg,
+                 color-mix(in srgb, var(--gold) 16%, transparent),
+                 color-mix(in srgb, var(--danger) 10%, transparent)),
+               var(--glass-bg);
+
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+
+    box-shadow:var(--shadow-sm);
+
+    font-size:14px;
+    font-weight:800;
+
+    transition:transform var(--transition) var(--ease-out),
+               box-shadow var(--transition) var(--ease-out);
+}
+
+.pro-service-btn:hover{
+    transform:translateY(-1px);
+    box-shadow:var(--shadow-md);
+}
+
+.pro-service-pro{ color:var(--accent-dark); }
+.pro-service-service{ color:var(--danger); }
+
+:root[data-theme="dark"] .pro-service-pro{ color:var(--accent); }
+
+
+/* ---- منوی موبایل ---- */
+
+[x-cloak]{ display:none !important; }
+
+.mobile-menu-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    width:42px;
+    height:42px;
+
+    border:1px solid var(--glass-border);
+    border-radius:var(--radius-full);
+    background:var(--glass-bg);
+    color:var(--text);
+
+    cursor:pointer;
+    transition:background var(--transition) var(--ease-out);
+}
+
+.mobile-menu-btn:hover{ background:var(--primary-soft); }
+
+.mobile-drawer-backdrop{
+    position:fixed;
+    inset:0;
+    z-index:60;
+
+    background:rgba(15, 23, 42, .5);
+    backdrop-filter:blur(2px);
+
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .25s var(--ease-out), visibility .25s;
+}
+
+/* حالت باز را Alpine با استایل درون‌خطی ست می‌کند. */
+
+/*
+| inset-inline-start در RTL یعنی لبه‌ی راست — کشو از همان سمتی می‌آید که
+| متن شروع می‌شود. transform جهت‌آگاه نیست، پس حالت بسته را برای هر جهت
+| جدا می‌نویسیم.
+*/
+.mobile-drawer{
+    position:fixed;
+    inset-block:0;
+    inset-inline-start:0;
+    z-index:61;
+
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+
+    width:min(320px, 86vw);
+    padding:20px;
+    overflow-y:auto;
+
+    background:var(--surface, #fff);
+    border-inline-end:1px solid var(--glass-border);
+    box-shadow:var(--shadow-lg, 0 10px 40px rgba(0,0,0,.2));
+
+    visibility:hidden;
+    transform:translateX(100%);
+    transition:transform .25s var(--ease-out), visibility .25s;
+}
+
+[dir="ltr"] .mobile-drawer{ transform:translateX(-100%); }
+
+/*
+| کشو با teleport بیرون از wrapperِ lg:hidden قرار می‌گیرد، پس گیت
+| breakpoint را اینجا خودمان می‌گذاریم تا روی دسکتاپ هرگز دیده نشود.
+*/
+@media (min-width:1024px){
+    .mobile-drawer,
+    .mobile-drawer-backdrop{ display:none; }
+}
+
+.mobile-drawer-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.mobile-drawer-title{
+    font-size:1.15rem;
+    font-weight:900;
+}
+
+.mobile-drawer-nav{
+    display:flex;
+    flex-direction:column;
+}
+
+.mobile-drawer-link{
+    display:block;
+    width:100%;
+
+    padding:13px 10px;
+    border-radius:var(--radius-md, 12px);
+
+    color:var(--text);
+    font-size:.98rem;
+    font-weight:700;
+    text-align:start;
+    text-decoration:none;
+
+    background:none;
+    border:none;
+    cursor:pointer;
+
+    transition:background var(--transition) var(--ease-out),
+               color var(--transition) var(--ease-out);
+}
+
+.mobile-drawer-link:hover{
+    background:var(--primary-soft);
+    color:var(--primary);
+}
+
+.mobile-drawer-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    padding-block:6px;
+    border-block:1px solid var(--glass-border);
+}
+
+.mobile-drawer-actions .pro-service-btn{ margin-inline-start:0; }
+
+.mobile-drawer-foot{
+    display:flex;
+    flex-direction:column;
+    margin-top:auto;
+}
+
+.mobile-drawer-logout{ color:var(--danger); }
+
+
+/* ---- دکمه‌ی پرو مزایده ---- */
+
+.pro-auction-btn{
+    background:linear-gradient(135deg,
+                 color-mix(in srgb, var(--gold) 16%, transparent),
+                 color-mix(in srgb, var(--primary) 12%, transparent)),
+               var(--glass-bg);
+}
+
+.pro-auction-word{ color:var(--primary); }
+
+:root[data-theme="dark"] .pro-auction-word{ color:var(--primary-400, var(--primary)); }
+
+
+/* نسخه‌ی بزرگ — برای دکمه‌ی دوم هیرو */
+
+.pro-service-btn-lg{
+    height:58px;
+    padding-inline:2rem;
+    font-size:1.05rem;
+    margin-inline-start:0;
+}
+
+
+/* ---- کلید حالت شب/روز ---- */
+
+.theme-toggle-btn{
+    position:relative;
+    border:1px solid transparent;
+    color:var(--text-muted);
+}
+
+.theme-toggle-btn .theme-icon{
+    position:absolute;
+    width:22px;
+    height:22px;
+    transition:opacity var(--transition) ease,
+               transform var(--transition-slow) var(--ease-out);
+}
+
+.theme-icon-sun{
+    opacity:1;
+    transform:rotate(0) scale(1);
+    color:var(--gold-dark);
+}
+
+.theme-icon-moon{
+    opacity:0;
+    transform:rotate(-90deg) scale(.5);
+    color:var(--primary-light);
+}
+
+:root[data-theme="dark"] .theme-icon-sun{
+    opacity:0;
+    transform:rotate(90deg) scale(.5);
+}
+
+:root[data-theme="dark"] .theme-icon-moon{
+    opacity:1;
+    transform:rotate(0) scale(1);
+}
+
+
+/* ---- برند ---- */
+
+.brand-blue{ color:var(--primary); }
+
+/* طلایی روشن روی سفید کنتراست کافی نداره؛ برای متن نسخه‌ی
+   تیره‌تر، و در حالت شب برعکس. */
+.brand-yellow{ color:var(--gold-dark); }
+
+:root[data-theme="dark"] .brand-yellow{ color:var(--gold); }
