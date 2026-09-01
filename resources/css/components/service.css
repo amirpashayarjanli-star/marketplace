@@ -627,6 +627,15 @@
     margin-bottom:8px;
 }
 
+/*
+| ردیف دوره‌ها (یک‌ماهه / سه‌ماهه / یک‌ساله) محتوایش کوتاه‌تر از کارت
+| طرح‌هاست، پس با همان کف ۲۴۰ پیکسلی بی‌خود پهن می‌شد و سه‌تایی کنار هم
+| جا نمی‌گرفت.
+*/
+.plan-grid-terms{
+    grid-template-columns:repeat(auto-fit, minmax(min(100%, 170px), 1fr));
+}
+
 .plan-card{
     display:block;
     cursor:pointer;

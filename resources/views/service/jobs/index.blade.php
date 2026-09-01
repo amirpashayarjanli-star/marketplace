@@ -35,7 +35,7 @@
                     <p class="service-card-desc">{{ \Illuminate\Support\Str::limit($job->description, 100) }}</p>
 
                     <div class="service-card-meta">
-                        {{ $job->created_at->format('Y/m/d H:i') }}
+                        {{ jdatetime($job->created_at) }}
                         @if($job->invoice)
                             · سهم شما: {{ number_format($job->invoice->technician_amount) }} تومان
                         @endif
@@ -105,7 +105,7 @@
                             <span class="service-card-title">{{ $job->customer->name }}</span>
                             <span class="service-status service-status-{{ $job->status }}">{{ $job->label() }}</span>
                         </div>
-                        <div class="service-card-meta">{{ $job->created_at->format('Y/m/d H:i') }}</div>
+                        <div class="service-card-meta">{{ jdatetime($job->created_at) }}</div>
                     </a>
                 @endforeach
             </div>

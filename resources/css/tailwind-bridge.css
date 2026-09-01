@@ -71,15 +71,19 @@
     --color-blue-900: var(--primary-dark);
 
     --color-indigo-50:  var(--primary-soft);
+    --color-indigo-100: var(--primary-soft);
     --color-indigo-400: var(--primary-light);
     --color-indigo-500: var(--primary);
     --color-indigo-600: var(--primary);
     --color-indigo-700: var(--primary-dark);
+    --color-indigo-800: var(--primary-dark);
 
     --color-sky-50:  var(--primary-soft);
+    --color-sky-100: var(--primary-soft);
     --color-sky-400: var(--primary-light);
     --color-sky-500: var(--primary);
     --color-sky-600: var(--primary);
+    --color-sky-700: var(--primary-dark);
 
 
     /* ---- فیروزه‌ای (تاکید دوم) ---- */

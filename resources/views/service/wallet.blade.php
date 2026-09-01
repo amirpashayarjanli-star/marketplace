@@ -15,19 +15,19 @@
 
 
         @if(session('success'))
-            <div class="wizard-form-card" style="border-color:#16a34a;color:#166534;">
+            <div class="wizard-form-card" style="border-color:var(--success);color:var(--pastel-success-text);">
                 {{ session('success') }}
             </div>
         @endif
 
         @if(session('error'))
-            <div class="wizard-form-card" style="border-color:#dc2626;color:#991b1b;">
+            <div class="wizard-form-card" style="border-color:var(--danger);color:var(--pastel-danger-text);">
                 {{ session('error') }}
             </div>
         @endif
 
         @if($errors->any())
-            <div class="wizard-form-card" style="border-color:#dc2626;color:#991b1b;">
+            <div class="wizard-form-card" style="border-color:var(--danger);color:var(--pastel-danger-text);">
                 @foreach($errors->all() as $error)
                     <div>{{ $error }}</div>
                 @endforeach

@@ -45,13 +45,13 @@
         <div class="wizard-form-card">
 
             <h3 class="wizard-progress-label" style="margin-bottom:10px;">شرح خرابی</h3>
-            <p style="color:#334155; line-height:1.9;">{{ $serviceRequest->description }}</p>
+            <p style="color:var(--text); line-height:1.9;">{{ $serviceRequest->description }}</p>
 
             @if($serviceRequest->address)
-                <p style="color:#64748b; font-size:.85rem; margin-top:10px;">📍 {{ $serviceRequest->address }}</p>
+                <p style="color:var(--text-muted); font-size:.85rem; margin-top:10px;">📍 {{ $serviceRequest->address }}</p>
             @endif
 
-            <p style="color:#0f172a; font-size:.9rem; margin-top:10px; font-weight:700;">
+            <p style="color:var(--text); font-size:.9rem; margin-top:10px; font-weight:700;">
                 تماس مشتری: {{ $serviceRequest->customer->mobile ?: $serviceRequest->customer->phone ?: 'ثبت نشده' }}
             </p>
 
@@ -62,7 +62,7 @@
 
             <div class="wizard-form-card">
                 <h3 class="wizard-progress-label" style="margin-bottom:10px;">سهم شما از این کار</h3>
-                <p style="font-size:1.4rem; font-weight:900; color:#0f172a;">
+                <p style="font-size:1.4rem; font-weight:900; color:var(--text);">
                     {{ number_format($serviceRequest->invoice->technician_amount) }} تومان
                 </p>
                 <p class="wizard-hint">بعد از تایید مشتری، به کیف پول شما واریز می‌شود.</p>
@@ -117,7 +117,7 @@
                         @if($log->note)
                             <div class="service-timeline-time">{{ $log->note }}</div>
                         @endif
-                        <div class="service-timeline-time">{{ $log->created_at->format('Y/m/d H:i') }}</div>
+                        <div class="service-timeline-time">{{ jdatetime($log->created_at) }}</div>
                     </div>
                 @endforeach
             </div>

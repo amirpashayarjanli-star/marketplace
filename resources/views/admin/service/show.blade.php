@@ -13,7 +13,7 @@
 
             <div>
                 <h1 class="wizard-title" style="margin-bottom:4px;">خرابی #{{ $serviceRequest->id }}</h1>
-                <p class="wizard-subtitle">{{ $serviceRequest->customer->name }} — {{ $serviceRequest->created_at->format('Y/m/d H:i') }}</p>
+                <p class="wizard-subtitle">{{ $serviceRequest->customer->name }} — {{ jdatetime($serviceRequest->created_at) }}</p>
             </div>
 
             <span class="service-status service-status-{{ $serviceRequest->status }}" style="font-size:.9rem; padding:8px 18px;">
@@ -37,9 +37,9 @@
         <div class="wizard-form-card">
 
             <h3 class="wizard-progress-label" style="margin-bottom:10px;">شرح خرابی</h3>
-            <p style="color:#334155; line-height:1.9;">{{ $serviceRequest->description }}</p>
+            <p style="color:var(--text); line-height:1.9;">{{ $serviceRequest->description }}</p>
 
-            <div style="margin-top:14px; font-size:.85rem; color:#64748b; display:flex; flex-direction:column; gap:4px;">
+            <div style="margin-top:14px; font-size:.85rem; color:var(--text-muted); display:flex; flex-direction:column; gap:4px;">
                 <span>👤 {{ $serviceRequest->customer->name }} · {{ $serviceRequest->customer->mobile }}</span>
                 <span>📍 {{ $serviceRequest->address ?: $serviceRequest->customer->address }}</span>
             </div>
@@ -135,7 +135,7 @@
                     </div>
 
 
-                    <label style="display:flex; align-items:center; gap:8px; font-size:.9rem; color:#334155; margin-bottom:10px;">
+                    <label style="display:flex; align-items:center; gap:8px; font-size:.9rem; color:var(--text); margin-bottom:10px;">
                         <input type="checkbox" name="has_insurance" value="1" {{ $serviceRequest->has_insurance ? 'checked' : '' }}>
                         این خرابی تحت پوشش بیمه است
                     </label>
@@ -170,7 +170,7 @@
                 </table>
 
                 @if($serviceRequest->invoice->paid_at)
-                    <p class="wizard-hint" style="margin-top:10px;">تسویه‌شده در {{ $serviceRequest->invoice->paid_at->format('Y/m/d H:i') }}</p>
+                    <p class="wizard-hint" style="margin-top:10px;">تسویه‌شده در {{ jdatetime($serviceRequest->invoice->paid_at) }}</p>
                 @endif
 
             </div>
@@ -185,7 +185,7 @@
             <form method="POST" action="{{ route('admin.service.cancel', $serviceRequest) }}"
                   onsubmit="return confirm('این خرابی لغو شود؟');">
                 @csrf
-                <button type="submit" class="wizard-btn wizard-btn-ghost" style="color:#dc2626; border-color:#fecaca;">
+                <button type="submit" class="wizard-btn wizard-btn-ghost" style="color:var(--danger); border-color:var(--pastel-danger-border);">
                     لغو این خرابی
                 </button>
             </form>
@@ -206,7 +206,7 @@
                         @if($log->note)
                             <div class="service-timeline-time">{{ $log->note }}</div>
                         @endif
-                        <div class="service-timeline-time">{{ $log->created_at->format('Y/m/d H:i') }}</div>
+                        <div class="service-timeline-time">{{ jdatetime($log->created_at) }}</div>
                     </div>
                 @endforeach
             </div>

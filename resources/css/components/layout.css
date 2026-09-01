@@ -168,9 +168,14 @@
 
 .company-grid,
 .latest-projects-grid,
+.latest-auctions-grid,
 .quick-access-grid{
     display:grid;
     gap:22px;
+}
+
+.latest-auctions-grid{
+    grid-template-columns:repeat(auto-fill, minmax(min(100%, 320px), 1fr));
 }
 
 .company-grid{

@@ -51,7 +51,7 @@
                     <p class="service-card-desc">{{ \Illuminate\Support\Str::limit($request->description, 100) }}</p>
 
                     <div class="service-card-meta">
-                        {{ $request->created_at->format('Y/m/d H:i') }}
+                        {{ jdatetime($request->created_at) }}
                         @if($request->technician) · تکنسین: {{ $request->technician->name }} @endif
                         @if($request->invoice) · {{ number_format($request->invoice->subtotal) }} تومان @endif
                     </div>

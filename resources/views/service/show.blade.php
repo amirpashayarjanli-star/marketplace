@@ -13,7 +13,7 @@
 
             <div>
                 <h1 class="wizard-title" style="margin-bottom:4px;">خرابی #{{ $serviceRequest->id }}</h1>
-                <p class="wizard-subtitle">{{ $serviceRequest->created_at->format('Y/m/d H:i') }}</p>
+                <p class="wizard-subtitle">{{ jdatetime($serviceRequest->created_at) }}</p>
             </div>
 
             <span class="service-status service-status-{{ $serviceRequest->status }}" style="font-size:.9rem; padding:8px 18px;">
@@ -37,14 +37,14 @@
         <div class="wizard-form-card">
 
             <h3 class="wizard-progress-label" style="margin-bottom:10px;">شرح خرابی</h3>
-            <p style="color:#334155; line-height:1.9;">{{ $serviceRequest->description }}</p>
+            <p style="color:var(--text); line-height:1.9;">{{ $serviceRequest->description }}</p>
 
             @if($serviceRequest->address)
-                <p style="color:#64748b; font-size:.85rem; margin-top:10px;">📍 {{ $serviceRequest->address }}</p>
+                <p style="color:var(--text-muted); font-size:.85rem; margin-top:10px;">📍 {{ $serviceRequest->address }}</p>
             @endif
 
             @if($serviceRequest->technician)
-                <p style="color:#0f172a; font-size:.9rem; margin-top:10px; font-weight:700;">
+                <p style="color:var(--text); font-size:.9rem; margin-top:10px; font-weight:700;">
                     تکنسین: {{ $serviceRequest->technician->name }}
                     @if($serviceRequest->technician->mobile)
                         · {{ $serviceRequest->technician->mobile }}
@@ -64,7 +64,7 @@
                 <h3 class="wizard-progress-label" style="margin-bottom:14px;">
                     فاکتور
                     @if($serviceRequest->has_insurance)
-                        <span class="badge" style="background:#ecfdf5;color:#065f46;margin-inline-start:8px;">تحت پوشش بیمه</span>
+                        <span class="badge" style="background:var(--pastel-success-bg);color:var(--pastel-success-text);margin-inline-start:8px;">تحت پوشش بیمه</span>
                     @endif
                 </h3>
 
@@ -138,7 +138,7 @@
                     </div>
 
 
-                    <label style="display:flex; align-items:center; gap:8px; margin-top:16px; font-size:.85rem; color:#334155;">
+                    <label style="display:flex; align-items:center; gap:8px; margin-top:16px; font-size:.85rem; color:var(--text);">
                         <input type="checkbox" name="make_dedicated" value="1">
                         این تکنسین برای همیشه تکنسین اختصاصی من باشد
                     </label>
@@ -206,15 +206,24 @@
             <h3 class="wizard-progress-label" style="margin-bottom:14px;">مراحل</h3>
 
             <div class="service-timeline">
-                @foreach($serviceRequest->statusLogs as $log)
+                @forelse($serviceRequest->statusLogs as $log)
                     <div class="service-timeline-item">
                         <div class="service-timeline-label">{{ \App\Models\ServiceRequest::LABELS[$log->status] ?? $log->status }}</div>
                         @if($log->note)
                             <div class="service-timeline-time">{{ $log->note }}</div>
                         @endif
-                        <div class="service-timeline-time">{{ $log->created_at->format('Y/m/d H:i') }}</div>
+                        <div class="service-timeline-time">{{ jdatetime($log->created_at) }}</div>
                     </div>
-                @endforeach
+                @empty
+                    {{--
+                    | خرابی‌هایی که پیش از راه‌افتادن ثبت مراحل ساخته شده‌اند
+                    | لاگی ندارند. بدون این، فقط عنوان «مراحل» می‌ماند و
+                    | زیرش خالی — مشتری فکر می‌کند صفحه ناقص بالا آمده.
+                    --}}
+                    <p class="service-timeline-time">
+                        هنوز مرحله‌ای ثبت نشده است.
+                    </p>
+                @endforelse
             </div>
 
         </div>
