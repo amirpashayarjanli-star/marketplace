@@ -28,6 +28,7 @@ use App\Http\Controllers\AuctionController;
 use App\Http\Controllers\AuctionDashboardController;
 use App\Http\Controllers\BidController;
 
+use App\Http\Controllers\AdminBuildingController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminContractController;
 use App\Http\Controllers\AdminWithdrawalController;
@@ -1231,5 +1232,52 @@ Route::middleware([
         'reject'
     ])
     ->name('admin.withdrawals.reject');
+
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | پرونده‌ی ساختمان — ثبت از سمت ما
+    |--------------------------------------------------------------------------
+    |
+    | برای مشتری‌ای که تلفنی تماس گرفته و حساب ندارد. مسیر create باید
+    | پیش از {building} بیاید وگرنه «create» را شناسه‌ی پرونده می‌گیرد.
+    |
+    */
+
+    Route::get('/buildings/create', [
+        AdminBuildingController::class,
+        'create'
+    ])
+    ->name('admin.buildings.create');
+
+
+    Route::post('/buildings', [
+        AdminBuildingController::class,
+        'store'
+    ])
+    ->name('admin.buildings.store');
+
+
+    Route::get('/buildings/{building}', [
+        AdminBuildingController::class,
+        'show'
+    ])
+    ->name('admin.buildings.show');
+
+
+    Route::get('/buildings/{building}/contract', [
+        AdminBuildingController::class,
+        'contractCreate'
+    ])
+    ->name('admin.buildings.contract');
+
+
+    Route::post('/buildings/{building}/contract', [
+        AdminBuildingController::class,
+        'contractStore'
+    ])
+    ->name('admin.buildings.contract.store');
 
 });

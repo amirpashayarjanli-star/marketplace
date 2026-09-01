@@ -26,6 +26,11 @@
         قراردادها
     </a>
 
+    <a href="{{ route('admin.buildings.create') }}"
+       @class(['auction-tab', 'is-active' => request()->routeIs('admin.buildings.*')])>
+        پرونده‌ی جدید
+    </a>
+
     <a href="{{ route('admin.withdrawals.index') }}"
        @class(['auction-tab', 'is-active' => request()->routeIs('admin.withdrawals.*')])>
         برداشت‌ها
