@@ -52,7 +52,10 @@ class ServiceRequestController extends Controller
         $customer = $this->customerOrAbort();
 
         return view('service.create', [
-            'customer' => $customer,
+            'customer'  => $customer,
+            'buildings' => $customer->buildings()
+                ->with(['elevators', 'activeContract'])
+                ->get(),
         ]);
     }
 
@@ -64,15 +67,51 @@ class ServiceRequestController extends Controller
         $validated = $request->validate([
             'description' => 'required|string|min:15|max:1000',
             'address'     => 'nullable|string|max:500',
+            'building_id' => 'nullable|integer|exists:buildings,id',
+            'elevator_id' => 'nullable|integer|exists:elevators,id',
         ], [], [
             'description' => 'شرح خرابی',
             'address'     => 'نشانی',
+            'building_id' => 'پرونده',
+            'elevator_id' => 'دستگاه',
         ]);
 
+        /*
+        | خرابی می‌تواند زیر یک پرونده ثبت شود یا آزاد بماند (مشتری‌ای
+        | که هنوز پرونده نساخته). اگر پرونده داده شده باشد باید مال
+        | همین مشتری باشد، و قرارداد فعالش روی خرابی snapshot می‌شود.
+        */
+        $building = null;
+        $contract = null;
+
+        if (! empty($validated['building_id'])) {
+
+            $building = $customer->buildings()
+                ->with('activeContract')
+                ->findOrFail($validated['building_id']);
+
+            $contract = $building->activeContract;
+        }
+
+        $elevatorId = null;
+
+        if ($building && ! empty($validated['elevator_id'])) {
+            $elevatorId = $building->elevators()
+                ->whereKey($validated['elevator_id'])
+                ->value('id');
+        }
+
         $serviceRequest = ServiceRequest::create([
-            'customer_id' => $customer->id,
-            'description' => $validated['description'],
-            'address'     => $validated['address'] ?: $customer->address,
+            'customer_id'         => $customer->id,
+            'building_id'         => $building?->id,
+            'elevator_id'         => $elevatorId,
+            'service_contract_id' => $contract?->id,
+            // قرارداد دوره‌ای خرابی‌های معمول را پوشش می‌دهد؛ سرویس
+            // موردی هر بار فاکتور جداگانه دارد.
+            'covered_by_contract' => (bool) $contract?->isPeriodic(),
+            'description'         => $validated['description'],
+            'address'             => $validated['address']
+                ?: ($building?->fullAddress() ?: $customer->address),
         ]);
 
         $serviceRequest->moveTo('reported', 'خرابی توسط مشتری ثبت شد.');

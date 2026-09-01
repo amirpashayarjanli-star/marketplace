@@ -48,15 +48,21 @@ class ServiceRequest extends Model
     protected $fillable = [
 
         'customer_id',
+        'building_id',
+        'elevator_id',
+        'service_contract_id',
         'technician_id',
         'status',
         'description',
         'address',
         'has_insurance',
+        'covered_by_contract',
         'customer_rating',
         'customer_feedback',
         'completed_at',
         'confirmed_at',
+        'cancelled_at',
+        'cancel_reason',
 
     ];
 
@@ -64,9 +70,11 @@ class ServiceRequest extends Model
     protected function casts(): array
     {
         return [
-            'has_insurance' => 'boolean',
+            'has_insurance'       => 'boolean',
+            'covered_by_contract' => 'boolean',
             'completed_at'  => 'datetime',
             'confirmed_at'  => 'datetime',
+            'cancelled_at'  => 'datetime',
         ];
     }
 
@@ -80,6 +88,24 @@ class ServiceRequest extends Model
     public function technician(): BelongsTo
     {
         return $this->belongsTo(Technician::class);
+    }
+
+
+    public function building(): BelongsTo
+    {
+        return $this->belongsTo(Building::class);
+    }
+
+
+    public function elevator(): BelongsTo
+    {
+        return $this->belongsTo(Elevator::class);
+    }
+
+
+    public function contract(): BelongsTo
+    {
+        return $this->belongsTo(ServiceContract::class, 'service_contract_id');
     }
 
 

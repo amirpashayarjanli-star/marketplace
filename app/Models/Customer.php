@@ -38,4 +38,10 @@ class Customer extends Model
     {
         return $this->hasMany(ServiceRequest::class);
     }
+
+
+    public function buildings(): HasMany
+    {
+        return $this->hasMany(Building::class)->latest();
+    }
 }

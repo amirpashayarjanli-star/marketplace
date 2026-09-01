@@ -31,7 +31,9 @@ use App\Http\Controllers\BidController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminServiceController;
 
+use App\Http\Controllers\BuildingController;
 use App\Http\Controllers\CustomerProfileController;
+use App\Http\Controllers\ServiceContractController;
 use App\Http\Controllers\ServiceRequestController;
 use App\Http\Controllers\TechnicianServiceJobController;
 use App\Http\Controllers\WalletController;
@@ -591,6 +593,117 @@ Route::middleware('auth')->group(function () {
 */
 
 Route::middleware(['auth', 'approved'])->group(function () {
+
+    /*
+    |----------------------------------------------------------------------
+    | پرونده‌های ساختمان
+    |----------------------------------------------------------------------
+    |
+    | قرارداد، بیمه، تکنسین و تاریخچه‌ی خرابی‌ها همه زیر پرونده‌اند،
+    | پس این مسیرها پیش از خودِ خرابی‌ها می‌آیند.
+    |
+    */
+
+    Route::get('/service/buildings', [
+        BuildingController::class,
+        'index'
+    ])
+    ->name('service.buildings');
+
+
+    Route::get('/service/buildings/create', [
+        BuildingController::class,
+        'create'
+    ])
+    ->name('service.buildings.create');
+
+
+    Route::post('/service/buildings', [
+        BuildingController::class,
+        'store'
+    ])
+    ->name('service.buildings.store');
+
+
+    Route::get('/service/buildings/{building}', [
+        BuildingController::class,
+        'show'
+    ])
+    ->name('service.buildings.show');
+
+
+    Route::get('/service/buildings/{building}/edit', [
+        BuildingController::class,
+        'edit'
+    ])
+    ->name('service.buildings.edit');
+
+
+    Route::put('/service/buildings/{building}', [
+        BuildingController::class,
+        'update'
+    ])
+    ->name('service.buildings.update');
+
+
+    Route::post('/service/buildings/{building}/elevators', [
+        BuildingController::class,
+        'storeElevator'
+    ])
+    ->name('service.buildings.elevators.store');
+
+
+    Route::delete('/service/buildings/{building}/elevators/{elevator}', [
+        BuildingController::class,
+        'destroyElevator'
+    ])
+    ->name('service.buildings.elevators.destroy');
+
+
+
+
+    /*
+    |----------------------------------------------------------------------
+    | قرارداد سرویس
+    |----------------------------------------------------------------------
+    */
+
+    Route::get('/service/buildings/{building}/contract', [
+        ServiceContractController::class,
+        'create'
+    ])
+    ->name('service.contracts.create');
+
+
+    Route::post('/service/buildings/{building}/contract', [
+        ServiceContractController::class,
+        'store'
+    ])
+    ->name('service.contracts.store');
+
+
+    Route::get('/service/contracts/{contract}', [
+        ServiceContractController::class,
+        'show'
+    ])
+    ->name('service.contracts.show');
+
+
+    Route::post('/service/contracts/{contract}/pay', [
+        ServiceContractController::class,
+        'pay'
+    ])
+    ->name('service.contracts.pay');
+
+
+    Route::post('/service/contracts/{contract}/cancel', [
+        ServiceContractController::class,
+        'cancel'
+    ])
+    ->name('service.contracts.cancel');
+
+
+
 
     Route::get('/service', [
         ServiceRequestController::class,
