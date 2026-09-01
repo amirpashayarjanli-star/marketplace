@@ -28,7 +28,7 @@
             @if($errors->any())
                 <div class="bg-red-500/20 border border-red-500/50 backdrop-blur-sm text-red-700 p-4 rounded-2xl mb-6 text-sm">
                     <div class="flex items-start gap-3">
-                        <i class="fa-solid fa-circle-exclamation mt-0.5 flex-shrink-0"></i>
+                        <x-ui.icon name="circle-exclamation" class="mt-0.5 flex-shrink-0" />
                         <div>
                             @foreach($errors->all() as $error)
                                 <div>{{ $error }}</div>
@@ -42,28 +42,10 @@
             <form method="POST" action="{{ route('register') }}" class="space-y-4">
                 @csrf
 
-                {{-- Name Field --}}
-                <div class="relative group">
-                    <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
-                        <i class="fa-solid fa-user text-blue-600 group-focus-within:text-yellow-500 transition"></i>
-                    </div>
-                    <input
-                        type="text"
-                        name="name"
-                        value="{{ old('name') }}"
-                        placeholder="نام شرکت یا نام شخصی"
-                        class="w-full bg-white/50 border border-white/60 rounded-2xl px-5 py-3.5 pr-12 text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent backdrop-blur-sm transition-all {{ $errors->has('name') ? 'ring-2 ring-red-500' : '' }}"
-                        required
-                    >
-                    <label class="absolute -top-2.5 right-4 text-xs font-semibold bg-white/80 px-2 text-gray-700">
-                        نام
-                    </label>
-                </div>
-
                 {{-- Mobile Field --}}
                 <div class="relative group">
                     <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
-                        <i class="fa-solid fa-phone text-blue-600 group-focus-within:text-yellow-500 transition"></i>
+                        <x-ui.icon name="phone" class="text-blue-600 group-focus-within:text-yellow-500 transition" />
                     </div>
                     <input
                         type="tel"
@@ -83,14 +65,16 @@
                 {{-- Password Field --}}
                 <div class="relative group">
                     <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
-                        <i class="fa-solid fa-lock text-blue-600 group-focus-within:text-yellow-500 transition"></i>
+                        <x-ui.icon name="lock" class="text-blue-600 group-focus-within:text-yellow-500 transition" />
                     </div>
                     <button
                         type="button"
                         class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-600 hover:text-blue-600 transition toggle-password"
                         data-target="password-field"
+                        aria-label="نمایش رمز عبور"
                     >
-                        <i class="fa-solid fa-eye text-sm"></i>
+                        <x-ui.icon name="eye" class="icon-eye text-sm" />
+                        <x-ui.icon name="eye-slash" class="icon-eye-slash text-sm hidden" />
                     </button>
                     <input
                         id="password-field"
@@ -108,14 +92,16 @@
                 {{-- Password Confirmation Field --}}
                 <div class="relative group">
                     <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
-                        <i class="fa-solid fa-lock-open text-blue-600 group-focus-within:text-yellow-500 transition"></i>
+                        <x-ui.icon name="lock-open" class="text-blue-600 group-focus-within:text-yellow-500 transition" />
                     </div>
                     <button
                         type="button"
                         class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-600 hover:text-blue-600 transition toggle-password"
                         data-target="password-confirm-field"
+                        aria-label="نمایش رمز عبور"
                     >
-                        <i class="fa-solid fa-eye text-sm"></i>
+                        <x-ui.icon name="eye" class="icon-eye text-sm" />
+                        <x-ui.icon name="eye-slash" class="icon-eye-slash text-sm hidden" />
                     </button>
                     <input
                         id="password-confirm-field"
@@ -160,7 +146,7 @@
                     class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-yellow-600 text-white font-bold py-3.5 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg active:scale-95 flex items-center justify-center gap-2 mt-8"
                 >
                     <span>ایجاد حساب کاربری</span>
-                    <i class="fa-solid fa-arrow-left"></i>
+                    <x-ui.icon name="arrow-left" />
                 </button>
             </form>
 
@@ -182,15 +168,15 @@
         <div class="mt-8 text-center text-xs text-gray-600">
             <div class="inline-flex items-center gap-4">
                 <div class="flex items-center gap-1">
-                    <i class="fa-solid fa-check-circle text-green-500"></i>
+                    <x-ui.icon name="check-circle" class="text-green-500" />
                     <span>رایگان</span>
                 </div>
                 <div class="flex items-center gap-1">
-                    <i class="fa-solid fa-lightning text-yellow-500"></i>
+                    <x-ui.icon name="lightning" class="text-yellow-500" />
                     <span>فوری</span>
                 </div>
                 <div class="flex items-center gap-1">
-                    <i class="fa-solid fa-certificate text-blue-500"></i>
+                    <x-ui.icon name="certificate" class="text-blue-500" />
                     <span>معتبر</span>
                 </div>
             </div>
@@ -199,23 +185,21 @@
 </div>
 
 <script>
-    // Password toggle visibility
+    // آیکون‌ها SVG درون‌خطی‌اند نه فونت‌آیکون؛ کد قبلی دنبال یک تگ <i>
+    // می‌گشت که وجود نداشت و هر بار کلیک، خطای JS می‌داد و آیکون چشم
+    // هیچ‌وقت عوض نمی‌شد. حالا هر دو آیکون رندر می‌شوند و جا‌به‌جا می‌شوند.
     document.querySelectorAll('.toggle-password').forEach(button => {
-        button.addEventListener('click', function(e) {
+        button.addEventListener('click', function (e) {
             e.preventDefault();
-            const targetId = this.dataset.target;
-            const input = document.getElementById(targetId);
-            const icon = this.querySelector('i');
+            const input = document.getElementById(this.dataset.target);
+            if (! input) return;
 
-            if (input.type === 'password') {
-                input.type = 'text';
-                icon.classList.remove('fa-eye');
-                icon.classList.add('fa-eye-slash');
-            } else {
-                input.type = 'password';
-                icon.classList.remove('fa-eye-slash');
-                icon.classList.add('fa-eye');
-            }
+            const showing = input.type === 'text';
+            input.type = showing ? 'password' : 'text';
+
+            this.querySelector('.icon-eye')?.classList.toggle('hidden', ! showing);
+            this.querySelector('.icon-eye-slash')?.classList.toggle('hidden', showing);
+            this.setAttribute('aria-label', showing ? 'نمایش رمز عبور' : 'پنهان کردن رمز عبور');
         });
     });
 

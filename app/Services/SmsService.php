@@ -12,6 +12,20 @@ class SmsService
     public function sendOtp(string $mobile, string $code): bool
     {
 
+        return $this->send($mobile, "کد تایید آسانسور پرو: ".$code);
+
+    }
+
+
+
+
+    /**
+     * ارسال یک پیامک متنی دلخواه. اگر تنظیمات پیامک ناقص باشد یا خطایی
+     * رخ دهد، false برمی‌گرداند و جریان کار را متوقف نمی‌کند.
+     */
+    public function send(string $mobile, string $text): bool
+    {
+
         try {
 
 
@@ -20,15 +34,18 @@ class SmsService
                     'https://rest.payamak-panel.com/api/SendSMS/SendSMS',
                     [
 
-                        'username' => env('MELIPAYAMAK_USERNAME'),
+                        // با config می‌خوانیم نه env — بعد از php artisan
+                        // config:cache تابع env() همیشه null برمی‌گرداند و
+                        // پیامک بی‌سروصدا ارسال نمی‌شد.
+                        'username' => config('services.melipayamak.username'),
 
-                        'password' => env('MELIPAYAMAK_PASSWORD'),
+                        'password' => config('services.melipayamak.password'),
 
-                        'from' => env('MELIPAYAMAK_NUMBER'),
+                        'from' => config('services.melipayamak.from'),
 
                         'to' => $mobile,
 
-                        'text' => "کد تایید آسانسور پرو: ".$code,
+                        'text' => $text,
 
                     ]
                 );

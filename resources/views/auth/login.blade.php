@@ -28,7 +28,7 @@
             @if($errors->any())
                 <div class="bg-red-500/20 border border-red-500/50 backdrop-blur-sm text-red-700 p-4 rounded-2xl mb-6 text-sm">
                     <div class="flex items-start gap-3">
-                        <i class="fa-solid fa-circle-exclamation mt-0.5 flex-shrink-0"></i>
+                        <x-ui.icon name="circle-exclamation" class="mt-0.5 flex-shrink-0" />
                         <div>
                             @foreach($errors->all() as $error)
                                 <div>{{ $error }}</div>
@@ -45,7 +45,7 @@
                 {{-- Mobile Field --}}
                 <div class="relative group">
                     <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
-                        <i class="fa-solid fa-phone text-blue-600 group-focus-within:text-yellow-500 transition"></i>
+                        <x-ui.icon name="phone" class="text-blue-600 group-focus-within:text-yellow-500 transition" />
                     </div>
                     <input
                         type="tel"
@@ -65,14 +65,16 @@
                 {{-- Password Field --}}
                 <div class="relative group">
                     <div class="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
-                        <i class="fa-solid fa-lock text-blue-600 group-focus-within:text-yellow-500 transition"></i>
+                        <x-ui.icon name="lock" class="text-blue-600 group-focus-within:text-yellow-500 transition" />
                     </div>
                     <button
                         type="button"
                         class="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-600 hover:text-blue-600 transition toggle-password"
                         data-target="password-field"
+                        aria-label="نمایش رمز عبور"
                     >
-                        <i class="fa-solid fa-eye"></i>
+                        <x-ui.icon name="eye" class="icon-eye" />
+                        <x-ui.icon name="eye-slash" class="icon-eye-slash hidden" />
                     </button>
                     <input
                         id="password-field"
@@ -93,8 +95,12 @@
                         <input type="checkbox" name="remember" class="w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-2 focus:ring-blue-500">
                         <span class="group-hover:text-blue-600 transition">مرا به خاطر بسپار</span>
                     </label>
-                    <a href="javascript:alert('سیستم بازیابی رمز عبور از طریق ایمیل فعال است. لطفاً از صفحهٔ ثبت‌نام شروع کنید.');" class="text-sm text-blue-600 hover:text-yellow-500 font-semibold transition">
-                        فراموشی رمز عبور؟
+                    {{-- بازیابی رمز از طریق ایمیل نداریم؛ راه واقعی ورودِ
+                         کاربری که رمزش را فراموش کرده، همان ورود با کد
+                         یکبار مصرف است. قبلاً این لینک فقط یک alert با
+                         راهنمای نادرست نشان می‌داد. --}}
+                    <a href="{{ route('login.otp') }}" class="text-sm text-blue-600 hover:text-yellow-500 font-semibold transition">
+                        رمز عبور را فراموش کرده‌اید؟
                     </a>
                 </div>
 
@@ -104,7 +110,7 @@
                     class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-yellow-600 text-white font-bold py-3.5 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg active:scale-95 flex items-center justify-center gap-2 mt-8"
                 >
                     <span>ورود به حساب</span>
-                    <i class="fa-solid fa-arrow-left"></i>
+                    <x-ui.icon name="arrow-left" />
                 </button>
 
                 {{-- OTP Alternative --}}
@@ -118,7 +124,7 @@
                     href="{{ route('login.otp') }}"
                     class="w-full border-2 border-yellow-500 text-yellow-600 hover:bg-yellow-50 font-bold py-3.5 rounded-2xl transition-all duration-300 flex items-center justify-center gap-2"
                 >
-                    <i class="fa-solid fa-message"></i>
+                    <x-ui.icon name="message" />
                     <span>ورود با کد یکبار مصرف</span>
                 </a>
             </form>
@@ -141,15 +147,15 @@
         <div class="mt-8 text-center text-xs text-gray-600">
             <div class="inline-flex items-center gap-4">
                 <div class="flex items-center gap-1">
-                    <i class="fa-solid fa-shield text-green-500"></i>
+                    <x-ui.icon name="shield" class="text-green-500" />
                     <span>امن</span>
                 </div>
                 <div class="flex items-center gap-1">
-                    <i class="fa-solid fa-zap text-yellow-500"></i>
+                    <x-ui.icon name="zap" class="text-yellow-500" />
                     <span>سریع</span>
                 </div>
                 <div class="flex items-center gap-1">
-                    <i class="fa-solid fa-mobile text-blue-500"></i>
+                    <x-ui.icon name="mobile" class="text-blue-500" />
                     <span>موبایل</span>
                 </div>
             </div>
@@ -158,21 +164,20 @@
 </div>
 
 <script>
+    // آیکون‌ها SVG درون‌خطی‌اند نه فونت‌آیکون؛ کد قبلی دنبال یک تگ <i>
+    // می‌گشت که وجود نداشت و هر بار کلیک، خطای JS می‌داد و آیکون چشم
+    // هیچ‌وقت عوض نمی‌شد. حالا هر دو آیکون رندر می‌شوند و جا‌به‌جا می‌شوند.
     document.querySelectorAll('.toggle-password').forEach(button => {
-        button.addEventListener('click', function() {
-            const targetId = this.dataset.target;
-            const input = document.getElementById(targetId);
-            const icon = this.querySelector('i');
+        button.addEventListener('click', function () {
+            const input = document.getElementById(this.dataset.target);
+            if (! input) return;
 
-            if (input.type === 'password') {
-                input.type = 'text';
-                icon.classList.remove('fa-eye');
-                icon.classList.add('fa-eye-slash');
-            } else {
-                input.type = 'password';
-                icon.classList.remove('fa-eye-slash');
-                icon.classList.add('fa-eye');
-            }
+            const showing = input.type === 'text';
+            input.type = showing ? 'password' : 'text';
+
+            this.querySelector('.icon-eye')?.classList.toggle('hidden', ! showing);
+            this.querySelector('.icon-eye-slash')?.classList.toggle('hidden', showing);
+            this.setAttribute('aria-label', showing ? 'نمایش رمز عبور' : 'پنهان کردن رمز عبور');
         });
     });
 </script>

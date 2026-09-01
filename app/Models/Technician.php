@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use App\Traits\HasSlug;
@@ -40,9 +41,33 @@ class Technician extends Model
 
 
 
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
+
+
     public function projects(): HasMany
     {
         return $this->hasMany(Project::class);
+    }
+
+
+
+
+    public function serviceRequests(): HasMany
+    {
+        return $this->hasMany(ServiceRequest::class);
+    }
+
+
+
+
+    public function dedicatedCustomers(): HasMany
+    {
+        return $this->hasMany(Customer::class, 'dedicated_technician_id');
     }
 
 

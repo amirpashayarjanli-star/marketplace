@@ -16,7 +16,7 @@
             {{-- Header --}}
             <div class="text-center mb-10">
                 <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-yellow-500 rounded-2xl mb-4">
-                    <i class="fa-solid fa-check text-white text-2xl"></i>
+                    <x-ui.icon name="check" class="text-white text-2xl" />
                 </div>
                 <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-yellow-500 bg-clip-text text-transparent">
                     تایید شماره
@@ -26,11 +26,21 @@
                 </p>
             </div>
 
+            {{-- Success --}}
+            @if(session('success'))
+                <div class="bg-green-500/20 border border-green-500/50 backdrop-blur-sm text-green-800 p-4 rounded-2xl mb-6 text-sm">
+                    <div class="flex items-start gap-3">
+                        <x-ui.icon name="circle-check" class="mt-0.5 flex-shrink-0" />
+                        <div>{{ session('success') }}</div>
+                    </div>
+                </div>
+            @endif
+
             {{-- Errors --}}
             @if($errors->any())
                 <div class="bg-red-500/20 border border-red-500/50 backdrop-blur-sm text-red-700 p-4 rounded-2xl mb-6 text-sm">
                     <div class="flex items-start gap-3">
-                        <i class="fa-solid fa-circle-exclamation mt-0.5 flex-shrink-0"></i>
+                        <x-ui.icon name="circle-exclamation" class="mt-0.5 flex-shrink-0" />
                         <div>
                             @foreach($errors->all() as $error)
                                 <div>{{ $error }}</div>
@@ -73,7 +83,7 @@
                 {{-- Instructions --}}
                 <div class="text-center text-sm text-gray-600">
                     <p>کد را دریافت نکردید؟</p>
-                    <button type="button" class="text-blue-600 hover:text-yellow-500 font-semibold transition mt-1" id="resend-btn">
+                    <button type="submit" form="resend-form" class="text-blue-600 hover:text-yellow-500 font-semibold transition mt-1" id="resend-btn">
                         ارسال مجدد کد
                     </button>
                     <span class="text-gray-500 ms-2" id="resend-timer"></span>
@@ -85,7 +95,7 @@
                     class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-yellow-600 text-white font-bold py-3.5 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg active:scale-95 flex items-center justify-center gap-2 mt-8"
                 >
                     <span>مرحلهٔ بعد</span>
-                    <i class="fa-solid fa-arrow-left"></i>
+                    <x-ui.icon name="arrow-left" />
                 </button>
 
                 {{-- Back Link --}}
@@ -96,21 +106,26 @@
                 </div>
             </form>
 
+            {{-- فرم ارسال مجدد جداست، چون فرم تودرتو در HTML مجاز نیست --}}
+            <form method="POST" action="{{ route('register.otp.resend') }}" id="resend-form" class="hidden">
+                @csrf
+            </form>
+
         </div>
 
         {{-- Features Badge --}}
         <div class="mt-8 text-center text-xs text-gray-600">
             <div class="inline-flex items-center gap-4">
                 <div class="flex items-center gap-1">
-                    <i class="fa-solid fa-shield text-green-500"></i>
+                    <x-ui.icon name="shield" class="text-green-500" />
                     <span>امن</span>
                 </div>
                 <div class="flex items-center gap-1">
-                    <i class="fa-solid fa-zap text-yellow-500"></i>
+                    <x-ui.icon name="zap" class="text-yellow-500" />
                     <span>سریع</span>
                 </div>
                 <div class="flex items-center gap-1">
-                    <i class="fa-solid fa-check-circle text-blue-500"></i>
+                    <x-ui.icon name="check-circle" class="text-blue-500" />
                     <span>تایید‌شده</span>
                 </div>
             </div>
@@ -183,27 +198,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Resend button
-    let resendCountdown = 0;
-    resendBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        if (resendCountdown === 0) {
-            resendCountdown = 60;
-            resendBtn.disabled = true;
-            resendBtn.classList.add('opacity-50', 'cursor-not-allowed');
-
-            const interval = setInterval(() => {
-                resendCountdown--;
-                resendTimer.textContent = `(${resendCountdown}s)`;
-
-                if (resendCountdown === 0) {
-                    clearInterval(interval);
-                    resendBtn.disabled = false;
-                    resendBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-                    resendTimer.textContent = '';
-                }
-            }, 1000);
-        }
+    // دکمه‌ی ارسال مجدد فرم واقعی resend-form رو submit می‌کنه (به سرور
+    // می‌ره و کد تازه می‌سازه). غیرفعال‌کردن دکمه باید روی رویداد
+    // submit خودِ فرم باشه نه click خودِ دکمه — چون disabled کردن یک
+    // submit button داخل هندلر click خودش، همون کلیک رو کنسل می‌کنه و
+    // فرم اصلاً ارسال نمی‌شه.
+    const resendForm = document.getElementById('resend-form');
+    resendForm.addEventListener('submit', function() {
+        resendBtn.disabled = true;
+        resendBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        resendTimer.textContent = 'در حال ارسال...';
     });
 
     // Focus first input on load

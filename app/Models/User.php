@@ -5,6 +5,9 @@ namespace App\Models;
 
 use Database\Factories\UserFactory;
 
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
+
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 
@@ -54,7 +57,7 @@ use Illuminate\Support\Str;
 
 ])]
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
 
 
@@ -73,6 +76,31 @@ class User extends Authenticatable
 
         ];
 
+    }
+
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | دسترسی به پنل‌های Filament
+    |--------------------------------------------------------------------------
+    |
+    | بدون این متد، Filament در محیط production به همه (حتی خود ادمین) 403
+    | می‌دهد و در محیط local برعکس، هر کاربر لاگین‌کرده‌ای می‌تواند وارد پنل شود.
+    |
+    */
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return match ($panel->getId()) {
+
+            'admin'     => $this->role === 'admin',
+
+            'moderator' => in_array($this->role, ['admin', 'moderator'], true),
+
+            default     => false,
+
+        };
     }
 
 
@@ -122,6 +150,31 @@ class User extends Authenticatable
     }
 
 
+
+    public function customer()
+    {
+
+        return $this->hasOne(Customer::class);
+
+    }
+
+
+
+    public function wallet()
+    {
+
+        return $this->hasOne(Wallet::class);
+
+    }
+
+
+
+    public function bids()
+    {
+
+        return $this->hasMany(Bid::class);
+
+    }
 
 
 

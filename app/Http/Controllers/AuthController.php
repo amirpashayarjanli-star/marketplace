@@ -61,23 +61,56 @@ class AuthController extends Controller
 
 
 
+        // جلوگیری از session fixation — شناسه‌ی نشست بعد از ورود عوض می‌شود.
+        $request->session()->regenerate();
+
+
         $user = auth()->user();
 
 
 
 
 
-        if($user->status !== 'approved') {
+        if($user->status === 'rejected') {
 
 
-            return redirect()
+            auth()->logout();
 
-                ->route('pending');
+
+            return back()->withErrors([
+
+                'mobile' => 'حساب کاربری شما تایید نشد.'
+
+            ]);
 
 
         }
 
 
+
+
+        // ناقص یا در انتظار تایید → برو به مسیر تکمیل مخصوص نوع حسابش
+        if($user->status !== 'approved') {
+
+
+            return redirect()
+
+                ->route($user->type === 'customer' ? 'service.setup' : 'profile.wizard');
+
+
+        }
+
+
+
+        if($user->type === 'customer') {
+
+
+            return redirect()
+
+                ->route('service.index');
+
+
+        }
 
 
 

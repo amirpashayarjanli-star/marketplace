@@ -33,13 +33,6 @@ class RegisterController extends Controller
 
         $request->validate([
 
-            'name' => [
-                'required',
-                'string',
-                'max:255'
-            ],
-
-
             'mobile' => [
                 'required',
                 'regex:/^09[0-9]{9}$/',
@@ -47,10 +40,13 @@ class RegisterController extends Controller
             ],
 
 
+            // فرم ثبت‌نام به کاربر «حداقل ۸ کاراکتر» را وعده می‌دهد و
+            // نشانگر قدرت رمز هم بر همان مبنا امتیاز می‌دهد؛ قانون قبلی
+            // min:6 بود و رمز ۶ کاراکتری را هم می‌پذیرفت.
             'password' => [
                 'required',
                 'confirmed',
-                'min:6'
+                'min:8'
             ],
 
             'terms' => [
@@ -62,9 +58,9 @@ class RegisterController extends Controller
 
 
 
+        // فقط شماره و رمز — بقیه‌ی اطلاعات (نام و ...) از داشبورد
+        // در ویزارد تکمیل پروفایل پر می‌شود.
         Session::put('register_data',[
-
-            'name' => $request->name,
 
             'mobile' => $request->mobile,
 
@@ -107,52 +103,6 @@ class RegisterController extends Controller
     }
 
 
-
-
-
-    public function type()
-    {
-        return view('auth.register-type');
-    }
-
-
-
-
-
-    public function saveType(Request $request)
-    {
-
-
-        $request->validate([
-
-            'type' => [
-
-                'required',
-
-                'in:company,manufacturer,store,technician,employer'
-
-            ]
-
-        ]);
-
-
-
-        $user = Auth::user();
-
-
-
-        $user->update([
-
-            'type' => $request->type
-
-        ]);
-
-
-
-        return redirect()
-            ->route('register.profile');
-
-    }
 
 
 
