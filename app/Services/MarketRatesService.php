@@ -137,27 +137,61 @@ class MarketRatesService
     }
 
 
+    /*
+    | عمداً از Cache::remember استفاده نمی‌کنیم.
+    |
+    | remember نتیجه‌ی خالی رو هم کش می‌کرد، یعنی یک بار خطا (کلید نبود،
+    | شبکه قطع بود) ده دقیقه‌ی بعدی رو هم خراب می‌کرد و کارت‌ها «به‌زودی»
+    | می‌موندن. حالا فقط پاسخ موفق کش میشه و شکست، دفعه‌ی بعد دوباره
+    | امتحان میشه.
+    |
+    | هر شکستی هم لاگ می‌کنه — قبلاً فقط استثنا لاگ می‌شد و «کلید خالیه»
+    | و «سرور ۴۰۳ داد» بی‌صدا رد می‌شدن، برای همین از بیرون فقط
+    | «به‌زودی» دیده می‌شد بدون هیچ سرنخی.
+    */
     private function fetch(): array
     {
-        return Cache::remember(self::CACHE_KEY, self::CACHE_TTL, function () {
+        $cached = Cache::get(self::CACHE_KEY);
 
-            $key = config('services.navasan.key');
+        if (is_array($cached) && $cached !== []) {
+            return $cached;
+        }
 
-            if (blank($key)) {
+        $key = config('services.navasan.key');
+
+        if (blank($key)) {
+            Log::warning('نرخ بازار: NAVASAN_API_KEY در .env تنظیم نشده — کارت‌ها «به‌زودی» می‌مانند.');
+
+            return [];
+        }
+
+        try {
+            $res = Http::timeout(6)
+                ->connectTimeout(3)
+                ->get('https://api.navasan.tech/latest/', ['api_key' => $key]);
+
+            if (! $res->successful()) {
+                Log::warning('نرخ بازار: navasan پاسخ ' . $res->status() . ' داد.');
+
                 return [];
             }
 
-            try {
-                $res = Http::timeout(6)
-                    ->connectTimeout(3)
-                    ->get('https://api.navasan.tech/latest/', ['api_key' => $key]);
+            $data = $res->json();
 
-                return $res->successful() ? $res->json() : [];
+            if (! is_array($data) || $data === []) {
+                Log::warning('نرخ بازار: پاسخ navasan خالی بود.');
 
-            } catch (\Throwable $e) {
-                Log::warning('market rates unavailable: ' . $e->getMessage());
                 return [];
             }
-        });
+
+            Cache::put(self::CACHE_KEY, $data, self::CACHE_TTL);
+
+            return $data;
+
+        } catch (\Throwable $e) {
+            Log::warning('نرخ بازار: ' . $e->getMessage());
+
+            return [];
+        }
     }
 }
