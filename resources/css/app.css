@@ -39,6 +39,9 @@
 @import "./components/auction.css";
 @import "./components/dashboard.css";
 
+/* ---- پالایش‌های گوشی — بعد از همه‌ی کامپوننت‌ها ---- */
+@import "./mobile.css";
+
 /* ---- تنظیمات مخصوص حالت شب ---- */
 @import "./dark-overrides.css";
 
