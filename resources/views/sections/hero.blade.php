@@ -87,26 +87,27 @@
                     <article class="rate-card">
 
                         <span class="rate-icon tint-{{ $tone }}">
-                            <x-ui.icon :name="$icon" :size="18" />
+                            <x-ui.icon :name="$icon" :size="20" />
                         </span>
 
                         <div class="rate-body">
 
-                            <span class="rate-label">{{ $rate['label'] }}</span>
+                            <span class="rate-label">
+                                {{ $rate['label'] }}
+
+                                @if($rate['available'] && $rate['updated'])
+                                    <span class="rate-time" title="آخرین به‌روزرسانی">
+                                        {{ $rate['updated'] }}
+                                    </span>
+                                @endif
+                            </span>
 
                             @if($rate['available'])
 
-                                <strong class="rate-value">
-                                    {{ number_format($rate['value']) }}
-                                    <small>{{ $rate['unit'] }}</small>
-                                </strong>
-
-                                @if(!empty($rate['change']))
-                                    <span class="rate-change {{ $up ? 'is-up' : 'is-down' }}">
-                                        {{ $up ? '▲' : '▼' }}
-                                        {{ number_format(abs($rate['change'])) }}
-                                    </span>
-                                @endif
+                                <p class="rate-figure">
+                                    <strong class="rate-value">{{ number_format($rate['value']) }}</strong>
+                                    <span class="rate-unit">{{ $rate['unit'] }}</span>
+                                </p>
 
                             @else
 
@@ -116,6 +117,24 @@
                             @endif
 
                         </div>
+
+                        {{-- چیپ تغییر ته کارت می‌شینه تا فضای خالی وسط پر بشه --}}
+                        @if($rate['available'] && !empty($rate['change']))
+
+                            <span class="rate-change {{ $up ? 'is-up' : 'is-down' }}">
+
+                                <span class="rate-change-main">
+                                    <span aria-hidden="true">{{ $up ? '▲' : '▼' }}</span>
+                                    {{ number_format(abs($rate['change'])) }}
+                                </span>
+
+                                @if($rate['percent'] !== null)
+                                    <span class="rate-percent">{{ abs($rate['percent']) }}٪</span>
+                                @endif
+
+                            </span>
+
+                        @endif
 
                     </article>
 

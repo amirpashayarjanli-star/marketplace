@@ -17,18 +17,17 @@ use Illuminate\Support\Facades\Log;
 | ---------------------------------------------------------------------
 | واحدها — مهم‌ترین نکته‌ی این کلاس
 | ---------------------------------------------------------------------
-| navasan همه‌ی فیلدها رو با یک واحد نمی‌ده. سه مقیاس مختلف دارن و
-| قبلاً همه‌شون ریال فرض می‌شدن و توی ویو تقسیم بر ۱۰ می‌شدن — برای
-| همین دلار یک صفر کم داشت:
+| navasan همه‌ی فیلدها رو با یک واحد نمی‌ده. قبلاً همه‌شون ریال فرض
+| می‌شدن و توی ویو تقسیم بر ۱۰ می‌شدن، برای همین دلار یک صفر کم داشت.
 |
-|   usd_sell  ۲۲۱٬۰۰۰      → همین الانش تومانه            (×۱)
-|   18ayar    ۲۲٬۷۲۷٬۲۷۰   → ریاله، هر گرم                (÷۱۰)
-|   sekkeh    ۲۲۷٬۰۰۰      → هزار ریاله                   (×۱۰۰)
+|   usd_sell  ۲۲۱٬۰۰۰      → تومان            (×۱)
+|   18ayar    ۲۲٬۷۵۰٬۳۶۰   → تومان، هر گرم    (×۱)
+|   sekkeh    ۲۲۷٬۰۰۰      → هزار تومان       (×۱۰۰۰)
 |
-| درستی این سه مقیاس با خود داده‌ها راستی‌آزمایی میشه:
-|   طلای ۱۸ عیار ۲٬۲۷۲٬۷۲۷ ت/گرم  →  طلای ۲۴ عیار ۳٬۰۳۰٬۳۰۳ ت/گرم
-|   سکه‌ی امامی ۸٫۱۳۳ گرم با عیار ۹۰۰  →  ارزش ذاتی ۲۲٬۱۸۰٬۹۰۶ ت
-|   sekkeh×۱۰۰ = ۲۲٬۷۰۰٬۰۰۰ ت  →  حباب ۲٫۳٪ که عدد طبیعی بازاره.
+| این سه با هم جور در میان:
+|   طلای ۱۸ عیار ۲۲٬۷۵۰٬۳۶۰ ت/گرم  →  ۲۴ عیار ۳۰٬۳۳۳٬۸۱۳ ت/گرم
+|   سکه‌ی امامی ۸٫۱۳۳ گرم عیار ۹۰۰  →  ارزش ذاتی ۲۲۲٬۰۳۴٬۴۱۳ ت
+|   sekkeh×۱۰۰۰ = ۲۲۷٬۰۰۰٬۰۰۰ ت   →  حباب ۲٫۲٪، عدد طبیعی بازار.
 |
 | تبدیل عمداً همین‌جا انجام میشه نه توی ویو: واحدِ هر فیلد خاصیتِ
 | منبعه و ویو نباید بدونه navasan چی برمی‌گردونه.
@@ -46,9 +45,9 @@ class MarketRatesService
      * @var array<string, array{label:string, field:string, mul:int, div:int}>
      */
     private const SOURCES = [
-        'usd'  => ['label' => 'دلار آمریکا',  'field' => 'usd_sell', 'mul' => 1,   'div' => 1],
-        'gold' => ['label' => 'طلای ۱۸ عیار', 'field' => '18ayar',   'mul' => 1,   'div' => 10],
-        'coin' => ['label' => 'سکه امامی',    'field' => 'sekkeh',   'mul' => 100, 'div' => 1],
+        'usd'  => ['label' => 'دلار آمریکا',  'field' => 'usd_sell', 'mul' => 1,    'unit' => 'تومان'],
+        'gold' => ['label' => 'طلای ۱۸ عیار', 'field' => '18ayar',   'mul' => 1,    'unit' => 'تومان / گرم'],
+        'coin' => ['label' => 'سکه امامی',    'field' => 'sekkeh',   'mul' => 1000, 'unit' => 'تومان'],
     ];
 
 
@@ -70,17 +69,20 @@ class MarketRatesService
 
 
     /**
-     * @param  array{label:string, field:string, mul:int, div:int}  $source
+     * @param  array{label:string, field:string, mul:int, unit:string}  $source
      */
     private function shape(array $source, ?array $node): array
     {
-        $value = $this->toToman($node['value'] ?? null, $source);
+        $value  = $this->toToman($node['value'] ?? null, $source);
+        $change = $this->toToman($node['change'] ?? null, $source);
 
         return [
             'label'     => $source['label'],
             'value'     => $value,
-            'change'    => $this->toToman($node['change'] ?? null, $source),
-            'unit'      => 'تومان',
+            'change'    => $change,
+            'percent'   => $this->percent($value, $change),
+            'unit'      => $source['unit'],
+            'updated'   => $this->time($node['date'] ?? null),
             'available' => $value !== null && $value > 0,
         ];
     }
@@ -89,7 +91,7 @@ class MarketRatesService
     /**
      * مقدار خام منبع رو به تومان تبدیل می‌کنه.
      *
-     * @param  array{mul:int, div:int}  $source
+     * @param  array{mul:int}  $source
      */
     private function toToman(int|string|null $raw, array $source): ?int
     {
@@ -97,7 +99,41 @@ class MarketRatesService
             return null;
         }
 
-        return intdiv((int) $raw * $source['mul'], $source['div']);
+        return (int) $raw * $source['mul'];
+    }
+
+
+    /**
+     * درصد تغییر نسبت به نرخ دیروز — یعنی نسبت به «مقدار منهای تغییر»،
+     * نه نسبت به خود مقدار.
+     */
+    private function percent(?int $value, ?int $change): ?float
+    {
+        if ($value === null || empty($change)) {
+            return null;
+        }
+
+        $previous = $value - $change;
+
+        if ($previous <= 0) {
+            return null;
+        }
+
+        return round($change / $previous * 100, 2);
+    }
+
+
+    /**
+     * navasan تاریخ رو همین الانش شمسی می‌ده («1405-06-11 16:23:09»)،
+     * پس فقط ساعتش رو جدا می‌کنیم.
+     */
+    private function time(?string $date): ?string
+    {
+        if (blank($date) || ! str_contains($date, ' ')) {
+            return null;
+        }
+
+        return substr(explode(' ', $date)[1], 0, 5);
     }
 
 

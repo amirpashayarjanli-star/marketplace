@@ -161,53 +161,137 @@
 .rate-icon{
     display:grid;
     place-items:center;
-    width:42px;
-    height:42px;
+    width:46px;
+    height:46px;
     flex:none;
     border-radius:var(--radius-md);
+
+    transition:transform var(--transition) var(--ease-out);
+}
+
+.rate-card:hover .rate-icon{
+    transform:scale(1.06) rotate(-3deg);
 }
 
 .rate-body{
     display:flex;
     flex-direction:column;
-    gap:2px;
+    gap:3px;
     min-width:0;
+    flex:1;
 }
 
 .rate-label{
+    display:flex;
+    align-items:baseline;
+    gap:.4rem;
+
     font-size:.8rem;
-    font-weight:600;
+    font-weight:700;
     color:var(--text-muted);
+    white-space:nowrap;
 }
 
-.rate-value{
-    font-size:1.15rem;
-    font-weight:900;
-    color:var(--text);
+.rate-time{
+    font-size:.66rem;
+    font-weight:600;
+    color:var(--text-soft);
     font-variant-numeric:tabular-nums;
     white-space:nowrap;
 }
 
-.rate-value small{
-    font-size:.7rem;
-    font-weight:600;
-    color:var(--text-muted);
-    margin-inline-start:.2rem;
+.rate-time::before{
+    content:"·";
+    margin-inline-end:.35rem;
 }
 
-.rate-change{
-    font-size:.74rem;
-    font-weight:700;
+/*
+| عدد و واحدش. واحد روی خط پایه‌ی عدد می‌شینه نه بالاش، چون
+| «تومان / گرم» بلنده و بالانویس شدن، خط رو شلوغ می‌کرد.
+*/
+.rate-figure{
+    display:flex;
+    align-items:baseline;
+    gap:.3rem;
+    flex-wrap:wrap;
+    margin:0;
+}
+
+.rate-value{
+    font-size:clamp(1.15rem, 1rem + .6vw, 1.4rem);
+    font-weight:900;
+    line-height:1.25;
+    color:var(--text);
     font-variant-numeric:tabular-nums;
+    letter-spacing:-.01em;
+    white-space:nowrap;
 }
 
-.rate-change.is-up{ color:var(--success); }
-.rate-change.is-down{ color:var(--danger); }
+.rate-unit{
+    font-size:.68rem;
+    font-weight:600;
+    color:var(--text-soft);
+    white-space:nowrap;
+}
+
+/*
+| تغییر به‌صورت چیپ رنگی، نه متن لخت — روی شیشه‌ی کارت بهتر دیده
+| میشه و درصد کنارش معنی عدد مطلق رو کامل می‌کنه.
+*/
+/*
+| چیپ تغییر ته کارت می‌شینه (سمت چپ در RTL) تا فضای خالی وسط کارت پر
+| بشه: [آیکون] [نام و نرخ] ......... [تغییر]. عدد مطلق بالا و درصد
+| زیرش، چون کنار هم روی کارت باریک جا نمی‌شدن.
+*/
+.rate-change{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:1px;
+    flex:none;
+
+    padding:.3rem .55rem;
+    border-radius:var(--radius-md);
+
+    font-size:.7rem;
+    font-weight:800;
+    font-variant-numeric:tabular-nums;
+    line-height:1.35;
+}
+
+.rate-change-main{
+    display:inline-flex;
+    align-items:center;
+    gap:.25rem;
+    white-space:nowrap;
+}
+
+.rate-change.is-up{
+    background:color-mix(in srgb, var(--success) 14%, transparent);
+    color:var(--success);
+}
+
+.rate-change.is-down{
+    background:color-mix(in srgb, var(--danger) 14%, transparent);
+    color:var(--danger);
+}
+
+.rate-percent{
+    font-size:.62rem;
+    font-weight:700;
+    opacity:.72;
+}
 
 .rate-pending{
-    font-size:.82rem;
-    font-weight:700;
+    align-self:flex-start;
+    margin-top:2px;
+    padding:.2rem .55rem;
+    border-radius:99px;
+
+    background:color-mix(in srgb, var(--text-muted) 12%, transparent);
     color:var(--text-muted);
+    font-size:.72rem;
+    font-weight:700;
 }
 
 
@@ -363,6 +447,17 @@
     .hero-rates{
         display:grid;
         grid-template-columns:repeat(auto-fit, minmax(min(100%, 190px), 1fr));
+    }
+
+    /*
+    | روی گوشی ستون متن باریکه، پس واحد فقط کنارِ نرخ‌های کوتاه جا
+    | می‌شد و کارت‌ها قدهای نابرابر می‌گرفتن (۸۴ و ۱۰۹ پیکسل). حالا
+    | واحد همیشه زیر عدد می‌ره تا هر سه کارت یک قد باشن.
+    */
+    .rate-figure{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:0;
     }
 
     /*
