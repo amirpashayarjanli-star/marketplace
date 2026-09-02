@@ -17,6 +17,25 @@ class Wallet extends Model
     ];
 
 
+    /*
+    | ستون balance در دیتابیس default(0) دارد، ولی مدلی که همین الان با
+    | firstOrCreate ساخته شده این را نمی‌داند و در حافظه null می‌ماند تا
+    | وقتی از دیتابیس دوباره خوانده شود. برای کیف‌پولِ تازه یعنی
+    | Wallet::forUser($u)->balance مقدار null می‌داد نه صفر.
+    */
+    protected $attributes = [
+        'balance' => 0,
+    ];
+
+
+    protected function casts(): array
+    {
+        return [
+            'balance' => 'integer',
+        ];
+    }
+
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
