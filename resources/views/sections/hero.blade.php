@@ -75,11 +75,12 @@
                             default => 'sky',
                         };
                         $icon = match($key){
-                            'usd'  => 'bolt',
-                            'gold' => 'star',
-                            default => 'certificate',
+                            'usd'  => 'banknotes',
+                            'gold' => 'gold-bar',
+                            default => 'coin',
                         };
-                        $toman = \App\Services\MarketRatesService::toToman($rate['value']);
+                        // تبدیل واحد داخل MarketRatesService انجام شده؛
+                        // این عددها همین الانش تومانه.
                         $up = ($rate['change'] ?? 0) > 0;
                     @endphp
 
@@ -96,14 +97,14 @@
                             @if($rate['available'])
 
                                 <strong class="rate-value">
-                                    {{ number_format($toman) }}
+                                    {{ number_format($rate['value']) }}
                                     <small>{{ $rate['unit'] }}</small>
                                 </strong>
 
                                 @if(!empty($rate['change']))
                                     <span class="rate-change {{ $up ? 'is-up' : 'is-down' }}">
                                         {{ $up ? '▲' : '▼' }}
-                                        {{ number_format(abs(\App\Services\MarketRatesService::toToman($rate['change']))) }}
+                                        {{ number_format(abs($rate['change'])) }}
                                     </span>
                                 @endif
 
