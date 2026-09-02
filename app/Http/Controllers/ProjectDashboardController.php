@@ -146,11 +146,12 @@ class ProjectDashboardController extends Controller
             'title' => $request->title,
 
 
-
-            'slug' => str()->slug($request->title)
-                .'-'
-                .time(),
-
+            /*
+            | slug عمداً ست نمی‌شود — تِرِیت HasSlug روی مدل خودش
+            | می‌سازدش. قبلاً time() ته عنوان می‌چسبید که یکتایی را
+            | تضمین می‌کرد ولی آدرس‌ها را به شکل
+            | «nsb-asansor-brg-ngyn-1788353589» درمی‌آورد.
+            */
 
 
 

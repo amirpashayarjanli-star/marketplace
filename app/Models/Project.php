@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasSlug;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -10,6 +11,12 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Project extends Model
 {
+
+    use HasSlug;
+
+    /** عنوان پروژه در title است، نه name. */
+    protected string $slugSource = 'title';
+
 
     /*
     | برچسب‌های فارسی. مقادیر همان‌هایی‌اند که فرم ثبت پروژه و

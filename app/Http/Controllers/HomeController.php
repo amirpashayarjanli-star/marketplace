@@ -19,7 +19,8 @@ class HomeController extends Controller
         $topManufacturers = Manufacturer::where('is_active', 1)->latest()->limit(6)->get();
         $topStores = Store::where('is_active', 1)->latest()->limit(6)->get();
         $topTechnicians = Technician::where('is_active', 1)->latest()->limit(6)->get();
-        $latestProjects = Project::where('is_active', 1)->latest()->limit(6)->get();
+        // کارت پروژه نام شرکت مجری را می‌خواند — بدون این، شش کوئری اضافه
+        $latestProjects = Project::with('company')->where('is_active', 1)->latest()->limit(6)->get();
 
         /*
          | مناقصه‌های در حال برگزاری برای سکشن پرو مزایده.

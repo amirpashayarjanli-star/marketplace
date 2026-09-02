@@ -9,7 +9,11 @@ class ProjectController extends Controller
 
     public function index()
     {
-        $query = Project::where('is_active', true);
+        /*
+        | کارت پروژه نام شرکت مجری را نشان می‌دهد. بدون eager load، هر
+        | کارت یک کوئری جدا می‌زد — صفحه‌ی ۱۵تایی ۱۵ کوئری اضافه داشت.
+        */
+        $query = Project::with('company')->where('is_active', true);
 
         if (request('search')) {
             $search = request('search');
