@@ -13,8 +13,8 @@
 
 .trust-wrapper{
     display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(min(100%, 150px), 1fr));
-    gap:.6rem;
+    grid-template-columns:repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+    gap:1rem;
     padding:clamp(1rem, .6rem + 1vw, 1.6rem);
     border-radius:var(--radius-2xl);
 }
@@ -88,7 +88,8 @@
 }
 
 .quick-access-grid{
-    grid-template-columns:repeat(auto-fit, minmax(min(100%, 190px), 1fr));
+    grid-template-columns:repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+    gap:1.2rem;
 }
 
 .quick-card{
@@ -109,7 +110,7 @@
     background-position:center;
     background-repeat:no-repeat;
     position:relative;
-    aspect-ratio:1.2/1;
+    aspect-ratio:1/1;
     overflow:hidden;
 
     transition:transform var(--transition) var(--ease-out),
