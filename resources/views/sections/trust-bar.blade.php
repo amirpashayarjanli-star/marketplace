@@ -24,17 +24,15 @@
 
             @foreach($items as $item)
 
-                <a href="{{ route($item['route']) }}" class="trust-item">
+                <a href="{{ route($item['route']) }}" class="trust-item" style="background-image: url('{{ asset('images/trust-bar/' . $item['image']) }}')">
 
-                    <span class="trust-icon tint-{{ $item['tone'] }}">
-                        <img src="{{ asset('images/trust-bar/' . $item['image']) }}" alt="{{ $item['label'] }}" class="trust-image" />
-                    </span>
+                    <div class="trust-overlay">
+                        <strong class="trust-value">
+                            {{ number_format($stats[$item['key']] ?? 0) }}
+                        </strong>
 
-                    <strong class="trust-value">
-                        {{ number_format($stats[$item['key']] ?? 0) }}
-                    </strong>
-
-                    <span class="trust-label">{{ $item['label'] }}</span>
+                        <span class="trust-label">{{ $item['label'] }}</span>
+                    </div>
 
                 </a>
 

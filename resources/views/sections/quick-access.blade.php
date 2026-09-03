@@ -23,15 +23,13 @@
 
             @foreach($links as $link)
 
-                <a href="{{ route($link['route']) }}" class="quick-card">
+                <a href="{{ route($link['route']) }}" class="quick-card" style="background-image: url('{{ asset('images/trust-bar/' . $link['image']) }}')">
 
-                    <span class="quick-icon tint-{{ $link['tone'] }}">
-                        <img src="{{ asset('images/trust-bar/' . $link['image']) }}" alt="{{ $link['label'] }}" class="quick-image" />
-                    </span>
+                    <div class="quick-overlay">
+                        <h3>{{ $link['label'] }}</h3>
 
-                    <h3>{{ $link['label'] }}</h3>
-
-                    <p>{{ $link['desc'] }}</p>
+                        <p>{{ $link['desc'] }}</p>
+                    </div>
 
                 </a>
 
