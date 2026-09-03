@@ -26,7 +26,7 @@
     justify-content:center;
     gap:.55rem;
 
-    padding:1.1rem .6rem;
+    padding:2rem 1.2rem;
     border-radius:var(--radius-lg);
     text-align:center;
     text-decoration:none;
@@ -35,6 +35,7 @@
     background-position:center;
     background-repeat:no-repeat;
     position:relative;
+    min-height:160px;
 
     transition:transform var(--transition) var(--ease-out),
                filter var(--transition) ease;
@@ -53,7 +54,7 @@
 
     position:absolute;
     inset:0;
-    padding:1.1rem .6rem;
+    padding:2rem 1.2rem;
 
     background:rgba(0, 0, 0, .35);
     border-radius:var(--radius-lg);
@@ -95,9 +96,10 @@
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    gap:12px;
+    gap:14px;
 
-    padding:28px 20px;
+    padding:48px 32px;
+    min-height:260px;
 
     border:1px solid transparent;
     border-radius:var(--radius-xl);
@@ -124,11 +126,11 @@
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:12px;
+    gap:14px;
 
     position:absolute;
     inset:0;
-    padding:28px 20px;
+    padding:48px 32px;
 
     background:rgba(0, 0, 0, .35);
     border-radius:var(--radius-xl);
