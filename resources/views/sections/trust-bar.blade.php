@@ -8,11 +8,11 @@
 
 @php
     $items = [
-        ['key' => 'companies',     'icon' => 'building', 'label' => 'شرکت آسانسوری', 'tone' => 'sky',   'route' => 'companies.index'],
-        ['key' => 'manufacturers', 'icon' => 'industry', 'label' => 'تولیدکننده',    'tone' => 'lilac', 'route' => 'manufacturers.index'],
-        ['key' => 'stores',        'icon' => 'shop',     'label' => 'فروشگاه',       'tone' => 'peach', 'route' => 'stores.index'],
-        ['key' => 'technicians',   'icon' => 'wrench',   'label' => 'تکنسین',        'tone' => 'mint',  'route' => 'technicians.index'],
-        ['key' => 'projects',      'icon' => 'clipboard',   'label' => 'پروژه',         'tone' => 'lemon', 'route' => 'projects.index'],
+        ['key' => 'companies',     'image' => 'companies.jpg', 'label' => 'شرکت آسانسوری', 'tone' => 'sky',   'route' => 'companies.index'],
+        ['key' => 'manufacturers', 'image' => 'manufacturers.jpg', 'label' => 'تولیدکننده',    'tone' => 'lilac', 'route' => 'manufacturers.index'],
+        ['key' => 'stores',        'image' => 'stores.jpg',     'label' => 'فروشگاه',       'tone' => 'peach', 'route' => 'stores.index'],
+        ['key' => 'technicians',   'image' => 'technicians.jpg',   'label' => 'تکنسین',        'tone' => 'mint',  'route' => 'technicians.index'],
+        ['key' => 'projects',      'image' => 'projects.jpg',   'label' => 'پروژه',         'tone' => 'lemon', 'route' => 'projects.index'],
     ];
 @endphp
 
@@ -27,7 +27,7 @@
                 <a href="{{ route($item['route']) }}" class="trust-item">
 
                     <span class="trust-icon tint-{{ $item['tone'] }}">
-                        <x-ui.icon :name="$item['icon']" :size="24" />
+                        <img src="{{ asset('images/trust-bar/' . $item['image']) }}" alt="{{ $item['label'] }}" class="trust-image" />
                     </span>
 
                     <strong class="trust-value">

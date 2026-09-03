@@ -1,10 +1,10 @@
 @php
     $links = [
-        ['icon' => 'building', 'label' => 'شرکت‌ها',      'desc' => 'نصب و نگهداری', 'tone' => 'sky',   'route' => 'companies.index'],
-        ['icon' => 'industry', 'label' => 'تولیدکنندگان', 'desc' => 'قطعات و کابین', 'tone' => 'lilac', 'route' => 'manufacturers.index'],
-        ['icon' => 'shop',     'label' => 'فروشگاه‌ها',   'desc' => 'خرید تجهیزات',  'tone' => 'peach', 'route' => 'stores.index'],
-        ['icon' => 'wrench',   'label' => 'تکنسین‌ها',    'desc' => 'تعمیر و سرویس', 'tone' => 'mint',  'route' => 'technicians.index'],
-        ['icon' => 'clipboard',   'label' => 'پروژه‌ها',     'desc' => 'فرصت همکاری',   'tone' => 'lemon', 'route' => 'projects.index'],
+        ['image' => 'companies.jpg', 'label' => 'شرکت‌ها',      'desc' => 'نصب و نگهداری', 'tone' => 'sky',   'route' => 'companies.index'],
+        ['image' => 'manufacturers.jpg', 'label' => 'تولیدکنندگان', 'desc' => 'قطعات و کابین', 'tone' => 'lilac', 'route' => 'manufacturers.index'],
+        ['image' => 'stores.jpg',     'label' => 'فروشگاه‌ها',   'desc' => 'خرید تجهیزات',  'tone' => 'peach', 'route' => 'stores.index'],
+        ['image' => 'technicians.jpg',   'label' => 'تکنسین‌ها',    'desc' => 'تعمیر و سرویس', 'tone' => 'mint',  'route' => 'technicians.index'],
+        ['image' => 'projects.jpg',   'label' => 'پروژه‌ها',     'desc' => 'فرصت همکاری',   'tone' => 'lemon', 'route' => 'projects.index'],
     ];
 @endphp
 
@@ -26,7 +26,7 @@
                 <a href="{{ route($link['route']) }}" class="quick-card">
 
                     <span class="quick-icon tint-{{ $link['tone'] }}">
-                        <x-ui.icon :name="$link['icon']" :size="26" />
+                        <img src="{{ asset('images/trust-bar/' . $link['image']) }}" alt="{{ $link['label'] }}" class="quick-image" />
                     </span>
 
                     <h3>{{ $link['label'] }}</h3>
