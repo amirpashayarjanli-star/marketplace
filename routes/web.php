@@ -23,6 +23,7 @@ use App\Http\Controllers\StoreController;
 use App\Http\Controllers\TechnicianController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\PresentationController;
 
 use App\Http\Controllers\AuctionController;
 use App\Http\Controllers\AuctionDashboardController;
@@ -68,6 +69,30 @@ Route::get('/', [
 
 ])
 ->name('home');
+
+
+
+
+/*
+|--------------------------------------------------------------------------
+| ارائه‌ی کلاسی (پشت رمز)
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/presentation', [
+    PresentationController::class,
+    'show'
+])->name('presentation.show');
+
+Route::post('/presentation', [
+    PresentationController::class,
+    'unlock'
+])->middleware('throttle:5,1')->name('presentation.unlock');
+
+Route::post('/presentation/lock', [
+    PresentationController::class,
+    'lock'
+])->name('presentation.lock');
 
 
 
